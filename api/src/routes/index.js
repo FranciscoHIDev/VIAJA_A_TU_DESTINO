@@ -8,7 +8,7 @@ const userRoutes = require("./Users")
 
 
 /* Telling the server to use the routes in the files that are imported. */
-//router.use("/offers", offerRoutes)
+router.use("/offers", offerRoutes)
 router.use("/users", userRoutes)
 
 module.exports = router

@@ -17,7 +17,7 @@ const offerSchema = mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ["Vuelo, Paquete, Hotel, Tour"],
+        enum: ["Vuelo", "Paquete", "Hotel", "Tour"],
         default: "Paquete"
     },
     destination: {
