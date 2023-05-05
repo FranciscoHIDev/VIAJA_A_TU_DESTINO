@@ -13,7 +13,7 @@ const offerSchema = mongoose.Schema({
         type: String,
         required: true,
         minLength: 20,
-        maxLength: 600
+        maxLength: 2000
     },
     category: {
         type: String,
@@ -28,16 +28,14 @@ const offerSchema = mongoose.Schema({
         required: true,
     },
     image: {
-        type: String,
+        type: Array,
         required: true,
 
     },
     promotion: {
         type: String
     },
-    location: {
-        type: String
-    },
+
     departure: {
         type: String
     },
@@ -47,11 +45,14 @@ const offerSchema = mongoose.Schema({
     availability: {
         type: String
     },
-    stay: {
+    daysOfStay: {
         type: String
     },
     hotel: {
         type: String
+    },
+    buyLink: {
+        type: Array
     },
     active: {
         type: Boolean,
