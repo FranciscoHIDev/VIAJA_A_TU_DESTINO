@@ -32,6 +32,10 @@ const offerSchema = mongoose.Schema({
         required: true,
 
     },
+    sampleImage: {
+        type: Array,
+    }
+    ,
     promotion: {
         type: String
     },
@@ -51,7 +55,7 @@ const offerSchema = mongoose.Schema({
     hotel: {
         type: String
     },
-    buyLink: {
+    buyLinks: {
         type: Array
     },
     active: {
