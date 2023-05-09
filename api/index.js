@@ -1,6 +1,6 @@
-const { MONGODB } = require("./db")
+const { MONGODB } = require("./src/db")
 const express = require('express')
-const router = require("./routes/index")
+const router = require("./src/routes/index")
 const cors = require("cors");
 const morgan = require("morgan")
 
