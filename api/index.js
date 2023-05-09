@@ -15,7 +15,7 @@ app.use(express.json())
 app.use("/api", router)
 
 /* Routes*/
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
     res.status(200).send("Welcome to the Viaja a tu Destino API")
 })
 
