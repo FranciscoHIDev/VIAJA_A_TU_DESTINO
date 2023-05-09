@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CardOffers from "./../CardOffers/CardOffers";
-import './CardsOffers.css'
+import "./CardsOffers.css";
 
 function CardsOffers() {
   const [offers, setOffers] = useState([]);
@@ -27,6 +27,9 @@ function CardsOffers() {
             promotion={e.promotion}
             price={e.price}
             availability={e.availability}
+            destination={e.destination}
+            author={e.author}
+            date={e.date}
           />
         );
       })}

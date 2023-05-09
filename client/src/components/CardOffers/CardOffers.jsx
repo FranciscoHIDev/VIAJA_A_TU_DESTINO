@@ -1,7 +1,7 @@
 import React from "react";
 import "./CardOffers.css";
 import { FaSuitcase } from "react-icons/fa";
-import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavoriteBorder, MdLocationOn } from "react-icons/md";
 import { RiShareForwardLine } from "react-icons/ri";
 
 function CardOffers({
@@ -15,6 +15,8 @@ function CardOffers({
   availability,
   hotel,
   departure,
+  author,
+  date,
 }) {
   return (
     <div className="conteiner">
@@ -25,8 +27,12 @@ function CardOffers({
         <p className="buttonromotion">{promotion}</p>
       </div>
       <div className="items-category">
-        <FaSuitcase className="icon" />
-        <p className="category">{category}</p>
+        <img
+          className="img-category"
+          src={category.image}
+          alt={category.name}
+        />
+        <p className="category">{category.name}</p>
       </div>
       <div>
         <h1 className="title">{title}</h1>
@@ -35,8 +41,14 @@ function CardOffers({
           Disponibilidad: <span className="item-date">{availability}</span>
         </p>
         <p>{departure}</p>
+        <div className="items-destination">
+          <MdLocationOn className="icon-location" />
+          <p className="destination">{destination}</p>
+          {/* <p>
+            Creado por {author} el {date}
+          </p> */}
+        </div>
       </div>
-
       <div className="button">
         <p className="price">
           Desde

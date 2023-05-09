@@ -1,5 +1,10 @@
 const mongoose = require('mongoose')
 
+function currentDate() {
+    const date = new Date();
+    return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+}
+
 const offerSchema = mongoose.Schema({
     title: {
         type: String,
@@ -16,24 +21,45 @@ const offerSchema = mongoose.Schema({
         maxLength: 2000
     },
     category: {
-        type: String,
-        enum: ["Vuelo", "Paquete", "Hotel", "Tour"],
-        default: "Paquete"
+        type: {
+            name: {
+                type: String,
+                enum: ["Vuelo", "Paquete", "Hotel", "Tour"],
+                default: "Paquete"
+            },
+            image: {
+                type: String,
+                default: function () {
+                    switch (this.name) {
+                        case "Vuelo":
+                            return "default_flight_image.jpg";
+                        case "Paquete":
+                            return "https://res.cloudinary.com/duaysiozi/image/upload/v1683602440/package_tour_sdmqgl.svg";
+                        case "Hotel":
+                            return "https://res.cloudinary.com/duaysiozi/image/upload/v1683602440/hotel_x7jnwu.svg";
+                        case "Tour":
+                            return "default_tour_image.jpg";
+                        default:
+                            return "";
+                    }
+                }
+            }
+        }
     },
     destination: {
         type: String
     },
     price: {
-        type: Number,
+        type: String,
         required: true,
     },
     image: {
-        type: Array,
+        type: [String],
         required: true,
 
     },
     sampleImage: {
-        type: Array,
+        type: [String],
     }
     ,
     promotion: {
@@ -56,7 +82,20 @@ const offerSchema = mongoose.Schema({
         type: String
     },
     buyLinks: {
-        type: Array
+        type: [String]
+    },
+    author: {
+        type: String,
+        enum: ["Francisco"],
+        default: "Francisco"
+    },
+    date: {
+        type: String,
+        default: currentDate
+    },
+    created: {
+        type: Date,
+        default: Date.now
     },
     active: {
         type: Boolean,
