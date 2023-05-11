@@ -1,4 +1,4 @@
-const { MONGODB } = require("./src/db")
+const { MONGODB } = require("./db")
 const express = require('express')
 const router = require("./src/routes/index")
 const cors = require("cors");

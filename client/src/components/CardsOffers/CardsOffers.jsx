@@ -7,7 +7,7 @@ function CardsOffers() {
   const [offers, setOffers] = useState([]);
 
   const allOffers = async () => {
-    const { data } = await axios.get("http://localhost:3000/api/offers");
+    const { data } = await axios.get("/api/offers");
     console.log(data);
     setOffers(data);
   };
