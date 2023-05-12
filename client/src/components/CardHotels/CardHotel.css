@@ -1,0 +1,131 @@
+.conteiner{
+    margin-top: 30px;
+    border-radius:20px;
+    background-color: #fff;
+    width: 390px;
+    height: 540px;
+    border: none;
+    margin: 15px;
+    transform: translateY(0);
+    transition: box-shadow .25s,transform .25s;
+
+}
+.img{
+    width: 390px;
+    height: 250px;
+    border-radius:20px 20px 0 0 ;
+}
+
+.button{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px;
+    margin-top: -10px;
+}
+.price{
+    font-size: 20px;
+}
+.colorprice{
+    color: #ff3e02;   
+    font-weight: 700;
+}
+.items-title{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+  
+}
+
+.title{
+    font-size: 20px;
+    color: #035373;
+    margin-left: 20px;
+  
+}
+.items-category{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: -20px;
+}
+.category{
+   
+    font-size: 20px;
+}
+.img-category{
+    width: 20px;
+    margin-left: 20px;       
+    margin-right: 10px;   
+}
+.summary{
+    margin-left: 20px;
+}
+.buttonromotion{
+    position: absolute;
+    margin-top: -220px;
+    border-radius: 0 8px  8px 0;    
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: hsla(0,0%,100%,.8);;  
+    transition: border-color 0.25s;
+    color: #323231;
+}
+.availability{
+    margin-left: 20px;
+    color:#ff3e02;
+    font-weight: 600;
+}
+.favorite{
+    cursor: pointer;
+    background-color: hsla(0,0%,100%,.5);; 
+    border-radius: 50%;
+    position: absolute;
+    font-size: 28px;
+    margin-left: 340px;
+    margin-top: 20px;
+    padding: 5px;
+    color:#323231;
+    opacity: 70%;
+    
+  
+    }
+    .share{
+        cursor: pointer;
+        background-color: hsla(0,0%,100%,.5);; 
+        border-radius: 50%;
+        position: absolute;
+        font-size: 28px;
+        margin-left: 290px;
+        margin-top: 20px;
+        padding: 5px;
+        color:#323231;
+        opacity: 70%;
+        
+    }
+    .item-date{
+    font-size: 15px;
+    font-weight: 600;
+    color:#323231
+    }
+
+.items-destination{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 20px;
+    margin-top: -15px;
+}
+.icon-location{
+    color: #ff3e02;
+    margin-right: 5px;
+    font-size: 20px;
+}
+.destination{
+    font-size: 15px;
+    font-weight: 600;
+    color:#323231
+    }
