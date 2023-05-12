@@ -1,11 +1,28 @@
 const hotelSchema = require('../models/Hotels')
+const destinationSchema = require("../models/Destinations")
 
 /* Routes to create a new hotel */
 const routerPostHotel = async (req, res) => {
+    const { name, image, persons, discount, price, previousPrice, destination, from, to, link } = req.body;
     try {
-        const hotel = hotelSchema(req.body)
-        await hotel.save()
-        res.status(200).json(hotel)
+        let dest = await destinationSchema.findOne({ name: { $regex: new RegExp(destination, "i") } })
+        if (!dest) {
+            dest = await destinationSchema.create({ name: destination.toUpperCase() })
+        }
+        const newHotel = new hotelSchema({
+            name: name,
+            image: image,
+            persons: persons,
+            discount: discount,
+            price: price,
+            previousPrice: previousPrice,
+            destination: dest._id,
+            from: from,
+            to: to,
+            link: link
+        })
+        await newHotel.save()
+        res.status(201).json(newHotel)
     } catch (error) {
         res.status(500).json(`Error ${error}`)
     }

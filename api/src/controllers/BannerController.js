@@ -1,10 +1,11 @@
 const bannerSchema = require('../models/Banners')
+const destinationSchema = require('../models/Destinations')
 
 const routerPostBanner = async (req, res) => {
     try {
         const banner = bannerSchema(req.body)
         await banner.save()
-        res.status(200).json(banner)
+        res.status(201).json(banner)
 
     } catch (error) {
         res.status(500).json(`Error ${error}`)

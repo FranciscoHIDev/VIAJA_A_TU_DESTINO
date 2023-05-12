@@ -6,7 +6,7 @@ const routerPostOffer = async (req, res) => {
     try {
         const offer = offerSchema(req.body)
         await offer.save()
-        res.status(200).json(offer)
+        res.status(201).json(offer)
 
     } catch (error) {
         res.status(500).json(`Error ${error}`)

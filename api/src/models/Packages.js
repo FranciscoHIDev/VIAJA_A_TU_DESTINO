@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const packageSchema = mongoose.Schema({
     destination: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Destinations"
     },
     image:{

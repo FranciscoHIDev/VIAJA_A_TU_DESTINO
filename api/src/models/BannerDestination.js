@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const bannerDestinationSchema = mongoose.Schema({
     destination: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Destinations"
     },
     image: {

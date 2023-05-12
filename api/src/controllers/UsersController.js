@@ -15,7 +15,7 @@ const routerPostUser = async (req, res) => {
             telephone: user.telephone
         })
         const userCreated = await newUser.save()
-        res.status(200).json(userCreated)
+        res.status(201).json(userCreated)
 
     } catch (error) {
         res.status(500).json(`Error ${error}`);

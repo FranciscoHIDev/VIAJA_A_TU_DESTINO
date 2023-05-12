@@ -5,7 +5,7 @@ const routerPostDestination = async (req, res) => {
     try {
         const destination = destinationSchema(req.body)
         await destination.save()
-        res.status(200).json(destination)
+        res.status(201).json(destination)
 
     } catch (error) {
         res.status(500).json(`Error ${error}`)
