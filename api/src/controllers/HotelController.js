@@ -22,6 +22,7 @@ const routerPostHotel = async (req, res) => {
             link: link
         })
         await newHotel.save()
+        await newHotel.populate("destination")
         res.status(201).json(newHotel)
     } catch (error) {
         res.status(500).json(`Error ${error}`)
@@ -32,6 +33,7 @@ const routerPostHotel = async (req, res) => {
 const routerGetHotel = async (req, res) => {
     try {
         const allHotels = await hotelSchema.find()
+            .populate("destination", { name: 1 })
         res.status(200).json(allHotels)
     } catch (error) {
         res.status(500).json(`Error ${error}`)
@@ -43,6 +45,7 @@ const routerGetByIdHotel = async (req, res) => {
     try {
         const { id } = req.params
         const hotel = await hotelSchema.findById(id)
+            .populate("destination", { name: 1 })
         res.status(200).json(hotel)
     } catch (error) {
         res.status(500).json(`Error ${error}`)

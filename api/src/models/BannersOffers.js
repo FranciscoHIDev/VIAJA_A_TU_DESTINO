@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const bannerSchema = mongoose.Schema({
+const bannerOfferSchema = mongoose.Schema({
     destination: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Destinations"
@@ -18,4 +18,4 @@ const bannerSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("Banners", bannerSchema)
+module.exports = mongoose.model("BannersOffers", bannerOfferSchema)

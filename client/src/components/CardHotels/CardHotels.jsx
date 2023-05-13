@@ -1,7 +1,7 @@
 import React from "react";
 import "./CardHotel.css";
-import { FaSuitcase } from "react-icons/fa";
-import { MdFavoriteBorder, MdLocationOn } from "react-icons/md";
+import { FaSuitcase, FaGift } from "react-icons/fa";
+import { MdFavoriteBorder, MdLocationOn, MdPeople } from "react-icons/md";
 import { RiShareForwardLine } from "react-icons/ri";
 
 function CardHotels({
@@ -21,35 +21,46 @@ function CardHotels({
       <div>
         <RiShareForwardLine className="share" />
         <MdFavoriteBorder className="favorite" />
-        <img className="img" src={image} alt="image" />
-        <p className="buttonromotion">{ discount}</p>
       </div>
-      <div className="items-category">
-        <img className="img-category" src={image} alt={image} />
-        {/* <p className="category">{category.name}</p> */}
-      </div>
-      <div>
-        {/* <h1 className="title">{title}</h1>
-        <p className="summary">{summary}</p>
-        <p className="availability">
-          Disponibilidad: <span className="item-date">{availability}</span>
+      <img className="img" src={image} alt="image" />
+      <div className="item-promotion">
+        <p>{discount}</p>
+        <p className="icon-border">
+          <FaGift className="icon" />
         </p>
-        <p>{departure}</p> */}
+      </div>
+
+      <div>
+        <h1 className="title">{name}</h1>
+        <div className="items-availability">
+          <p className="availability">
+            Desde <span className="item-date">{from}</span>
+          </p>
+          <p className="availability">
+            Hasta <span className="item-date">{to}</span>
+          </p>
+        </div>
+        <div className="item-persons">
+          <MdPeople className="persons" />
+          <p>{persons} personas</p>
+        </div>
         <div className="items-destination">
           <MdLocationOn className="icon-location" />
-          <p className="destination">{destination}</p>
-          {/* <p>
-        Creado por {author} el {date}
-      </p> */}
+          <p className="destination">{destination.name}</p>
         </div>
       </div>
-      <div className="button">
-        <p className="price">
-          Desde
-          <span className="colorprice"> ${price} </span>
-        </p>
-
-        <button>Reservar</button>
+      <div className="items-price">
+        <div className="price-data">
+          <p className="price">Desde </p>
+          <p className="price-prev">${previousPrice}</p>
+          <p className="colorprice"> ${price} </p>
+          <p className="text-taxes">Impuestos incluidos</p>
+        </div>
+        <div className="button-buy">
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            <button>Reservar</button>
+          </a>
+        </div>
       </div>
     </div>
   );
