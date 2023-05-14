@@ -6,7 +6,7 @@ const router = express.Router()
 const offerRoutes = require("./Offers")
 const userRoutes = require("./Users")
 const destinationRoutes = require("./Destinations")
-const bannerRoutes = require("./Banner")
+const bannerRoutes = require("./BannerOffer")
 const hotelRoutes = require("./Hotels")
 const packagesRoutes = require('./Packages')
 

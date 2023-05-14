@@ -47,7 +47,8 @@ const offerSchema = mongoose.Schema({
         }
     },
     destination: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Destinations"
     },
     price: {
         type: String,
@@ -58,7 +59,7 @@ const offerSchema = mongoose.Schema({
         required: true,
 
     },
-    sampleImage: {
+    sampleImages: {
         type: [String],
     }
     ,

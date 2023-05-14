@@ -9,7 +9,7 @@ const routerPostHotel = async (req, res) => {
         if (!dest) {
             dest = await destinationSchema.create({ name: destination.toUpperCase() })
         }
-        const newHotel = new hotelSchema({
+        const newHotel = await new hotelSchema({
             name: name,
             image: image,
             persons: persons,
@@ -57,7 +57,11 @@ const routerPutHotel = async (req, res) => {
     try {
         const { id } = req.params
         const { name, image, persons, discount, price, previousPrice, destination, from, to, link } = req.body
-        const hotel = await hotelSchema.updateOne({ _id: id }, { $set: { name, image, persons, discount, price, previousPrice, destination, from, to, link } })
+        let dest = await destinationSchema.findOne({ name: { $regex: new RegExp(destination, "i") } })
+        if (!dest) {
+            dest = await destinationSchema.create({ name: destination.toUpperCase() })
+        }
+        const hotel = await hotelSchema.updateOne({ _id: id }, { $set: { name, image, persons, discount, price, previousPrice, destination: dest._id, from, to, link } })
         res.status(200).json(hotel)
     } catch (error) {
         res.status(500).json(`Error ${error}`)

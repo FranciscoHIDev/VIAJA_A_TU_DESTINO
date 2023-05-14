@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { routerPostBanner, routerGetBanner, routerGetByIdBanner, routerPutBanner, routerDeleteBanner } = require("../controllers/BannerController")
+const { routerPostBanner, routerGetBanner, routerGetByIdBanner, routerPutBanner, routerDeleteBanner } = require("../controllers/BannerOfferController")
 
 router.post("/", (req, res) => {
     routerPostBanner(req, res)
