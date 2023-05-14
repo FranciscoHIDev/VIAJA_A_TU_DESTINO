@@ -47,8 +47,7 @@ const offerSchema = mongoose.Schema({
         }
     },
     destination: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Destinations"
+        type: String
     },
     price: {
         type: String,

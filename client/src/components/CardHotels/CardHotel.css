@@ -1,4 +1,4 @@
-.conteiner{
+.conteiner-hotel{
     margin-top: 30px;
     border-radius:20px;
     background-color: #fff;
@@ -10,62 +10,57 @@
     transition: box-shadow .25s,transform .25s;
 
 }
-.img{
+.img-hotel{
     width: 390px;
     height: 200px;
     border-radius:20px 20px 0 0 ;
 }
 
-.items-price{
+.items-price-hotel{
     display: flex;
     flex-direction: row-reverse;        
     margin: 30px;
     margin-top: -70px;
     justify-content: space-between;
 }
-.price{
+.price-hotel{
     font-size: 15px;
     margin-bottom: -20px;
     
 }
-.price-prev{
+.price-prev-hotel{
     font-size: 20px;
     margin-bottom: -20px;
     text-decoration-line: line-through;
 }
-.colorprice{
+.colorprice-hotel{
     color: #ff3e02;   
     font-weight: bold;
     font-size: 20px;
     margin-bottom: -10px;
 }
-.price-data{
+.price-data-hotel{
     display: flex;
     flex-direction: column;
    align-items: center;
    margin-bottom: -50px;
 }
-.text-taxes{
+.text-taxes-hotel{
     font-size: 14px;
     color: #323231
 }
-.items-title{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    
-  
-}
 
-.title{
+
+.title-hotel{
     font-size: 15px;
     color: #035373; 
     margin-right: 20px; 
+    margin-left: 20px;
   
 }
 
 
-.item-promotion{
+.item-promotion-hotel{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -84,11 +79,11 @@
    
 
 }
-.discount{
+.discount-hotel{
     font-size: 19px;
 }
 
-.icon-border{
+.icon-border-hotel{
     
     margin-left: 10px;
     background-color: #fff;    
@@ -99,12 +94,13 @@
    
   
 }
-.icon{
+.icon-hotel-promo{
     color: #035373;  
     font-size: 30px;  
    }
 
-.availability{    
+.availability-hotel{    
+    margin-left: 20px;
     color:#323231;
     font-weight: 300;
     margin-bottom: -10px;
@@ -137,53 +133,51 @@
         opacity: 70%;
         
     }
-.item-date{
+.item-date-hotel{
     font-size: 15px;
     font-weight: 600;
     color:#323231
     }
 
 
-.items-destination{
+.items-destination-hotel{
     display: flex;
     flex-direction: row;  
+    align-items: center;
     margin-left: 20px;
-    margin-top: -15px;
+    margin-top: -20px;
 }
 
-.destination{
+.destination-hotel{
     font-size: 15px;
     font-weight: 600;
     color:#323231
     }
 
-.items-availability{       
+.items-availability-hotel{       
     display: flex;
     flex-direction: row;  
     margin-top: -15px;
     }
-    .item-persons{
+    .item-persons-hotel{
         display: flex;
         flex-direction: row;
         margin-left: 20px;
         align-items: center;
         margin-left: 20px;
     }
-    .persons{
+    .persons-hotel{
         margin-right: 5px;
         font-size: 20px;  
          color: #323231
     }
-    .button-buy{
+    .button-buy-hotel{
         display: flex;        
        margin-top: 70px;
       color: #323231
 
     }
-    .current{
-        font-size: medium;
-    }
-
+  
     .icon-hotel{
         font-size: 19px;      
         color: #323231;
@@ -194,9 +188,15 @@
     .item-hotel{
         margin-top: 20px;
         margin-left: 20px;
+        margin-right: 2px;
         
     }
 
-    .data-availability{
+    .data-availability-hotel{
         margin-left: -20px;
+    }
+    .icon-location-hotel{
+        color: #ff3e02;
+        margin-right: 5px;
+        font-size: 20px;
     }

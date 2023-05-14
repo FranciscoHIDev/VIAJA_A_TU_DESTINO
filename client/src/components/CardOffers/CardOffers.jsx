@@ -19,7 +19,7 @@ function CardOffers({
   date,
 }) {
   return (
-    <div className="conteiner">
+    <div className="conteiner-offer">
       <div>
         <RiShareForwardLine className="share" />
         <MdFavoriteBorder className="favorite" />
@@ -35,18 +35,18 @@ function CardOffers({
         <p className="category">{category.name}</p>
       </div>
       <div>
-        <h1 className="title">{title}</h1>
-        <p className="summary">{summary}</p>
-        <p className="availability">
-          Disponibilidad: <span className="item-date">{availability}</span>
-        </p>
-        <p>{departure}</p>
+        <div>
+          <h1 className="title">{title}</h1>
+          <p className="summary">{summary}</p>
+          <p className="availability">
+            Disponibilidad: <span className="item-date">{availability}</span>
+          </p>
+          {departure ? <p>Saliendo{departure}</p> : null}
+        </div>
+
         <div className="items-destination">
           <MdLocationOn className="icon-location" />
           <p className="destination">{destination}</p>
-          {/* <p>
-            Creado por {author} el {date}
-          </p> */}
         </div>
       </div>
       <div className="button">
