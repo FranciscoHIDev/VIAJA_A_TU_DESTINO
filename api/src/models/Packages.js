@@ -24,7 +24,7 @@ const packageSchema = mongoose.Schema({
         type: String
     },
     persons: {
-        type: String,
+        type: Number,
         required: true
     },
     from: {
