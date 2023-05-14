@@ -71,16 +71,21 @@
     align-items: center;
     position: absolute;
     margin-top: -180px;   
-    border-radius: 0 10px  10px 0;    
-    padding: 0 10px;   
+    border-radius: 0 100px  100px 0;    
+    padding-left: 10px;
+    height: 50px;
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: hsla(0,0%,100%,.8);
+    background-color: #f4991a;
     transition: border-color 0.25s;
-    color: #323231;
+    color: #fff;
+    /* hsla(0,0%,100%,.8); */
    
 
+}
+.discount{
+    font-size: 19px;
 }
 
 .icon-border{
@@ -95,7 +100,7 @@
   
 }
 .icon{
-    color: #ff3e02;  
+    color: #035373;  
     font-size: 30px;  
    }
 

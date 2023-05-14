@@ -30,7 +30,7 @@ function CardHotels({
       <img className="img" src={image} alt="image" />
       {discount ? (
         <div className="item-promotion">
-          <p>{discount}</p>
+          <p className="discount">{discount}</p>
           <p className="icon-border">
             <FaHotel className="icon" />
           </p>
