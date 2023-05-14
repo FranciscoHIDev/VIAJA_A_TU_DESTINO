@@ -46,7 +46,7 @@ function CardHotels({
           </div>
           <div className="data-availability-hotel">
             <p className="availability-hotel">
-              Desde <span className="item-date">{from}</span>
+              Desde <span className="item-date-hotel">{from}</span>
             </p>
             <p className="availability-hotel">
               Hasta <span className="item-date-hotel">{to}</span>

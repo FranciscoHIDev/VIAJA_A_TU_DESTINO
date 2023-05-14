@@ -10,13 +10,13 @@
     transition: box-shadow .25s,transform .25s;
 
 }
-.img{
+.img-offer{
     width: 390px;
     height: 250px;
     border-radius:20px 20px 0 0 ;
 }
 
-.button{
+.button-offer{
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -24,50 +24,50 @@
     margin: 30px;
     margin-top: -10px;
 }
-.price{
+.price-offer{
     font-size: 20px;
 }
-.colorprice{
+.colorprice-offer{
     color: #ff3e02;   
     font-weight: 700;
 }
-.items-title{
+.items-title-offer{
     display: flex;
     flex-direction: column;
     margin-left: 20px;
   
 }
 
-.title{
+.title-offer{
     font-size: 20px;
     color: #035373;
     margin-left: 20px;
     margin-bottom: -10px;
   
 }
-.items-category{
+.items-category-offer{
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-bottom: -20px;
     margin-top: -15px;
 }
-.category{
+.category-offer{
    
     font-size: 20px;
 }
-.img-category{
+.img-category-offer{
     width: 20px;
     margin-left: 20px;       
     margin-right: 10px;   
 }
-.summary{
+.summary-offer{
     margin-left: 20px;
     margin-bottom: -10px;
 }
-.buttonromotion{
+.buttonromotion-offer{
     position: absolute;
-    margin-top: -180px;
+    margin-top: -220px;
     border-radius: 0 8px  8px 0;    
     padding: 0.6em 1.2em;
     font-size: 1em;
@@ -77,10 +77,17 @@
     transition: border-color 0.25s;
     color: #323231;
 }
-.availability1{
+.availability-offer{
     margin-left: 20px;
-    color:#ff3e02;
-    font-weight: 600;
+    color:#323231;
+    font-weight: 400;  
+    margin-bottom: -10px; 
+   
+}
+.departure-offer{
+    margin-left: 20px;
+    color:#323231;
+    font-weight: 400;  
 }
 .favorite{
     cursor: pointer;
@@ -109,24 +116,30 @@
         opacity: 70%;
         
     }
-    .item-date{
-    font-size: 15px;
-    font-weight: 600;
-    color:#323231
+    .item-date-offer{
+        font-size: 15px;
+        font-weight: 600;
+        color:#323231
+    }
+    .item-departure-offer{
+        font-size: 15px;
+        font-weight: 600;
+        color:#323231
     }
 
-.items-destination{
+.items-destination-offer{
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-left: 20px;
+    margin-top: -20px;
 }
-.icon-location{
+.icon-location-offer{
     color: #ff3e02;
     margin-right: 5px;
     font-size: 20px;
 }
-.destination{
+.destination-offer{
     font-size: 15px;
     font-weight: 600;
     color:#323231

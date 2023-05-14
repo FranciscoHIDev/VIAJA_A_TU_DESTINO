@@ -17,44 +17,51 @@ function CardOffers({
   departure,
   author,
   date,
+  buyLinks,
 }) {
   return (
     <div className="conteiner-offer">
       <div>
         <RiShareForwardLine className="share" />
         <MdFavoriteBorder className="favorite" />
-        <img className="img" src={image} alt="image" />
-        <p className="buttonromotion">{promotion}</p>
+        <img className="img-offer" src={image} alt="image" />
+        <p className="buttonromotion-offer">{promotion}</p>
       </div>
-      <div className="items-category">
+      <div className="items-category-offer">
         <img
-          className="img-category"
+          className="img-category-offer"
           src={category.image}
           alt={category.name}
         />
-        <p className="category">{category.name}</p>
+        <p className="category-offer">{category.name}</p>
       </div>
       <div>
         <div>
-          <h1 className="title">{title}</h1>
-          <p className="summary">{summary}</p>
-          <p className="availability">
-            Disponibilidad: <span className="item-date">{availability}</span>
+          <h1 className="title-offer">{title}</h1>
+          <p className="summary-offer">{summary}</p>
+          <p className="availability-offer">
+            Disponibilidad:{" "}
+            <span className="item-date-offer">{availability}</span>
           </p>
-          {departure ? <p>Saliendo{departure}</p> : null}
+
+          <p className="departure-offer">
+            Saliendo: <span className="item-departure-offer">{departure}</span>
+          </p>
         </div>
 
-        <div className="items-destination">
-          <MdLocationOn className="icon-location" />
-          <p className="destination">{destination}</p>
+        <div className="items-destination-offer">
+          <MdLocationOn className="icon-location-offer" />
+          <p className="destination-offer">{destination}</p>
         </div>
       </div>
-      <div className="button">
-        <p className="price">
+      <div className="button-offer">
+        <p className="price-offer">
           Desde
-          <span className="colorprice"> ${price} </span>
+          <span className="colorprice-offer"> ${price} </span>
         </p>
-        <button>Ver oferta</button>
+        <a href={buyLinks} target="_blank" rel="noopener noreferrer">
+          <button>Ver oferta</button>
+        </a>
       </div>
     </div>
   );
