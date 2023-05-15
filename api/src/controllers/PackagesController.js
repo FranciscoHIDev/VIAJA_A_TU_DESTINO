@@ -4,13 +4,14 @@ const destinationSchema = require("../models/Destinations")
 /* Routes to create a new package */
 const routerPostPackage = async (req, res) => {
     try {
-        const { hotel, image, destination, promotion, price, previousPrice, persons, from, to, link } = req.body;
+        const { departure, hotel, image, destination, promotion, price, previousPrice, persons, from, to, link } = req.body;
         let dest = await destinationSchema.findOne({ name: { $regex: new RegExp(destination, "i") } })
         if (!dest) {
             dest = await destinationSchema.create({ name: destination.toUpperCase() })
         }
         const newPackage = await new packageSchema({
             hotel: hotel,
+            departure: departure,
             image: image,
             destination: dest._id,
             promotion: promotion,
@@ -55,12 +56,12 @@ const routerGetByIdPackage = async (req, res) => {
 const routerPutPackage = async (req, res) => {
     try {
         const { id } = req.params
-        const { hotel, image, destination, promotion, price, previousPrice, persons, from, to, link } = req.body;
+        const { hotel, departure, image, destination, promotion, price, previousPrice, persons, from, to, link } = req.body;
         let dest = await destinationSchema.findOne({ name: { $regex: new RegExp(destination, "i") } })
         if (!dest) {
             dest = await destinationSchema.create({ name: destination.toUpperCase() })
         }
-        const package = await packageSchema.updateOne({ _id: id }, { $set: { hotel, image, destination: dest._id, promotion, price, previousPrice, persons, from, to, link } })
+        const package = await packageSchema.updateOne({ _id: id }, { $set: { hotel, departure, image, destination: dest._id, promotion, price, previousPrice, persons, from, to, link } })
         res.status(200).json(package)
 
     } catch (error) {

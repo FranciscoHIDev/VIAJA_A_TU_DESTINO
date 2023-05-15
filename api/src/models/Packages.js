@@ -4,9 +4,9 @@ const packageSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Destinations"
     },
-    image:{
-        type:[String],
-        required:true
+    image: {
+        type: [String],
+        required: true
     },
     hotel: {
         type: String,
@@ -25,6 +25,10 @@ const packageSchema = mongoose.Schema({
     },
     persons: {
         type: Number,
+        required: true
+    },
+    departure: {
+        type: String,
         required: true
     },
     from: {

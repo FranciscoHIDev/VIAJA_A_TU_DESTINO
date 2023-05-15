@@ -1,0 +1,240 @@
+.conteiner-package{
+    margin-top: 30px;
+    border-radius:20px;
+    background-color: #fff;
+    width: 390px;
+    height: 465px;
+    border: none;
+    margin: 15px;
+    transform: translateY(0);
+    transition: box-shadow .25s,transform .25s;
+
+}
+.img-package{
+    width: 390px;
+    height: 200px;
+    border-radius:20px 20px 0 0 ;
+}
+
+.items-price-package{
+    display: flex;
+    flex-direction: row-reverse;        
+    margin: 30px;
+    margin-top: -50px;
+    justify-content: space-between;
+}
+.price-package{
+    font-size: 15px;
+    margin-bottom: -20px;
+    
+}
+.price-prev-package{
+    font-size: 20px;
+    margin-bottom: -20px;
+    text-decoration-line: line-through;
+}
+.colorprice-package{
+    color: #ff3e02;   
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: -10px;
+}
+.price-data-package{
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   margin-top: -30px;
+  
+}
+.text-taxes-package{
+    font-size: 14px;
+    color: #323231
+}
+
+
+.title-package{
+    font-size: 15px;
+    color: #035373; 
+    margin-right: 20px; 
+    margin-left: 20px;
+  
+}
+
+
+.item-promotion-package{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    margin-top: -180px;   
+    border-radius: 0 100px  100px 0;    
+    padding-left: 10px;
+    height: 50px;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #f4991a;
+    transition: border-color 0.25s;
+    color: #fff;
+    /* hsla(0,0%,100%,.8); */
+   
+
+}
+.discount-package{
+    font-size: 19px;
+}
+
+.icon-border-package{
+    
+    margin-left: 10px;
+    background-color: #fff;    
+    padding: 8px;
+    border-radius: 100%;
+    height:30px;
+    width:30px
+   
+  
+}
+.icon-package-promo{
+    color: #035373;  
+    font-size: 30px;  
+   }
+
+.availability-package{    
+    margin-left: 20px;
+    color:#323231;
+    font-weight: 300;
+    margin-bottom: -10px;
+}
+
+.favorite{
+    cursor: pointer;
+    background-color: hsla(0,0%,100%,.5);; 
+    border-radius: 50%;
+    position: absolute;
+    font-size: 28px;
+    margin-left: 340px;
+    margin-top: 20px;
+    padding: 5px;
+    color:#323231;
+    opacity: 70%;
+    
+  
+    }
+.share{
+        cursor: pointer;
+        background-color: hsla(0,0%,100%,.5);; 
+        border-radius: 50%;
+        position: absolute;
+        font-size: 28px;
+        margin-left: 290px;
+        margin-top: 20px;
+        padding: 5px;
+        color:#323231;
+        opacity: 70%;
+        
+    }
+.item-date-package{
+    font-size: 15px;
+    font-weight: 600;
+    color:#323231
+    }
+
+
+.items-destination-package{
+    display: flex;
+    flex-direction: row;  
+    align-items: center;
+    margin-left: 15px;
+    margin-top: -25px;
+}
+
+.destination-package{
+    font-size: 15px;
+    font-weight: 600;
+    color:#fff
+    }
+
+.items-availability-package{       
+    display: flex;
+    flex-direction: row;  
+    margin-top: -25px;
+  
+    }
+    .item-persons-package{
+        display: flex;
+        flex-direction: row;
+        margin-left: 20px;
+        align-items: center;
+        margin-left: 20px;
+    }
+    .persons-package{
+        margin-right: 5px;
+        font-size: 20px;  
+         color: #323231
+    }
+    .button-buy-package{
+        display: flex;        
+       margin-top: 60px;
+      color: #323231
+
+    }
+  
+    .icon-package{
+        font-size: 19px;      
+        color: #323231;
+        margin-right: 5px;
+        
+        
+    }
+    .item-package{
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 2px;
+        
+    }
+
+    .data-availability-package{
+        margin-left: -20px;
+    }
+    .icon-location-package{
+        color: #ff3e02;
+        margin-right: 5px;
+        font-size: 20px;
+    }
+    .item-departure-package{
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+
+    }
+    .departure-package{
+    margin-top: -14px;
+    margin-left: 25px;
+    color:#323231;
+    font-weight: 500;
+
+    }
+    .icon-departure-package{
+        display: flex;
+        flex-direction: row;
+        align-items: center;       
+    }
+
+    .text-departure-package{
+        margin-left: 10px;
+        color:#323231;
+        font-weight: 300;
+    }
+.item-hotel-package{
+    display: flex;
+    flex-direction: column;
+    background-color: #bcbc18;
+    position: absolute;       
+}
+    .hotel-package{
+        font-size: 18px;
+        margin-top: -80px;
+        margin-left: 20px;
+        color: #fff;
+    }
