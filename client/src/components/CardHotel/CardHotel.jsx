@@ -9,7 +9,7 @@ import {
 } from "react-icons/md";
 import { RiShareForwardLine } from "react-icons/ri";
 
-function CardHotels({
+function CardHotel({
   name,
   image,
   persons,
@@ -84,4 +84,4 @@ function CardHotels({
   );
 }
 
-export default CardHotels;
+export default CardHotel;

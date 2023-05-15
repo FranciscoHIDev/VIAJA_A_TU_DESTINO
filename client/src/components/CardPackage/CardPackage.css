@@ -82,6 +82,7 @@
 }
 .discount-package{
     font-size: 19px;
+    text-shadow: black 0.1em 0.1em 0.1em;
 }
 
 .icon-border-package{
@@ -152,7 +153,8 @@
 .destination-package{
     font-size: 15px;
     font-weight: 600;
-    color:#fff
+    color:#fff;
+    text-shadow: rgb(255, 62, 2) 0.1em 0.1em 0.1em;
     }
 
 .items-availability-package{       
@@ -237,4 +239,5 @@
         margin-top: -80px;
         margin-left: 20px;
         color: #fff;
+        text-shadow: black 0.1em 0.1em 0.1em;
     }

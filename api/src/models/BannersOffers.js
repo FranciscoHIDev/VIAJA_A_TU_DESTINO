@@ -4,9 +4,15 @@ const bannerOfferSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Destinations"
     },
+    textPromotion: {
+        type: String
+    },
+    textDiscount: {
+        type: String
+    },
     discount: {
         type: Number,
-        required: true
+
     },
     image: {
         type: String,

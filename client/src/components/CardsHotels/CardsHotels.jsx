@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CardHotels from "../CardHotels/CardHotels";
+import CardHotel from "../CardHotel/CardHotel";
 
 function CardsHotels() {
   const [hotels, setHotels] = useState([]);
@@ -17,7 +17,7 @@ function CardsHotels() {
     <div className="container">
       {hotels.map((e) => {
         return (
-          <CardHotels
+          <CardHotel
             key={crypto.randomUUID()}
             name={e.name}
             image={e.image}

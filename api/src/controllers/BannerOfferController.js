@@ -2,7 +2,7 @@ const bannerOfferSchema = require('../models/BannersOffers')
 const destinationSchema = require('../models/Destinations')
 
 const routerPostBanner = async (req, res) => {
-    const { destination, discount, image, link } = req.body
+    const { destination, discount, image, textDiscount, textPromotion, link } = req.body
     try {
         let dest = await destinationSchema.findOne({ name: { $regex: new RegExp(destination, "i") } })
         if (!dest) {
@@ -12,6 +12,8 @@ const routerPostBanner = async (req, res) => {
             destination: dest._id,
             discount: discount,
             image: image,
+            textDiscount: textDiscount,
+            textPromotion: textPromotion,
             link: link
         })
         await newBanner.save()
@@ -47,12 +49,12 @@ const routerGetByIdBanner = async (req, res) => {
 const routerPutBanner = async (req, res) => {
     try {
         const { id } = req.params
-        const { destination, discount, link } = req.body
+        const { destination, discount, image, textDiscount, textPromotion, link } = req.body
         let dest = await destinationSchema.findOne({ name: { $regex: new RegExp(destination, "i") } })
         if (!dest) {
             dest = await destinationSchema.create({ name: destination.toUpperCase() })
         }
-        const banner = await bannerOfferSchema.updateOne({ _id: id }, { $set: { destination: dest._id, discount, link } })
+        const banner = await bannerOfferSchema.updateOne({ _id: id }, { $set: { destination: dest._id, discount, image, textDiscount, textPromotion, link } })
         res.status(200).json(banner)
     } catch (error) {
         res.status(500).json(`Error ${error}`)

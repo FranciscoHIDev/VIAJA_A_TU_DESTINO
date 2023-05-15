@@ -52,7 +52,7 @@
 
 
 .title-hotel{
-    font-size: 15px;
+    font-size: 16px;
     color: #035373; 
     margin-right: 20px; 
     margin-left: 20px;
@@ -81,6 +81,7 @@
 }
 .discount-hotel{
     font-size: 19px;
+    text-shadow: black 0.1em 0.1em 0.1em;
 }
 
 .icon-border-hotel{
@@ -151,7 +152,8 @@
 .destination-hotel{
     font-size: 15px;
     font-weight: 600;
-    color:#323231
+    color:#323231;
+    text-shadow: rgb(255, 62, 2) 0.1em 0.1em 0.4em;
     }
 
 .items-availability-hotel{       
