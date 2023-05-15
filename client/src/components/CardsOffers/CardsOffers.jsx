@@ -28,6 +28,7 @@ function CardsOffers() {
             price={e.price}
             availability={e.availability}
             departure={e.departure}
+            arrival={e.arrival}
             destination={e.destination}
             author={e.author}
             date={e.date}

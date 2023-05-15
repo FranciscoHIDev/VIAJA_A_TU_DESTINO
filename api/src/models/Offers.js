@@ -12,7 +12,8 @@ const offerSchema = mongoose.Schema({
     },
     summary: {
         type: String,
-        required: true
+        required: true,
+        maxlength: 45
     },
     description: {
         type: String,
@@ -48,7 +49,8 @@ const offerSchema = mongoose.Schema({
     },
     destination: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Destinations"
+        ref: "Destinations",
+        require: true
     },
     price: {
         type: String,
