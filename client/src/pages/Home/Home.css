@@ -1,0 +1,19 @@
+.container-home{
+   display: flex;
+   flex-direction: column;
+   margin-top: 180px;
+   margin-left: 40px;
+   margin-right: 40px;   
+ }
+ .items-offers-home{
+   display: flex;
+   flex-direction: column;
+ }
+.offers-home-title{
+    display: flex;
+    flex-direction: column;
+    
+}
+.title-banner-home{   
+    margin-left: 10px;
+}

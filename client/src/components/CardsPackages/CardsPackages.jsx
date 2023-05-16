@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CardPackage from "../CardPackage/CardPackage";
+import "./CardsPackages.css";
 
 function CardsPackages() {
   const [packages, setPackages] = useState([]);
