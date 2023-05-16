@@ -1,0 +1,9 @@
+.container-banners{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;     
+    margin-top: 180px;
+    align-items: center;
+    margin-left: 50px;
+   
+}

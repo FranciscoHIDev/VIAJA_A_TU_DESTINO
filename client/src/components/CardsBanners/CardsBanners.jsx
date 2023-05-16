@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CardBanner from "../CardBanner/CardBanner";
+import "./CardsBanners.css";
 
 function CardsBanners() {
   const [banners, setBanners] = useState([]);
@@ -16,7 +17,7 @@ function CardsBanners() {
 
   return (
     <>
-      <div className="container">
+      <div className="container-banners">
         {banners.map((e) => {
           return (
             <CardBanner
