@@ -15,7 +15,7 @@ function Home() {
             <h1 className="title-banner-home">
               Reserva vuelos y hoteles a los mejores precios con nosotros
             </h1>
-            <p className="title-banner-home">
+            <p className="subtitle-banner-home">
               Cancelación Gratis en miles de Hoteles
             </p>
           </div>
@@ -24,15 +24,23 @@ function Home() {
             <CardsBanners />
           </div>
         </div>
-        <div className="title-banner-home">
-          <h1>
-            Encuentra los paquetes con Vuelo + Hotel a tu destino favorito
-          </h1>
-          <CardsPackages />
+        <div className="items-packages-home">
+          <div>
+            <h1>
+              Encuentra los paquetes con Vuelo + Hotel a tu destino favorito
+            </h1>
+          </div>
+          <div>
+            <CardsPackages />
+          </div>
         </div>
         <div>
-          <h1>Hoteles con hasta 65% de descuento</h1>
-          <CardsHotels />
+          <div>
+            <h1>Hoteles con hasta 65% de descuento</h1>
+          </div>
+          <div>
+            <CardsHotels />
+          </div>
         </div>
       </div>
     </React.Fragment>
