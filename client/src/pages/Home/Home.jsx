@@ -3,7 +3,9 @@ import CardsBanners from "../../components/CardsBanners/CardsBanners";
 import CardsHotels from "../../components/CardsHotels/CardsHotels";
 import NavBar from "../../components/NavBar/NavBar";
 import CardsPackages from "./../../components/CardsPackages/CardsPackages";
+import CardsOffers from "../../components/CardsOffers/CardsOffers";
 import "./Home.css";
+import Footer from "../../components/Footer/Footer";
 
 function Home() {
   return (
@@ -19,14 +21,14 @@ function Home() {
               Cancelación Gratis en miles de Hoteles
             </p>
           </div>
-
           <div>
             <CardsBanners />
+            <CardsOffers />
           </div>
         </div>
         <div className="items-packages-home">
           <div>
-            <h1>
+            <h1 className="title-package-home">
               Encuentra los paquetes con Vuelo + Hotel a tu destino favorito
             </h1>
           </div>
@@ -34,15 +36,18 @@ function Home() {
             <CardsPackages />
           </div>
         </div>
-        <div>
+        <div className="items-hotel-home">
           <div>
-            <h1>Hoteles con hasta 65% de descuento</h1>
+            <h1 className="title-hotel-home">
+              Hoteles con hasta 65% de descuento
+            </h1>
           </div>
           <div>
             <CardsHotels />
           </div>
         </div>
       </div>
+      <Footer />
     </React.Fragment>
   );
 }

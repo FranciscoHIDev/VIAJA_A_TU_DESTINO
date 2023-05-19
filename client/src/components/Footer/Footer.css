@@ -1,0 +1,17 @@
+.container-footer{
+    display: flex;
+    flex-direction: column;  
+    
+    width: 100%;  
+}
+.footer-second{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgb(167, 179, 179);
+}
+.first-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
