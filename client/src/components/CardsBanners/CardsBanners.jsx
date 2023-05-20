@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CardBanner from "../CardBanner/CardBanner";
-import "./CardsBanners.css";
 
 function CardsBanners() {
   const [banners, setBanners] = useState([]);
@@ -17,7 +16,7 @@ function CardsBanners() {
 
   return (
     <>
-      <div className="container-banners">
+      <div className="flex flex-wrap items-center justify-center">
         {banners.map((e) => {
           return (
             <CardBanner

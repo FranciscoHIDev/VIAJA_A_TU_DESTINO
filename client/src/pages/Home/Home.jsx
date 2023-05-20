@@ -4,20 +4,19 @@ import CardsHotels from "../../components/CardsHotels/CardsHotels";
 import NavBar from "../../components/NavBar/NavBar";
 import CardsPackages from "./../../components/CardsPackages/CardsPackages";
 import CardsOffers from "../../components/CardsOffers/CardsOffers";
-import "./Home.css";
 import Footer from "../../components/Footer/Footer";
 
 function Home() {
   return (
     <React.Fragment>
       <NavBar />
-      <div className="container-home">
-        <div className="items-offers-home">
-          <div className="offers-home-title">
-            <h1 className="title-banner-home">
+      <div className="flex flex-col mt-40 mx-[40px]">
+        <div className="flex flex-col">
+          <div className="flex flex-col">
+            <h1 className="ml-[10px] text-2xl">
               Reserva vuelos y hoteles a los mejores precios con nosotros
             </h1>
-            <p className="subtitle-banner-home">
+            <p className="text-[20px] ml-[10px]">
               Cancelación Gratis en miles de Hoteles
             </p>
           </div>
@@ -26,19 +25,20 @@ function Home() {
             <CardsOffers />
           </div>
         </div>
-        <div className="items-packages-home">
-          <div>
-            <h1 className="title-package-home">
+        <div className="flex flex-col">
+          <div className="flex flex-col">
+            <h1 className="ml-[10px] text-2xl">
               Encuentra los paquetes con Vuelo + Hotel a tu destino favorito
             </h1>
+            <p className="ml-[10px]">Disfruta de las ofertas</p>
           </div>
           <div>
             <CardsPackages />
           </div>
         </div>
-        <div className="items-hotel-home">
+        <div className="flex flex-col">
           <div>
-            <h1 className="title-hotel-home">
+            <h1 className="ml-[10px] text-2xl">
               Hoteles con hasta 65% de descuento
             </h1>
           </div>

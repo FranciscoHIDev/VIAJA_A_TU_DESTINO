@@ -108,7 +108,7 @@ function CardPackage({
               <br></br>
             )}
 
-            <p className="text-[#ff3e02] text-[20px]"> ${price}</p>
+            <p className="text-[#ff3e02] text-[20px] font-bold"> ${price}</p>
             <p className="text-[#323231] text-[15px]">Impuestos incluidos</p>
           </div>
           <div className="flex  text-[#323231]">

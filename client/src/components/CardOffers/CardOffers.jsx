@@ -1,5 +1,4 @@
 import React from "react";
-import "./CardOffers.css";
 import {
   FaSuitcase,
   FaRegCalendarAlt,

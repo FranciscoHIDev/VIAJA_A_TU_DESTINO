@@ -1,11 +1,10 @@
 import React from "react";
-import "./Footer.css";
 
 function Footer() {
   return (
     <React.Fragment>
-      <div className="container-footer">
-        <div className="first-footer">
+      <div className="flex flex-col w-full">
+        <div className="flex flex-row justify-around bg-[#a8b3b3]">
           <div>
             <h3>Contacto</h3>
           </div>
@@ -18,7 +17,7 @@ function Footer() {
             <h3>Legales</h3>
           </div>
         </div>
-        <div className="footer-second">
+        <div className="flex flex-row justify-around bg-[#a8b3b3]">
           <p>
             Copyright © 2023 viajaatudestino.com. Todos los derechos reservados.
           </p>

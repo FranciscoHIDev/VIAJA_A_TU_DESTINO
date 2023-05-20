@@ -14,7 +14,7 @@ function CardsHotels() {
     allHotels();
   }, []);
   return (
-    <div className="container">
+    <div className="flex flex-wrap items-center justify-center">
       {hotels.map((e) => {
         return (
           <CardHotel

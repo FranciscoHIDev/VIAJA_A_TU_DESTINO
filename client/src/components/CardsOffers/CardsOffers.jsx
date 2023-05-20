@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CardOffers from "./../CardOffers/CardOffers";
-import "./CardsOffers.css";
 
 function CardsOffers() {
   const [offers, setOffers] = useState([]);
@@ -15,7 +14,7 @@ function CardsOffers() {
     allOffers();
   }, []);
   return (
-    <div className="container">
+    <div className="flex flex-wrap items-center justify-center">
       {offers.map((e) => {
         return (
           <CardOffers
