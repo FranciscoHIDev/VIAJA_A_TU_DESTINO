@@ -7,8 +7,11 @@ import {
   FaRegHeart,
   FaSuitcase,
   FaBlog,
+  FaPlane,
+  FaHotel,
+  FaSearchLocation,
 } from "react-icons/fa";
-import { MdLocalOffer, MdHotel, MdFlight } from "react-icons/md";
+import { MdLocalOffer } from "react-icons/md";
 import { GiMayanPyramid, GiWorld } from "react-icons/gi";
 
 function NavBar() {
@@ -34,7 +37,7 @@ function NavBar() {
                     </a>
                   </span>{" "}
                   <a href="tel:+52 998 283 0657">
-                    <span className="hidden md:block">
+                    <span className="hidden lg:block">
                       Reservar: 998 283 0657
                     </span>
                   </a>
@@ -46,7 +49,7 @@ function NavBar() {
                     </Link>
                   </span>{" "}
                   <Link to="/favorite">
-                    <span className="hidden md:block">Iniciar sesión</span>
+                    <span className="hidden lg:block">Iniciar sesión</span>
                   </Link>
                 </li>
                 <li className="flex md:mr-[25px]  mr-4 color-[#444] text-[16px] items-center font-[400]">
@@ -56,7 +59,7 @@ function NavBar() {
                     </Link>
                   </span>
                   <Link to="/favorite">
-                    <span className="hidden md:block">Favoritos</span>
+                    <span className="hidden lg:block">Favoritos</span>
                   </Link>
                 </li>
                 <li className="flex md:mr-[25px]  mr-4  color-[#444] text-[16px] items-center font-[400]">
@@ -66,42 +69,59 @@ function NavBar() {
                     </Link>
                   </span>
                   <Link to="/favorite">
-                    <span className="hidden md:block">Ayuda</span>
+                    <span className="hidden lg:block">Ayuda</span>
                   </Link>
                 </li>
               </ul>
             </div>
           </div>
-          <div className="flex flex-row justify-around items-center mt-[10px] mb-5 relative w-full">
-            <div className=" flex items-center overflow-y-hidden overflow-x-scroll md:overflow-x-hidden scroll-smooth md:mx-0 mx-10">
+          <div className="flex flex-row justify-around items-center mt-[10px] mb-5 relative w-full overflow-hidden">
+            <div className=" flex  items-center relative overflow-y-hidden overflow-x-scroll lg:overflow-x-hidden lg:mx-0 mx-10 scroll-smooth  ">
               <div>
                 <ul className="list-none flex flex-row">
-                  <li className="flex flex-col items-center mr-[50px] text-[16px] text-[#444]">
-                    <MdLocalOffer />
-                    <Link to="/home">Ofertas</Link>
+                  <li className="flex flex-col items-center mr-[50px] text-[16px] text-[#444] hover:text-[#035373]">
+                    <Link to="/home">
+                      {" "}
+                      <MdLocalOffer className="text-[20px]" />
+                    </Link>
+                    <Link to="/home"> Ofertas</Link>
                   </li>
-                  <li className="flex flex-col items-center mr-[50px] text-[16px] text-[#444]">
-                    <FaSuitcase />
+                  <li className="flex flex-col items-center mr-[50px] text-[16px] text-[#444]  hover:text-[#035373]">
+                    <Link to="/home">
+                      <FaSuitcase className="text-[20px]" />
+                    </Link>
                     <Link to="/home">Paquetes</Link>
                   </li>
-                  <li className="flex flex-col items-center mr-[50px] text-[16px] text-[#444]">
-                    <MdHotel />
+                  <li className="flex flex-col items-center mr-[50px] text-[16px] text-[#444]  hover:text-[#035373]">
+                    <Link to="/home">
+                      <FaHotel className="text-[20px]" />
+                    </Link>
                     <Link to="/home">Hoteles</Link>
                   </li>
-                  <li className="flex flex-col items-center mr-[50px] text-[16px] text-[#444]">
-                    <MdFlight />
+                  <li className="flex flex-col items-center mr-[50px] text-[16px] text-[#444]  hover:text-[#035373]">
+                    <Link to="/home">
+                      <FaPlane className="text-[20px]" />
+                    </Link>
                     <Link to="/home">Vuelos</Link>
                   </li>
-                  <li className="flex  flex-col items-center mr-[50px] text-[16px] text-[#444]">
-                    <GiMayanPyramid />
+                  <li className="flex  flex-col items-center mr-[50px] text-[16px] text-[#444]  hover:text-[#035373]">
+                    <Link to="/home">
+                      {" "}
+                      <GiMayanPyramid className="text-[20px]" />
+                    </Link>
                     <Link to="/home">Tours</Link>
                   </li>
-                  <li className="flex flex-col items-center mr-[50px] text-[16px] text-[#444]">
-                    <GiWorld />
+                  <li className="flex flex-col items-center mr-[50px] text-[16px] text-[#444]  hover:text-[#035373]">
+                    <Link to="/home">
+                      <FaSearchLocation className="text-[20px]" />
+                    </Link>
                     <Link to="/home">Destinos</Link>
                   </li>
-                  <li className="flex flex-col items-center mr-[50px] text-[16px] text-[#444]">
-                    <FaBlog />
+                  <li className="flex flex-col items-center mr-[50px] text-[16px] text-[#444]  hover:text-[#035373]">
+                    <Link to="/home">
+                      {" "}
+                      <FaBlog className="text-[20px]  active:border active:border-[#035373] hover:rounded-lg hover:bg-[#035373]" />
+                    </Link>
                     <Link to="/home">Blog</Link>
                   </li>
                   {/* <li className="flex mr-[50px] text-[16px] text-[#444]">
