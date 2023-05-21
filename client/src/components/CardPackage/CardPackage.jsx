@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 
 import { FaHotel, FaPlaneDeparture, FaSuitcase } from "react-icons/fa";
 import {
@@ -8,6 +8,8 @@ import {
   MdLocalHotel,
 } from "react-icons/md";
 import { RiShareForwardLine } from "react-icons/ri";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function CardPackage({
   departure,
@@ -22,12 +24,73 @@ function CardPackage({
   to,
   link,
 }) {
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  });
+
+  const loader = () => {
+    return (
+      <SkeletonTheme baseColor="#ebebeb" highlightColor="#f5f5f5">
+        <div className="mt-[30px] rounded-[20px] bg-[#c4b1b1] w-[390px] h-[490px] m-[15px] border-none ">
+          <div className="flex flex-row mt-8 ml-[300px]">
+            <div className="mr-2">
+              {" "}
+              <Skeleton width={30} height={30} circle={true} />
+            </div>
+            <div>
+              {" "}
+              <Skeleton width={30} height={30} circle={true} />
+            </div>
+          </div>
+          <div>{<Skeleton width={120} height={40} />}</div>
+          <div className="mt-[100px] flex flex-row ml-[20px]">
+            {<Skeleton width={40} height={25} />}
+            <span className="ml-[10px]">
+              {<Skeleton width={90} height={25} />}
+            </span>
+          </div>
+          <div className="ml-[20px]">
+            {" "}
+            {<Skeleton width={180} height={25} />}
+          </div>
+          <div className="ml-[20px]">
+            {" "}
+            {<Skeleton width={350} height={25} />}
+          </div>
+          <div className="ml-[20px]">
+            {" "}
+            {<Skeleton width={350} height={25} />}
+          </div>
+          <div className="ml-[20px]">
+            {" "}
+            {<Skeleton width={230} height={25} />}
+          </div>
+          <div className="ml-[20px]">
+            {" "}
+            {<Skeleton width={230} height={25} />}
+          </div>
+          <div className="mt-8 flex flex-row justify-between mx-[20px]">
+            <div> {<Skeleton width={120} height={30} />}</div>
+            <div> {<Skeleton width={120} height={30} />}</div>
+          </div>
+        </div>
+      </SkeletonTheme>
+    );
+  };
+
+  if (loading) {
+    return loader();
+  } else {
   return (
     <div className="mt-[30px] rounded-[20px] bg-[#fff] w-[390px] h-[465px] border-none m-[15px]  ">
       <div>
         <div>
-          <RiShareForwardLine className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[25px] ml-[300px] mt-[20px] text-[#323231] opacity-[80%]" />
-          <MdFavoriteBorder className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[25px] ml-[340px] mt-[20px] text-[#323231] opacity-[80%]" />
+          <RiShareForwardLine className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[25px] lg:ml-[300px] ml-[270px] mt-[20px] text-[#323231] opacity-[80%]" />
+          <MdFavoriteBorder className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[25px] lg:ml-[330px] ml-[300px] mt-[20px] text-[#323231] opacity-[80%]" />
         </div>
         <img
           className="w-[390px] h-[200px] rounded-tr-[20px] rounded-tl-[20px]"
@@ -122,6 +185,7 @@ function CardPackage({
       </div>
     </div>
   );
+}
 }
 
 export default CardPackage;
