@@ -89,8 +89,8 @@ function CardOffers({
     return (
       <div className="mt-[30px] rounded-[20px] bg-[#fff] w-[390px] h-[490px] m-[15px] border-none ">
         <div>
-          <RiShareForwardLine className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[25px] lg:ml-[300px] ml-[270px] mt-[20px] text-[#323231] opacity-[80%]" />
-          <MdFavoriteBorder className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[25px] lg:ml-[330px] ml-[300px] mt-[20px] text-[#323231] opacity-[80%]" />
+          <RiShareForwardLine className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[25px] md:ml-[300px] ml-[260px] mt-[20px] text-[#323231] opacity-[80%]" />
+          <MdFavoriteBorder className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[25px] md:ml-[340px] ml-[300px] mt-[20px] text-[#323231] opacity-[80%]" />
           <img
             className="w-[390px] h-[200px] rounded-tl-[20px] rounded-tr-[20px]"
             src={image}
