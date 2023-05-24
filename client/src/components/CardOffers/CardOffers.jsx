@@ -30,14 +30,14 @@ function CardOffers({
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 20000);
   });
 
   const loader = () => {
     return (
-      <SkeletonTheme baseColor="#ebebeb" highlightColor="#f5f5f5">
-        <div className="mt-[30px] rounded-[20px] bg-[#c4b1b1] w-[390px] h-[490px] m-[15px] border-none ">
-          <div className="flex flex-row mt-8 ml-[300px]">
+      <SkeletonTheme baseColor="#ebebeb" highlightColor="#f8f8f8">
+        <div className="mt-[30px] rounded-[20px] bg-white md:w-[390px] md:h-[490px] m-[15px] border-none w-[350px] h-[490px]">
+          <div className="flex flex-row mt-8 md:ml-[300px] ml-[260px]">
             <div className="mr-2">
               {" "}
               <Skeleton width={30} height={30} circle={true} />
@@ -60,11 +60,11 @@ function CardOffers({
           </div>
           <div className="ml-[20px]">
             {" "}
-            {<Skeleton width={350} height={25} />}
+            {<Skeleton width={305} height={25} />}
           </div>
           <div className="ml-[20px]">
             {" "}
-            {<Skeleton width={350} height={25} />}
+            {<Skeleton width={305} height={25} />}
           </div>
           <div className="ml-[20px]">
             {" "}

@@ -14,19 +14,16 @@ function CardBanner({
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 10000);
   });
 
   const loader = () => {
     return (
       <>
-        <SkeletonTheme baseColor="#ebebeb" highlightColor="#f5f5f5">
-          <div className="mt-[30px] rounded-[10px] w-[405px] bg-white h-[244px] border-none m-[8px] items-center">
-            <div className="w-[405px] h-[244px] rounded-[10px]">
-              <Skeleton />
-            </div>
-            <div className="flex flex-col mt-[-100px]  text-[20px] text-[#fff]">
-              <p className="mx-4">{<Skeleton />}</p>
+        <SkeletonTheme baseColor="#ebebeb" highlightColor="#f8f8f8">
+          <div className="mt-[30px] rounded-[10px] md:w-[405px] bg-white md:h-[244px] w-[400px] h-[240px] border-none m-[8px] items-center">
+            <div className="flex flex-col mt-40 text-[20px] text-[#fff]">
+              <p className="mx-4">{<Skeleton enableAnimation="true" />}</p>
               <p className=" mx-4">{<Skeleton />}</p>
             </div>
           </div>
