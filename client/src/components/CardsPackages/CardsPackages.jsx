@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CardPackage from "../CardPackage/CardPackage";
+import Loading from '../Loading/Loading'
 
 function CardsPackages() {
   const [packages, setPackages] = useState([]);
@@ -15,7 +16,7 @@ function CardsPackages() {
   }, []);
   return (
     <div className="flex flex-wrap items-center justify-center">
-      {packages.map((e) => {
+      {packages ? packages.map((e) => {
         return (
           <CardPackage
             key={crypto.randomUUID()}
@@ -32,7 +33,7 @@ function CardsPackages() {
             link={e.link}
           />
         );
-      })}
+      }):(<Loading/>)}
     </div>
   );
 }

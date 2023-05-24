@@ -14,7 +14,7 @@ function CardBanner({
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 10000);
+    }, 5000);
   });
 
   const loader = () => {
