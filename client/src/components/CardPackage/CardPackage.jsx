@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { FaHotel, FaPlaneDeparture, FaSuitcase } from "react-icons/fa";
 import {
   MdFavoriteBorder,
@@ -8,7 +7,7 @@ import {
   MdLocalHotel,
 } from "react-icons/md";
 import { RiShareForwardLine } from "react-icons/ri";
-
+import Loading from "./../Loading/Loading";
 
 function CardPackage({
   departure,
@@ -23,7 +22,16 @@ function CardPackage({
   to,
   link,
 }) {
-  
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+  });
+
+  if (loading) {
+    return <Loading />;
+  } else {
     return (
       <div className="mt-[30px] rounded-[20px] bg-[#fff] w-[390px] h-[465px] border-none m-[15px]  ">
         <div>
@@ -125,6 +133,6 @@ function CardPackage({
       </div>
     );
   }
-
+}
 
 export default CardPackage;

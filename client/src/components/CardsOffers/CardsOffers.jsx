@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CardOffers from "./../CardOffers/CardOffers";
-import Loading from './../Loading/Loading'
 
 function CardsOffers() {
   const [offers, setOffers] = useState([]);
@@ -16,7 +15,7 @@ function CardsOffers() {
   }, []);
   return (
     <div className="flex flex-wrap items-center justify-center">
-      {offers? offers.map((e) => {
+      {offers.map((e) => {
         return (
           <CardOffers
             key={crypto.randomUUID()}
@@ -34,7 +33,7 @@ function CardsOffers() {
             date={e.date}
           />
         );
-      }):(<Loading/>)}
+      })}
     </div>
   );
 }
