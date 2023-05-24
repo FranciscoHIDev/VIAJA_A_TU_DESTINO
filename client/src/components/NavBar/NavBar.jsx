@@ -79,45 +79,45 @@ function NavBar() {
             <div className=" flex  items-center relative overflow-y-hidden overflow-x-scroll lg:overflow-x-hidden lg:mx-0 mx-10 scroll-smooth  ">
               <div>
                 <ul className="list-none flex flex-row">
-                  <li className="flex flex-col items-center md:mr-[50px] mr-[20px] text-[16px] text-[#444] hover:text-[#035373]">
+                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444] hover:text-[#035373]">
                     <Link to="/home">
                       {" "}
                       <MdLocalOffer className="text-[20px]" />
                     </Link>
                     <Link to="/home"> Ofertas</Link>
                   </li>
-                  <li className="flex flex-col items-center md:mr-[50px] mr-[20px] text-[16px] text-[#444]  hover:text-[#035373]">
+                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="/home">
                       <FaSuitcase className="text-[20px]" />
                     </Link>
                     <Link to="/home">Paquetes</Link>
                   </li>
-                  <li className="flex flex-col items-center md:mr-[50px] mr-[20px]  text-[16px] text-[#444]  hover:text-[#035373]">
+                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="/home">
                       <FaHotel className="text-[20px]" />
                     </Link>
                     <Link to="/home">Hoteles</Link>
                   </li>
-                  <li className="flex flex-col items-center md:mr-[50px] mr-[20px]  text-[16px] text-[#444]  hover:text-[#035373]">
+                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="/home">
                       <FaPlane className="text-[20px]" />
                     </Link>
                     <Link to="/home">Vuelos</Link>
                   </li>
-                  <li className="flex  flex-col items-center md:mr-[50px] mr-[20px]  text-[16px] text-[#444]  hover:text-[#035373]">
+                  <li className="flex  flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="/home">
                       {" "}
                       <GiMayanPyramid className="text-[20px]" />
                     </Link>
                     <Link to="/home">Tours</Link>
                   </li>
-                  <li className="flex flex-col items-center md:mr-[50px] mr-[20px]  text-[16px] text-[#444]  hover:text-[#035373]">
+                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="/home">
                       <FaSearchLocation className="text-[20px]" />
                     </Link>
                     <Link to="/home">Destinos</Link>
                   </li>
-                  <li className="flex flex-col items-center md:mr-[50px] mr-[20px]  text-[16px] text-[#444]  hover:text-[#035373]">
+                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="/home">
                       {" "}
                       <FaBlog className="text-[20px]  active:border active:border-[#035373] hover:rounded-lg hover:bg-[#035373]" />
