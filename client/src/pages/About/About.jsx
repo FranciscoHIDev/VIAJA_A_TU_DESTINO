@@ -10,14 +10,14 @@ function About() {
           <NavBar />
         </header>
         <main className="flex-grow">
-          <div className="my-40 md:mx-20 mx-5 flex flex-col items-center">
+          <div className="my-40 md:mx-20 mx-5 flex flex-col items-center ">
             <div>
-              <h1 className="text-3xl uppercase text-[#035373] font-bold">
+              <h1 className="md:text-3xl text-2xl uppercase text-[#035373] font-bold">
                 Quiénes Somos
               </h1>
             </div>
-            <div className="mt-10 ">
-              <p className="text-[20px]">
+            <div className="mt-10">
+              <p className="md:text-[20px] text-justify">
                 ¡Bienvenido a Viaja a tu Destino! Somos un buscador de ofertas
                 de viajes en México, y nuestro objetivo es ayudarte a encontrar
                 las mejores tarifas del mercado para que puedas viajar de manera
@@ -25,7 +25,7 @@ function About() {
                 rastreamos y seleccionamos cuidadosamente las ofertas más
                 atractivas y las compartimos contigo en nuestro sitio web.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 Te proporcionamos toda la información necesaria sobre las
                 ofertas que encontramos. Te enlazamos directamente a nuestro
                 sitio asociado, donde podrás comprar los vuelos, hoteles,
@@ -34,7 +34,7 @@ function About() {
                 que puedas disfrutar de tus viajes sin preocupaciones
                 financieras.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 La seguridad y la confiabilidad son fundamentales para nosotros.
                 Todas tus compras en Viaja a tu Destino son 100% seguras, ya que
                 las reservas las realizas directamente con los proveedores, como

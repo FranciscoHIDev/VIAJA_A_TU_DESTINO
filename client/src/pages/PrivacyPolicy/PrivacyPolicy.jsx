@@ -12,12 +12,12 @@ function PrivacyPolicy() {
         <main className="flex-grow">
           <div className="my-40 md:mx-20 mx-5 flex flex-col items-center">
             <div>
-              <h1 className="text-3xl uppercase text-[#035373] font-bold">
+              <h1 className="md:text-3xl text-2xl uppercase text-[#035373] font-bold">
                 Política de privacidad
               </h1>
             </div>
             <div className="mt-10 ">
-              <p className="text-[20px] ">
+              <p className="md:text-[20px] text-justify ">
                 Viaja a tu Destino cuida a sus usuarios y está comprometida a
                 salvaguardar su confidencialidad. En el desempeño de dicho
                 compromiso, Viaja a tu Destino ha desarrollado esta «Política de
@@ -25,21 +25,21 @@ function PrivacyPolicy() {
                 tu Destino en lo que se refiere a la recolección y divulgación
                 de información personal en su página web.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 VIAJA A TU DESTINO SAS DE CV como responsable de la protección
                 de sus Datos Personales, con domicilio fiscal en Mallorca Norte
                 E-A D-209 SM260 M73 L2, Privada Talaia, Real Valencia, Cancún ,
                 Quintana Roo. C.P 77539 es responsable, del tratamiento de sus
                 datos personales.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 Forma y medios de contacto: Para contactarnos, vía correo
                 electrónico puede ser mediante la siguiente cuenta,
                 (contacto@viajaatudestino.com) , vía correo postal a la
                 dirección Mallorca Norte E-A D-209 SM260 M73 L2, Privada Talaia,
                 Real Valencia, Cancún , Quintana Roo. C.P 77539.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 Finalidad de los Datos Personales recabados: Los datos
                 personales que se recaben, serán utilizados para fines de
                 seguimiento, actualización y confirmación en cuanto a productos
@@ -47,7 +47,7 @@ function PrivacyPolicy() {
                 cumplimiento a obligaciones contraídas con nuestros clientes;
                 evaluar la calidad del servicio.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 Los datos personales que recabamos de usted, con los fines
                 descritos en el presente aviso de privacidad, son recabados de
                 manera personal, cuando usted nos los proporciona directamente;
@@ -58,7 +58,7 @@ function PrivacyPolicy() {
                 recabamos de manera directa y vía internet, son los siguientes:
                 Nombre y apellidos, correo electrónico y numero telefónico.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 Toda vez que, como se estableció en líneas anteriores, está
                 permitido en Ley fuentes adicionales para allegarse de
                 información como lo son directorios telefónicos, directorios de
@@ -66,7 +66,7 @@ function PrivacyPolicy() {
                 medios podemos obtener son nombre y apellidos, correo
                 electrónico y número telefónico.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 En cuanto a los datos financieros como lo son su número de
                 tarjeta de débito y/o crédito, fecha de expiración de la misma,
                 código de seguridad y dirección de correspondencia de la misma
@@ -75,8 +75,8 @@ function PrivacyPolicy() {
                 son considerados datos que requieran de su consentimiento
                 expreso para ser utilizados.
               </p>
-              <p className="text-[20px] mt-5">Política de Cookies</p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 uppercase">Política de Cookies</p>
+              <p className="md:text-[20px] mt-5 text-justify">
                 Al entrar y/o utilizar VIAJA A TU DESTINO , el usuario acepta el
                 uso de cookies por parte de este sitio web. VIAJA A TU DESTINO
                 utiliza cookies para: Obtener estadísticas sobre las visitas a
@@ -105,7 +105,7 @@ function PrivacyPolicy() {
                 nuestras cookies a través de su navegador, aunque esto puede
                 afectar el uso de ciertas funcionalidades de la página web.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 Limitaciones al uso de datos: En cualquier momento, ya sea de
                 manera telefónica, por correo electrónico y vía correo postal
                 haciendo llegar una carta escrita, usted puede cancelar su
@@ -115,7 +115,7 @@ function PrivacyPolicy() {
                 Privada Talaia, Real Valencia, Cancún , Quintana Roo. C.P 77539,
                 o al correo electrónico contacto@viajaatudestino.com.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 Ejercicio de los Derechos de Acceso, Rectificación, Cancelación
                 y Oposición (ARCO): Usted tiene derecho de acceder a los datos
                 personales que poseemos, a los detalles de tratamiento de los
@@ -142,7 +142,7 @@ function PrivacyPolicy() {
                 de hacer uso de los mismos, para ello es necesario que presente
                 su petición según descrito en éste mismo aviso.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 Transferencia de datos, nacional e internacional: Sus datos
                 personales pueden ser transferidos y tratados dentro y fuera de
                 los Estados Unidos Mexicanos, por personas distintas a ésta
@@ -162,8 +162,8 @@ function PrivacyPolicy() {
                 establecimientos, vía nuestra página de internet, vía correo
                 electrónico a la dirección más reciente que tengamos de usted.
               </p>
-              <p className="text-[20px] mt-5">Enlaces a Terceros</p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 uppercase">Enlaces a Terceros</p>
+              <p className="md:text-[20px] mt-5 text-justify">
                 Este sitio web pudiera contener enlaces a otros sitios que
                 pudieran ser de su interés. Una vez que usted de clic en estos
                 enlaces y abandone nuestra página, ya no tenemos control sobre
@@ -174,7 +174,7 @@ function PrivacyPolicy() {
                 recomendable que los consulte para confirmar que usted está de
                 acuerdo con estas.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 Consentimiento tácito, en términos del artículo octavo de la
                 Ley: En caso que usted desee manifestar OPOSICIÓN a que sus
                 datos personales sean tratados conforme a lo establecido en el

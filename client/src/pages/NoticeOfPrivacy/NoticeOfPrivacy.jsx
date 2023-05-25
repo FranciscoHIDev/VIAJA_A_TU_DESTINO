@@ -12,17 +12,17 @@ function NoticeOfPrivacy() {
         <main className="flex-grow">
           <div className="my-40 md:mx-20 mx-5 flex flex-col items-center">
             <div>
-              <h1 className="text-3xl uppercase text-[#035373] font-bold">
+              <h1 className="md:text-3xl text-2xl uppercase text-[#035373] font-bold">
                 Aviso de privacidad
               </h1>
             </div>
             <div className="mt-10 ">
-              <p className="text-[20px] ">
+              <p className="md:md:text-[20px] text-justify">
                 De conformidad en lo dispuesto por la Ley Federal de Protección
                 de Datos Personales en Posesión de Particulares, se emite el
                 presente Aviso de Privacidad en los siguientes términos:
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:md:text-[20px] mt-5 text-justify">
                 1.- IDENTIDAD Y DOMICILIO DEL RESPONSABLE DE LOS DATOS
                 PERSONALES. Para efectos del presente Aviso de Privacidad de
                 Viaja a tu destino a cargo de VIAJA A TU DESTINO SAS DE CV., en
@@ -33,7 +33,7 @@ function NoticeOfPrivacy() {
                 su domicilio fiscal en Mallorca Norte E-A D-209 SM260 M73 L2,
                 Privada Talaia, Real Valencia, Cancún , Quintana Roo. C.P 77539.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 2.- INFORMACIÓN A RECABAR. LA RESPONSABLE recaba información
                 proporcionada por sus clientes o cualquier tercero que pueda
                 tener acceso a sus productos, de diferentes maneras, desde
@@ -46,7 +46,7 @@ function NoticeOfPrivacy() {
                 teléfono o correo electrónico si se requiriese información
                 adicional para completar alguna transacción.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 3. FINALIDADES A QUE SE SUJETARA EL TRATAMIENTO DE DATOS
                 PERSONALES. El Tratamiento de Datos Personales del titular,
                 incluyendo los Datos Personales Sensibles que en su caso, LA
@@ -67,7 +67,7 @@ function NoticeOfPrivacy() {
                 RESPONSABLE. El cumplimiento de los términos y condiciones de LA
                 RESPONSABLE en la prestación de sus servicios.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 4. OPCIONES Y MEDIOS QUE LA RESPONSABLE OFRECE A LOS TITULARES
                 PARA LIMITAR EL USO O DIVULGACIÓN DE SUS DATOS PERSONALES. Los
                 Datos Personales del titular, serán mantenidos en estricta
@@ -78,7 +78,7 @@ function NoticeOfPrivacy() {
                 terceros, conforme a lo previsto en el presente Aviso de
                 Privacidad.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 5. MEDIOS PARA EL EJERCICIO DE DERECHOS DEL TITULAR/USUARIOS. El
                 titular de Datos Personales, podrá ejercer sus derechos de
                 acceso, rectificación, cancelación, oposición, limitación de
@@ -98,7 +98,7 @@ function NoticeOfPrivacy() {
                 Personales, el titular, deberá indicar, las modificaciones a
                 realizarse y aportar la documentación que sustente su petición.
               </p>
-              <p className="text-[20px] mt-5">
+              <p className="md:text-[20px] mt-5 text-justify">
                 6. DATOS PERSONALES. LA RESPONSABLE podrá utilizar y divulgar
                 los Datos Personales a algún tercero que, a consecuencia de un
                 contrato con el cual se tenga una relación comercial o, agentes
