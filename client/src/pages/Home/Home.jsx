@@ -14,7 +14,7 @@ function Home() {
           <NavBar />
         </header>
         <main className="flex-grow">
-          <div className="flex flex-col mt-40 lg:mx-[40px] mx-3 mb-20">
+          <div className="flex flex-col mt-40 md:mx-[40px] mx-3 mb-20">
             <div className="flex flex-col">
               <div className="flex flex-col">
                 <h1 className="ml-[10px] text-2xl">

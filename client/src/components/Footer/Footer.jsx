@@ -1,6 +1,7 @@
 import React from "react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { AiOutlineLine } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -14,13 +15,22 @@ function Footer() {
               </h2>
             </div>
             <div className="text-[18px] md:mb-0 mb-4 md:items-center flex flex-col">
-              <p className="text-white hover:text-[#ff3e02]">¿Quiénes somos?</p>
-              <p className="text-white hover:text-[#ff3e02]">
-                Preguntas frecuentes
-              </p>
-              <p className="text-white hover:text-[#ff3e02]">
-                Trabaja con nosotros
-              </p>
+              <Link to="/sobre-nosotros">
+                {" "}
+                <p className="text-white hover:text-[#ff3e02]">
+                  ¿Quiénes somos?
+                </p>
+              </Link>
+              <Link to="/preguntas-frecuentes">
+                <p className="text-white hover:text-[#ff3e02]">
+                  Preguntas frecuentes
+                </p>
+              </Link>
+              <Link to="#">
+                <p className="text-white hover:text-[#ff3e02]">
+                  Trabaja con nosotros
+                </p>
+              </Link>
             </div>
           </div>
           <div>
@@ -30,15 +40,23 @@ function Footer() {
               </h2>
             </div>
             <div className="text-[18px] md:mb-0 mb-4 flex flex-col md:items-center">
-              <p className="text-white hover:text-[#ff3e02]">
-                Aviso de privacidad
-              </p>
-              <p className="text-white hover:text-[#ff3e02]">
-                Política de privacidad
-              </p>
-              <p className="text-white hover:text-[#ff3e02]">
-                Términos y condiciones
-              </p>
+              <Link to="/aviso-de-privacidad">
+                {" "}
+                <p className="text-white hover:text-[#ff3e02]">
+                  Aviso de privacidad
+                </p>
+              </Link>
+              <Link to="/politica-de-privacidad">
+                {" "}
+                <p className="text-white hover:text-[#ff3e02]">
+                  Política de privacidad
+                </p>
+              </Link>
+              <Link to="/terminos-y-condiciones">
+                <p className="text-white hover:text-[#ff3e02]">
+                  Términos y condiciones
+                </p>
+              </Link>
             </div>
           </div>
           <div className="flex flex-col ">

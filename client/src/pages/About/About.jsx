@@ -4,30 +4,53 @@ import Footer from "../../components/Footer/Footer";
 
 function About() {
   return (
-    <>
-      <NavBar />
-      <div>
-        <h1>Quiénes Somos</h1>
-        <p>
-          Somos un buscador de ofertas de viajes en México, diariamente buscamos
-          las mejores tarifas del mercado y las compartimos con los viajeros
-          para que puedan viajar barato a los mejores destinos, te dejamos toda
-          la información de las ofertas en nuestro sitio web de donde te
-          enlazamos para que puedas comprarla al mejor precio y además pagar a
-          meses sin intereses, ya sea vuelos, hoteles, paquetes o experiencias,
-          todas tus compras son 100% seguras y confiables ya que las reservas
-          las realizas directamente con los proveedores como agencias de viajes
-          o aerolíneas.{" "}
-        </p>
-        <p>
-          Los únicos productos o servicios que vendemos directamente como
-          intermediarios son todas las experiencias del Grupo Xcaret, ya que
-          contamos con alianzas comerciales por lo que te podemos ofrecer todas
-          la entradas a los diferentes parques desde nuestros canales oficiales.
-        </p>
+    <React.Fragment>
+      <div className="min-h-screen flex flex-col">
+        <header>
+          <NavBar />
+        </header>
+        <main className="flex-grow">
+          <div className="my-40 md:mx-20 mx-5 flex flex-col items-center">
+            <div>
+              <h1 className="text-3xl uppercase text-[#035373] font-bold">
+                Quiénes Somos
+              </h1>
+            </div>
+            <div className="mt-10 ">
+              <p className="text-[20px]">
+                ¡Bienvenido a Viaja a tu Destino! Somos un buscador de ofertas
+                de viajes en México, y nuestro objetivo es ayudarte a encontrar
+                las mejores tarifas del mercado para que puedas viajar de manera
+                económica a los destinos más increíbles. Todos los días,
+                rastreamos y seleccionamos cuidadosamente las ofertas más
+                atractivas y las compartimos contigo en nuestro sitio web.
+              </p>
+              <p className="text-[20px] mt-5">
+                Te proporcionamos toda la información necesaria sobre las
+                ofertas que encontramos. Te enlazamos directamente a nuestro
+                sitio asociado, donde podrás comprar los vuelos, hoteles,
+                paquetes turísticos o experiencias al mejor precio disponible.
+                Además, ofrecemos opciones de pago a meses sin intereses para
+                que puedas disfrutar de tus viajes sin preocupaciones
+                financieras.
+              </p>
+              <p className="text-[20px] mt-5">
+                La seguridad y la confiabilidad son fundamentales para nosotros.
+                Todas tus compras en Viaja a tu Destino son 100% seguras, ya que
+                las reservas las realizas directamente con los proveedores, como
+                agencias de viajes o aerolíneas. Trabajamos únicamente con
+                socios confiables y reconocidos en la industria del turismo,
+                garantizando que obtengas el mejor servicio y una experiencia de
+                viaje satisfactoria.
+              </p>
+            </div>
+          </div>
+        </main>
+        <footer className="mt-auto">
+          <Footer />
+        </footer>
       </div>
-      <Footer />
-    </>
+    </React.Fragment>
   );
 }
 
