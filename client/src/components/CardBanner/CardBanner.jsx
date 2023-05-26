@@ -37,7 +37,7 @@ function CardBanner({
   } else {
     return (
       <>
-        <div className="mt-[30px] rounded-[10px] bg-[#fff] w-[405px] h-[244px] border-none m-[8px]  ">
+        <div className="mt-[30px] rounded-[10px] bg-[#fff] w-[405px] h-[244px] border-none m-[8px] ">
           <img
             className="w-[405px] h-[244px] rounded-[10px]"
             src={image}

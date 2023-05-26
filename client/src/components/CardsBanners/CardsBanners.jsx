@@ -16,7 +16,7 @@ function CardsBanners() {
 
   return (
     <>
-      <div className="flex flex-wrap items-center justify-center">
+      <div className="flex flex-wrap items-center justify-center ">
         {banners.map((e) => {
           return (
             <CardBanner

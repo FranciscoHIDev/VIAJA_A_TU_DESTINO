@@ -1,6 +1,5 @@
 import React from "react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
-import { AiOutlineLine } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 function Footer() {
@@ -73,8 +72,21 @@ function Footer() {
               </div>
               <div className="flex flex-row items-center">
                 <p className="text-[18px] mr-2 text-white">Síguenos</p>
-                <FaFacebook className="mr-2 text-2xl text-white hover:text-[#ff3e02]" />
-                <FaInstagram className="text-2xl text-white hover:text-[#ff3e02]" />
+                <a
+                  href="https://www.facebook.com/viajaatudestinoMx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {" "}
+                  <FaFacebook className="mr-2 text-2xl text-white hover:text-[#ff3e02]" />
+                </a>
+                <a
+                  href="https://www.instagram.com/viajaatudestinomx/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaInstagram className="text-2xl text-white hover:text-[#ff3e02]" />
+                </a>
               </div>
               <br></br>
             </div>

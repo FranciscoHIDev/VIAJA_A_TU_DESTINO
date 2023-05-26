@@ -44,31 +44,31 @@ function NavBar() {
                 </li>
                 <li className="flex md:mr-[25px]  mr-4 color-[#444] text-[16px] items-center font-[400]">
                   <span className="mr-[5px]">
-                    <Link to="/favorite">
+                    <Link to="#">
                       <FaUserCircle className="text-[20px] md:text-[18px] text-[#035373]" />
                     </Link>
                   </span>{" "}
-                  <Link to="/favorite">
+                  <Link to="#">
                     <span className="hidden lg:block">Iniciar sesión</span>
                   </Link>
                 </li>
                 <li className="flex md:mr-[25px]  mr-4 color-[#444] text-[16px] items-center font-[400]">
                   <span className="mr-[5px] text-[#8d9fa6]">
-                    <Link to="/favorite">
+                    <Link to="W">
                       <FaRegHeart className="text-[20px] md:text-[18px] text-[#035373]" />
                     </Link>
                   </span>
-                  <Link to="/favorite">
+                  <Link to="#">
                     <span className="hidden lg:block">Favoritos</span>
                   </Link>
                 </li>
                 <li className="flex md:mr-[25px]  mr-4  color-[#444] text-[16px] items-center font-[400]">
                   <span className="mr-[5px] ">
-                    <Link to="/favorite">
+                    <Link to="#">
                       <FaRegQuestionCircle className="text-[20px] md:text-[18px] text-[#035373]" />
                     </Link>
                   </span>
-                  <Link to="/favorite">
+                  <Link to="#">
                     <span className="hidden lg:block">Ayuda</span>
                   </Link>
                 </li>
@@ -124,15 +124,18 @@ function NavBar() {
                     </Link>
                     <Link to="/home">Blog</Link>
                   </li>
-                  {/* <li className="flex mr-[50px] text-[16px] text-[#444]">
-                    <Link to="/sobre-nosotros">Acerca de</Link>
-                  </li> */}
                 </ul>
               </div>
               <div>
-                <button className="rounded-md border border-[#242424] bg-[#ff] py-[0.4em] px-[1.2em]   hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02]">
-                  Cotizador
-                </button>
+                <a
+                  href="https://viajaatudestino.priceres.com.mx/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="rounded-md border border-[#242424] bg-[#ff] py-[0.4em] px-[1.2em]   hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02]">
+                    Cotizador
+                  </button>
+                </a>
               </div>
             </div>
           </div>
