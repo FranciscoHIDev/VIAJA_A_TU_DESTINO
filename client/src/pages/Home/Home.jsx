@@ -17,12 +17,12 @@ function Home() {
           <div className="flex flex-col mt-40 md:mx-[40px] mx-3 mb-20">
             <div className="flex flex-col">
               <div className="flex flex-col">
-                <h1 className="ml-[10px] text-2xl">
-                  Reserva vuelos y hoteles a los mejores precios con nosotros
+                <h1 className="ml-[10px] md:text-2xl text-[20px]">
+                  Reserva tus vacaciones a los mejores precios con nosotros
                 </h1>
-                <p className="text-[20px] ml-[10px]">
+                {/* <p className="text-[20px] ml-[10px]">
                   Cancelación Gratis en miles de Hoteles
-                </p>
+                </p> */}
               </div>
               <div>
                 <CardsBanners />
@@ -31,10 +31,10 @@ function Home() {
             </div>
             <div className="flex flex-col">
               <div className="flex flex-col">
-                <h1 className="ml-[10px] text-2xl">
+                <h1 className="ml-[10px] md:text-2xl text-[20px]">
                   Encuentra los paquetes con Vuelo + Hotel a tu destino favorito
                 </h1>
-                <p className="ml-[10px]">Disfruta de las ofertas</p>
+                {/* <p className="ml-[10px]">Disfruta de las ofertas</p> */}
               </div>
               <div>
                 <CardsPackages />
@@ -42,7 +42,7 @@ function Home() {
             </div>
             <div className="flex flex-col">
               <div>
-                <h1 className="ml-[10px] text-2xl">
+                <h1 className="ml-[10px] md:text-2xl text-[20px]">
                   Hoteles con hasta 65% de descuento
                 </h1>
               </div>
