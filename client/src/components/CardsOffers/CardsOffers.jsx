@@ -19,6 +19,7 @@ function CardsOffers() {
         return (
           <CardOffers
             key={crypto.randomUUID()}
+            _id={e._id}
             title={e.title}
             image={e.image}
             category={e.category}

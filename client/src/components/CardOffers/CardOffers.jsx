@@ -8,8 +8,10 @@ import {
 import { MdFavoriteBorder, MdLocationOn } from "react-icons/md";
 import { RiShareForwardLine } from "react-icons/ri";
 import Loading from "../Loading/Loading";
+import { Link } from "react-router-dom";
 
 function CardOffers({
+  _id,
   title,
   summary,
   promotion,
@@ -42,7 +44,7 @@ function CardOffers({
           <MdFavoriteBorder className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[25px] md:ml-[340px] ml-[300px] mt-[20px] text-[#323231] opacity-[80%]" />
           <img
             className="w-[390px] h-[200px] rounded-tl-[20px] rounded-tr-[20px]"
-            src={image}
+            src={image[0]}
             alt="image"
           />
           <p className="absolute mt-[-180px] rounded-tr-[8px] rounded-br-[8px] px-[1.2em] py-[0.6em] text-[1em] font-[500] bg-[hsla(0,0%,100%,.8)] text-[#323231]">
@@ -115,9 +117,11 @@ function CardOffers({
             </span>
           </p>
           <a href={buyLinks} target="_blank" rel="noopener noreferrer">
-            <button className="rounded-md border border-[#242424] bg-[#ff] py-[0.4em] px-[1.2em]   hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02]">
-              Ver oferta
-            </button>
+            <Link to={`/oferta/${_id}`}>
+              <button className="rounded-md border border-[#242424] bg-[#ff] py-[0.4em] px-[1.2em]   hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02]">
+                Ver oferta
+              </button>
+            </Link>
           </a>
         </div>
       </div>

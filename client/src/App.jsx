@@ -5,17 +5,22 @@ import FrequentQuestions from "./pages/FrequentQuestions/FrequentQuestions";
 import NoticeOfPrivacy from "./pages/NoticeOfPrivacy/NoticeOfPrivacy";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
+import Details from "./pages/Details/Details";
 
 function App() {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/oferta/:id" element={<Details />} />
         <Route path="/sobre-nosotros" element={<About />} />
         <Route path="/preguntas-frecuentes" element={<FrequentQuestions />} />
         <Route path="/aviso-de-privacidad" element={<NoticeOfPrivacy />} />
         <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
-        <Route path="/terminos-y-condiciones" element={<TermsAndConditions/>}/>
+        <Route
+          path="/terminos-y-condiciones"
+          element={<TermsAndConditions />}
+        />
       </Routes>
     </div>
   );
