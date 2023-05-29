@@ -5,12 +5,12 @@ import Footer from "../../components/Footer/Footer";
 function FrequentQuestions() {
   return (
     <React.Fragment>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen h-screen flex flex-col">
         <header>
           <NavBar />
         </header>
-        <main className="flex-grow">
-          <div className="my-40 md:mx-20 mx-5 flex flex-col items-center">
+        <main className="flex-grow my-10">
+          <div className=" md:mx-20 mx-5 flex flex-col items-center">
             <div>
               <h1 className="md:text-3xl text-2xl uppercase text-[#035373] font-bold">
                 Preguntas Frecuentes

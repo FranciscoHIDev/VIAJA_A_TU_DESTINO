@@ -5,12 +5,12 @@ import Footer from "../../components/Footer/Footer";
 function PrivacyPolicy() {
   return (
     <React.Fragment>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen h-screen flex flex-col">
         <header>
           <NavBar />
         </header>
-        <main className="flex-grow">
-          <div className="my-40 md:mx-20 mx-5 flex flex-col items-center">
+        <main className="flex-grow my-10">
+          <div className=" md:mx-20 mx-5 flex flex-col items-center">
             <div>
               <h1 className="md:text-3xl text-2xl uppercase text-[#035373] font-bold">
                 Política de privacidad
@@ -75,7 +75,9 @@ function PrivacyPolicy() {
                 son considerados datos que requieran de su consentimiento
                 expreso para ser utilizados.
               </p>
-              <p className="md:text-[20px] mt-5 uppercase">Política de Cookies</p>
+              <p className="md:text-[20px] mt-5 uppercase">
+                Política de Cookies
+              </p>
               <p className="md:text-[20px] mt-5 text-justify">
                 Al entrar y/o utilizar VIAJA A TU DESTINO , el usuario acepta el
                 uso de cookies por parte de este sitio web. VIAJA A TU DESTINO
@@ -162,7 +164,9 @@ function PrivacyPolicy() {
                 establecimientos, vía nuestra página de internet, vía correo
                 electrónico a la dirección más reciente que tengamos de usted.
               </p>
-              <p className="md:text-[20px] mt-5 uppercase">Enlaces a Terceros</p>
+              <p className="md:text-[20px] mt-5 uppercase">
+                Enlaces a Terceros
+              </p>
               <p className="md:text-[20px] mt-5 text-justify">
                 Este sitio web pudiera contener enlaces a otros sitios que
                 pudieran ser de su interés. Una vez que usted de clic en estos

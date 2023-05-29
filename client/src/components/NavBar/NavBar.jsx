@@ -12,13 +12,13 @@ import {
   FaSearchLocation,
 } from "react-icons/fa";
 import { MdLocalOffer } from "react-icons/md";
-import { GiMayanPyramid, GiWorld } from "react-icons/gi";
+import { GiMayanPyramid } from "react-icons/gi";
 
 function NavBar() {
   return (
-    <>
+    <React.Fragment>
       <nav>
-        <div className="flex flex-col bg-white top-0 absolute w-full">
+        <div className="flex flex-col bg-white top-0 relative w-full">
           <div className="flex flex-row items-center justify-between">
             <Link to="/">
               <img
@@ -141,7 +141,7 @@ function NavBar() {
           </div>
         </div>
       </nav>
-    </>
+    </React.Fragment>
   );
 }
 

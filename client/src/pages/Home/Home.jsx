@@ -9,12 +9,12 @@ import Footer from "../../components/Footer/Footer";
 function Home() {
   return (
     <React.Fragment>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen h-screen flex flex-col">
         <header>
           <NavBar />
         </header>
-        <main className="flex-grow">
-          <div className="flex flex-col mt-40 md:mx-[40px] mx-3 mb-20">
+        <main className="flex-grow mt-5">
+          <div className="flex flex-col md:mx-[40px] mx-3 mb-20">
             <div className="flex flex-col">
               <div className="flex flex-col">
                 <h1 className="ml-[10px] md:text-2xl text-[20px]">
