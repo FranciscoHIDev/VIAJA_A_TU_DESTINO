@@ -42,12 +42,16 @@ function Details() {
           <div className="flex felx-col">
             {offer.length !== 0 ? (
               <div className="flex flex-col">
-                <div className="lg:w-[600px] lg:h-[400px] flex md:mx-2  mx-0 w-[88%]">
-                  <img className="mr-4" src={offer.image[0]} alt="image" />
+                <div className="lg:w-[604px] md:h-[520px] flex  lg:mx-2  mx-0 w-screen h-[300px] ">
+                  <img
+                    className="mr-4 w-auto h-auto"
+                    src={offer.image[0]}
+                    alt="image"
+                  />
                   {/* <img src={offer.image[1]} alt="image" /> */}
                 </div>
-                <div className="flex flex-col-reverse lg:flex-row mt-8  mx-5 gap-20">
-                  <div className="flex flex-col">
+                <div className="flex flex-col-reverse lg:flex-row mt-8  md:mx-10 mx-5 gap-20">
+                  <div className="flex flex-col md:mt-0 mt-[-30px]">
                     <div className="flex flex-col">
                       <div>
                         <button className="bg-[#53b3cb] px-4  py-1 rounded-md text-white font-medium">
@@ -81,7 +85,7 @@ function Details() {
                           Imagen de muestra
                         </p>
                         <img
-                          className="mt-4 w-[600px] h-[400px]"
+                          className="mt-4 md:w-[600px] md:h-[400px]"
                           src={offer.sampleImages[0]}
                           alt="image-sample"
                         />
@@ -94,7 +98,7 @@ function Details() {
                     </div>
                   </div>
                   <div className="">
-                    <div className="w-[400px] h-[450px] border-none rounded-lg bg-white flex flex-col ">
+                    <div className="md:w-[400px] md:h-[450px] border-none rounded-lg bg-white flex flex-col md:mt-0 mt-5">
                       <div className="bg-[#035373] py-2 rounded-tl-lg rounded-tr-lg border-b-2">
                         <p className="text-center text-[20px] font-semibold text-white uppercase">
                           Resumen
@@ -111,39 +115,54 @@ function Details() {
                         {offer.departure ? (
                           <div className="flex flex-row items-center">
                             <FaPlaneDeparture className="text-[#ff3e02] mr-2" />
-                            <p className="text-[20px]">
-                              Salida: <span>{offer.departure}</span>
+                            <p className="md:text-[20px]">
+                              Salida:{" "}
+                              <span className="md:text-[20px] text-[15px]">
+                                {offer.departure}
+                              </span>
                             </p>
                           </div>
                         ) : null}
                         {offer.arrival ? (
                           <div className="flex flex-row items-center mt-2">
                             <FaPlaneArrival className="text-[#ff3e02] mr-2" />
-                            <p className="text-[20px]">
-                              LLegada: <span>{offer.arrival}</span>
+                            <p className="md:text-[20px]">
+                              LLegada:{" "}
+                              <span className="md:text-[20px] text-[15px]">
+                                {offer.arrival}
+                              </span>
                             </p>
                           </div>
                         ) : null}
                         <div className="flex flex-row items-center mt-2">
                           <FaRegCalendarAlt className="text-[#ff3e02] mr-2" />
-                          <p className="text-[20px]">
-                            Disponibilidad: <span>{offer.availability}</span>
+                          <p className="md:text-[20px]">
+                            Disponibilidad:{" "}
+                            <span className="md:text-[20px] text-[15px]">
+                              {offer.availability}
+                            </span>
                           </p>
                         </div>
                         <div className="flex flex-row items-center mt-2">
                           <FaHotel className="text-[#ff3e02] mr-2" />
-                          <p className="text-[20px]">
-                            Hotel: <span>{offer.hotel}</span>
+                          <p className="md:text-[20px]">
+                            Hotel:{" "}
+                            <span className="md:text-[20px] text-[15px]">
+                              {offer.hotel}
+                            </span>
                           </p>
                         </div>
                         <div className="flex flex-row items-center mt-2">
                           <MdOutlineNightsStay className="text-[#ff3e02] text-[20px] mr-1" />
-                          <p className="text-[20px]">
-                            Estancia: <span>{offer.daysOfStay}</span>
+                          <p className="md:text-[20px]">
+                            Estancia:{" "}
+                            <span className="md:text-[20px] text-[15px]">
+                              {offer.daysOfStay}
+                            </span>
                           </p>
                         </div>
                       </div>
-                      <div className="mt-20 flex justify-center ">
+                      <div className="md:mt-20 mt-14 md:mb-0 mb-10 flex justify-center ">
                         <button
                           onClick={scrollToTarget}
                           className="bg-[#ff3e02] p-2 rounded-md text-white font-bold"
