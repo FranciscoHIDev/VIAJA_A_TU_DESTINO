@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import FrequentQuestions from "./pages/FrequentQuestions/FrequentQuestions";
@@ -8,11 +8,10 @@ import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 import Details from "./pages/Details/Details";
 import NotFound from "./pages/NotFound/NotFound";
 
-
 function App() {
   return (
     <div>
-      <Router>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route exact path="/oferta/:id" element={<Details />} />
@@ -26,7 +25,7 @@ function App() {
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

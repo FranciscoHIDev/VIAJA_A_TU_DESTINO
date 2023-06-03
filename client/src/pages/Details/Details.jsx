@@ -42,7 +42,7 @@ function Details() {
           <div className="flex felx-col">
             {offer.length !== 0 ? (
               <div className="flex flex-col">
-                <div className="lg:w-[604px] md:h-[520px] flex  lg:mx-2  mx-0 w-screen h-[300px] ">
+                <div className="lg:w-[604px] lg:h-[420px] flex  lg:mx-2  mx-0 w-screen h-[250px] ">
                   <img
                     className="mr-4 w-auto h-auto"
                     src={offer.image[0]}
