@@ -23,8 +23,9 @@ function CardsBanners() {
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    speed: 2000,
+    speed: 1500,
     autoplay: true,
+    autoplaySpeed: 5000,
   };
 
   const desktopSettings = {
@@ -40,7 +41,7 @@ function CardsBanners() {
   const settings = isMobile ? mobileSettings : desktopSettings;
   return (
     <>
-      <div className="container mx-8 md:mx-0">
+      <div className="container px-4 md:px-0 md:mx-0 items-center">
         <Slider {...settings}>
           {banners.map((e) => {
             return (

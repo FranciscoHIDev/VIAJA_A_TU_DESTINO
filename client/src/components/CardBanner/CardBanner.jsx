@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-
 function CardBanner({
   destination,
   discount,
@@ -38,7 +37,7 @@ function CardBanner({
   } else {
     return (
       <>
-        <div className="mt-[30px] rounded-[10px] bg-[#fff] w-[405px] h-[244px] border-none m-[8px] ">
+        <div className="mt-[30px] rounded-[10px] bg-[#fff] md:w-[405px] md:h-[244px] h-[244px] border-none m-[8px] ">
           <img
             className="w-[405px] h-[244px] rounded-[10px]"
             src={image}
