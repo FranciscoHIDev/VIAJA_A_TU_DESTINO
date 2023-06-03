@@ -16,7 +16,6 @@ function CardsBanners() {
   useEffect(() => {
     allBanners();
   }, []);
-  const isMobile = window.innerWidth < 768;
 
   const mobileSettings = {
     dots: true,
@@ -25,7 +24,7 @@ function CardsBanners() {
     slidesToScroll: 1,
     speed: 1500,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 6000,
   };
 
   const desktopSettings = {
@@ -35,27 +34,37 @@ function CardsBanners() {
     slidesToScroll: 1,
     speed: 1500,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 6000,
   };
-
-  const settings = isMobile ? mobileSettings : desktopSettings;
   return (
     <>
       <div className="container px-4 md:px-0 md:mx-0 items-center">
-        <Slider {...settings}>
-          {banners.map((e) => {
-            return (
-              <CardBanner
-                key={crypto.randomUUID()}
-                destination={e.destination}
-                image={e.image}
-                discount={e.discount}
-                textDiscount={e.textDiscount}
-                textPromotion={e.textPromotion}
-                link={e.link}
-              />
-            );
-          })}
+        <Slider {...mobileSettings} className="md:hidden">
+          {banners.map((e) => (
+            <CardBanner
+              key={crypto.randomUUID()}
+              destination={e.destination}
+              image={e.image}
+              discount={e.discount}
+              textDiscount={e.textDiscount}
+              textPromotion={e.textPromotion}
+              link={e.link}
+            />
+          ))}
+        </Slider>
+
+        <Slider {...desktopSettings} className="hidden md:block">
+          {banners.map((e) => (
+            <CardBanner
+              key={crypto.randomUUID()}
+              destination={e.destination}
+              image={e.image}
+              discount={e.discount}
+              textDiscount={e.textDiscount}
+              textPromotion={e.textPromotion}
+              link={e.link}
+            />
+          ))}
         </Slider>
       </div>
     </>

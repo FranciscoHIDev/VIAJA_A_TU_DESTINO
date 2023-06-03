@@ -21,8 +21,8 @@ function CardBanner({
     return (
       <>
         <SkeletonTheme baseColor="#ebebeb" highlightColor="#f8f8f8">
-          <div className="mt-[30px] rounded-[10px] md:w-[405px] bg-white md:h-[244px] w-[400px] h-[240px] border-none m-[8px] items-center">
-            <div className="flex flex-col mt-40 text-[20px] text-[#fff]">
+          <div className="rounded-[10px] md:w-[405px] bg-white md:h-[244px] w-[400px] h-[240px] border-none m-[8px] items-center">
+            <div className="flex flex-col  text-[20px] text-[#fff] mt-8">
               <p className="mx-4">{<Skeleton enableAnimation="true" />}</p>
               <p className=" mx-4">{<Skeleton />}</p>
             </div>

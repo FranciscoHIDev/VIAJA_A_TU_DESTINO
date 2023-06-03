@@ -26,6 +26,8 @@ function Home() {
               </div>
               <div>
                 <CardsBanners />
+              </div>
+              <div className="mt-10">
                 <CardsOffers />
               </div>
             </div>
