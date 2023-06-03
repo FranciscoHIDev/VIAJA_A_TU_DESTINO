@@ -48,7 +48,6 @@ function Details() {
                     src={offer.image[0]}
                     alt="image"
                   />
-                  {/* <img src={offer.image[1]} alt="image" /> */}
                 </div>
                 <div className="flex flex-col-reverse lg:flex-row mt-8  md:mx-10 mx-5 gap-20">
                   <div className="flex flex-col md:mt-0 mt-[-30px]">
