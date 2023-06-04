@@ -12,6 +12,10 @@ import {
   FaPlaneDeparture,
   FaPlaneArrival,
 } from "react-icons/fa";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import "../../components/CardsBanners/Carrusel.css";
 
 function Details() {
   const { id } = useParams();
@@ -24,7 +28,6 @@ function Details() {
 
   const getOffersById = async (_id) => {
     const { data } = await axios.get(`/api/offers/${_id}`);
-    console.log(data);
     setOffer(data);
   };
 
@@ -32,6 +35,27 @@ function Details() {
     getOffersById(id);
   }, [id]);
 
+  const mobileSettings = {
+    dots: true,
+    lazyLoad: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    speed: 1500,
+    autoplay: true,
+    autoplaySpeed: 6000,
+  };
+
+  const desktopSettings = {
+    dots: true,
+    lazyLoad: true,
+    infinite: true,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    speed: 1500,
+    autoplay: true,
+    autoplaySpeed: 6000,
+  };
   return (
     <React.Fragment>
       <div className="min-h-screen h-screen flex flex-col">
@@ -39,15 +63,32 @@ function Details() {
           <NavBar />
         </header>
         <main className="flex-grow border-solid border-t-[3px] border-[#53b3cb] mb-40">
-          <div className="flex felx-col">
+          <div className="flex felx-col ">
             {offer.length !== 0 ? (
               <div className="flex flex-col">
-                <div className="lg:w-[604px] lg:h-[420px] flex  lg:mx-2  mx-0 w-screen h-[250px] ">
-                  <img
-                    className="mr-4 w-auto h-auto"
-                    src={offer.image[0]}
-                    alt="image"
-                  />
+                <div className="container md:px-0 mx-10 px-10 md:mx-8 items-center ">
+                  <Slider {...mobileSettings} className="  md:hidden">
+                    {offer.image.map((e, index) => (
+                      <div key={index} className="w-[400px] h-[310px]">
+                        <img                          
+                          className="w-auto h-auto"
+                          src={e}
+                          alt="image"
+                        />
+                      </div>
+                    ))}
+                  </Slider>
+
+                  <Slider {...desktopSettings} className="hidden md:block">
+                    {offer.image.map((e, index) => (
+                      <img
+                        key={index}
+                        className="w-[504px] h-[420px]"
+                        src={e}
+                        alt="image"
+                      />
+                    ))}
+                  </Slider>
                 </div>
                 <div className="flex flex-col-reverse lg:flex-row mt-8  md:mx-10 mx-5 gap-20">
                   <div className="flex flex-col md:mt-0 mt-[-30px]">

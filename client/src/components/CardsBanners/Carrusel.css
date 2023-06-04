@@ -8,6 +8,7 @@
     height: 244px;
     position: relative;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 0 1rem;
@@ -31,8 +32,16 @@
   .slick-dots li.slick-active button:before {
     color: #ff3e02;
   }
-  
-  /* h2 {
+
+  .nextArrow{
+    background-color: #ff3e02;
+  } 
+    .prevArrow{
+      background-color: blue;
+    }
+
+/*   
+h2 {
     font-size: 2rem;
     text-shadow: 2px 2px #000;
   } */
