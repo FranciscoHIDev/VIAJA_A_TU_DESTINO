@@ -63,13 +63,13 @@ function Details() {
           <NavBar />
         </header>
         <main className="flex-grow border-solid border-t-[3px] border-[#53b3cb] mb-40">
-          <div className="flex felx-col ">
+          <div className="  flex felx-col ">
             {offer.length !== 0 ? (
               <div className="flex flex-col">
-                <div className="container md:px-0 md:mx-8 items-center w-screen px-6 bg-[#e3e6e7]">
+                <div className="container md:px-0 md:mx-8 items-center w-screen px-7 bg-[#e3e6e7]">
                   <Slider {...mobileSettings} className="  md:hidden">
                     {offer.image.map((e, index) => (
-                      <div key={index} className="h-[]">
+                      <div key={index}>
                         <img className="w-auto h-[270px]" src={e} alt="image" />
                       </div>
                     ))}
@@ -120,11 +120,20 @@ function Details() {
                         <p className="mt-5 text-[20px] font-semibold ">
                           Imagen de muestra
                         </p>
-                        <img
-                          className="mt-4 md:w-[600px] md:h-[400px]"
-                          src={offer.sampleImages[0]}
-                          alt="image-sample"
-                        />
+                        <div className="  md:w-[700px] md:h-[400px] px-2 w-[350px] h-[200px]">
+                          <Slider {...mobileSettings} className="">
+                            {offer.sampleImages.map((e, index) => (
+                              <div key={index} className="h-auto">
+                                <img
+                                  key={index}
+                                  className="mt-4 w-[350px] h-[200px] md:w-[700px] md:h-[400px] "
+                                  src={e}
+                                  alt="image"
+                                />
+                              </div>
+                            ))}
+                          </Slider>
+                        </div>
                       </div>
                       <div ref={targetRef}>
                         <p className="mt-10 text-2xl font-bold">
