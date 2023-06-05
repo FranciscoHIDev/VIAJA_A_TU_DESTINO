@@ -37,17 +37,17 @@ function CardBanner({
   } else {
     return (
       <>
-        <div className="mt-[30px] rounded-[10px] bg-[#fff] md:w-[405px] md:h-[244px] h-[244px] border-none m-[8px] ">
+        <div className="mt-[30px] rounded-[10px] bg-[#fff] md:w-[405px] md:h-[244px] h-[200px] border-none m-[8px] ">
           <img
-            className="w-[405px] h-[244px] rounded-[10px]"
+            className="md:w-[405px] md:h-[244px] h-[200px] w-[405px] rounded-[10px]"
             src={image}
             alt="image"
           />
-          <div className="flex flex-col mt-[-100px] ml-[20px] text-[20px] text-[#fff]  ">
+          <div className="flex flex-col mt-[-100px] ml-[20px] md:text-[20px] text-[#fff]  ">
             <p className="font-[500] mb-[-3px] drop-shadow-[0.1em_0.1em_0.1em_black] ">
               {textPromotion}
             </p>
-            <p className="font-[500] drop-shadow-[0.1em_0.1em_0.1em_black]">
+            <p className="font-[500] drop-shadow-[0.1em_0.1em_0.1em_black] ">
               {textDiscount}
             </p>
           </div>
