@@ -120,8 +120,8 @@ function Details() {
                         <p className="mt-5 text-[20px] font-semibold ">
                           Imagen de muestra
                         </p>
-                        {/* <div className="  md:w-[700px] md:h-[400px] px-4 w-[350px] h-[200px]">
-                          <Slider {...mobileSettings} className="">
+                        <div className="  md:w-[700px] md:h-[400px] px-4 w-[320px] h-[200px]">
+                          <Slider {...mobileSettings} className="block">
                             {offer.sampleImages.map((e, index) => (
                               <div key={index}>
                                 <img
@@ -133,7 +133,7 @@ function Details() {
                               </div>
                             ))}
                           </Slider>
-                        </div> */}
+                        </div>
                       </div>
                       <div ref={targetRef}>
                         <p className="mt-10 text-2xl font-bold">
