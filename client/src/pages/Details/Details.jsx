@@ -66,7 +66,7 @@ function Details() {
           <div className="  flex felx-col ">
             {offer.length !== 0 ? (
               <div className="flex flex-col">
-                <div className="container md:px-0 md:mx-8 items-center w-screen px-7 bg-[#e3e6e7]">
+                <div className="container md:px-0 md:mx-8 items-center w-screen px-8 bg-[#e3e6e7]">
                   <Slider {...mobileSettings} className="  md:hidden">
                     {offer.image.map((e, index) => (
                       <div key={index}>
