@@ -126,7 +126,7 @@ function Details() {
                               <div key={index} className="h-auto">
                                 <img
                                   key={index}
-                                  className="mt-4 w-[350px] h-[200px] md:w-[700px] md:h-[400px] "
+                                  className="mt-4 w-[320px] h-[200px] md:w-[700px] md:h-[400px] "
                                   src={e}
                                   alt="image"
                                 />
