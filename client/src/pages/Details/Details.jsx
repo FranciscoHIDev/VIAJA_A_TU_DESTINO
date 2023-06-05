@@ -120,7 +120,7 @@ function Details() {
                         <p className="mt-5 text-[20px] font-semibold ">
                           Imagen de muestra
                         </p>
-                        <div className="  md:w-[700px] md:h-[400px] px-2 w-[350px] h-[200px]">
+                        <div className="  md:w-[700px] md:h-[400px] px-4 w-[350px] h-[200px]">
                           <Slider {...mobileSettings} className="">
                             {offer.sampleImages.map((e, index) => (
                               <div key={index} className="h-auto">
