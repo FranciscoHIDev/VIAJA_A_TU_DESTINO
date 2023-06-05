@@ -79,7 +79,7 @@ function Details() {
                     {offer.image.map((e, index) => (
                       <img
                         key={index}
-                        className="w-[504px] h-[420px]"
+                        className="w-[504px] h-[420px] "
                         src={e}
                         alt="image"
                       />
@@ -160,9 +160,9 @@ function Details() {
                         {offer.departure ? (
                           <div className="flex flex-row items-center">
                             <FaPlaneDeparture className="text-[#ff3e02] mr-2" />
-                            <p className="md:text-[20px]">
+                            <p className="md:text-[20px] font-[400]">
                               Salida:{" "}
-                              <span className="md:text-[20px] text-[15px]">
+                              <span className="md:text-[20px] text-[15px] font-[300]">
                                 {offer.departure}
                               </span>
                             </p>
@@ -171,9 +171,9 @@ function Details() {
                         {offer.arrival ? (
                           <div className="flex flex-row items-center mt-2">
                             <FaPlaneArrival className="text-[#ff3e02] mr-2" />
-                            <p className="md:text-[20px]">
+                            <p className="md:text-[20px] font-[400]">
                               LLegada:{" "}
-                              <span className="md:text-[20px] text-[15px]">
+                              <span className="md:text-[20px] text-[15px] font-[300]">
                                 {offer.arrival}
                               </span>
                             </p>
@@ -181,27 +181,27 @@ function Details() {
                         ) : null}
                         <div className="flex flex-row items-center mt-2">
                           <FaRegCalendarAlt className="text-[#ff3e02] mr-2" />
-                          <p className="md:text-[20px]">
+                          <p className="md:text-[20px] font-[400]">
                             Disponibilidad:{" "}
-                            <span className="md:text-[20px] text-[15px]">
+                            <span className="md:text-[20px] text-[15px] font-[300]">
                               {offer.availability}
                             </span>
                           </p>
                         </div>
                         <div className="flex flex-row items-center mt-2">
                           <FaHotel className="text-[#ff3e02] mr-2" />
-                          <p className="md:text-[20px]">
+                          <p className="md:text-[20px] font-[400]">
                             Hotel:{" "}
-                            <span className="md:text-[20px] text-[15px]">
+                            <span className="md:text-[20px] text-[15px] font-[300]">
                               {offer.hotel}
                             </span>
                           </p>
                         </div>
                         <div className="flex flex-row items-center mt-2">
                           <MdOutlineNightsStay className="text-[#ff3e02] text-[20px] mr-1" />
-                          <p className="md:text-[20px]">
+                          <p className="md:text-[20px] font-[400]">
                             Estancia:{" "}
-                            <span className="md:text-[20px] text-[15px]">
+                            <span className="md:text-[20px] text-[15px] font-[300]">
                               {offer.daysOfStay}
                             </span>
                           </p>
@@ -210,7 +210,7 @@ function Details() {
                       <div className="md:mt-20 mt-14 md:mb-0 mb-10 flex justify-center ">
                         <button
                           onClick={scrollToTarget}
-                          className="bg-[#ff3e02] p-2 rounded-md text-white font-bold"
+                          className="bg-[#ff3e02] p-2 rounded-md text-[#fff] font-[500] hover:bg-[#53b3cb]"
                         >
                           Fechas disponibles
                         </button>
