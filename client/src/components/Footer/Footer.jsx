@@ -13,7 +13,7 @@ function Footer() {
                 Sobre nosotros
               </h2>
             </div>
-            <div className="text-[18px] md:mb-0 mb-4 md:items-center flex flex-col">
+            <div className="text-[18px] md:mb-0 mb-4  flex flex-col">
               <Link to="/sobre-nosotros">
                 {" "}
                 <p className="text-white hover:text-[#ff3e02]">
@@ -38,7 +38,7 @@ function Footer() {
                 Legales
               </h2>
             </div>
-            <div className="text-[18px] md:mb-0 mb-4 flex flex-col md:items-center">
+            <div className="text-[18px] md:mb-0 mb-4 flex flex-col ">
               <Link to="/aviso-de-privacidad">
                 {" "}
                 <p className="text-white hover:text-[#ff3e02]">

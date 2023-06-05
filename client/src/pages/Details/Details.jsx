@@ -66,15 +66,11 @@ function Details() {
           <div className="flex felx-col ">
             {offer.length !== 0 ? (
               <div className="flex flex-col">
-                <div className="container md:px-0 mx-10 px-10 md:mx-8 items-center ">
+                <div className="container md:px-0 md:mx-8 items-center w-screen px-6 bg-[#e3e6e7]">
                   <Slider {...mobileSettings} className="  md:hidden">
                     {offer.image.map((e, index) => (
-                      <div key={index} className="w-[400px] h-[310px]">
-                        <img                          
-                          className="w-auto h-auto"
-                          src={e}
-                          alt="image"
-                        />
+                      <div key={index} className="h-[]">
+                        <img className="w-auto h-[270px]" src={e} alt="image" />
                       </div>
                     ))}
                   </Slider>

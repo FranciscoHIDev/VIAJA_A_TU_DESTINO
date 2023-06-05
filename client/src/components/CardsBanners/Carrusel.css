@@ -21,7 +21,7 @@
   }
   
   .slick-dots {
-    bottom: -30px;
+    bottom: 10px;
   }
   
   .slick-dots li button:before {
@@ -32,13 +32,6 @@
   .slick-dots li.slick-active button:before {
     color: #ff3e02;
   }
-
-  .nextArrow{
-    background-color: #ff3e02;
-  } 
-    .prevArrow{
-      background-color: blue;
-    }
 
 /*   
 h2 {
