@@ -5,6 +5,17 @@ function currentDate() {
     return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
 }
 
+// const buyLinkSchema = mongoose.Schema({
+//     url: {
+//         type: String,
+//         required: true
+//     },
+//     description: {
+//         type: String,
+//         required: true
+//     }
+// });
+
 const offerSchema = mongoose.Schema({
     title: {
         type: String,
@@ -85,7 +96,8 @@ const offerSchema = mongoose.Schema({
         type: String
     },
     buyLinks: {
-        type: [String]
+        type: [String],
+        required: true,
     },
     author: {
         type: String,

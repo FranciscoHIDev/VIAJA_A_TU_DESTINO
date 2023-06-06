@@ -25,7 +25,6 @@ function CardOffers({
   arrival,
   author,
   date,
-  buyLinks,
 }) {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -116,12 +115,12 @@ function CardOffers({
               ${price}{" "}
             </span>
           </p>
-          <a href={buyLinks} target="_blank" rel="noopener noreferrer">
-            <Link to={`/oferta/${_id}`}>
-              <button className="rounded-md border border-[#242424] bg-[#ff] py-[0.4em] px-[1.2em]   hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02]">
-                Ver oferta
-              </button>
-            </Link>
+          <a href={`/oferta/${_id}`}>
+            {/* <Link to={`/oferta/${_id}`}> */}
+            <button className="rounded-md border border-[#242424] bg-[#ff] py-[0.4em] px-[1.2em]   hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02]">
+              Ver oferta
+            </button>
+            {/* </Link> */}
           </a>
         </div>
       </div>

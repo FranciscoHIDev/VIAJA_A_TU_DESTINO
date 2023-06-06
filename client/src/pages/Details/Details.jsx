@@ -11,6 +11,8 @@ import {
   FaRegCalendarAlt,
   FaPlaneDeparture,
   FaPlaneArrival,
+  FaArrowRight,
+
 } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -56,6 +58,8 @@ function Details() {
     autoplay: true,
     autoplaySpeed: 6000,
   };
+
+  console.log(offer, "probando");
   return (
     <React.Fragment>
       <div className="min-h-screen h-screen flex flex-col">
@@ -136,9 +140,43 @@ function Details() {
                         </div>
                       </div>
                       <div ref={targetRef}>
-                        <p className="mt-10 text-2xl font-bold">
-                          Fechas disponibles
+                        <p className="mt-10 mb-5 text-2xl font-bold flex">
+                         <span className="mr-2 mt-1"><FaRegCalendarAlt/></span> Fechas disponibles
                         </p>
+                        <div className="flex justify-between md:px-10 px-5 bg-[#b6b5b5] mx-[5px]  font-medium mb-[-4px] text-[15px]">
+                          <p>IDA</p>
+                          <p>VUELTA</p>
+                          <p className="ml-[-40px]">PRECIO</p>
+                          <p></p>
+                        </div>
+
+                        <div>
+                          {offer.buyLinks.map((buyLink, index) => (
+                            <div
+                              key={index}
+                              className="border bg-white m-1 p-1 block hover:bg-[#53b3cb] md:px-5 px-2"
+                            >
+                              <a
+                                href={buyLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <div className="flex items-center justify-between text-[#035373] md:font-[500] hover:text-white text-[13px] md:text-[16px]">
+                                  <p>26 de mayo</p>
+                                  <p>30 de mayo</p>
+                                  <p>$5,390</p>
+                                  <p className="flex">
+                                    {" "}
+                                    <span>Reservar </span>
+                                    <span className="mt-1 ml-2">
+                                      <FaArrowRight className="text-[#ff3e02]" />
+                                    </span>
+                                  </p>
+                                </div>
+                              </a>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
