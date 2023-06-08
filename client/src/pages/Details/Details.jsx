@@ -12,12 +12,13 @@ import {
   FaPlaneDeparture,
   FaPlaneArrival,
   FaArrowRight,
-
 } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import "../../components/CardsBanners/Carrusel.css";
+
+import Swal from "sweetalert2";
 
 function Details() {
   const { id } = useParams();
@@ -59,7 +60,33 @@ function Details() {
     autoplaySpeed: 6000,
   };
 
-  console.log(offer, "probando");
+  const handleButton = () => {
+    setTimeout(() => {
+      let timerInterval;
+      Swal.fire({
+        title: offer.title,
+        html: "Un momento te estamos rediriendo con nuestro proveedor",
+        imageUrl:
+          "https://res.cloudinary.com/duaysiozi/image/upload/v1684173882/LOGO-OFICIAL-_lmdwby.svg",
+        imageWidth: 200,
+        imageHeight: 100,
+        imageAlt: "Custom image",
+        timer: 6000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          const b = Swal.getHtmlContainer().querySelector("b");
+          timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft();
+          }, 1000);
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        },
+      });
+    }, 0);
+  };
+
   return (
     <React.Fragment>
       <div className="min-h-screen h-screen flex flex-col">
@@ -141,7 +168,10 @@ function Details() {
                       </div>
                       <div ref={targetRef}>
                         <p className="mt-10 mb-5 text-2xl font-bold flex">
-                         <span className="mr-2 mt-1"><FaRegCalendarAlt/></span> Fechas disponibles
+                          <span className="mr-2 mt-1">
+                            <FaRegCalendarAlt />
+                          </span>{" "}
+                          Fechas disponibles
                         </p>
                         <div className="flex justify-between md:px-10 px-5 bg-[#b6b5b5] mx-[5px]  font-medium mb-[-4px] text-[15px]">
                           <p>IDA</p>
@@ -158,8 +188,9 @@ function Details() {
                             >
                               <a
                                 href={buyLink}
-                                target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={() => handleButton()}
+                                className="cursor-pointer"
                               >
                                 <div className="flex items-center justify-between text-[#035373] md:font-[500] hover:text-white text-[13px] md:text-[16px]">
                                   <p>26 de mayo</p>

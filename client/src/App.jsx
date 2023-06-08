@@ -23,6 +23,7 @@ function App() {
             path="/terminos-y-condiciones"
             element={<TermsAndConditions />}
           />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
