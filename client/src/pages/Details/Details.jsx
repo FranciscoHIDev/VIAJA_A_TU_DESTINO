@@ -18,8 +18,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import "../../components/CardsBanners/Carrusel.css";
 
-import Swal from "sweetalert2";
-
 function Details() {
   const { id } = useParams();
   const [offer, setOffer] = useState([]);
@@ -47,44 +45,30 @@ function Details() {
     speed: 1500,
     autoplay: true,
     autoplaySpeed: 6000,
+    arrows: false,
   };
 
   const desktopSettings = {
     dots: true,
     lazyLoad: true,
     infinite: true,
-    slidesToShow: 2,
+    slidesToShow: 3,
     slidesToScroll: 1,
     speed: 1500,
     autoplay: true,
     autoplaySpeed: 6000,
+    arrows: false,
   };
-
-  const handleButton = () => {
-    setTimeout(() => {
-      let timerInterval;
-      Swal.fire({
-        title: offer.title,
-        html: "Un momento te estamos rediriendo con nuestro proveedor",
-        imageUrl:
-          "https://res.cloudinary.com/duaysiozi/image/upload/v1684173882/LOGO-OFICIAL-_lmdwby.svg",
-        imageWidth: 200,
-        imageHeight: 100,
-        imageAlt: "Custom image",
-        timer: 6000,
-        timerProgressBar: true,
-        didOpen: () => {
-          Swal.showLoading();
-          const b = Swal.getHtmlContainer().querySelector("b");
-          timerInterval = setInterval(() => {
-            b.textContent = Swal.getTimerLeft();
-          }, 1000);
-        },
-        willClose: () => {
-          clearInterval(timerInterval);
-        },
-      });
-    }, 0);
+  const imageSettings = {
+    dots: true,
+    lazyLoad: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    speed: 1500,
+    autoplay: true,
+    autoplaySpeed: 6000,
+    arrows: true,
   };
 
   return (
@@ -96,12 +80,16 @@ function Details() {
         <main className="flex-grow border-solid border-t-[3px] border-[#53b3cb] mb-40">
           <div className="  flex felx-col ">
             {offer.length !== 0 ? (
-              <div className="flex flex-col">
-                <div className="container md:px-0 md:mx-8 items-center w-screen px-8 bg-[#e3e6e7]">
+              <div className="flex flex-col ">
+                <div className="block  w-screen   ">
                   <Slider {...mobileSettings} className="  md:hidden">
                     {offer.image.map((e, index) => (
                       <div key={index}>
-                        <img className="w-auto h-[270px]" src={e} alt="image" />
+                        <img
+                          className="w-[500px] h-[270px]"
+                          src={e}
+                          alt="image"
+                        />
                       </div>
                     ))}
                   </Slider>
@@ -110,7 +98,7 @@ function Details() {
                     {offer.image.map((e, index) => (
                       <img
                         key={index}
-                        className="w-[504px] h-[420px] "
+                        className="w-[650px] h-[420px] px-2 mx-20"
                         src={e}
                         alt="image"
                       />
@@ -151,8 +139,8 @@ function Details() {
                         <p className="mt-5 text-[20px] font-semibold ">
                           Imagen de muestra
                         </p>
-                        <div className="  md:w-[700px] md:h-[400px] px-4 w-[320px] h-[200px]">
-                          <Slider {...mobileSettings} className="block">
+                        <div className="  md:w-[700px] md:h-[400px] px-2 w-[320px] h-[200px]">
+                          <Slider {...imageSettings} className="block">
                             {offer.sampleImages.map((e, index) => (
                               <div key={index}>
                                 <img
@@ -184,15 +172,15 @@ function Details() {
                           {offer.buyLinks.map((buyLink, index) => (
                             <div
                               key={index}
-                              className="border bg-white m-1 p-1 block hover:bg-[#53b3cb] md:px-5 px-2"
+                              className="border bg-white m-1 p-2 block hover:bg-[#53b3cb] md:px-5 px-2"
                             >
                               <a
                                 href={buyLink}
                                 rel="noopener noreferrer"
-                                onClick={() => handleButton()}
+                                target="_blank"
                                 className="cursor-pointer"
                               >
-                                <div className="flex items-center justify-between text-[#035373] md:font-[500] hover:text-white text-[13px] md:text-[16px]">
+                                <div className="flex items-center justify-between text-[#035373] md:font-[500] hover:text-white text-[15px] md:text-[16px]">
                                   <p>26 de mayo</p>
                                   <p>30 de mayo</p>
                                   <p>$5,390</p>
