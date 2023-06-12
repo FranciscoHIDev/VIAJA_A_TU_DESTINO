@@ -120,7 +120,7 @@ function NavBar() {
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="#">
                       {" "}
-                      <FaBlog className="text-[20px]  active:border active:border-[#035373] hover:rounded-lg hover:bg-[#035373]" />
+                      <FaBlog className="text-[20px]" />
                     </Link>
                     <Link to="#">Blog</Link>
                   </li>

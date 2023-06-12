@@ -29,8 +29,10 @@ function Details() {
 
   const getOffersById = async (_id) => {
     const { data } = await axios.get(`/api/offers/${_id}`);
+    console.log(data, "soy data");
     setOffer(data);
   };
+  console.log(offer);
 
   useEffect(() => {
     getOffersById(id);
@@ -71,6 +73,7 @@ function Details() {
     arrows: true,
   };
 
+  console.log(offer, "OFERTA");
   return (
     <React.Fragment>
       <div className="min-h-screen h-screen flex flex-col">
@@ -78,32 +81,34 @@ function Details() {
           <NavBar />
         </header>
         <main className="flex-grow border-solid border-t-[3px] border-[#53b3cb] mb-40">
-          <div className="  flex felx-col ">
+          <div className="  flex felx-col items-center ">
             {offer.length !== 0 ? (
-              <div className="flex flex-col items-center ">
-                <div className="block md:container  w-screen    ">
-                  <Slider {...mobileSettings} className="  md:hidden">
-                    {offer.image.map((e, index) => (
-                      <div key={index}>
+              <div className="flex flex-col ">
+                <div className="flex items-center justify-center">
+                  <div className="block md:container  w-screen">
+                    <Slider {...mobileSettings} className="  md:hidden">
+                      {offer.image.map((e, index) => (
+                        <div key={index}>
+                          <img
+                            className="w-[500px] h-[270px]"
+                            src={e}
+                            alt="image"
+                          />
+                        </div>
+                      ))}
+                    </Slider>
+
+                    <Slider {...desktopSettings} className="hidden md:block">
+                      {offer.image.map((e, index) => (
                         <img
-                          className="w-[500px] h-[270px]"
+                          key={index}
+                          className="w-[650px] h-[420px] px-1"
                           src={e}
                           alt="image"
                         />
-                      </div>
-                    ))}
-                  </Slider>
-
-                  <Slider {...desktopSettings} className="hidden md:block">
-                    {offer.image.map((e, index) => (
-                      <img
-                        key={index}
-                        className="w-[850px] h-[420px] px-1"
-                        src={e}
-                        alt="image"
-                      />
-                    ))}
-                  </Slider>
+                      ))}
+                    </Slider>
+                  </div>
                 </div>
                 <div className="flex flex-col-reverse lg:flex-row mt-8  md:mx-10 mx-5 gap-20">
                   <div className="flex flex-col md:mt-0 mt-[-30px]">
@@ -169,21 +174,21 @@ function Details() {
                         </div>
 
                         <div>
-                          {offer.buyLinks.map((buyLink, index) => (
+                          {offer.buyLinks.map((e, index) => (
                             <div
                               key={index}
                               className="border bg-white m-1 p-2 block hover:bg-[#53b3cb] md:px-5 px-2"
                             >
                               <a
-                                href={buyLink}
+                                href={e.link}
                                 rel="noopener noreferrer"
                                 target="_blank"
                                 className="cursor-pointer"
                               >
                                 <div className="flex items-center justify-between text-[#035373] md:font-[500] hover:text-white text-[15px] md:text-[16px]">
-                                  <p>26 de mayo</p>
-                                  <p>30 de mayo</p>
-                                  <p>$5,390</p>
+                                  <p>{e.departureDate}</p>
+                                  <p>{e.returnDate}</p>
+                                  <p>${e.price}</p>
                                   <p className="flex">
                                     {" "}
                                     <span>Reservar </span>

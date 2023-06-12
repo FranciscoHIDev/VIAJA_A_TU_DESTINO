@@ -6,14 +6,7 @@ function currentDate() {
 }
 
 // const buyLinkSchema = mongoose.Schema({
-//     url: {
-//         type: String,
-//         required: true
-//     },
-//     description: {
-//         type: String,
-//         required: true
-//     }
+
 // });
 
 const offerSchema = mongoose.Schema({
@@ -96,8 +89,25 @@ const offerSchema = mongoose.Schema({
         type: String
     },
     buyLinks: {
-        type: [String],
-        required: true,
+        type: Array,
+        link: {
+            type: String,
+            required: true
+        },
+        departureDate: {
+            type: String,
+            required: true
+        },
+        returnDate: {
+            type: String,
+            required: true
+        },
+        price: {
+            type: String,
+            required: true
+        },
+
+        required: true
     },
     author: {
         type: String,
