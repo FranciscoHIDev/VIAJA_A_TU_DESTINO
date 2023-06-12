@@ -52,12 +52,12 @@ function Details() {
     dots: true,
     lazyLoad: true,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     speed: 1500,
     autoplay: true,
     autoplaySpeed: 6000,
-    arrows: false,
+    arrows: true,
   };
   const imageSettings = {
     dots: true,
@@ -80,8 +80,8 @@ function Details() {
         <main className="flex-grow border-solid border-t-[3px] border-[#53b3cb] mb-40">
           <div className="  flex felx-col ">
             {offer.length !== 0 ? (
-              <div className="flex flex-col ">
-                <div className="block  w-screen   ">
+              <div className="flex flex-col items-center ">
+                <div className="block md:container  w-screen    ">
                   <Slider {...mobileSettings} className="  md:hidden">
                     {offer.image.map((e, index) => (
                       <div key={index}>
@@ -98,7 +98,7 @@ function Details() {
                     {offer.image.map((e, index) => (
                       <img
                         key={index}
-                        className="w-[650px] h-[420px] px-2 mx-20"
+                        className="w-[850px] h-[420px] px-1"
                         src={e}
                         alt="image"
                       />
