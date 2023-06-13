@@ -18,25 +18,34 @@ function Home() {
             <div className="flex flex-col">
               <div className="flex flex-col">
                 <h1 className="ml-[10px] md:text-2xl text-[20px]">
-                  Reserva tus vacaciones a los mejores precios con nosotros
+                  Diseñamos las mejores ofertas de viajes para ti
                 </h1>
-                {/* <p className="text-[20px] ml-[10px]">
-                  Cancelación Gratis en miles de Hoteles
-                </p> */}
+                <p className="ml-[10px] mt-2 md:text-[18px]">
+                  ¡Diariamente buscamos las mejores tarifas, reserva facil,
+                  rapido y seguro!{" "}
+                </p>
               </div>
               <div>
                 <CardsBanners />
               </div>
               <div className="mt-10">
+                <h1 className="ml-[10px] md:text-2xl text-[20px]">
+                  Encuentra la oferta a tu destino favorito, y disfruta de tus
+                  vacaciones
+                </h1>
+
                 <CardsOffers />
               </div>
             </div>
             <div className="flex flex-col">
               <div className="flex flex-col">
                 <h1 className="ml-[10px] md:text-2xl text-[20px]">
-                  Encuentra los paquetes con Vuelo + Hotel a tu destino favorito
+                  Paquetes con Vuelo + Hotel
                 </h1>
-                {/* <p className="ml-[10px]">Disfruta de las ofertas</p> */}
+                <p className="ml-[10px] md:text-[18px]">
+                  Reserva los paquetes de viajes disponibles en fechas
+                  especificas
+                </p>
               </div>
               <div>
                 <CardsPackages />
@@ -47,6 +56,9 @@ function Home() {
                 <h1 className="ml-[10px] md:text-2xl text-[20px]">
                   Hoteles con hasta 65% de descuento
                 </h1>
+                <p className="ml-[10px] md:text-[18px]">
+                  Cancelacion gratis en miles de hoteles
+                </p>
               </div>
               <div>
                 <CardsHotels />
