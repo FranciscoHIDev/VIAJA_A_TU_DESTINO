@@ -20,7 +20,7 @@ function Home() {
                 <h1 className="ml-[10px] md:text-2xl text-[20px]">
                   Diseñamos las mejores ofertas de viajes para ti
                 </h1>
-                <p className="ml-[10px] mt-2 md:text-[18px]">
+                <p className="ml-[10px]  md:text-[18px]">
                   ¡Diariamente buscamos las mejores tarifas, reserva facil,
                   rapido y seguro!{" "}
                 </p>
