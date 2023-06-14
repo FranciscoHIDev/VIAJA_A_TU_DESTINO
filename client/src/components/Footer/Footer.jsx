@@ -1,12 +1,12 @@
 import React from "react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Footer() {
   return (
     <React.Fragment>
       <div className="flex flex-col w-full">
-        <div className="flex md:flex-row flex-col md:justify-around bg-[#011c39] py-10  md:items-center md:pl-0 pl-10">
+        <div className="flex md:flex-row flex-col md:justify-around bg-[#011c39] py-12  md:items-center md:pl-0 pl-10">
           <div>
             <div className="flex  flex-col mb-4 md:items-center ">
               <h2 className="text-2xl uppercase text-white font-[500]">
@@ -14,22 +14,22 @@ function Footer() {
               </h2>
             </div>
             <div className="text-[18px] md:mb-0 mb-4  flex flex-col">
-              <Link to="/sobre-nosotros">
+              <NavLink to="/sobre-nosotros">
                 {" "}
                 <p className="text-white hover:text-[#ff3e02]">
                   ¿Quiénes somos?
                 </p>
-              </Link>
-              <Link to="/preguntas-frecuentes">
+              </NavLink>
+              <NavLink to="/preguntas-frecuentes">
                 <p className="text-white hover:text-[#ff3e02]">
                   Preguntas frecuentes
                 </p>
-              </Link>
-              <Link to="#">
+              </NavLink>
+              <NavLink to="#">
                 <p className="text-white hover:text-[#ff3e02]">
                   Trabaja con nosotros
                 </p>
-              </Link>
+              </NavLink>
             </div>
           </div>
           <div>
@@ -39,23 +39,23 @@ function Footer() {
               </h2>
             </div>
             <div className="text-[18px] md:mb-0 mb-4 flex flex-col ">
-              <Link to="/aviso-de-privacidad">
+              <NavLink to="/aviso-de-privacidad">
                 {" "}
                 <p className="text-white hover:text-[#ff3e02]">
                   Aviso de privacidad
                 </p>
-              </Link>
-              <Link to="/politica-de-privacidad">
+              </NavLink>
+              <NavLink to="/politica-de-privacidad">
                 {" "}
                 <p className="text-white hover:text-[#ff3e02]">
                   Política de privacidad
                 </p>
-              </Link>
-              <Link to="/terminos-y-condiciones">
+              </NavLink>
+              <NavLink to="/terminos-y-condiciones">
                 <p className="text-white hover:text-[#ff3e02]">
                   Términos y condiciones
                 </p>
-              </Link>
+              </NavLink>
             </div>
           </div>
           <div className="flex flex-col ">
@@ -96,7 +96,7 @@ function Footer() {
           <p className="text-center text-white drop-shadow-[0.1em_0.1em_0.1em_black]">
             Copyright © 2023 viajaatudestino.com. Todos los derechos reservados.
           </p>
-          <a
+          {/* <a
             href="https://franciscodev.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
@@ -104,7 +104,7 @@ function Footer() {
             <p className="text-white drop-shadow-[0.1em_0.1em_0.1em_black] hover:text-[#ff3e02]">
               Desarrollado by FranciscoDEv
             </p>
-          </a>
+          </a> */}
         </div>
       </div>
     </React.Fragment>
