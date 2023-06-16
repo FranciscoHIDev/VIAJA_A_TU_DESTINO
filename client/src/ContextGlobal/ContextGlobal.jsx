@@ -5,6 +5,8 @@ export const ContextGlobal = createContext();
 export const ContextProvider = ({ children }) => {
   const [offer, setOffer] = useState([]);
   const [banner, setBanner] = useState([]);
+  const [hotel, setHotel] = useState([]);
+  const [pack, setPack] = useState([]);
 
   useEffect(() => {
     const allOffers = async () => {
@@ -16,12 +18,24 @@ export const ContextProvider = ({ children }) => {
       const { data } = await axios.get("/api/banners");
       setBanner(data);
     };
+
+    const allHotels = async () => {
+      const { data } = await axios.get("/api/hotels");
+      setHotel(data);
+    };
+
+    const allPackages = async () => {
+      const { data } = await axios.get("/api/packages");
+      setPack(data);
+    };
     allOffers();
     allBanners();
+    allHotels();
+    allPackages();
   }, []);
 
   return (
-    <ContextGlobal.Provider value={{ offer, banner }}>
+    <ContextGlobal.Provider value={{ offer, banner, hotel, pack }}>
       {children}
     </ContextGlobal.Provider>
   );

@@ -25,7 +25,7 @@ function CardHotel({
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 0);
   });
 
   if (loading) {

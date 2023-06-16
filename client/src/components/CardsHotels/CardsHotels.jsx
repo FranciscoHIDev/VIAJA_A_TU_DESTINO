@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
+
 import CardHotel from "../CardHotel/CardHotel";
+import { ContextGlobal } from "../../ContextGlobal/ContextGlobal";
 
 function CardsHotels() {
-  const [hotels, setHotels] = useState([]);
+  const { hotel } = useContext(ContextGlobal);
 
-  const allHotels = async () => {
-    const { data } = await axios.get("/api/hotels");
-    console.log(data);
-    setHotels(data);
-  };
-  useEffect(() => {
-    allHotels();
-  }, []);
   return (
     <div className="flex flex-wrap items-center justify-center">
-      {hotels.map((e) => {
+      {hotel.map((e) => {
         return (
           <CardHotel
             key={crypto.randomUUID()}
