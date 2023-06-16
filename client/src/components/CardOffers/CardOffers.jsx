@@ -30,7 +30,7 @@ function CardOffers({
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 0);
   });
 
   if (loading) {

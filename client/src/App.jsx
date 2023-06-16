@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ContextProvider } from "./Context";
+
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import FrequentQuestions from "./pages/FrequentQuestions/FrequentQuestions";
@@ -9,6 +9,7 @@ import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 import Details from "./pages/Details/Details";
 import NotFound from "./pages/NotFound/NotFound";
 import ComingSoon from "./pages/ComingSoon/ComingSoon";
+import { ContextProvider } from "./ContextGlobal/ContextGlobal";
 
 function App() {
   return (
@@ -16,8 +17,8 @@ function App() {
       <ContextProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<ComingSoon />} />
-            <Route path="/home" element={<Home />} />
+            {/* <Route path="/" element={<ComingSoon />} /> */}
+            <Route path="/" element={<Home />} />
             <Route exact path="/oferta/:id" element={<Details />} />
             <Route path="/sobre-nosotros" element={<About />} />
             <Route

@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
 import CardBanner from "../CardBanner/CardBanner";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import "./Carrusel.css";
+import { ContextGlobal } from "../../ContextGlobal/ContextGlobal";
 
 function CardsBanners() {
-  const [banners, setBanners] = useState([]);
-
-  const allBanners = async () => {
-    const { data } = await axios.get("/api/banners");
-    setBanners(data);
-  };
-  useEffect(() => {
-    allBanners();
-  }, []);
+  const { banner } = useContext(ContextGlobal);
 
   const mobileSettings = {
     dots: true,
@@ -40,7 +32,7 @@ function CardsBanners() {
     <>
       <div className="container px-4 md:px-0 md:mx-0 items-center">
         <Slider {...mobileSettings} className="md:hidden">
-          {banners.map((e) => (
+          {banner.map((e) => (
             <CardBanner
               key={crypto.randomUUID()}
               destination={e.destination}
@@ -54,7 +46,7 @@ function CardsBanners() {
         </Slider>
 
         <Slider {...desktopSettings} className="hidden md:block">
-          {banners.map((e) => (
+          {banner.map((e) => (
             <CardBanner
               key={crypto.randomUUID()}
               destination={e.destination}

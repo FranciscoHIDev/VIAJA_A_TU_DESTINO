@@ -1,21 +1,13 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
 import CardOffers from "./../CardOffers/CardOffers";
+import { ContextGlobal } from "../../ContextGlobal/ContextGlobal";
 
 function CardsOffers() {
-  const [offers, setOffers] = useState([]);
+  const { offer } = useContext(ContextGlobal);
 
-  const allOffers = async () => {
-    const { data } = await axios.get("/api/offers");
-    console.log(data);
-    setOffers(data);
-  };
-  useEffect(() => {
-    allOffers();
-  }, []);
   return (
     <div className="flex flex-wrap items-center justify-center">
-      {offers.map((e) => {
+      {offer.map((e) => {
         return (
           <CardOffers
             key={crypto.randomUUID()}
