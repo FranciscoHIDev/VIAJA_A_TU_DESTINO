@@ -27,14 +27,11 @@ function Details() {
     targetRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  const getOffersById = async (_id) => {
-    const { data } = await axios.get(`/api/offers/${_id}`);
-    console.log(data, "soy data");
-    setOffer(data);
-  };
-  console.log(offer);
-
   useEffect(() => {
+    const getOffersById = async (_id) => {
+      const { data } = await axios.get(`/api/offers/${_id}`);
+      setOffer(data);
+    };
     getOffersById(id);
   }, [id]);
 
@@ -46,7 +43,7 @@ function Details() {
     slidesToScroll: 1,
     speed: 1500,
     autoplay: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 3000,
     arrows: false,
   };
 
@@ -58,7 +55,7 @@ function Details() {
     slidesToScroll: 1,
     speed: 1500,
     autoplay: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 3000,
     arrows: true,
   };
   const imageSettings = {
@@ -69,11 +66,10 @@ function Details() {
     slidesToScroll: 1,
     speed: 1500,
     autoplay: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 3000,
     arrows: true,
   };
 
-  console.log(offer, "OFERTA");
   return (
     <React.Fragment>
       <div className="min-h-screen h-screen flex flex-col">
@@ -185,7 +181,7 @@ function Details() {
                                 target="_blank"
                                 className="cursor-pointer"
                               >
-                                <div className="flex items-center justify-between text-[#035373] md:font-[500] hover:text-white text-[15px] md:text-[16px]">
+                                <div className="flex items-center justify-between text-[#253777] md:font-[500] hover:text-white text-[15px] md:text-[16px]">
                                   <p>{e.departureDate}</p>
                                   <p>{e.returnDate}</p>
                                   <p>${e.price}</p>
@@ -218,7 +214,7 @@ function Details() {
                           <p className="text-[25px]">${offer.price}</p>
                         </div>
                       </div>
-                      <div className="mt-5 mx-3">
+                      <div className="mt-5 mx-5">
                         {offer.departure ? (
                           <div className="flex flex-row items-center">
                             <FaPlaneDeparture className="text-[#ff3e02] mr-2" />
@@ -269,7 +265,7 @@ function Details() {
                           </p>
                         </div>
                       </div>
-                      <div className="md:mt-20 mt-14 md:mb-0 mb-10 flex justify-center ">
+                      <div className="md:mt-10 mt-12 md:mb-0 mb-10 flex justify-center ">
                         <button
                           onClick={scrollToTarget}
                           className="bg-[#ff3e02] p-2 rounded-md text-[#fff] font-[500] hover:bg-[#53b3cb]"

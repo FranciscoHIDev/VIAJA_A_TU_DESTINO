@@ -16,11 +16,11 @@ function Home() {
         <main className="flex-grow mt-5">
           <div className="flex flex-col md:mx-[40px] mx-3 mb-20">
             <div className="flex flex-col">
-              <div className="flex flex-col">
-                <h1 className="ml-[10px] md:text-2xl text-[20px] text-[#035373] font-semibold">
+              <div>
+                <h1 className="ml-[20px] md:text-2xl text-[20px] text-[#253777] font-semibold ">
                   Diseñamos las mejores ofertas de viajes para ti
                 </h1>
-                <p className="ml-[10px]  md:text-[18px]">
+                <p className="ml-[20px]  md:text-[18px]  mt-1">
                   Diariamente buscamos las mejores tarifas ¡reserva facil,
                   rapido y seguro!{" "}
                 </p>
@@ -29,39 +29,28 @@ function Home() {
                 <CardsBanners />
               </div>
               <div className="mt-10">
-                <h1 className="ml-[10px] md:text-2xl text-[20px] text-[#035373] font-semibold">
+                <h1 className="ml-[20px] md:text-2xl text-[20px] text-[#253777] font-semibold ">
                   Encuentra la oferta a tu destino favorito, y disfruta de tus
                   vacaciones
                 </h1>
-
-                <CardsOffers />
+                <p></p>
+                <div>
+                  <CardsOffers />
+                </div>
               </div>
             </div>
-            <div className="flex flex-col">
-              <div className="flex flex-col">
-                <h1 className="ml-[10px] md:text-2xl text-[20px] text-[#035373] font-semibold">
+            <div className="flex flex-col mt-10">
+              <div>
+                <h1 className="ml-[20px] md:text-2xl text-[20px] text-[#253777] font-semibold ">
                   Paquetes con Vuelo + Hotel
                 </h1>
-                <p className="ml-[10px] md:text-[18px]">
+                <p className="ml-[20px] md:text-[18px] mt-1">
                   Reserva los paquetes de viajes disponibles en fechas
                   especificas
                 </p>
               </div>
               <div>
                 <CardsPackages />
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <div>
-                <h1 className="ml-[10px] md:text-2xl text-[20px] text-[#035373] font-semibold">
-                  Hoteles con hasta 65% de descuento
-                </h1>
-                <p className="ml-[10px] md:text-[18px]">
-                  Cancelacion gratis en miles de hoteles
-                </p>
-              </div>
-              <div>
-                <CardsHotels />
               </div>
             </div>
           </div>

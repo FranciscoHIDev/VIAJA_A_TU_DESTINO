@@ -10,6 +10,9 @@ import Details from "./pages/Details/Details";
 import NotFound from "./pages/NotFound/NotFound";
 import ComingSoon from "./pages/ComingSoon/ComingSoon";
 import { ContextProvider } from "./ContextGlobal/ContextGlobal";
+import Hotels from "./pages/Hotels/Hotels";
+import Packages from "./pages/Packages/Packages";
+import Offers from "./pages/Offers/Offers";
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route exact path="/oferta/:id" element={<Details />} />
             <Route path="/sobre-nosotros" element={<About />} />
+            <Route path="/hoteles" element={<Hotels />} />
+            <Route path="/paquetes" element={<Packages />} />
+            <Route path="/ofertas-de-viajes" element={<Offers />} />
             <Route
               path="/preguntas-frecuentes"
               element={<FrequentQuestions />}

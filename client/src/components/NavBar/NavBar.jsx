@@ -80,23 +80,22 @@ function NavBar() {
               <div>
                 <ul className="list-none flex flex-row">
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444] hover:text-[#035373]">
-                    <Link to="#">
-                      {" "}
+                    <Link to="/ofertas-de-viajes">
                       <MdLocalOffer className="text-[20px]" />
                     </Link>
-                    <Link to="#"> Ofertas</Link>
+                    <Link to="/ofertas-de-viajes"> Ofertas</Link>
                   </li>
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
-                    <Link to="#">
+                    <Link to="/paquetes">
                       <FaSuitcase className="text-[20px]" />
                     </Link>
-                    <Link to="#">Paquetes</Link>
+                    <Link to="/paquetes">Paquetes</Link>
                   </li>
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
-                    <Link to="#">
+                    <Link to="/hoteles">
                       <FaHotel className="text-[20px]" />
                     </Link>
-                    <Link to="#">Hoteles</Link>
+                    <Link to="/hoteles">Hoteles</Link>
                   </li>
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="#">

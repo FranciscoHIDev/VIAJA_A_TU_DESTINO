@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+
 import axios from "axios";
 export const ContextGlobal = createContext();
 
@@ -28,6 +29,7 @@ export const ContextProvider = ({ children }) => {
       const { data } = await axios.get("/api/packages");
       setPack(data);
     };
+
     allOffers();
     allBanners();
     allHotels();

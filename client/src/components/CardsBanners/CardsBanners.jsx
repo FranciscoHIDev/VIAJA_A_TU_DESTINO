@@ -16,7 +16,8 @@ function CardsBanners() {
     slidesToScroll: 1,
     speed: 1500,
     autoplay: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 3000,
+    arrows: false,
   };
 
   const desktopSettings = {
@@ -26,7 +27,7 @@ function CardsBanners() {
     slidesToScroll: 1,
     speed: 1500,
     autoplay: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 3000,
   };
   return (
     <>

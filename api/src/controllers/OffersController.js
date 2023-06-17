@@ -55,6 +55,7 @@ const routerGetByIdOffer = async (req, res) => {
         const offer = await offerSchema.findById(id)
             .populate("destination", { name: 1 })
         res.status(200).json(offer)
+        console.log(offer)
     } catch (error) {
         res.status(500).json(`Error ${error}`)
     }
