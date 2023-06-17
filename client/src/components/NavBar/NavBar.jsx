@@ -111,10 +111,10 @@ function NavBar() {
                     <Link to="#">Tours</Link>
                   </li>
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
-                    <Link to="#">
+                    <Link to="/destinos">
                       <FaSearchLocation className="text-[20px]" />
                     </Link>
-                    <Link to="#">Destinos</Link>
+                    <Link to="/destinos">Destinos</Link>
                   </li>
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="#">

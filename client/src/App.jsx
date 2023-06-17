@@ -13,6 +13,7 @@ import { ContextProvider } from "./ContextGlobal/ContextGlobal";
 import Hotels from "./pages/Hotels/Hotels";
 import Packages from "./pages/Packages/Packages";
 import Offers from "./pages/Offers/Offers";
+import Destinations from "./pages/Destinations/Destinations";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/hoteles" element={<Hotels />} />
             <Route path="/paquetes" element={<Packages />} />
             <Route path="/ofertas-de-viajes" element={<Offers />} />
+            <Route path="/destinos" element={<Destinations />} />
             <Route
               path="/preguntas-frecuentes"
               element={<FrequentQuestions />}
