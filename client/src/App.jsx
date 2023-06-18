@@ -14,6 +14,7 @@ import Hotels from "./pages/Hotels/Hotels";
 import Packages from "./pages/Packages/Packages";
 import Offers from "./pages/Offers/Offers";
 import Destinations from "./pages/Destinations/Destinations";
+import LayoutAdmin from "./LayoutAdmin/LayoutAdmin";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/paquetes" element={<Packages />} />
             <Route path="/ofertas-de-viajes" element={<Offers />} />
             <Route path="/destinos" element={<Destinations />} />
+            <Route path="/auth" element={<LayoutAdmin />} />
             <Route
               path="/preguntas-frecuentes"
               element={<FrequentQuestions />}

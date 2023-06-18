@@ -75,7 +75,7 @@ function NavBar() {
               </ul>
             </div>
           </div>
-          <div className="flex flex-row justify-around items-center mt-[10px] mb-5 w-full">
+          <div className="flex flex-row justify-around items-center mt-2 mb-3 w-full">
             <div className=" flex items-stretch overflow-x-scroll  lg:overflow-x-hidden lg:mx-0 mx-10">
               <div>
                 <ul className="list-none flex flex-row">
