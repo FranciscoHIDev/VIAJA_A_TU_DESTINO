@@ -1,20 +1,79 @@
-import React from "react";
+import {
+  FaUsers,
+  FaHotel,
+  FaSuitcase,
+  FaPlane,
+  FaMapMarkedAlt,
+  FaRocket,
+  FaImages,
+  FaBlog,
+} from "react-icons/fa";
+import { MdLogout } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 function SideBar() {
   return (
     <>
       <div className="flex flex-col bg-[#131517] w-full items-center">
         <div className="flex mt-5">
-          <h1 className="text-4xl text-white">
-            Admin<span className="text-5xl text-[#ff3e02]">.</span>
+          <h1 className="text-4xl text-white font-medium border-b-2 border-[#ff3e02]">
+            Admin
           </h1>
         </div>
-        <div className="flex flex-col mt-5 text-white">
-          <p className="text-2xl">Menu</p>
-          <p className="text-2xl">Ofertas</p>
-          <p className="text-2xl">Hoteles</p>
-          <p className="text-2xl">Paquetes</p>
+        <div className="flex flex-col mt-8 text-white">
+          <Link to="/">
+            <div className="flex items-center">
+              <FaUsers className="text-[#ff3e02] mr-3 text-2xl" />
+              <p className="text-2xl">Usuarios</p>
+            </div>
+          </Link>
+          <Link to="/">
+            <div className="flex items-center mt-4">
+              <FaBlog className="text-[#ff3e02] mr-3 text-2xl" />
+              <p className="text-2xl">Blog</p>
+            </div>
+          </Link>
+          <Link to="/">
+            <div className="flex items-center mt-4">
+              <FaImages className="text-[#ff3e02] mr-3 text-2xl" />
+              <p className="text-2xl">Banners</p>
+            </div>
+          </Link>
+          <Link to="/">
+            <div className="flex items-center mt-4">
+              <FaRocket className="text-[#ff3e02] mr-3 text-2xl" />
+              <p className="text-2xl">Ofertas</p>
+            </div>
+          </Link>
+          <Link to="/">
+            <div className="flex items-center mt-4">
+              <FaHotel className="text-[#ff3e02] mr-3 text-2xl" />
+              <p className="text-2xl">Hoteles</p>
+            </div>
+          </Link>
+          <Link to="/">
+            <div className="flex items-center mt-4">
+              <FaSuitcase className="text-[#ff3e02] mr-3 text-2xl" />
+              <p className="text-2xl">Paquetes</p>
+            </div>
+          </Link>
+          <Link to="/">
+            <div className="flex items-center mt-4">
+              <FaPlane className="text-[#ff3e02] mr-3 text-2xl" />
+              <p className="text-2xl">Vuelos</p>
+            </div>
+          </Link>
+          <Link to="/">
+            <div className="flex items-center mt-4">
+              <FaMapMarkedAlt className="text-[#ff3e02] mr-3 text-2xl" />
+              <p className="text-2xl">Tours</p>
+            </div>
+          </Link>
         </div>
+        <button className="mt-10 bg-white rounded-lg px-4  py-1 text-2xl flex items-center">
+          <MdLogout className="mr-2 text-[#ff3e02]" />
+          Cerrar sesión
+        </button>
       </div>
     </>
   );
