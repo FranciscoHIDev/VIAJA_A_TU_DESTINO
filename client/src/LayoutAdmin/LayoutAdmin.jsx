@@ -7,12 +7,12 @@ function LayoutAdmin() {
   return (
     <>
       <Header />
-      <div className=" flex mt-[48px] bg-[#1e1f25]">
-        <div className=" flex fixed h-screen w-60">
-          <SideBar />
-        </div>
-        <div className="flex-1">
-          <div className="h-[92.4vh] overflow-y-scroll">
+
+      <div className="  min-h-[90vh] grid  grid-cols-1 xl:grid-cols-6 bg-[#1e1f25] ">
+        <SideBar />
+
+        <div className="xl:col-span-5">
+          <div className="h-[92.4vh] p-4 overflow-y-scroll">
             <Outlet />
           </div>
         </div>

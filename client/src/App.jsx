@@ -15,6 +15,10 @@ import Packages from "./pages/Packages/Packages";
 import Offers from "./pages/Offers/Offers";
 import Destinations from "./pages/Destinations/Destinations";
 import LayoutAdmin from "./LayoutAdmin/LayoutAdmin";
+import OffersAdmin from "./LayoutAdmin/pages/OffersAdmin";
+import PackagesAdmin from "./LayoutAdmin/pages/PackagesAdmin";
+import HomeAdmin from "./LayoutAdmin/pages/HomeAdmin";
+import NewOffer from "./LayoutAdmin/pages/NewOffer";
 
 function App() {
   return (
@@ -30,7 +34,13 @@ function App() {
             <Route path="/paquetes" element={<Packages />} />
             <Route path="/ofertas-de-viajes" element={<Offers />} />
             <Route path="/destinos" element={<Destinations />} />
-            <Route path="/auth" element={<LayoutAdmin />} />
+            <Route path="/auth" element={<LayoutAdmin />}>
+              <Route index element={<HomeAdmin />} />
+              <Route path="ofertas" element={<OffersAdmin />} />
+              <Route path="paquetes" element={<PackagesAdmin />} />
+              <Route path="new" element={<NewOffer />} />
+            </Route>
+
             <Route
               path="/preguntas-frecuentes"
               element={<FrequentQuestions />}
@@ -41,7 +51,6 @@ function App() {
               path="/terminos-y-condiciones"
               element={<TermsAndConditions />}
             />
-
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
