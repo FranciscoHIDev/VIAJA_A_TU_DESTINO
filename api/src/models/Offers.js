@@ -64,8 +64,8 @@ const offerSchema = mongoose.Schema({
     },
     sampleImages: {
         type: Array,
-    }
-    ,
+        required: true,
+    },
     promotion: {
         type: String
     },
