@@ -7,6 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import { FaPen } from "react-icons/fa";
 import { MenuItem } from "@mui/material";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const validationSchema = yup.object({
   price: yup.string("Agrega el precio").required("Precio requerido"),
@@ -15,12 +16,32 @@ const validationSchema = yup.object({
 function NewOffer() {
   const formik = useFormik({
     initialValues: {
+      category: "",
+      title: "",
       price: "",
+      destination: "",
+      summary: "",
+      description: "",
+      image: [],
+      sampleImages: [],
+      promotion: "",
+      availability: "",
+      daysOfStay: "",
+      hotel: "",
+      departure: "",
+      arrival: "",
       buyLinks: [],
+      author: [],
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "New car has been created successfully",
+        showConfirmButton: true,
+      });
     },
   });
   const [newLink, setNewLink] = useState({
@@ -46,6 +67,29 @@ function NewOffer() {
       link: "",
     });
   };
+
+  const openWidget = (e, field) => {
+    e.preventDefault();
+    var widget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "duaysiozi",
+        uploadPreset: "pmba0f4i",
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          const imageUrl = result.info.url;
+          if (field === "image") {
+            formik.setFieldValue("image", imageUrl);
+          } else if (field === "samplesImage") {
+            formik.setFieldValue("samplesImage", imageUrl);
+          }
+          console.log(imageUrl);
+        }
+      }
+    );
+    widget.open();
+  };
+
   return (
     <>
       <div className="flex flex-col bg-white px-5 py-5 rounded-xl">
@@ -53,7 +97,7 @@ function NewOffer() {
           <FaPen className="mt-1 text-[#035373]" />
           <h1 className="text-2xl  font-semibold ml-2">Nueva oferta</h1>
         </div>
-        <form>
+        <form onSubmit={""}>
           <div>
             <TextField
               select
@@ -61,6 +105,8 @@ function NewOffer() {
               margin="normal"
               name="category"
               label="Categoría"
+              value={formik.values.category}
+              onChange={formik.handleChange}
             >
               <MenuItem value="paquete">Paquete</MenuItem>
               <MenuItem value="hotel">Hotel</MenuItem>
@@ -69,13 +115,40 @@ function NewOffer() {
             </TextField>
           </div>
           <div>
-            <TextField fullWidth margin="normal" name="titulo" label="Titulo" />
+            <TextField
+              fullWidth
+              type="text"
+              margin="normal"
+              name="title"
+              label="Titulo"
+              value={formik.values.title}
+              onChange={formik.handleChange}
+            />
           </div>
           <div>
             <TextField
               fullWidth
+              type="text"
               margin="normal"
-              name="resumen"
+              name="price"
+              label="Precio desde"
+            />
+          </div>
+          <div>
+            <TextField
+              fullWidth
+              type="text"
+              margin="normal"
+              name="destination"
+              label="Destino"
+            />
+          </div>
+          <div>
+            <TextField
+              fullWidth
+              type="text"
+              margin="normal"
+              name="summary"
               label="Resumen"
             />
           </div>
@@ -86,72 +159,108 @@ function NewOffer() {
             <ReactQuill
               className="mt-3"
               id="descripcion"
-              // value={"descripcion"}
+              name="description"
+              value={formik.values.description}
               // onChange={""}
             />
           </div>
+          <div className="flex justify-between mt-5 mb-5">
+            <div className="flex   justify-center items-center border p-2 border-slate-300">
+              <label className="font-semibold mr-5">
+                Imagenes de las ofertas:
+              </label>
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={(e) => openWidget(e, "image")}
+              >
+                Cargar archivos
+              </Button>
+            </div>
+            <div className="flex justify-center items-center border p-2 border-slate-300">
+              <label className="font-semibold mr-5">
+                Imagenes de ejemplos:
+              </label>
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={(e) => openWidget(e, "samplesImage")}
+              >
+                Cargar archivos
+              </Button>
+            </div>
+          </div>
+
           <div className="flex flex-row justify-between">
             <div>
               <TextField
+                type="text"
                 fullWidth
                 margin="normal"
-                name="precio"
+                name="promotion"
                 label="Promoción"
               />
             </div>
-            {formik.values.category === "paquete" ? (
-              <div>
-                <TextField
-                  fullWidth
-                  margin="normal"
-                  name="precio"
-                  label="Aeropuerto de salida"
-                />
-              </div>
-            ) : null}
-
-            {formik.values.category === "paquete" ? (
-              <div>
-                <TextField
-                  fullWidth
-                  margin="normal"
-                  name="precio"
-                  label="Aeropuerto de llegada"
-                />
-              </div>
-            ) : null}
 
             <div>
               <TextField
                 fullWidth
+                type="text"
                 margin="normal"
-                name="precio"
+                name="availability"
                 label="Disponibilidad"
               />
             </div>
             <div>
               <TextField
                 fullWidth
+                type="text"
                 margin="normal"
-                name="precio"
+                name="daysOfStay"
                 label="Días de estancia"
               />
             </div>
             <div>
               <TextField
                 fullWidth
+                type="text"
                 margin="normal"
-                name="precio"
+                name="hotel"
                 label="Nombre del hotel"
               />
             </div>
           </div>
+          <div className="flex flex-row justify-center">
+            {formik.values.category === "paquete" ? (
+              <div className="mr-12">
+                <TextField
+                  fullWidth
+                  margin="normal"
+                  name="departure"
+                  label="Aeropuerto de salida"
+                />
+              </div>
+            ) : null}
 
-          <label className="text-2xl">Crear enlaces de cada oferta</label>
+            {formik.values.category == "paquete" ? (
+              <div>
+                <TextField
+                  fullWidth
+                  type="text"
+                  margin="normal"
+                  name="arrival"
+                  label="Aeropuerto de llegada"
+                />
+              </div>
+            ) : null}
+          </div>
+
+          <label className="font-semibold">Crear enlaces de cada oferta</label>
           <div className="flex flex-row justify-between">
             <div>
               <TextField
                 fullWidth
+                type="text"
                 margin="normal"
                 name="departureDate"
                 label="Fecha de salida"
@@ -162,6 +271,7 @@ function NewOffer() {
             <div>
               <TextField
                 fullWidth
+                type="text"
                 margin="normal"
                 name="returnDate"
                 label="Fecha de retorno"
@@ -172,6 +282,7 @@ function NewOffer() {
             <div>
               <TextField
                 fullWidth
+                type="text"
                 margin="normal"
                 name="price"
                 label="Precio"
@@ -182,6 +293,7 @@ function NewOffer() {
             <div>
               <TextField
                 fullWidth
+                type="text"
                 margin="normal"
                 name="link"
                 label="Enlace de compra"
@@ -195,7 +307,7 @@ function NewOffer() {
               Agregar enlace
             </Button>
           </div>
-          <label className="text-2xl">Lista de ofertas</label>
+          <label className="font-semibold">Lista de ofertas</label>
           <div className=" flex mt-5">
             {formik.values.buyLinks.map((link, index) => (
               <div key={index}>
