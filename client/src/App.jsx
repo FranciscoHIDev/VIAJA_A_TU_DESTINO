@@ -26,8 +26,8 @@ function App() {
       <ContextProvider>
         <BrowserRouter>
           <Routes>
-            {/* <Route path="/" element={<ComingSoon />} /> */}
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<ComingSoon />} />
+            <Route path="/home" element={<Home />} />
             <Route exact path="/oferta/:id" element={<Details />} />
             <Route path="/sobre-nosotros" element={<About />} />
             <Route path="/hoteles" element={<Hotels />} />
