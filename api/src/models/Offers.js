@@ -14,13 +14,12 @@ const offerSchema = mongoose.Schema({
     summary: {
         type: String,
         required: true,
-        maxlength: 45
+
     },
     description: {
         type: String,
         required: true,
-        minLength: 20,
-        maxLength: 2000
+
     },
     category: {
         type: {
@@ -60,11 +59,11 @@ const offerSchema = mongoose.Schema({
     image: {
         type: Array,
         required: true,
-
     },
     sampleImages: {
         type: Array,
         required: true,
+
     },
     promotion: {
         type: String

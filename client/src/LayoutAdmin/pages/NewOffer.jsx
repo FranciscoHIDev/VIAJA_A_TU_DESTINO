@@ -21,7 +21,6 @@ const validationSchema = yup.object({
     .min(3, "Ingrese mínimo 3 caracteres")
     .max(8, "Ingrese máximo 8 caracteres")
     .required("El precio es requerido"),
-  // destination: yup.string().required("El destino es requerido"),
   summary: yup
     .string()
     .min(10, "Ingrese mínimo 10 caracteres")
@@ -31,10 +30,6 @@ const validationSchema = yup.object({
     .string()
     .min(50, "Ingrese mínimo 50 caracteres")
     .required("Ingrese una descripción de la oferta"),
-  // image: yup
-  //   .array()
-  //   .min(2, "Debes seleccionar al menos 2 imagenes")
-  //   .of(yup.string()),
   promotion: yup
     .string()
     .min(10, "Mínimo 10 caracteres")
@@ -90,10 +85,12 @@ function NewOffer() {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "New car has been created successfully",
+        title: "Oferta creada con exito",
       });
+      formik.resetForm();
     },
   });
+
   const [newLink, setNewLink] = useState({
     departureDate: "",
     returnDate: "",
@@ -126,6 +123,11 @@ function NewOffer() {
       !newLink.link
     );
   };
+
+  const handleEditorChange = (value) => {
+    formik.setFieldValue("description", value);
+  };
+
   const openWidget = (e, field) => {
     e.preventDefault();
     var widget = window.cloudinary.createUploadWidget(
@@ -207,12 +209,6 @@ function NewOffer() {
               label="Destino"
               value={formik.values.destination.name}
               onChange={formik.handleChange}
-              // error={
-              //   formik.touched.destination && Boolean(formik.errors.destination)
-              // }
-              // helperText={
-              //   formik.touched.destination && formik.errors.destination
-              // }
             />
           </div>
           <div>
@@ -232,34 +228,13 @@ function NewOffer() {
             <label className="font-semibold" htmlFor="description">
               Descripción:
             </label>
-            {/* <TextField
-              fullWidth
-              type="text"
-              margin="normal"
-              name="description"
-              label="Descripcion"
-              value={formik.values.description}
-              onChange={formik.handleChange}
-              error={
-                formik.touched.description && Boolean(formik.errors.description)
-              }
-              helperText={
-                formik.touched.description && formik.errors.description
-              }
-            /> */}
-            {/* <ReactQuill
+
+            <ReactQuill
               className="mt-3"
               name="description"
               value={formik.values.description}
-              onChange={formik.handleChange}
-              error={
-                formik.touched.description && Boolean(formik.errors.description)
-              }
-              helperText={
-                formik.touched.description && formik.errors.description
-              }
-            /> */}
-            ;
+              onChange={handleEditorChange}
+            />
           </div>
 
           <div className="flex flex-col border p-2 border-slate-300 mt-5">
@@ -285,12 +260,6 @@ function NewOffer() {
                 >
                   Cargar archivos
                 </Button>
-                {/* <p className="mr-5 ">
-                  {formik.touched.image && Boolean(formik.errors.image)}
-                </p>
-                <p className="text-[#d32f2f]">
-                  {formik.touched.image && formik.errors.image}
-                </p> */}
               </div>
             </div>
 
@@ -328,12 +297,6 @@ function NewOffer() {
                 >
                   Cargar archivos
                 </Button>
-                {/* <p className="mr-5 ">
-                  {formik.touched.image && Boolean(formik.errors.image)}
-                </p>
-                <p className="text-[#d32f2f]">
-                  {formik.touched.image && formik.errors.image}
-                </p> */}
               </div>
             </div>
             <div className="flex flex-row">

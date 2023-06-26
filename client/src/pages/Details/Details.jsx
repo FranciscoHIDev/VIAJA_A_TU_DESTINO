@@ -131,10 +131,9 @@ function Details() {
                         <p className="mt-2 text-2xl font-bold">
                           Detalles de la oferta
                         </p>
-                        {/* <p className="text-[18px] text-justify mt-2">
-                          {offer.description}
-                        </p> */}
+
                         <p
+                          className="mt-3 text-[18px]"
                           dangerouslySetInnerHTML={{
                             __html: offer.description,
                           }}
