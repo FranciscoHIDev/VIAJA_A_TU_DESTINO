@@ -51,10 +51,8 @@ const validationSchema = yup.object({
 });
 
 function NewOffer() {
-  const [selectedImages, setSelectedImages] = useState({
-    image: [],
-    sampleImages: [],
-  });
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [selectedSampleImages, setSelectedSampleImages] = useState([]);
 
   const formik = useFormik({
     initialValues: {
@@ -68,8 +66,8 @@ function NewOffer() {
       },
       summary: "",
       description: "",
-      image: [...selectedImages.image],
-      sampleImages: [...selectedImages.sampleImages],
+      image: selectedImages,
+      sampleImages: selectedSampleImages,
       promotion: "",
       availability: "",
       daysOfStay: "",
@@ -138,11 +136,15 @@ function NewOffer() {
       (error, result) => {
         if (!error && result && result.event === "success") {
           const imageUrl = result.info.url;
-          setSelectedImages((prevImages) => ({
-            ...prevImages,
-            [field]: [...prevImages[field], imageUrl],
-          }));
-          formik.setFieldValue(field, [...formik.values[field], imageUrl]);
+          if (field === "image") {
+            setSelectedImages((prevImage) => [...prevImage, imageUrl]);
+          } else if (field === "sampleImages") {
+            setSelectedSampleImages((prevImage) => [...prevImage, imageUrl]);
+          }
+
+          formik.setFieldValue("image", imageUrl);
+          formik.setFieldValue("sampleImages", imageUrl);
+          console.log(formik.values, "prueba");
           console.log(imageUrl);
         }
       }
@@ -238,33 +240,23 @@ function NewOffer() {
           </div>
 
           <div className="flex flex-col border p-2 border-slate-300 mt-5">
-            <div className="flex flex-row items-center justify-around">
-              <div>
-                <button
-                  className=" px-3 bg-red-600 rounded-lg text-white font-semibold hover:bg-red-500"
-                  onClick={() =>
-                    setSelectedImages({ ...selectedImages, image: [] })
-                  }
-                >
-                  Eliminar{" "}
-                </button>
-              </div>
-              <div className="flex   justify-center items-center ">
-                <label className="font-semibold mr-5">
-                  Imagenes de las ofertas:
-                </label>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  onClick={(e) => openWidget(e, "image")}
-                >
-                  Cargar archivos
-                </Button>
-              </div>
+            <div className="flex   justify-center items-center ">
+              <label className="font-semibold mr-5">
+                Imagenes de las ofertas:
+              </label>
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={(e) => openWidget(e, "image")}
+              >
+                {selectedImages.length > 0
+                  ? "Agregar más imágenes"
+                  : "Cargar archivos"}
+              </Button>
             </div>
 
             <div className="flex flex-wrap ">
-              {selectedImages.image.map((imageUrl) => (
+              {selectedImages.map((imageUrl) => (
                 <img
                   className="w-[150px] h-[100px] m-2"
                   key={imageUrl}
@@ -275,32 +267,23 @@ function NewOffer() {
             </div>
           </div>
           <div className="flex flex-col mt-5  border p-2 border-slate-300">
-            <div className="flex flex-row items-center justify-around">
-              <div>
-                <button
-                  className=" px-3 bg-red-600 rounded-lg text-white font-semibold hover:bg-red-500"
-                  onClick={() =>
-                    setSelectedImages({ ...selectedImages, sampleImages: [] })
-                  }
-                >
-                  Eliminar{" "}
-                </button>
-              </div>
-              <div className="flex justify-center items-center">
-                <label className="font-semibold mr-5">
-                  Imagenes de ejemplos:
-                </label>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  onClick={(e) => openWidget(e, "sampleImages")}
-                >
-                  Cargar archivos
-                </Button>
-              </div>
+            <div className="flex justify-center items-center">
+              <label className="font-semibold mr-5">
+                Imagenes de ejemplos:
+              </label>
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={(e) => openWidget(e, "sampleImages")}
+              >
+                {selectedSampleImages.length > 0
+                  ? "Agregar más imágenes"
+                  : "Cargar archivos"}
+              </Button>
             </div>
+
             <div className="flex flex-row">
-              {selectedImages.sampleImages.map((imageUrl) => (
+              {selectedSampleImages.map((imageUrl) => (
                 <img
                   className="w-[150px] h-[100px] m-2"
                   key={imageUrl}
