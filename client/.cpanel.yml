@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/viajaatu/public_html/viajaatudestino
+    - export DEPLOYPATH=/home/viajaatu/public_html
      - /bin/cp -R client/* $DEPLOYPATH
