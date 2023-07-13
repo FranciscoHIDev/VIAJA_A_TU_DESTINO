@@ -45,8 +45,8 @@ const validationSchema = yup.object({
     .max(30, "Máximo 30 caracteres")
     .required("Días de estancia requerida"),
   hotel: yup.string().required("El nombre del hotel es requerido"),
-  departure: yup.string().required("Aeropuerto de salida requerido"),
-  arrival: yup.string().required("Aeropuerto de llegada requerido"),
+  // departure: yup.string().required("Aeropuerto de salida requerido"),
+  // arrival: yup.string().required("Aeropuerto de llegada requerido"),
   buyLinks: yup.array().min(1, "Debes agregar al menos un enlace"),
 });
 
@@ -66,8 +66,8 @@ function NewOffer() {
       },
       summary: "",
       description: "",
-      image: selectedImages,
-      sampleImages: selectedSampleImages,
+      image: [],
+      sampleImages: [],
       promotion: "",
       availability: "",
       daysOfStay: "",
@@ -86,6 +86,8 @@ function NewOffer() {
         title: "Oferta creada con exito",
       });
       formik.resetForm();
+      setSelectedImages([])
+      setSelectedSampleImages([])
     },
   });
 
@@ -137,17 +139,18 @@ function NewOffer() {
         if (!error && result && result.event === "success") {
           const imageUrl = result.info.url;
           if (field === "image") {
-            setSelectedImages((prevImage) => [...prevImage, imageUrl]);
+            setSelectedImages((prevImages) => [...prevImages, imageUrl]);
+            formik.setFieldValue("image", [...formik.values.image, imageUrl]);            
           } else if (field === "sampleImages") {
-            setSelectedSampleImages((prevImage) => [...prevImage, imageUrl]);
+            setSelectedSampleImages((prevImages) => [...prevImages, imageUrl]);
+            formik.setFieldValue("sampleImages", [
+              ...formik.values.sampleImages,
+              imageUrl,
+            ]);
+            
           }
-
-          formik.setFieldValue("image", imageUrl);
-          formik.setFieldValue("sampleImages", imageUrl);
-          console.log(formik.values, "prueba");
-          console.log(imageUrl);
-        }
       }
+    }
     );
     widget.open();
   };
@@ -280,7 +283,7 @@ function NewOffer() {
                   ? "Agregar más imágenes"
                   : "Cargar archivos"}
               </Button>
-            </div>
+              </div>
 
             <div className="flex flex-row">
               {selectedSampleImages.map((imageUrl) => (
