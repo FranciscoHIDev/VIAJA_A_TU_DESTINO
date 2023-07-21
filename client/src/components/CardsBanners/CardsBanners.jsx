@@ -1,13 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 import CardBanner from "../CardBanner/CardBanner";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import "./Carrusel.css";
-import { ContextGlobal } from "../../ContextGlobal/ContextGlobal";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllBanners } from '../../redux/actions/actions';
+
 
 function CardsBanners() {
-  const { banner } = useContext(ContextGlobal);
+  const dispatch= useDispatch()
+  const banners= useSelector((state) => state.banners)
+
+  React.useEffect(()=>{
+    dispatch(getAllBanners)
+  },[dispatch])
 
   const mobileSettings = {
     dots: true,
@@ -33,7 +40,7 @@ function CardsBanners() {
     <>
       <div className="container px-4 md:px-0 md:mx-0 items-center">
         <Slider {...mobileSettings} className="md:hidden">
-          {banner.map((e) => (
+          {banners.map((e) => (
             <CardBanner
               key={crypto.randomUUID()}
               destination={e.destination}
@@ -47,7 +54,7 @@ function CardsBanners() {
         </Slider>
 
         <Slider {...desktopSettings} className="hidden md:block">
-          {banner.map((e) => (
+          {banners.map((e) => (
             <CardBanner
               key={crypto.randomUUID()}
               destination={e.destination}

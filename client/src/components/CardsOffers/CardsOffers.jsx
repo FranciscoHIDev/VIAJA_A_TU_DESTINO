@@ -1,13 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import CardOffers from "./../CardOffers/CardOffers";
-import { ContextGlobal } from "../../ContextGlobal/ContextGlobal";
+import { getAllOffers } from "../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function CardsOffers() {
-  const { offer } = useContext(ContextGlobal);
+  const dispatch = useDispatch();
+  const offers = useSelector((state) => state.offers);  
+  
+  React.useEffect(() => {
+    dispatch(getAllOffers);
+  }, [dispatch]);
 
   return (
     <div className="flex flex-wrap items-center justify-center">
-      {offer.map((e) => {
+      {offers.map((e) => {
         return (
           <CardOffers
             key={crypto.randomUUID()}

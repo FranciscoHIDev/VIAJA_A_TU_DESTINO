@@ -62,12 +62,12 @@ const routerPutBanner = async (req, res) => {
 }
 
 const routerDeleteBanner = async (req, res) => {
-    try {
-        const { id } = req.params
-        const banner = await bannerOfferSchema.findByIdAndRemove(id)
-        res.status(200).send("Banner removed successfully")
-    } catch (error) {
-        res.status(500).json(`Error ${error}`)
-    }
+  try {
+    const { id } = req.params;
+    const banner = await bannerOfferSchema.findByIdAndRemove(id);
+    res.status(200).send("Banner removed successfully");
+  } catch (error) {
+    res.status(500).json(`Error ${error}`);
+  }
 }
 module.exports = { routerPostBanner, routerGetBanner, routerGetByIdBanner, routerPutBanner, routerDeleteBanner }
