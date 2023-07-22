@@ -9,7 +9,7 @@ import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 import Details from "./pages/Details/Details";
 import NotFound from "./pages/NotFound/NotFound";
 import ComingSoon from "./pages/ComingSoon/ComingSoon";
-import { ContextProvider } from "./ContextGlobal/ContextGlobal";
+
 import Hotels from "./pages/Hotels/Hotels";
 import Packages from "./pages/Packages/Packages";
 import Offers from "./pages/Offers/Offers";
@@ -23,7 +23,7 @@ import NewOffer from "./LayoutAdmin/pages/NewOffer";
 function App() {
   return (
     <div>
-      <ContextProvider>
+   
         <BrowserRouter>
           <Routes>
             {/* <Route path="/" element={<ComingSoon />} /> */}
@@ -54,7 +54,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-      </ContextProvider>
+    
     </div>
   );
 }

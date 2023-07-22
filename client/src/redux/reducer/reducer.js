@@ -1,4 +1,9 @@
-import { GET_ALL_BANNERS, GET_ALL_OFFERS } from "../actions/actions";
+import {
+  GET_ALL_BANNERS,
+  GET_ALL_OFFERS,
+  GET_ALL_HOTELS,
+  GET_ALL_PACKAGES,
+} from "../actions/actions";
 const initialState = {
   offers: [],
   hotels: [],
@@ -18,6 +23,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         banners: action.payload,
+      };
+    case GET_ALL_HOTELS:
+      return {
+        ...state,
+        hotels: action.payload,
+      };
+    case GET_ALL_PACKAGES:
+      return {
+        ...state,
+        packages: action.payload,
       };
     default:
       return state;

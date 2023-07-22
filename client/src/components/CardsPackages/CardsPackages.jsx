@@ -1,15 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import CardPackage from "../CardPackage/CardPackage";
 import Loading from "../Loading/Loading";
-import { ContextGlobal } from "../../ContextGlobal/ContextGlobal";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllPackages } from "../../redux/actions/actions";
+
 
 function CardsPackages() {
-  const { pack } = useContext(ContextGlobal);
+const dispatch= useDispatch()
+const packages = useSelector((state)=> state.packages)
+
+React.useEffect(()=>{
+dispatch(getAllPackages)
+},[dispatch])
+
 
   return (
     <div className="flex flex-wrap items-center justify-center">
-      {pack ? (
-        pack.map((e) => {
+      {packages? (
+       packages.map((e) => {
           return (
             <CardPackage
               key={crypto.randomUUID()}

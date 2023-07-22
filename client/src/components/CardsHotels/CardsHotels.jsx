@@ -1,14 +1,20 @@
-import React, { useContext } from "react";
-
+import React from "react";
 import CardHotel from "../CardHotel/CardHotel";
-import { ContextGlobal } from "../../ContextGlobal/ContextGlobal";
+import {useSelector, useDispatch} from "react-redux"
+import { getAllHotels } from '../../redux/actions/actions';
+
 
 function CardsHotels() {
-  const { hotel } = useContext(ContextGlobal);
+const hotels= useSelector((state)=>state.hotels)
+const dispatch= useDispatch()
+
+React.useEffect(()=>{
+dispatch(getAllHotels)
+},[dispatch])
 
   return (
     <div className="flex flex-wrap items-center justify-center">
-      {hotel.map((e) => {
+      {hotels.map((e) => {
         return (
           <CardHotel
             key={crypto.randomUUID()}

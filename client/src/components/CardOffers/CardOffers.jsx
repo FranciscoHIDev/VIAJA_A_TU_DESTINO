@@ -26,16 +26,7 @@ function CardOffers({
   author,
   date,
 }) {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 0);
-  });
-
-  if (loading) {
-    return <Loading />;
-  } else {
+ 
     return (
       <div className="mt-[30px] rounded-[20px] bg-[#fff] w-[390px] h-[490px] m-[15px] border-none ">
         <div>
@@ -125,6 +116,6 @@ function CardOffers({
       </div>
     );
   }
-}
+
 
 export default CardOffers;

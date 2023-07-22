@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { FaHotel } from "react-icons/fa";
 import {
   MdFavoriteBorder,
@@ -7,7 +6,6 @@ import {
   MdLocalHotel,
 } from "react-icons/md";
 import { RiShareForwardLine } from "react-icons/ri";
-import Loading from "./../Loading/Loading";
 
 function CardHotel({
   name,
@@ -21,16 +19,7 @@ function CardHotel({
   to,
   link,
 }) {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 0);
-  });
 
-  if (loading) {
-    return <Loading />;
-  } else {
     return (
       <div className="mt-[30px] rounded-[20px] bg-[#fff] w-[390px] h-[465px] border-none m-[15px] ">
         <div>
@@ -110,6 +99,6 @@ function CardHotel({
       </div>
     );
   }
-}
+
 
 export default CardHotel;
