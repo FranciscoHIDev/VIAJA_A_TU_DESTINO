@@ -66,8 +66,8 @@ function NewOffer() {
       },
       summary: "",
       description: "",
-      image: [],
-      sampleImages: [],
+      image: selectedImages,
+      sampleImages: selectedSampleImages,
       promotion: "",
       availability: "",
       daysOfStay: "",
@@ -140,14 +140,10 @@ function NewOffer() {
           const imageUrl = result.info.url;
           if (field === "image") {
             setSelectedImages((prevImages) => [...prevImages, imageUrl]);
-            formik.setFieldValue("image", [...formik.values.image, imageUrl]);            
+            formik.setFieldValue("image", [...formik.values.image]);            
           } else if (field === "sampleImages") {
             setSelectedSampleImages((prevImages) => [...prevImages, imageUrl]);
-            formik.setFieldValue("sampleImages", [
-              ...formik.values.sampleImages,
-              imageUrl,
-            ]);
-            
+            formik.setFieldValue("sampleImages", [...formik.values.sampleImages]);            
           }
       }
     }

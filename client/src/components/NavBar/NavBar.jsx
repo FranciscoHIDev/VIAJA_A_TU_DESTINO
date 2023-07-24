@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   FaHeadset,
@@ -61,17 +61,7 @@ function NavBar() {
                   <Link to="#">
                     <span className="hidden lg:block">Favoritos</span>
                   </Link>
-                </li>
-                <li className="flex md:mr-[25px]  mr-4  color-[#444] text-[16px] items-center font-[400]">
-                  <span className="mr-[5px] ">
-                    <Link to="#">
-                      <FaRegQuestionCircle className="text-[20px] md:text-[18px] text-[#035373]" />
-                    </Link>
-                  </span>
-                  <Link to="#">
-                    <span className="hidden lg:block">Ayuda</span>
-                  </Link>
-                </li>
+                </li>               
               </ul>
             </div>
           </div>
