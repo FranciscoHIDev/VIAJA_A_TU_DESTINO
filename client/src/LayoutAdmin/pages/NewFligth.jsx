@@ -34,31 +34,24 @@ const validationSchema = yup.object({
     .string()
     .min(10, "Mínimo 10 caracteres")
     .max(25, "Máximo 25 caracteres")
-    .required("Ingrese una frase destacada"),
+    .required("Ingrese frase destacada"),
   availability: yup
     .string()
     .min(10, "Mínimo 10 caracteres")
     .max(40, "Máximo 40 caracteres")
     .required("La disponibilidad es requerida"),
-  daysOfStay: yup
-    .string()
-    .min(5, "Mínimo 5 caracteres")
-    .max(30, "Máximo 30 caracteres")
-    .required("Días de estancia requerida"),
-  hotel: yup.string().required("El nombre del hotel es requerido"),
-  departure: yup.string().required("Aeropuerto de salida requerido"),
-  arrival: yup.string().required("Aeropuerto de llegada requerido"),
+
   buyLinks: yup.array().min(1, "Debes agregar al menos un enlace"),
 });
 
-function NewOffer() {
+function NewFlight() {
   const [selectedImages, setSelectedImages] = useState([]);
   const [selectedSampleImages, setSelectedSampleImages] = useState([]);
 
   const formik = useFormik({
     initialValues: {
       category: {
-        name: "Paquete",
+        name: "Vuelo",
       },
       title: "",
       price: "",
@@ -71,8 +64,6 @@ function NewOffer() {
       sampleImages: [],
       promotion: "",
       availability: "",
-      daysOfStay: "",
-      hotel: "",
       departure: "",
       arrival: "",
       buyLinks: [],
@@ -84,7 +75,7 @@ function NewOffer() {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Oferta creada con exito",
+        title: "Oferta de vuelo creada con exito",
       });
       formik.resetForm();
       setSelectedImages([]);
@@ -175,7 +166,7 @@ function NewOffer() {
               value={formik.values.category.name}
               onChange={formik.handleChange}
             >
-              <MenuItem value="Paquete">Paquete</MenuItem>
+              <MenuItem value="Vuelo">Vuelo</MenuItem>
             </TextField>
           </div>
           <div>
@@ -304,7 +295,7 @@ function NewOffer() {
                 fullWidth
                 margin="normal"
                 name="promotion"
-                label="Promoción"
+                label="Promo destacado"
                 value={formik.values.promotion}
                 onChange={formik.handleChange}
                 error={
@@ -332,38 +323,6 @@ function NewOffer() {
                 }
               />
             </div>
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="daysOfStay"
-                label="Días de estancia"
-                value={formik.values.daysOfStay}
-                onChange={formik.handleChange}
-                error={
-                  formik.touched.daysOfStay && Boolean(formik.errors.daysOfStay)
-                }
-                helperText={
-                  formik.touched.daysOfStay && formik.errors.daysOfStay
-                }
-              />
-            </div>
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="hotel"
-                label="Nombre del hotel"
-                value={formik.values.hotel}
-                onChange={formik.handleChange}
-                error={formik.touched.hotel && Boolean(formik.errors.hotel)}
-                helperText={formik.touched.hotel && formik.errors.hotel}
-              />
-            </div>
-          </div>
-          <div className="flex flex-row justify-center">
             <div className="mr-12">
               <TextField
                 fullWidth
@@ -526,4 +485,4 @@ function NewOffer() {
   );
 }
 
-export default NewOffer;
+export default NewFlight;

@@ -27,44 +27,43 @@ function Header() {
                 }
                 align="start"
                 arrow
-                arrowClassName="bg-[#131517]"
                 transition
                 // menuClassName="bg-[#131517]"
               >
                 <MenuItem>
                   <Link
-                    to="#"
+                    to="new-package"
                     className="rounded-lg transition-colors hover:bg-[#a8a9aa] flex items-center gap-x-2 py-1 px-4 flex-1"
                   >
-                    <span className=" bg-red-300 rounded-lg px-2 ">New</span>
+                    <span className=" bg-red-300 rounded-lg px-2 ">Nuevo</span>
                     Paquete Vuelo + Hotel
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link
-                    to="#"
+                    to="new-hotel"
                     className="rounded-lg transition-colors hover:bg-[#a8a9aa] flex items-center gap-x-2 py-1 px-4 flex-1"
                   >
-                    <span className="bg-red-300 rounded-lg px-2  ">New</span>
+                    <span className="bg-red-300 rounded-lg px-2  ">Nuevo</span>
                     Hotel
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link
-                    to="#Icon ? ("
+                    to="new-flight"
                     className="rounded-lg transition-colors hover:bg-[#a8a9aa] flex items-center gap-x-2 py-1 px-4 flex-1"
                   >
-                    <span className="bg-red-300 rounded-lg px-2">New</span>
+                    <span className="bg-red-300 rounded-lg px-2">Nuevo</span>
                     Vuelo
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   {" "}
                   <Link
-                    to="#"
+                    to="new-tour"
                     className="rounded-lg transition-colors hover:bg-[#a8a9aa] flex items-center gap-x-2 py-1 px-4 flex-1"
                   >
-                    <span className="bg-red-300 rounded-lg px-2">New</span>
+                    <span className="bg-red-300 rounded-lg px-2">Nuevo</span>
                     Tour
                   </Link>
                 </MenuItem>
@@ -96,7 +95,6 @@ function Header() {
               }
               align="end"
               arrow
-              arrowClassName="bg-[#131517]"
               transition
               // menuClassName="bg-[#131517]"
             >

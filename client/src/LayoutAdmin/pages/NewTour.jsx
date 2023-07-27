@@ -34,7 +34,7 @@ const validationSchema = yup.object({
     .string()
     .min(10, "Mínimo 10 caracteres")
     .max(25, "Máximo 25 caracteres")
-    .required("Ingrese una frase destacada"),
+    .required("Ingrese frase destacado"),
   availability: yup
     .string()
     .min(10, "Mínimo 10 caracteres")
@@ -46,19 +46,17 @@ const validationSchema = yup.object({
     .max(30, "Máximo 30 caracteres")
     .required("Días de estancia requerida"),
   hotel: yup.string().required("El nombre del hotel es requerido"),
-  departure: yup.string().required("Aeropuerto de salida requerido"),
-  arrival: yup.string().required("Aeropuerto de llegada requerido"),
   buyLinks: yup.array().min(1, "Debes agregar al menos un enlace"),
 });
 
-function NewOffer() {
+function NewTour() {
   const [selectedImages, setSelectedImages] = useState([]);
   const [selectedSampleImages, setSelectedSampleImages] = useState([]);
 
   const formik = useFormik({
     initialValues: {
       category: {
-        name: "Paquete",
+        name: "Tour",
       },
       title: "",
       price: "",
@@ -71,10 +69,6 @@ function NewOffer() {
       sampleImages: [],
       promotion: "",
       availability: "",
-      daysOfStay: "",
-      hotel: "",
-      departure: "",
-      arrival: "",
       buyLinks: [],
       author: "Francisco",
     },
@@ -84,7 +78,7 @@ function NewOffer() {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Oferta creada con exito",
+        title: "Oferta de hotel creada con exito",
       });
       formik.resetForm();
       setSelectedImages([]);
@@ -109,20 +103,12 @@ function NewOffer() {
   const handleAddLink = () => {
     formik.setFieldValue("buyLinks", [...formik.values.buyLinks, newLink]);
     setNewLink({
-      departureDate: "",
-      returnDate: "",
-      price: "",
       link: "",
     });
   };
 
   const isFormEmpty = () => {
-    return (
-      !newLink.departureDate ||
-      !newLink.returnDate ||
-      !newLink.price ||
-      !newLink.link
-    );
+    return !newLink.link;
   };
 
   const handleEditorChange = (value) => {
@@ -175,7 +161,7 @@ function NewOffer() {
               value={formik.values.category.name}
               onChange={formik.handleChange}
             >
-              <MenuItem value="Paquete">Paquete</MenuItem>
+              <MenuItem value="Tour">Tour</MenuItem>
             </TextField>
           </div>
           <div>
@@ -304,7 +290,7 @@ function NewOffer() {
                 fullWidth
                 margin="normal"
                 name="promotion"
-                label="Promoción"
+                label="Promo destacado"
                 value={formik.values.promotion}
                 onChange={formik.handleChange}
                 error={
@@ -332,104 +318,8 @@ function NewOffer() {
                 }
               />
             </div>
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="daysOfStay"
-                label="Días de estancia"
-                value={formik.values.daysOfStay}
-                onChange={formik.handleChange}
-                error={
-                  formik.touched.daysOfStay && Boolean(formik.errors.daysOfStay)
-                }
-                helperText={
-                  formik.touched.daysOfStay && formik.errors.daysOfStay
-                }
-              />
-            </div>
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="hotel"
-                label="Nombre del hotel"
-                value={formik.values.hotel}
-                onChange={formik.handleChange}
-                error={formik.touched.hotel && Boolean(formik.errors.hotel)}
-                helperText={formik.touched.hotel && formik.errors.hotel}
-              />
-            </div>
-          </div>
-          <div className="flex flex-row justify-center">
-            <div className="mr-12">
-              <TextField
-                fullWidth
-                margin="normal"
-                name="departure"
-                label="Aeropuerto de salida"
-                value={formik.values.departure}
-                onChange={formik.handleChange}
-                error={
-                  formik.touched.departure && Boolean(formik.errors.departure)
-                }
-                helperText={formik.touched.departure && formik.errors.departure}
-              />
-            </div>
 
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="arrival"
-                label="Aeropuerto de llegada"
-                value={formik.values.arrival}
-                onChange={formik.handleChange}
-                error={formik.touched.arrival && Boolean(formik.errors.arrival)}
-                helperText={formik.touched.arrival && formik.errors.arrival}
-              />
-            </div>
-          </div>
-
-          <label className="font-semibold">Crear enlaces de cada oferta</label>
-          <div className="flex flex-row justify-between">
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="departureDate"
-                label="Fecha de salida"
-                value={newLink.departureDate}
-                onChange={handleLinkChange}
-              />
-            </div>
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="returnDate"
-                label="Fecha de retorno"
-                value={newLink.returnDate}
-                onChange={handleLinkChange}
-              />
-            </div>
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="price"
-                label="Precio"
-                value={newLink.price}
-                onChange={handleLinkChange}
-              />
-            </div>
-            <div>
+            <div className="flex flex-row justify-between">
               <TextField
                 fullWidth
                 type="text"
@@ -440,59 +330,34 @@ function NewOffer() {
                 onChange={handleLinkChange}
               />
             </div>
+
+            <div className="flex justify-center items-center mt-5">
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={handleAddLink}
+                disabled={isFormEmpty()}
+              >
+                Agregar enlace
+              </Button>
+              <p className="mr-1 ">
+                {formik.touched.buyLinks && Boolean(formik.errors.buyLinks)}
+              </p>
+              <p className="text-[#d32f2f]">
+                {formik.touched.buyLinks && formik.errors.buyLinks}
+              </p>
+            </div>
           </div>
-          <div className="flex justify-center items-center mt-5">
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={handleAddLink}
-              disabled={isFormEmpty()}
-            >
-              Agregar enlace
-            </Button>
-            <p className="mr-1 ">
-              {formik.touched.buyLinks && Boolean(formik.errors.buyLinks)}
-            </p>
-            <p className="text-[#d32f2f]">
-              {formik.touched.buyLinks && formik.errors.buyLinks}
-            </p>
-          </div>
-          <label className="font-semibold">Lista de ofertas</label>
-          <div className=" flex mt-5">
+
+          <label className="font-semibold">Link creado para comprar</label>
+          <div className=" flex mt-3">
             {formik.values.buyLinks.map((link, index) => (
               <div key={index}>
                 <TextField
                   fullWidth
                   margin="normal"
-                  label={`Enlace ${index + 1}`}
+                  label="Enlace creado"
                   value={link.link}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  margin="normal"
-                  label={`Fecha de salida ${index + 1}`}
-                  value={link.departureDate}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  margin="normal"
-                  label={`Fecha de retorno ${index + 1}`}
-                  value={link.returnDate}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  margin="normal"
-                  label={`Precio ${index + 1}`}
-                  value={link.price}
                   InputProps={{
                     readOnly: true,
                   }}
@@ -526,4 +391,4 @@ function NewOffer() {
   );
 }
 
-export default NewOffer;
+export default NewTour;
