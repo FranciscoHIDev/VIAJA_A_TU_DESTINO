@@ -45,7 +45,6 @@ const validationSchema = yup.object({
     .min(5, "Mínimo 5 caracteres")
     .max(30, "Máximo 30 caracteres")
     .required("Días de estancia requerida"),
-  hotel: yup.string().required("El nombre del hotel es requerido"),
   buyLinks: yup.array().min(1, "Debes agregar al menos un enlace"),
 });
 
@@ -78,7 +77,7 @@ function NewTour() {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Oferta de hotel creada con exito",
+        title: "Oferta de tour creada con exito",
       });
       formik.resetForm();
       setSelectedImages([]);
@@ -87,9 +86,6 @@ function NewTour() {
   });
 
   const [newLink, setNewLink] = useState({
-    departureDate: "",
-    returnDate: "",
-    price: "",
     link: "",
   });
 

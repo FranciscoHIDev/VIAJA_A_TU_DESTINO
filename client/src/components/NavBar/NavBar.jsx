@@ -2,19 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   FaHeadset,
-  FaUserCircle,
-  FaRegQuestionCircle,
   FaRegHeart,
   FaSuitcase,
   FaBlog,
   FaPlane,
   FaHotel,
   FaSearchLocation,
+  FaUserCircle,
 } from "react-icons/fa";
 import { MdLocalOffer } from "react-icons/md";
 import { GiMayanPyramid } from "react-icons/gi";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "../Auth0/LoginButton";
+import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
+import { FaChevronDown } from "react-icons/fa";
+import LogoutButton from "../Auth0/LogoutButton";
 
 function NavBar() {
+  const { isAuthenticated, user } = useAuth0();
+
   return (
     <React.Fragment>
       <nav>
@@ -43,16 +51,72 @@ function NavBar() {
                   </a>
                 </li>
                 <li className="flex md:mr-[25px]  mr-4 color-[#444] text-[16px] items-center font-[400]">
-                  <span className="mr-[5px]">
-                    <Link to="#">
-                      <FaUserCircle className="text-[20px] md:text-[18px] text-[#035373]" />
-                    </Link>
-                  </span>{" "}
-                  <Link to="#">
-                    <span className="hidden lg:block">Iniciar sesión</span>
-                  </Link>
+                  {isAuthenticated && user ? (
+                    <>
+                      <Menu
+                        menuButton={
+                          <MenuButton className="">
+                            <div className="flex flex-row items-center">
+                              <div>
+                                <FaUserCircle className="text-[20px] md:text-[18px] text-[#035373] mr-[5px]" />
+                              </div>
+                              <div>
+                                <span className="">Hola, {user.name}</span>
+                              </div>
+                              <FaChevronDown className="ml-2 text-[#035373]" />
+                            </div>
+                          </MenuButton>
+                        }
+                        arrowClassName={"bg-[#1E1F25]"}
+                        arr
+                        align="end"
+                        transition
+                        menuClassName="bg-[#1E1F25]"
+                      >
+                        <MenuItem className=" hover:bg-transparent">
+                          <div className="flex flex-row items-center">
+                            <Link
+                              to="#"
+                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1"
+                            >
+                              <div className="flex mr-3">
+                                <img
+                                  className="w-5 h-5"
+                                  src={user.image}
+                                  alt={user.name}
+                                />
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="text-white">{user.name}</span>
+                                <span className="text-white">{user.email}</span>
+                              </div>
+                            </Link>
+                          </div>
+                        </MenuItem>
+                        <MenuItem className="hover:bg-transparent">
+                          <Link
+                            to="#"
+                            className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-white"
+                          >
+                            Perfil
+                          </Link>
+                        </MenuItem>
+                        <MenuItem className="hover:bg-transparent">
+                          <Link
+                            to="#"
+                            className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1"
+                          >
+                            <LogoutButton />
+                          </Link>
+                        </MenuItem>
+                      </Menu>
+                    </>
+                  ) : (
+                    <LoginButton />
+                  )}
                 </li>
-                <li className="flex md:mr-[25px]  mr-4 color-[#444] text-[16px] items-center font-[400]">
+
+                <li className="flex md:mr-[25px]   color-[#444] text-[16px] items-center font-[400]">
                   <span className="mr-[5px] text-[#8d9fa6]">
                     <Link to="#">
                       <FaRegHeart className="text-[20px] md:text-[18px] text-[#035373]" />
@@ -61,7 +125,7 @@ function NavBar() {
                   <Link to="#">
                     <span className="hidden lg:block">Favoritos</span>
                   </Link>
-                </li>               
+                </li>
               </ul>
             </div>
           </div>

@@ -39,20 +39,6 @@ function Home() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col mt-10">
-              <div>
-                <h1 className="ml-[20px] md:text-2xl text-[20px] text-[#253777] font-semibold ">
-                  Paquetes con Vuelo + Hotel
-                </h1>
-                <p className="ml-[20px] md:text-[18px] mt-1">
-                  Reserva los paquetes de viajes disponibles en fechas
-                  especificas
-                </p>
-              </div>
-              <div>
-                <CardsPackages />
-              </div>
-            </div>
           </div>
         </main>
         <footer className="mt-auto">
