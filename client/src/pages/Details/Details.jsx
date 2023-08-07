@@ -12,6 +12,7 @@ import {
   FaPlaneDeparture,
   FaPlaneArrival,
   FaArrowRight,
+  FaClipboardList,
 } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -115,7 +116,7 @@ function Details() {
                         </button>
                       </div>
                       <div>
-                        <h1 className="mt-3 text-3xl font-bold">
+                        <h1 className="mt-3 text-2xl font-bold text-[#035373] uppercase">
                           {offer.title}
                         </h1>
                         <p className="mt-2 text-[20px]">{offer.summary}</p>
@@ -128,12 +129,15 @@ function Details() {
                         <p className="mt-5 text-[17px]">
                           Creado el {offer.date} by {offer.author}
                         </p>
-                        <p className="mt-2 text-2xl font-bold">
+                        <p className="mt-2 text-2xl font-bold text-[#253777] flex  items-center">
+                          <span className="mr-2">
+                            <FaClipboardList />
+                          </span>
                           Detalles de la oferta
                         </p>
 
                         <p
-                          className="mt-3 text-[18px]"
+                          className="mt-3 text-[18px] text-neutral-800"
                           dangerouslySetInnerHTML={{
                             __html: offer.description,
                           }}
@@ -141,7 +145,7 @@ function Details() {
                       </div>
 
                       <div className="flex flex-col items-center">
-                        <p className="mt-5 text-[20px] font-semibold ">
+                        <p className="mt-5 text-[20px] font-semibold text-[#253777] ">
                           Imagen de muestra
                         </p>
                         <div className="  md:w-[700px] md:h-[400px] px-2 w-[320px] h-[200px]">
@@ -159,126 +163,148 @@ function Details() {
                           </Slider>
                         </div>
                       </div>
-                      <div ref={targetRef}>
-                        <p className="mt-10 mb-5 text-2xl font-bold flex">
-                          <span className="mr-2 mt-1">
-                            <FaRegCalendarAlt />
-                          </span>{" "}
-                          Fechas disponibles
-                        </p>
-                        <div className="flex justify-between md:px-10 px-5 bg-[#b6b5b5] mx-[5px]  font-medium mb-[-4px] text-[15px]">
-                          <p>IDA</p>
-                          <p>VUELTA</p>
-                          <p className="ml-[-40px]">PRECIO</p>
-                          <p></p>
-                        </div>
+                      {offer.category.name === "Paquete" ||
+                      offer.category.name === "Hotel" ||
+                      offer.category.name === "Vuelo" ? (
+                        <div ref={targetRef}>
+                          <p className="mt-10 mb-5 text-2xl font-bold flex text-[#253777] items-center">
+                            <span className="mr-2">
+                              <FaRegCalendarAlt />
+                            </span>{" "}
+                            Fechas disponibles
+                          </p>
+                          <div className="flex justify-between md:px-10 px-5 bg-[#b6b5b5] mx-[5px]  font-medium mb-[-4px] text-[15px]">
+                            <p>IDA</p>
+                            <p>VUELTA</p>
+                            <p className="ml-[-40px]">PRECIO</p>
+                            <p></p>
+                          </div>
 
-                        <div>
-                          {offer.buyLinks.map((e, index) => (
-                            <div
-                              key={index}
-                              className="border bg-white m-1 p-2 block hover:bg-[#53b3cb] md:px-5 px-2"
-                            >
-                              <a
-                                href={e.link}
-                                rel="noopener noreferrer"
-                                target="_blank"
-                                className="cursor-pointer"
+                          <div>
+                            {offer.buyLinks.map((e, index) => (
+                              <div
+                                key={index}
+                                className="border bg-white m-1 p-2 block hover:bg-[#53b3cb] md:px-5 px-2"
                               >
-                                <div className="flex items-center justify-between text-[#253777] md:font-[500] hover:text-white text-[15px] md:text-[16px]">
-                                  <p>{e.departureDate}</p>
-                                  <p>{e.returnDate}</p>
-                                  <p>${e.price}</p>
-                                  <p className="flex">
-                                    {" "}
-                                    <span>Reservar </span>
-                                    <span className="mt-1 ml-2">
-                                      <FaArrowRight className="text-[#ff3e02]" />
-                                    </span>
-                                  </p>
-                                </div>
-                              </a>
+                                <a
+                                  href={e.link}
+                                  rel="noopener noreferrer"
+                                  target="_blank"
+                                  className="cursor-pointer"
+                                >
+                                  <div className="flex items-center justify-between text-[#035373] md:font-[500] hover:text-white text-[15px] md:text-[16px]">
+                                    <p>{e.departureDate}</p>
+                                    <p>{e.returnDate}</p>
+                                    <p>${e.price}</p>
+                                    <p className="flex">
+                                      {" "}
+                                      <span>Reservar </span>
+                                      <span className="mt-1 ml-2">
+                                        <FaArrowRight className="text-[#ff3e02]" />
+                                      </span>
+                                    </p>
+                                  </div>
+                                </a>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <div>
+                          <button className="bg-[#ff3e02] p-2 rounded-xl text-white text-2xl hover:bg-[#53b3cb]">
+                            RESERVAR OFERTA
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  {offer.category.name === "Paquete" ||
+                  offer.category.name === "Hotel" ||
+                  offer.category.name === "Vuelo" ? (
+                    <div className="">
+                      <div className="md:w-[380px] md:h-[420px] border-none rounded-lg bg-white flex flex-col md:mt-0 mt-5">
+                        <div className="bg-[#035373] py-2 rounded-tl-lg rounded-tr-lg border-b-2">
+                          <p className="text-center text-[20px] font-semibold text-white uppercase">
+                            Resumen
+                          </p>
+                        </div>
+                        <div className="flex   justify-center bg-[#035373] pb-3 pt-3">
+                          <div className="flex flex-row items-center text-white">
+                            <ImPriceTag className="mr-2 mt-1" />
+                            <p className="text-[20px] mr-2">Desde </p>
+                            <p className="text-[25px]">${offer.price}</p>
+                          </div>
+                        </div>
+                        <div className="mt-5 mx-5">
+                          {offer.departure ? (
+                            <div className="flex flex-row items-center">
+                              <FaPlaneDeparture className="text-[#ff3e02] mr-2" />
+                              <p className="md:text-[19px] font-[400]">
+                                Salida:{" "}
+                                <span className="md:text-[19px] text-[15px] font-[300]">
+                                  {offer.departure}
+                                </span>
+                              </p>
                             </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="">
-                    <div className="md:w-[400px] md:h-[450px] border-none rounded-lg bg-white flex flex-col md:mt-0 mt-5">
-                      <div className="bg-[#035373] py-2 rounded-tl-lg rounded-tr-lg border-b-2">
-                        <p className="text-center text-[20px] font-semibold text-white uppercase">
-                          Resumen
-                        </p>
-                      </div>
-                      <div className="flex   justify-center bg-[#035373] pb-3 pt-3">
-                        <div className="flex flex-row items-center text-white">
-                          <ImPriceTag className="mr-2 mt-1" />
-                          <p className="text-[20px] mr-2">Desde </p>
-                          <p className="text-[25px]">${offer.price}</p>
-                        </div>
-                      </div>
-                      <div className="mt-5 mx-5">
-                        {offer.departure ? (
-                          <div className="flex flex-row items-center">
-                            <FaPlaneDeparture className="text-[#ff3e02] mr-2" />
-                            <p className="md:text-[20px] font-[400]">
-                              Salida:{" "}
-                              <span className="md:text-[20px] text-[15px] font-[300]">
-                                {offer.departure}
-                              </span>
-                            </p>
-                          </div>
-                        ) : null}
-                        {offer.arrival ? (
+                          ) : null}
+                          {offer.arrival ? (
+                            <div className="flex flex-row items-center mt-2">
+                              <FaPlaneArrival className="text-[#ff3e02] mr-2" />
+                              <p className="md:text-[19px] font-[400]">
+                                LLegada:{" "}
+                                <span className="md:text-[19px] text-[15px] font-[300]">
+                                  {offer.arrival}
+                                </span>
+                              </p>
+                            </div>
+                          ) : null}
                           <div className="flex flex-row items-center mt-2">
-                            <FaPlaneArrival className="text-[#ff3e02] mr-2" />
-                            <p className="md:text-[20px] font-[400]">
-                              LLegada:{" "}
-                              <span className="md:text-[20px] text-[15px] font-[300]">
-                                {offer.arrival}
+                            <FaRegCalendarAlt className="text-[#ff3e02] mr-2" />
+                            <p className="md:text-[19px] font-[400]">
+                              Disponibilidad:{" "}
+                              <span className="md:text-[19px] text-[15px] font-[300]">
+                                {offer.availability}
                               </span>
                             </p>
                           </div>
-                        ) : null}
-                        <div className="flex flex-row items-center mt-2">
-                          <FaRegCalendarAlt className="text-[#ff3e02] mr-2" />
-                          <p className="md:text-[20px] font-[400]">
-                            Disponibilidad:{" "}
-                            <span className="md:text-[20px] text-[15px] font-[300]">
-                              {offer.availability}
-                            </span>
-                          </p>
+                          {offer.category.name === "Paquete" ||
+                          offer.category.name === "Hotel" ? (
+                            <div className="flex flex-row items-center mt-2">
+                              <FaHotel className="text-[#ff3e02] mr-2" />
+                              <p className="md:text-[19px] font-[400]">
+                                Hotel:{" "}
+                                <span className="md:text-[19px] text-[15px] font-[300]">
+                                  {offer.hotel}
+                                </span>
+                              </p>
+                            </div>
+                          ) : (
+                            <br></br>
+                          )}
+                          {offer.category.name === "Paquete" ||
+                          offer.category.name === "Hotel" ? (
+                            <div className="flex flex-row items-center mt-2">
+                              <MdOutlineNightsStay className="text-[#ff3e02] text-[20px] mr-1" />
+                              <p className="md:text-[19px] font-[400]">
+                                Estancia:{" "}
+                                <span className="md:text-[19px] text-[15px] font-[300]">
+                                  {offer.daysOfStay}
+                                </span>
+                              </p>
+                            </div>
+                          ) : null}
                         </div>
-                        <div className="flex flex-row items-center mt-2">
-                          <FaHotel className="text-[#ff3e02] mr-2" />
-                          <p className="md:text-[20px] font-[400]">
-                            Hotel:{" "}
-                            <span className="md:text-[20px] text-[15px] font-[300]">
-                              {offer.hotel}
-                            </span>
-                          </p>
+                        <div className="md:mt-10 mt-12 md:mb-0 mb-10 flex justify-center ">
+                          <button
+                            onClick={scrollToTarget}
+                            className="bg-[#ff3e02] p-2 rounded-md text-[#fff] font-[500] hover:bg-[#53b3cb]"
+                          >
+                            Fechas disponibles
+                          </button>
                         </div>
-                        <div className="flex flex-row items-center mt-2">
-                          <MdOutlineNightsStay className="text-[#ff3e02] text-[20px] mr-1" />
-                          <p className="md:text-[20px] font-[400]">
-                            Estancia:{" "}
-                            <span className="md:text-[20px] text-[15px] font-[300]">
-                              {offer.daysOfStay}
-                            </span>
-                          </p>
-                        </div>
-                      </div>
-                      <div className="md:mt-10 mt-12 md:mb-0 mb-10 flex justify-center ">
-                        <button
-                          onClick={scrollToTarget}
-                          className="bg-[#ff3e02] p-2 rounded-md text-[#fff] font-[500] hover:bg-[#53b3cb]"
-                        >
-                          Fechas disponibles
-                        </button>
                       </div>
                     </div>
-                  </div>
+                  ) : null}
                 </div>
               </div>
             ) : (

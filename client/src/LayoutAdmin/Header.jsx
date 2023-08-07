@@ -1,7 +1,6 @@
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
-
 import { FaHome, FaPlus, FaChevronDown, FaSignal } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -12,12 +11,12 @@ function Header() {
         <div className="flex flex-row justify-between">
           <div className="flex">
             <Link to="/">
-              <div className="flex items-center ">
+              <div className="flex items-center hover:text-[#ff3e02]">
                 <FaHome />
                 <p className="ml-2">Home</p>
               </div>
             </Link>
-            <div className="flex  ml-10">
+            <div className="flex  ml-10 hover:text-[#ff3e02]">
               <Menu
                 menuButton={
                   <MenuButton className="flex flex-row items-center">
@@ -28,7 +27,6 @@ function Header() {
                 align="start"
                 arrow
                 transition
-                // menuClassName="bg-[#131517]"
               >
                 <MenuItem>
                   <Link
@@ -69,7 +67,7 @@ function Header() {
                 </MenuItem>
               </Menu>
             </div>
-            <div className="flex items-center ml-10">
+            <div className="flex items-center ml-10 hover:text-[#ff3e02]">
               <FaSignal />
               <p className="ml-2">Insights</p>
             </div>
@@ -96,7 +94,6 @@ function Header() {
               align="end"
               arrow
               transition
-              // menuClassName="bg-[#131517]"
             >
               <MenuItem className=" hover:bg-transparent">
                 <div className="flex flex-row items-center">
