@@ -8,7 +8,6 @@ import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 import Details from "./pages/Details/Details";
 import NotFound from "./pages/NotFound/NotFound";
-import ComingSoon from "./pages/ComingSoon/ComingSoon";
 
 import Hotels from "./pages/Hotels/Hotels";
 import Packages from "./pages/Packages/Packages";
@@ -44,7 +43,7 @@ function App() {
             <Route path="new-package" element={<NewOffer />} />
             <Route path="new-hotel" element={<NewHotel />} />
             <Route path="new-flight" element={<NewFlight />} />
-            <Route path="new-tour" element={<NewTour/>}/>
+            <Route path="new-tour" element={<NewTour />} />
           </Route>
 
           <Route path="/preguntas-frecuentes" element={<FrequentQuestions />} />
