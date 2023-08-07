@@ -25,7 +25,7 @@ function CardOffers({
   date,
 }) {
   return (
-    <div className="mt-[30px] rounded-[20px] bg-[#fff] w-[390px] h-[490px] m-[15px] border-none ">
+    <div className="mt-[30px] rounded-[20px] bg-[#fff] w-[390px] h-[490px] m-[15px] border-none">
       <div>
         <RiShareForwardLine className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[25px] md:ml-[300px] ml-[260px] mt-[20px] text-[#323231] opacity-[80%]" />
         <MdFavoriteBorder className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[25px] md:ml-[340px] ml-[300px] mt-[20px] text-[#323231] opacity-[80%]" />
@@ -48,7 +48,7 @@ function CardOffers({
       </div>
       <div>
         <div>
-          <h1 className="text-[18px] text-[#035373] ml-[20px] font-[600]">
+          <h1 className="text-[17px] text-[#035373] ml-[20px] font-[600] uppercase">
             {title}
           </h1>
           <p className="ml-[20px] mb-3 ">{summary}</p>

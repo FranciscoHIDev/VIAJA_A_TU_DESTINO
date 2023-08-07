@@ -41,12 +41,7 @@ function SideBar() {
               <p className="text-2xl">Banners</p>
             </div>
           </Link>
-          <Link to="ofertas">
-            <div className="flex items-center mt-4">
-              <FaRocket className="text-[#ff3e02] mr-3 text-2xl" />
-              <p className="text-2xl">Ofertas</p>
-            </div>
-          </Link>
+
           <Link to="/">
             <div className="flex items-center mt-4">
               <FaHotel className="text-[#ff3e02] mr-3 text-2xl" />

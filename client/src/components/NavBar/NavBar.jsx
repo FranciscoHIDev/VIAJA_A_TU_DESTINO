@@ -36,8 +36,8 @@ function NavBar() {
               />
             </Link>
             <div className="flex flex-row bg-[#eee] items-center md:pr-[20px] md:pl-[30px] top-0 absolute right-0 h-[50px] rounded-tl-none rounded-bl-[24px]">
-              <ul className="flex flex-row list-none ml-5 md:ml-0">
-                <li className="flex md:mr-[25px]  mr-4 color-[#444] text-[16px] items-center font-[400]">
+              <ul className="flex flex-row list-none ml-5 md:ml-0 ">
+                <li className="flex md:mr-[25px]  mr-4 color-[#444] text-[16px] items-center font-[400] ">
                   <span className="mr-[5px] ">
                     {" "}
                     <a href="tel:+52 998 283 0657">
@@ -49,6 +49,16 @@ function NavBar() {
                       Reservar: 998 283 0657
                     </span>
                   </a>
+                </li>
+                <li className="flex md:mr-[25px] mr-4  color-[#444] text-[16px] items-center font-[400] ">
+                  <span className="mr-[5px] text-[#8d9fa6]">
+                    <Link to="#">
+                      <FaRegHeart className="text-[20px] md:text-[18px] text-[#035373] " />
+                    </Link>
+                  </span>
+                  <Link to="#">
+                    <span className="hidden lg:block">Favoritos</span>
+                  </Link>
                 </li>
                 <li className="flex md:mr-[25px]  mr-4 color-[#444] text-[16px] items-center font-[400]">
                   {isAuthenticated && user ? (
@@ -67,8 +77,8 @@ function NavBar() {
                             </div>
                           </MenuButton>
                         }
-                        arrowClassName={"bg-[#1E1F25]"}
-                        arr
+                        arrow
+                        arrowClassName="bg-[#1E1F25]"
                         align="end"
                         transition
                         menuClassName="bg-[#1E1F25]"
@@ -115,17 +125,6 @@ function NavBar() {
                     <LoginButton />
                   )}
                 </li>
-
-                <li className="flex md:mr-[25px]   color-[#444] text-[16px] items-center font-[400]">
-                  <span className="mr-[5px] text-[#8d9fa6]">
-                    <Link to="#">
-                      <FaRegHeart className="text-[20px] md:text-[18px] text-[#035373]" />
-                    </Link>
-                  </span>
-                  <Link to="#">
-                    <span className="hidden lg:block">Favoritos</span>
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>
@@ -133,12 +132,6 @@ function NavBar() {
             <div className=" flex items-stretch overflow-x-scroll  lg:overflow-x-hidden lg:mx-0 mx-10">
               <div>
                 <ul className="list-none flex flex-row">
-                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444] hover:text-[#035373]">
-                    <Link to="/ofertas-de-viajes">
-                      <MdLocalOffer className="text-[20px]" />
-                    </Link>
-                    <Link to="/ofertas-de-viajes"> Ofertas</Link>
-                  </li>
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="/paquetes">
                       <FaSuitcase className="text-[20px]" />
@@ -164,12 +157,7 @@ function NavBar() {
                     </Link>
                     <Link to="#">Tours</Link>
                   </li>
-                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
-                    <Link to="/destinos">
-                      <FaSearchLocation className="text-[20px]" />
-                    </Link>
-                    <Link to="/destinos">Destinos</Link>
-                  </li>
+
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="#">
                       {" "}

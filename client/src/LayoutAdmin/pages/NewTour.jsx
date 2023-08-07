@@ -40,11 +40,7 @@ const validationSchema = yup.object({
     .min(10, "Mínimo 10 caracteres")
     .max(40, "Máximo 40 caracteres")
     .required("La disponibilidad es requerida"),
-  daysOfStay: yup
-    .string()
-    .min(5, "Mínimo 5 caracteres")
-    .max(30, "Máximo 30 caracteres")
-    .required("Días de estancia requerida"),
+
   buyLinks: yup.array().min(1, "Debes agregar al menos un enlace"),
 });
 
