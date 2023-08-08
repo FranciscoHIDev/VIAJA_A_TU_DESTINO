@@ -72,7 +72,7 @@ function NavBar() {
                               </div>
                               <div>
                                 <span className="text-[15px]">
-                                  Hi! {user.given_name}
+                                  Hi, {user.given_name}
                                 </span>
                               </div>
                               <FaChevronDown className="ml-2 text-[#035373] text-[15px]" />
