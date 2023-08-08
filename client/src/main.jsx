@@ -7,14 +7,16 @@ import store from "./redux/store/store";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 //axios.defaults.baseURL = "http://localhost:3000";
-axios.defaults.baseURL = "https://viaja-a-tu-destino.vercel.app/";
+axios.defaults.baseURL = "https://viaja-a-tu-destino-back.vercel.app/";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <Auth0Provider
       domain="dev-diy5j51e8e7m2tec.us.auth0.com"
       clientId="f8Jjj4658bzQcB9JczyCXILdXgqtNzXV"
-      redirectUri={window.location.origin}
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+      }}
     >
       <App />
     </Auth0Provider>
