@@ -1,4 +1,3 @@
-import React from "react";
 import CardsHotels from "../../components/CardsHotels/CardsHotels";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";

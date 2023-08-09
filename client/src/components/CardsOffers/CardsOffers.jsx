@@ -1,19 +1,20 @@
 import React from "react";
-import CardOffers from "./../CardOffers/CardOffers";
+import CardOffers from "../CardOffers/CardOffers";
 import { getAllOffers } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 function CardsOffers() {
   const dispatch = useDispatch();
-  const offers = useSelector((state) => state.offers);  
-  
+  const offers = useSelector((state) => state.offers);
+  const all = offers.reverse();
+
   React.useEffect(() => {
     dispatch(getAllOffers);
   }, [dispatch]);
 
   return (
     <div className="flex flex-wrap items-center justify-center">
-      {offers.map((e) => {
+      {all.map((e) => {
         return (
           <CardOffers
             key={crypto.randomUUID()}

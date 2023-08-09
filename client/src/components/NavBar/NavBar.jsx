@@ -79,7 +79,6 @@ function NavBar() {
                             </div>
                           </MenuButton>
                         }
-                        
                         align="end"
                         transition
                         menuClassName="bg-[#1E1F25]"
@@ -146,17 +145,17 @@ function NavBar() {
                     <Link to="/hoteles">Hoteles</Link>
                   </li>
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
-                    <Link to="#">
+                    <Link to="/vuelos">
                       <FaPlane className="text-[20px]" />
                     </Link>
-                    <Link to="#">Vuelos</Link>
+                    <Link to="/vuelos">Vuelos</Link>
                   </li>
                   <li className="flex  flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
-                    <Link to="#">
+                    <Link to="/tours">
                       {" "}
                       <GiMayanPyramid className="text-[20px]" />
                     </Link>
-                    <Link to="#">Tours</Link>
+                    <Link to="/tours">Tours</Link>
                   </li>
 
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">

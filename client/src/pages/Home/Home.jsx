@@ -1,10 +1,9 @@
 import React from "react";
 import CardsBanners from "../../components/CardsBanners/CardsBanners";
-import CardsHotels from "../../components/CardsHotels/CardsHotels";
 import NavBar from "../../components/NavBar/NavBar";
-import CardsPackages from "./../../components/CardsPackages/CardsPackages";
-import CardsOffers from "../../components/CardsOffers/CardsOffers";
+
 import Footer from "../../components/Footer/Footer";
+import CardsOffers from "../../components/CardsOffers/CardsOffers";
 
 function Home() {
   return (
