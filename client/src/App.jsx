@@ -8,10 +8,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 import Details from "./pages/Details/Details";
 import NotFound from "./pages/NotFound/NotFound";
-
 import Hotels from "./pages/Hotels/Hotels";
-import Packages from "./pages/Packages/Packages";
-import Offers from "./pages/Offers/Offers";
 import Destinations from "./pages/Destinations/Destinations";
 import LayoutAdmin from "./LayoutAdmin/LayoutAdmin";
 import OffersAdmin from "./LayoutAdmin/pages/OffersAdmin";
@@ -19,9 +16,11 @@ import PackagesAdmin from "./LayoutAdmin/pages/PackagesAdmin";
 import HomeAdmin from "./LayoutAdmin/pages/HomeAdmin";
 import NewOffer from "./LayoutAdmin/pages/NewOffer";
 import NewHotel from "./LayoutAdmin/pages/NewHotel";
-import NewFligth from "./LayoutAdmin/pages/NewFligth";
 import NewFlight from "./LayoutAdmin/pages/NewFligth";
 import NewTour from "./LayoutAdmin/pages/NewTour";
+import Tours from "./pages/Tours/Tours";
+import Flights from "./pages/Flights/Flights";
+import Packages from "./pages/Packages/Packages";
 
 function App() {
   return (
@@ -34,8 +33,9 @@ function App() {
           <Route path="/sobre-nosotros" element={<About />} />
           <Route path="/hoteles" element={<Hotels />} />
           <Route path="/paquetes" element={<Packages />} />
-          <Route path="/ofertas-de-viajes" element={<Offers />} />
+          <Route path="/tours" element={<Tours />} />
           <Route path="/destinos" element={<Destinations />} />
+          <Route path="/vuelos" element={<Flights />} />
           <Route path="/auth" element={<LayoutAdmin />}>
             <Route index element={<HomeAdmin />} />
             <Route path="ofertas" element={<OffersAdmin />} />
