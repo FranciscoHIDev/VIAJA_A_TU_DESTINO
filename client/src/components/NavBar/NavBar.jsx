@@ -36,12 +36,12 @@ function NavBar() {
               />
             </Link>
             <div className="flex flex-row bg-[#eee] items-center md:pr-[20px] md:pl-[30px] top-0 absolute right-0 h-[50px] rounded-tl-none rounded-bl-[24px]">
-              <ul className="flex flex-row list-none ml-5 md:ml-0 ">
-                <li className="flex md:mr-[25px]  mr-4 color-[#444] text-[16px] items-center font-[400] ">
+              <ul className="flex flex-row list-none ml-2 md:ml-0 ">
+                <li className="flex md:mr-[25px]  mr-2 color-[#444] text-[16px] items-center font-[400] ">
                   <span className="mr-[5px] ">
                     {" "}
                     <a href="tel:+52 998 283 0657">
-                      <FaHeadset className="text-[20px] md:text-[18px] text-[#035373]" />
+                      <FaHeadset className="text-[19px] md:text-[18px] text-[#035373]" />
                     </a>
                   </span>{" "}
                   <a href="tel:+52 998 283 0657">
@@ -50,17 +50,17 @@ function NavBar() {
                     </span>
                   </a>
                 </li>
-                <li className="flex md:mr-[25px] mr-4  color-[#444] text-[16px] items-center font-[400] ">
+                <li className="flex md:mr-[25px] mr-2  color-[#444] text-[16px] items-center font-[400] ">
                   <span className="mr-[5px] text-[#8d9fa6]">
                     <Link to="#">
-                      <FaRegHeart className="text-[20px] md:text-[18px] text-[#035373] " />
+                      <FaRegHeart className="text-[19px] md:text-[18px] text-[#035373] " />
                     </Link>
                   </span>
                   <Link to="#">
                     <span className="hidden lg:block">Favoritos</span>
                   </Link>
                 </li>
-                <li className="flex md:mr-[25px]  mr-4 color-[#444] text-[16px] items-center font-[400]">
+                <li className="flex md:mr-[25px]  mr-2 color-[#444] text-[16px] items-center font-[400]">
                   {isAuthenticated && user ? (
                     <>
                       <Menu
@@ -68,17 +68,18 @@ function NavBar() {
                           <MenuButton className="">
                             <div className="flex flex-row items-center">
                               <div>
-                                <FaUserCircle className="text-[20px] md:text-[18px] text-[#035373] mr-[5px]" />
+                                <FaUserCircle className="text-[19px] md:text-[18px] text-[#035373] mr-[5px]" />
                               </div>
                               <div>
-                                <span className="">Hola, {user.name}</span>
+                                <span className="text-[15px]">
+                                  Hi, {user.given_name}
+                                </span>
                               </div>
-                              <FaChevronDown className="ml-2 text-[#035373]" />
+                              <FaChevronDown className="ml-2 text-[#035373] text-[15px]" />
                             </div>
                           </MenuButton>
                         }
-                        arrow
-                        arrowClassName="bg-[#1E1F25]"
+                        
                         align="end"
                         transition
                         menuClassName="bg-[#1E1F25]"
