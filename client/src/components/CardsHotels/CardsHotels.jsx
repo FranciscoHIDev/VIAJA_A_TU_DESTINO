@@ -1,33 +1,38 @@
 import React from "react";
-import CardHotel from "../CardHotel/CardHotel";
-import {useSelector, useDispatch} from "react-redux"
-import { getAllHotels } from '../../redux/actions/actions';
 
+import { useSelector, useDispatch } from "react-redux";
+import { getAllOffers } from "../../redux/actions/actions";
+import CardOffers from "../CardOffers/CardOffers";
 
 function CardsHotels() {
-const hotels= useSelector((state)=>state.hotels)
-const dispatch= useDispatch()
+  const dispatch = useDispatch();
+  const offers = useSelector((state) => state.offers);
+  const hotels = offers.filter((offer) => offer.category.name === "Hotel");
+  const all = hotels.reverse();
 
-React.useEffect(()=>{
-dispatch(getAllHotels)
-},[dispatch])
+  React.useEffect(() => {
+    dispatch(getAllOffers);
+  }, [dispatch]);
 
   return (
     <div className="flex flex-wrap items-center justify-center">
-      {hotels.map((e) => {
+      {all.map((e) => {
         return (
-          <CardHotel
+          <CardOffers
             key={crypto.randomUUID()}
-            name={e.name}
+            _id={e._id}
+            title={e.title}
             image={e.image}
-            persons={e.persons}
-            discount={e.discount}
+            category={e.category}
+            summary={e.summary}
+            promotion={e.promotion}
             price={e.price}
-            previousPrice={e.previousPrice}
+            availability={e.availability}
+            departure={e.departure}
+            arrival={e.arrival}
             destination={e.destination}
-            from={e.from}
-            to={e.to}
-            link={e.link}
+            author={e.author}
+            date={e.date}
           />
         );
       })}
