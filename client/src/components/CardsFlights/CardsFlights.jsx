@@ -1,13 +1,12 @@
 import React from "react";
-import CardOffers from "../CardOffers/CardOffers";
+import CardOffers from "../../components/CardOffers/CardOffers";
 import { getAllOffers } from "../../redux/actions/actions";
-import { useDispatch, useSelector } from "react-redux";
-
-function CardsOffers() {
+import { useSelector, useDispatch } from "react-redux";
+function CardsFlights() {
   const dispatch = useDispatch();
   const offers = useSelector((state) => state.offers);
-  const packages = offers.filter((offer) => offer.category.name === "Paquete");
-  const all = packages.reverse();
+  const flights = offers.filter((offer) => offer.category.name === "Vuelo");
+  const all = flights.reverse();
 
   React.useEffect(() => {
     dispatch(getAllOffers);
@@ -39,4 +38,4 @@ function CardsOffers() {
   );
 }
 
-export default CardsOffers;
+export default CardsFlights;

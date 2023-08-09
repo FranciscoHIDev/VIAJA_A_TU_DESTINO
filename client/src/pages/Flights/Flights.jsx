@@ -1,9 +1,7 @@
-import React from "react";
-import CardsPackages from "../../components/CardsPackages/CardsPackages";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-
-function Offers() {
+import CardsFlights from "../../components/CardsFlights/CardsFlights";
+function Flights() {
   return (
     <>
       <div className="min-h-screen h-screen flex flex-col">
@@ -11,17 +9,17 @@ function Offers() {
           <NavBar />
         </header>
         <main className="flex-grow mt-5 mb-20">
-          <div className="flex flex-col md:mx-[40px] mx-3">
+          <div className="flex flex-col  md:mx-[40px] mx-3">
             <div>
               <h1 className="ml-[20px] md:text-2xl text-[20px] text-[#253777] font-semibold">
-                Paquetes con Vuelo + Hotel
+                Vuelos con hasta 65% de descuento
               </h1>
               <p className="ml-[20px] md:text-[18px] mt-1">
-                Reserva los paquetes de viajes disponibles en fechas especificas
+                Encuentras las mejores tarifas aéreas
               </p>
             </div>
             <div>
-              <CardsPackages />
+              <CardsFlights />
             </div>
           </div>
         </main>
@@ -33,4 +31,4 @@ function Offers() {
   );
 }
 
-export default Offers;
+export default Flights;
