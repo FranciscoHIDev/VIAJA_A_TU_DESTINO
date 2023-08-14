@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaHeadset,
@@ -7,10 +7,8 @@ import {
   FaBlog,
   FaPlane,
   FaHotel,
-  FaSearchLocation,
   FaUserCircle,
 } from "react-icons/fa";
-import { MdLocalOffer } from "react-icons/md";
 import { GiMayanPyramid } from "react-icons/gi";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../Auth0/LoginButton";
@@ -19,9 +17,34 @@ import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { FaChevronDown } from "react-icons/fa";
 import LogoutButton from "../Auth0/LogoutButton";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsers, postUser } from "../../redux/actions/actions";
 
 function NavBar() {
   const { isAuthenticated, user } = useAuth0();
+  const dispatch = useDispatch();
+  const [userDB, setUserDB] = useState({});
+  const usersDB = useSelector((state) => state.users);
+  React.useEffect(() => {
+    dispatch(getAllUsers);
+  }, [dispatch]);
+
+  React.useEffect(() => {
+    if (user && isAuthenticated) {
+      const myUser = usersDB.find((e) => e.email === user.email);
+      if (!myUser) {
+        const newUser = {
+          name: user.given_name,
+          lastName: user.family_name,
+          email: user.email,
+          image: user.image,
+        };
+        dispatch(postUser(newUser));
+      } else {
+        setUserDB(myUser);
+      }
+    }
+  }, [user, isAuthenticated, usersDB, dispatch]);
 
   return (
     <React.Fragment>
@@ -79,7 +102,7 @@ function NavBar() {
                             </div>
                           </MenuButton>
                         }
-                        align="end"
+                        align="start"
                         transition
                         menuClassName="bg-[#1E1F25]"
                       >

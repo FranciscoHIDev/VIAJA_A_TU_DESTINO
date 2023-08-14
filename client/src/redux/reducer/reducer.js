@@ -1,14 +1,7 @@
-import {
-  GET_ALL_BANNERS,
-  GET_ALL_OFFERS,
-  GET_ALL_HOTELS,
-  GET_ALL_PACKAGES,
-} from "../actions/actions";
+import { GET_ALL_BANNERS, GET_ALL_OFFERS, POST_USER } from "../actions/actions";
 const initialState = {
   offers: [],
-  hotels: [],
   banners: [],
-  packages: [],
   users: [],
 };
 
@@ -24,16 +17,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         banners: action.payload,
       };
-    case GET_ALL_HOTELS:
+    case POST_USER:
       return {
         ...state,
-        hotels: action.payload,
+        user: action.payload,
       };
-    case GET_ALL_PACKAGES:
-      return {
-        ...state,
-        packages: action.payload,
-      };
+
     default:
       return state;
   }

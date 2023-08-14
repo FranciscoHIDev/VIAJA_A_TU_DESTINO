@@ -210,7 +210,7 @@ function Details() {
                           </div>
                         </div>
                       ) : (
-                        <div>
+                        <div className="flex mt-14 justify-center">
                           <button className="bg-[#ff3e02] p-2 rounded-xl text-white text-2xl hover:bg-[#53b3cb]">
                             RESERVAR OFERTA
                           </button>

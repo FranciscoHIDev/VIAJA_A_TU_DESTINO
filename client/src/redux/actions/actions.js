@@ -3,6 +3,7 @@ export const GET_ALL_OFFERS = "GET_ALL_OFFERS";
 export const GET_ALL_BANNERS = "GET_ALL_BANNERS";
 export const GET_ALL_HOTELS = "GET_ALL_HOTELS";
 export const GET_ALL_PACKAGES = "GET_ALL_PACKAGES";
+export const POST_USER = "POST_USER";
 
 export const getAllOffers = async (dispatch) => {
   try {
@@ -24,30 +25,30 @@ export const getAllBanners = async (dispatch) => {
       payload: banners.data,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
-export const getAllHotels = async (dispatch) => {
+export const getAllUsers = async (dispatch) => {
   try {
-    const hotels = await axios.get("/api/hotels");
+    const allUsers = await axios.get("/api/users");
     dispatch({
-      type: "GET_ALL_HOTELS",
-      payload: hotels.data,
+      type: "GET_ALL_USERS",
+      payload: allUsers.data,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
-export const getAllPackages = async (dispatch) => {
+export const postUser = (payload) => async (dispatch) => {
   try {
-    const packages = await axios.get("/api/packages");
+    const newUser = await axios.post("/api/users", payload);
     dispatch({
-      type: "GET_ALL_PACKAGES",
-      payload: packages.data,
+      type: "POST_USER",
+      payload: newUser.data,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
