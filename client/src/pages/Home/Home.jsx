@@ -4,6 +4,9 @@ import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import CardsOffers from "../../components/CardsOffers/CardsOffers";
 import Filters from "../../components/Filters/Filters";
+import Footer from "../../components/Footer/Footer";
+import CardsOffers from "../../components/CardsOffers/CardsOffers";
+
 
 function Home() {
   return (

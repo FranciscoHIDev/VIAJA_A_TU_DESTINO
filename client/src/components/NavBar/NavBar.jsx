@@ -102,7 +102,11 @@ function NavBar() {
                             </div>
                           </MenuButton>
                         }
+
                         align="start"
+
+                        align="end"
+
                         transition
                         menuClassName="bg-[#1E1F25]"
                       >
