@@ -1,9 +1,9 @@
 import React from "react";
 import CardsBanners from "../../components/CardsBanners/CardsBanners";
 import NavBar from "../../components/NavBar/NavBar";
-
 import Footer from "../../components/Footer/Footer";
 import CardsOffers from "../../components/CardsOffers/CardsOffers";
+import Filters from "../../components/Filters/Filters";
 
 function Home() {
   return (
@@ -32,7 +32,7 @@ function Home() {
                   Encuentra la oferta a tu destino favorito, y disfruta de tus
                   vacaciones
                 </h1>
-                <p></p>
+                <Filters />
                 <div>
                   <CardsOffers />
                 </div>
