@@ -13,7 +13,7 @@ function CardsOffers() {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-wrap items-center justify-center">
+    <div className="flex flex-wrap">
       {all.map((e) => {
         return (
           <CardOffers

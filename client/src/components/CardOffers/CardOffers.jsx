@@ -35,7 +35,7 @@ function CardOffers({
             <RiShareForwardLine className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[30px] md:ml-[245px] ml-[245px] mt-[20px] text-[#323231] opacity-[80%] p-[2px]" />
             <MdFavoriteBorder className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[30px] md:ml-[285px] ml-[285px] mt-[20px] text-[#323231] opacity-[80%] p-[2px]" />
             <img
-              className="w-[330px] h-[200px] rounded-tl-[20px] rounded-tr-[20px]"
+              className="w-[330px] h-[200px] rounded-tl-[20px] rounded-tr-[20px] "
               src={image[0]}
               alt="image"
             />
@@ -53,7 +53,7 @@ function CardOffers({
           </div>
           <div>
             <div>
-              <h1 className="text-[17px] text-[#035373] ml-[20px] font-[600] uppercase">
+              <h1 className="text-[17px] text-[#035373] hover:text-[#ff3e02] ml-[20px] mr-[20px] font-[600] uppercase">
                 {title}
               </h1>
               <p className="ml-[20px] mb-3 font-light">{summary}</p>

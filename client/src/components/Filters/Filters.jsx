@@ -1,89 +1,167 @@
 import React from "react";
+import { MdLocationOn, MdLocalOffer } from "react-icons/md";
 
 function Filters() {
   return (
     <React.Fragment>
-      <div className="w-auto">
-        <div className="flex justify-between border-gray-400 border p-2">
-          <p>Filtros</p>
-          <p>Quitar Todos</p>
-        </div>
-        <div className="border-gray-400 border p-2">
-          <div className="flex justify-between">
-            <p>SALIENDO DESDE</p>
-            <p>Quitar</p>
+      <div className="flex flex-col">
+        <div className="p-1 bg-blue-100 rounded-md w-auto">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center">
+              <MdLocationOn className="text-[#ff3e02] text-[20px] mr-1" />
+              <p className="text-[15px] text-zinc-600">SALIENDO DESDE</p>
+            </div>
+            <button className="text-[#ff3e02]">Quitar</button>
           </div>
           <div className="mx-3 mt-2">
             <div>
-              <p>Cancún</p>
+              <label>
+                Ciudad de México{" "}
+                <input
+                  type="checkbox"
+                  name="Ciudad de México"
+                  value="Ciudad de México"
+                />
+              </label>
             </div>
             <div>
-              <p>Cancún</p>
+              <label>
+                Monterrey
+                <input
+                  type="checkbox"
+                  name="Ciudad de México"
+                  value="Ciudad de México"
+                />
+              </label>
             </div>
             <div>
-              <p>Cancún</p>
+              <label>
+                Guadalajara
+                <input
+                  type="checkbox"
+                  name="Ciudad de México"
+                  value="Ciudad de México"
+                />
+              </label>
             </div>
             <div>
-              <p>Cancún</p>
+              <label>
+                Cancún
+                <input
+                  type="checkbox"
+                  name="Ciudad de México"
+                  value="Ciudad de México"
+                />
+              </label>
             </div>
             <div>
-              <p>Cancún</p>
+              <label>
+                Veracruz
+                <input
+                  type="checkbox"
+                  name="Ciudad de México"
+                  value="Ciudad de México"
+                />
+              </label>
             </div>
             <div>
-              <p>Cancún</p>
+              <label>
+                Ciudad Juárez
+                <input
+                  type="checkbox"
+                  name="Ciudad de México"
+                  value="Ciudad de México"
+                />
+              </label>
             </div>
             <div>
-              <p>Cancún</p>
+              <label>
+                Santa Lucia
+                <input
+                  type="checkbox"
+                  name="Ciudad de México"
+                  value="Ciudad de México"
+                />
+              </label>
             </div>
             <div>
-              <p>Cancún</p>
+              <label>
+                Tijuana
+                <input
+                  type="checkbox"
+                  name="Ciudad de México"
+                  value="Ciudad de México"
+                />
+              </label>
             </div>
             <div>
-              <p>Cancún</p>
+              <label>
+                León / Bajío
+                <input
+                  type="checkbox"
+                  name="Ciudad de México"
+                  value="Ciudad de México"
+                />
+              </label>
             </div>
           </div>
         </div>
-        <div className="border-gray-400 border p-2">
+        <div className="bg-blue-100 p-2 mt-5 rounded-md">
           <div className="flex justify-between">
-            <p>Tipo de oferta</p>
-            <p>Quitar</p>
+            <div className="flex items-center">
+              <MdLocalOffer className="text-[#ff3e02] text-[20px] mr-1" />
+              <p className="text-[15px] text-zinc-600">TIPO DE OFERTA</p>
+            </div>
+
+            <button className="text-[#ff3e02]">Quitar</button>
           </div>
           <div className="mx-3 mt-2">
             <div className="flex justify-between">
-              <label>Paquete</label>
-              <input type="checkbox" name="Paquete" value="paquete" />
+              <label className="cursor-pointer">
+                Paquete
+                <input
+                  className="cursor-pointer"
+                  type="checkbox"
+                  name="Paquete"
+                  value="paquete"
+                />
+              </label>
             </div>
             <div className="flex justify-between">
-              <label>Hotel</label>
-              <input type="checkbox" name="Paquete" value="paquete" />
+              <label className="cursor-pointer">
+                Hotel
+                <input
+                  className="cursor-pointer"
+                  type="checkbox"
+                  name="Paquete"
+                  value="paquete"
+                />
+              </label>
+            </div>
+            <div className="flex">
+              <label className="cursor-pointer">
+                Vuelo
+                <input
+                  className="cursor-pointer"
+                  type="checkbox"
+                  name="Paquete"
+                  value="paquete"
+                />
+              </label>
             </div>
             <div className="flex justify-between">
-              <label>Vuelo</label>
-              <input type="checkbox" name="Paquete" value="paquete" />
-            </div>
-            <div className="flex justify-between">
-              <label>Tour</label>
-              <input type="checkbox" name="Paquete" value="paquete" />
+              <label className="cursor-pointer">
+                Tour
+                <input
+                  className="cursor-pointer"
+                  type="checkbox"
+                  name="Paquete"
+                  value="paquete"
+                />
+              </label>
             </div>
           </div>
         </div>
-        {/* <div className="ml-[20px] flex md:flex-col  mt-3">
-          <button className="mr-4 bg-[#53b3cb] rounded-lg px-2 text-white font-medium active:bg-[#ff3e02]">
-            Seleccionar todo
-          </button>
-          <button className="mr-4 bg-[#53b3cb] rounded-lg px-2 text-white font-medium  active:bg-[#ff3e02]">
-            Paquetes
-          </button>
-          <button className="mr-4 bg-[#53b3cb] rounded-lg px-2 text-white font-medium  active:bg-[#ff3e02]">
-            Hoteles
-          </button>
-          <button className="mr-4  bg-[#53b3cb] rounded-lg px-2 text-white font-medium  active:bg-[#ff3e02]">
-            Vuelos
-          </button>
-          <button className=" bg-[#53b3cb] rounded-lg px-2 text-white font-medium  active:bg-[#ff3e02]">
-            Tours
-          </button>
-        </div> */}
       </div>
     </React.Fragment>
   );
