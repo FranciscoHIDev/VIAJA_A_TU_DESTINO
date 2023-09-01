@@ -107,7 +107,7 @@ function NavBar() {
                         menuClassName="bg-[#1E1F25]"
                       >
                         <MenuItem className=" hover:bg-transparent">
-                          <div className="flex flex-row items-center">
+                          <div className="flex flex-row items-center border-b-[1px]">
                             <Link
                               to="#"
                               className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1"
@@ -131,9 +131,28 @@ function NavBar() {
                             to="#"
                             className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-white"
                           >
-                            Perfil
+                            Favoritos
                           </Link>
                         </MenuItem>
+                        {isAuthenticated && userDB.role === "user" ? (
+                          <MenuItem className="hover:bg-transparent">
+                            <Link
+                              to="/auth"
+                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-white"
+                            >
+                              Mi Perfil
+                            </Link>
+                          </MenuItem>
+                        ) : (
+                          <MenuItem className="hover:bg-transparent">
+                            <Link
+                              to="/auth"
+                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-white"
+                            >
+                              Dashboard
+                            </Link>
+                          </MenuItem>
+                        )}
                         <MenuItem className="hover:bg-transparent">
                           <Link
                             to="#"

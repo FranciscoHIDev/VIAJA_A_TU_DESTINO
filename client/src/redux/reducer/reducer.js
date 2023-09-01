@@ -9,6 +9,7 @@ import {
 } from "../actions/actions";
 const initialState = {
   offers: [],
+  hotels: [],
   banners: [],
   users: [],
 };

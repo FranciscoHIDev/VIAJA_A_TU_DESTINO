@@ -312,9 +312,9 @@ function Details() {
             )}
           </div>
         </main>
-        <footer className="mt-10">
+        {/* <footer className="mt-10">
           <Footer />
-        </footer>
+        </footer> */}
       </div>
     </React.Fragment>
   );
