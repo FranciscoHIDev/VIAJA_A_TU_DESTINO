@@ -1,7 +1,7 @@
 import React from "react";
 import { MdLocationOn, MdLocalOffer } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByHotels, getAllOffers } from "../../redux/actions/actions";
+import { getAllOffers } from "../../redux/actions/actions";
 
 function Filters() {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ function Filters() {
 
   function handleHotels(e) {
     e.preventDefault();
-    dispatch(filterByHotels(e.target.value));
+    offers.map((o) => o.category === "hotel");
   }
 
   return (

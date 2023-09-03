@@ -8,8 +8,7 @@ import {
   FILTER_BY_TOURS,
 } from "../actions/actions";
 const initialState = {
-  offers: [],
-  hotels: [],
+  offers: [], 
   banners: [],
   users: [],
 };
@@ -49,7 +48,7 @@ const rootReducer = (state = initialState, action) => {
       );
       return {
         ...state,
-        offers: hotels,
+       offers: hotels,
       };
     case FILTER_BY_FLIGHTS:
       flights = state.offers.filter(
