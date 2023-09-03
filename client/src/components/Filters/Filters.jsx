@@ -18,7 +18,7 @@ function Filters() {
 
   return (
     <React.Fragment>
-      <div className="flex flex-col">
+      <div className="md:flex flex-col hidden">
         <div className="p-1 bg-[#ddf3fa] rounded-md">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
@@ -158,7 +158,7 @@ function Filters() {
                   className="cursor-pointer mr-3"
                   type="checkbox"
                   name="Paquete"
-                  value="paquete"
+                  value="hotel"
                 />
                 Hotel
               </label>
