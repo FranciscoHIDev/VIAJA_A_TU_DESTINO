@@ -171,7 +171,7 @@ function NavBar() {
             </div>
           </div>
           <div className="flex flex-row justify-around items-center mt-2 mb-3 w-full">
-            <div className=" flex items-stretch overflow-x-scroll  lg:overflow-x-hidden lg:mx-0 mx-10">
+            <div className=" flex items-center  lg:mx-0 mx-5">
               <div>
                 <ul className="list-none flex flex-row">
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
@@ -199,14 +199,6 @@ function NavBar() {
                     </Link>
                     <Link to="/tours">Tours</Link>
                   </li>
-
-                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
-                    <Link to="#">
-                      {" "}
-                      <FaBlog className="text-[20px]" />
-                    </Link>
-                    <Link to="#">Blog</Link>
-                  </li>
                 </ul>
               </div>
               <div>
@@ -215,7 +207,7 @@ function NavBar() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <button className="rounded-md border border-[#242424] bg-[#ff] py-[0.4em] px-[1.2em]   hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02]">
+                  <button className="rounded-md border-2 border-[#53b3cb] py-[1px] px-[3px] text-[#444]  hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02]">
                     Cotizador
                   </button>
                 </a>

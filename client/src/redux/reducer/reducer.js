@@ -8,13 +8,15 @@ import {
   FILTER_BY_TOURS,
 } from "../actions/actions";
 const initialState = {
-  offers: [], 
+  offers: [],
+
   banners: [],
   users: [],
 };
 
 const rootReducer = (state = initialState, action) => {
   let packages;
+  console.log(packages, "prueba");
   let hotels;
   let flights;
   let tours;
@@ -35,9 +37,10 @@ const rootReducer = (state = initialState, action) => {
         user: action.payload,
       };
     case FILTER_BY_PACKAGES:
-      packages = state.offers.filter(
-        (offer) => offer.category.name === "Paquete".includes(action.payload)
+      packages = state.offers.filter((offer) =>
+        offer.category.name.includes(action.payload)
       );
+
       return {
         ...state,
         offers: packages,
@@ -48,7 +51,7 @@ const rootReducer = (state = initialState, action) => {
       );
       return {
         ...state,
-       offers: hotels,
+        offers: hotels,
       };
     case FILTER_BY_FLIGHTS:
       flights = state.offers.filter(

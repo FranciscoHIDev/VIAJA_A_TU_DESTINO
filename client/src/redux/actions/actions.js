@@ -17,7 +17,7 @@ export const getAllOffers = async (dispatch) => {
       payload: offers.data,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
