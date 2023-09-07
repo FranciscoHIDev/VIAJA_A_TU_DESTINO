@@ -207,7 +207,7 @@ function NavBar() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <button className="rounded-md border-2 border-[#53b3cb] py-[1px] px-[3px] text-[#444]  hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02]">
+                  <button className="rounded-md  py-[1px] px-[5px] text-[#fff]  bg-[#ff3e02] font-medium">
                     Cotizador
                   </button>
                 </a>
