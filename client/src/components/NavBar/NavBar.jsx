@@ -4,7 +4,6 @@ import {
   FaHeadset,
   FaRegHeart,
   FaSuitcase,
-  FaBlog,
   FaPlane,
   FaHotel,
   FaUserCircle,
@@ -49,16 +48,62 @@ function NavBar() {
   return (
     <React.Fragment>
       <nav>
-        <div className="flex flex-col bg-white top-0  w-full relative">
-          <div className="flex flex-row items-center justify-between">
-            <Link to="/">
-              <img
-                className="md:ml-[40px] w-[150px] md:mt-[5px] ml-[15px] mt-[2px]"
-                src="https://res.cloudinary.com/duaysiozi/image/upload/v1684173882/LOGO-OFICIAL-_lmdwby.svg"
-                alt="logo-oficial"
-              />
-            </Link>
-            <div className="flex flex-row bg-[#eee] items-center md:pr-[20px] md:pl-[30px] top-0 absolute right-0 h-[50px] rounded-tl-none rounded-bl-[24px]">
+        <div className="flex flex-col bg-white top-0  w-full relative md:py-4">
+          <div className="flex flex-row items-center justify-between ">
+            <div className="flex items-center">
+              <div>
+                <Link to="/">
+                  <img
+                    className="md:ml-[40px] w-[150px] md:mt-[5px] ml-[15px] mt-[2px]"
+                    src="https://res.cloudinary.com/duaysiozi/image/upload/v1684173882/LOGO-OFICIAL-_lmdwby.svg"
+                    alt="logo-oficial"
+                  />
+                </Link>
+              </div>
+
+              <div className="md:flex ml-16 hidden">
+                <ul className="list-none flex flex-row">
+                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
+                    <Link to="/paquetes">
+                      <FaSuitcase className="text-[20px]" />
+                    </Link>
+                    <Link to="/paquetes">Paquetes</Link>
+                  </li>
+                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
+                    <Link to="/hoteles">
+                      <FaHotel className="text-[20px]" />
+                    </Link>
+                    <Link to="/hoteles">Hoteles</Link>
+                  </li>
+                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
+                    <Link to="/vuelos">
+                      <FaPlane className="text-[20px]" />
+                    </Link>
+                    <Link to="/vuelos">Vuelos</Link>
+                  </li>
+                  <li className="flex  flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
+                    <Link to="/tours">
+                      {" "}
+                      <GiMayanPyramid className="text-[20px]" />
+                    </Link>
+                    <Link to="/tours">Tours</Link>
+                  </li>
+                  <li className="flex items-center">
+                    <a
+                      href="https://viajaatudestino.priceres.com.mx/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <button className="rounded-md  py-[1px] px-[5px] text-[#fff]  bg-[#ff3e02] font-medium">
+                        Cotizador
+                      </button>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="flex flex-row bg-[#eee] items-center md:pr-[20px] md:pl-[30px] pl-2 top-0 absolute right-0 md:h-[60px] h-[50px] rounded-tl-none rounded-bl-[30px]">
               <ul className="flex flex-row list-none ml-2 md:ml-0 ">
                 <li className="flex md:mr-[25px]  mr-2 color-[#444] text-[16px] items-center font-[400] ">
                   <span className="mr-[5px] ">
@@ -170,7 +215,7 @@ function NavBar() {
               </ul>
             </div>
           </div>
-          <div className="flex flex-row justify-around items-center mt-2 mb-3 w-full">
+          <div className="flex flex-row justify-around items-center mt-2 mb-3 w-full md:hidden">
             <div className=" flex items-center  lg:mx-0 mx-5">
               <div>
                 <ul className="list-none flex flex-row">
