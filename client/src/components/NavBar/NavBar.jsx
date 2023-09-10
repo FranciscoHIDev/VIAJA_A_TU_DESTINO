@@ -61,7 +61,7 @@ function NavBar() {
                 </Link>
               </div>
 
-              <div className="md:flex ml-16 hidden">
+              <div className="lg:flex ml-16 hidden">
                 <ul className="list-none flex flex-row">
                   <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="/paquetes">
@@ -215,7 +215,7 @@ function NavBar() {
               </ul>
             </div>
           </div>
-          <div className="flex flex-row justify-around items-center mt-2 mb-3 w-full md:hidden">
+          <div className="flex flex-row justify-around items-center mt-2 mb-3 w-full lg:hidden">
             <div className=" flex items-center  lg:mx-0 mx-5">
               <div>
                 <ul className="list-none flex flex-row">
