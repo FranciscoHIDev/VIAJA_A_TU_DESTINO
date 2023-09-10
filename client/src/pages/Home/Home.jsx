@@ -42,12 +42,12 @@ function Home() {
                 <CardsOffers />
               </div>
 
-              <div className=" hidden lg:flex">
-                <div className="lg:grid  lg:grid-cols-6">
+              <div className=" hidden md:flex">
+                <div className="md:grid  md:grid-cols-6">
                   <div className="mt-5 ml-5">
                     <Filters />
                   </div>
-                  <div className="lg:col-span-5 lg:ml-10  mt-5">
+                  <div className="md:col-span-5 lg:ml-10  mt-5">
                     <CardsOffers />
                   </div>
                 </div>
