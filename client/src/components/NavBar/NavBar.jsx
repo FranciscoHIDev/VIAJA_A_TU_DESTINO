@@ -94,7 +94,7 @@ function NavBar() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <button className="rounded-md  py-[1px] px-[5px] text-[#fff]  bg-[#ff3e02] font-medium">
+                      <button className="rounded-md  py-[1px] px-[5px] text-[#fff]  bg-[#ff3e02] font-medium hover:bg-[#53b3cb]">
                         Cotizador
                       </button>
                     </a>

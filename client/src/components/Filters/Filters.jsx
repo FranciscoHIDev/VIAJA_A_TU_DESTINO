@@ -1,7 +1,7 @@
 import React from "react";
 import { MdLocationOn, MdLocalOffer } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllOffers } from "../../redux/actions/actions";
+import { filterByCategory, getAllOffers } from "../../redux/actions/actions";
 
 function Filters() {
   const dispatch = useDispatch();
@@ -11,9 +11,9 @@ function Filters() {
     dispatch(getAllOffers);
   }, [dispatch]);
 
-  function handleHotels(e) {
-    e.preventDefault();
-    offers.map((o) => o.category === "hotel");
+  function handleCategory(e) {
+    e.preventDefault(e);
+    dispatch(filterByCategory(e.target.value));
   }
 
   return (
@@ -144,21 +144,20 @@ function Filters() {
                   className="cursor-pointer mr-3"
                   type="checkbox"
                   name="Paquete"
-                  value="paquete"
+                  value="Paquete"
+                  onClick={handleCategory}
                 />
                 Paquete
               </label>
             </div>
-            <div
-              className="flex justify-between hover:bg-[#53b3cb] cursor-pointer"
-              onClick={handleHotels}
-            >
+            <div className="flex justify-between hover:bg-[#53b3cb] cursor-pointer">
               <label className="cursor-pointer">
                 <input
                   className="cursor-pointer mr-3"
                   type="checkbox"
-                  name="Paquete"
-                  value="hotel"
+                  name="Hotel"
+                  value="Hotel"
+                  onClick={handleCategory}
                 />
                 Hotel
               </label>
@@ -168,8 +167,9 @@ function Filters() {
                 <input
                   className="cursor-pointer mr-3"
                   type="checkbox"
-                  name="Paquete"
-                  value="paquete"
+                  name="Vuelo"
+                  value="Vuelo"
+                  onClick={handleCategory}
                 />
                 Vuelo
               </label>
@@ -179,8 +179,9 @@ function Filters() {
                 <input
                   className="cursor-pointer mr-3"
                   type="checkbox"
-                  name="Paquete"
-                  value="paquete"
+                  name="Tour"
+                  value="Tour"
+                  onClick={handleCategory}
                 />
                 Tour
               </label>

@@ -5,8 +5,8 @@ import { getAllOffers } from "../../redux/actions/actions";
 function FiltersMobile() {
   const dispatch = useDispatch();
   const offers = useSelector((state) => state.offers);
-  const destinations = offers.filter((offer) => offer.destination.name);
-  console.log(destinations);
+  const departures = offers.map((o) => o.departure);
+  console.log(departures);
   React.useEffect(() => {
     dispatch(getAllOffers);
   }, [dispatch]);
@@ -14,7 +14,7 @@ function FiltersMobile() {
     <React.Fragment>
       <div className="flex flex-row md:hidden justify-around">
         <div>
-          <select className="rounded-md  border-2 border-[#53b3cb]">
+          <select className="rounded-xl  border-2 border-[#53b3cb] p-1">
             <option value={""}>Categorías</option>
 
             <option>Paquetes</option>
@@ -24,20 +24,22 @@ function FiltersMobile() {
           </select>
         </div>
         <div>
-          <select className="rounded-md  border-2 border-[#53b3cb]">
+          <select className="rounded-xl  border-2 border-[#53b3cb] p-1">
             <option value={""}>Saliendo desde</option>
-            {offers.map((offer) => (
-              <option key="offer.departure">{offer.departure}</option>
+            {departures.filter((d) => (
+              <option key="d">{d}</option>
             ))}
           </select>
         </div>
         <div>
-          <select className="rounded-md  border-2 border-[#53b3cb]">
-            <option value={""}>Destino</option>
-            {destinations.map((offer) => (
-              <option key="destination.name">
-                {offer.destination.name.toLowerCase()}
-              </option>
+          <select className="rounded-xl  border-2 border-[#53b3cb] p-1">
+            <option value={""}>Destinos</option>
+            {[
+              ...new Set(
+                offers.map((offer) => offer.destination.name.toLowerCase())
+              ),
+            ].map((destination, index) => (
+              <option key={index}>{destination}</option>
             ))}
           </select>
         </div>

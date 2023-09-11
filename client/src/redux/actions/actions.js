@@ -4,10 +4,8 @@ export const GET_ALL_BANNERS = "GET_ALL_BANNERS";
 export const GET_ALL_HOTELS = "GET_ALL_HOTELS";
 export const GET_ALL_PACKAGES = "GET_ALL_PACKAGES";
 export const POST_USER = "POST_USER";
-export const FILTER_BY_PACKAGES = "FILTER_BY_PACKAGES";
-export const FILTER_BY_HOTELS = "FILTER_BY_HOTELS";
-export const FILTER_BY_FLIGHTS = "FILTER_BY_FLIGHTS";
-export const FILTER_BY_TOURS = "FILTER_BY_TOURS";
+export const ALL_FILTERS = "ALL_FILTERS";
+
 
 export const getAllOffers = async (dispatch) => {
   try {
@@ -57,29 +55,11 @@ export const postUser = (payload) => async (dispatch) => {
   }
 };
 
-export const filterByPackages = (payload) => {
+export const filterByCategory = (payload) => {
   return {
-    type: "FILTER_BY_PACKAGES",
+    type: "ALL_FILTERS",
     payload,
   };
 };
 
-export const filterByHotels = (payload) => {
-  return {
-    type: "FILTER_BY_HOTELS",
-    payload,
-  };
-};
-export const filterByFlights = (payload) => {
-  return {
-    type: "FILTER_BY_FLIGHTS",
-    payload,
-  };
-};
 
-export const filterByTours = (payload) => {
-  return {
-    type: "FILTER_BY_TOURS",
-    payload,
-  };
-};
