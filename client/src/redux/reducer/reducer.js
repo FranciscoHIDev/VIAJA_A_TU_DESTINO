@@ -8,6 +8,7 @@ const initialState = {
   offers: [],
   banners: [],
   users: [],
+  filters: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -16,6 +17,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         offers: action.payload,
+        filters: action.payload,
       };
     case GET_ALL_BANNERS:
       return {
@@ -28,7 +30,7 @@ const rootReducer = (state = initialState, action) => {
         user: action.payload,
       };
     case ALL_FILTERS:
-      var categorys = state.offers.filter((offer) =>
+      var categorys = state.filters.filter((offer) =>
         offer.category.name.includes(action.payload)
       );
 

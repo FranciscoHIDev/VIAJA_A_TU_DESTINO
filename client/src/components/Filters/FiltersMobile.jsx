@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllOffers } from "../../redux/actions/actions";
+import { filterByCategory, getAllOffers } from "../../redux/actions/actions";
 
 function FiltersMobile() {
   const dispatch = useDispatch();
@@ -10,17 +10,26 @@ function FiltersMobile() {
   React.useEffect(() => {
     dispatch(getAllOffers);
   }, [dispatch]);
+
+  function handleCategory(e) {
+    e.preventDefault(e);
+    dispatch(filterByCategory(e.target.value));
+  }
+
   return (
     <React.Fragment>
       <div className="flex flex-row md:hidden justify-around">
         <div>
-          <select className="rounded-xl  border-2 border-[#53b3cb] p-1">
+          <select
+            className="rounded-xl  border-2 border-[#53b3cb] p-1"
+            onChange={handleCategory}
+          >
             <option value={""}>Categorías</option>
 
-            <option>Paquetes</option>
-            <option>Hoteles</option>
-            <option>Vuelos</option>
-            <option>Tours</option>
+            <option value="Paquete">Paquetes</option>
+            <option value="Hotel">Hoteles</option>
+            <option value="Vuelo">Vuelos</option>
+            <option value="Tour">Tours</option>
           </select>
         </div>
         <div>

@@ -2,6 +2,9 @@ import React from "react";
 import { MdLocationOn, MdLocalOffer } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { filterByCategory, getAllOffers } from "../../redux/actions/actions";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 function Filters() {
   const dispatch = useDispatch();
@@ -138,7 +141,7 @@ function Filters() {
             <button className="text-[#ff3e02] text-[15px]">Quitar</button>
           </div>
           <div className="mx-3 mt-2">
-            <div className="flex justify-between hover:bg-[#53b3cb] cursor-pointer">
+            {/* <div className="flex justify-between hover:bg-[#53b3cb] cursor-pointer">
               <label className="cursor-pointer">
                 <input
                   className="cursor-pointer mr-3"
@@ -185,7 +188,33 @@ function Filters() {
                 />
                 Tour
               </label>
-            </div>
+            </div> */}
+            <FormGroup onChange={handleCategory}>
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label="Paquete"
+                value={"Paquete"}
+              />
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label="Hotel"
+                value={"Hotel"}
+              />
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label="Vuelo"
+                value={"Vuelo"}
+              />
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label="Tour"
+                value={"Tour"}
+              />
+            </FormGroup>
           </div>
         </div>
       </div>
