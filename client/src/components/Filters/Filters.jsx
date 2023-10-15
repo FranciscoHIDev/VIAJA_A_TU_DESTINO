@@ -1,7 +1,11 @@
 import React from "react";
 import { MdLocationOn, MdLocalOffer } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByCategory, getAllOffers } from "../../redux/actions/actions";
+import {
+  filterByCategory,
+  filterByDeparture,
+  getAllOffers,
+} from "../../redux/actions/actions";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -19,6 +23,11 @@ function Filters() {
     dispatch(filterByCategory(e.target.value));
   }
 
+  function handleDeparture(e) {
+    e.preventDefault(e);
+    dispatch(filterByDeparture(e.target.value));
+  }
+
   return (
     <React.Fragment>
       <div className="md:flex flex-col hidden">
@@ -31,105 +40,62 @@ function Filters() {
             <button className="text-[#ff3e02] text-[15px]">Quitar</button>
           </div>
           <div className="mx-3 mt-2">
-            <div className="cursor-pointer hover:bg-[#53b3cb]">
-              <label className="cursor-pointer">
-                <input
-                  className="cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Ciudad de México"
-                  value="Ciudad de México"
-                />
-                Ciudad de México{" "}
-              </label>
-            </div>
-            <div className="cursor-pointer hover:bg-[#53b3cb]">
-              <label className="cursor-pointer">
-                <input
-                  className=" cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Ciudad de México"
-                  value="Ciudad de México"
-                />
-                Monterrey
-              </label>
-            </div>
-            <div className="cursor-pointer hover:bg-[#53b3cb]">
-              <label className="cursor-pointer">
-                <input
-                  className="cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Ciudad de México"
-                  value="Ciudad de México"
-                />
-                Guadalajara
-              </label>
-            </div>
-            <div className="cursor-pointer hover:bg-[#53b3cb]">
-              <label className="cursor-pointer">
-                <input
-                  className="cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Ciudad de México"
-                  value="Ciudad de México"
-                />
-                Cancún
-              </label>
-            </div>
-            <div className="cursor-pointer hover:bg-[#53b3cb]">
-              <label className="cursor-pointer">
-                <input
-                  className="cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Ciudad de México"
-                  value="Ciudad de México"
-                />
-                Veracruz
-              </label>
-            </div>
-            <div className="cursor-pointer hover:bg-[#53b3cb]">
-              <label className="cursor-pointer">
-                <input
-                  className="cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Ciudad de México"
-                  value="Ciudad de México"
-                />
-                Ciudad Juárez
-              </label>
-            </div>
-            <div className="cursor-pointer hover:bg-[#53b3cb]">
-              <label className="cursor-pointer">
-                <input
-                  className="cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Ciudad de México"
-                  value="Ciudad de México"
-                />
-                Santa Lucia
-              </label>
-            </div>
-            <div className="cursor-pointer hover:bg-[#53b3cb]">
-              <label className="cursor-pointer">
-                <input
-                  className="cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Ciudad de México"
-                  value="Ciudad de México"
-                />
-                Tijuana
-              </label>
-            </div>
-            <div className="cursor-pointer hover:bg-[#53b3cb]">
-              <label className="cursor-pointer">
-                <input
-                  className="cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Ciudad de México"
-                  value="Ciudad de México"
-                />
-                León / Bajío
-              </label>
-            </div>
+            <FormGroup onChange={handleDeparture}>
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label="Ciudad de México"
+                value={"Ciudad de México"}
+              />
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label="Monterrey"
+                value={"Monterrey"}
+              />
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label="  Guadalajara"
+                value={"Guadalajara"}
+              />
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label="Cancún"
+                value={"Cancún"}
+              />
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label=" Veracruz"
+                value={"Veracruz"}
+              />
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label="Ciudad Juárez"
+                value={"Ciudad Juárez"}
+              />
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label=" Santa Lucia"
+                value={"Santa Lucia"}
+              />
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label=" Tijuana"
+                value={"Tijuana"}
+              />
+              <FormControlLabel
+                className=" hover:bg-[#53b3cb] "
+                control={<Checkbox />}
+                label="  León / Bajío"
+                value={"Leon"}
+              />
+            </FormGroup>
           </div>
         </div>
         <div className="bg-[#ddf3fa] p-2 mt-5 rounded-md">
@@ -141,54 +107,6 @@ function Filters() {
             <button className="text-[#ff3e02] text-[15px]">Quitar</button>
           </div>
           <div className="mx-3 mt-2">
-            {/* <div className="flex justify-between hover:bg-[#53b3cb] cursor-pointer">
-              <label className="cursor-pointer">
-                <input
-                  className="cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Paquete"
-                  value="Paquete"
-                  onClick={handleCategory}
-                />
-                Paquete
-              </label>
-            </div>
-            <div className="flex justify-between hover:bg-[#53b3cb] cursor-pointer">
-              <label className="cursor-pointer">
-                <input
-                  className="cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Hotel"
-                  value="Hotel"
-                  onClick={handleCategory}
-                />
-                Hotel
-              </label>
-            </div>
-            <div className="flex hover:bg-[#53b3cb] cursor-pointer">
-              <label className="cursor-pointer">
-                <input
-                  className="cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Vuelo"
-                  value="Vuelo"
-                  onClick={handleCategory}
-                />
-                Vuelo
-              </label>
-            </div>
-            <div className="flex justify-between hover:bg-[#53b3cb] cursor-pointer">
-              <label className="cursor-pointer">
-                <input
-                  className="cursor-pointer mr-3"
-                  type="checkbox"
-                  name="Tour"
-                  value="Tour"
-                  onClick={handleCategory}
-                />
-                Tour
-              </label>
-            </div> */}
             <FormGroup onChange={handleCategory}>
               <FormControlLabel
                 className=" hover:bg-[#53b3cb] "

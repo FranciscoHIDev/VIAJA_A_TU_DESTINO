@@ -6,7 +6,7 @@ function FiltersMobile() {
   const dispatch = useDispatch();
   const offers = useSelector((state) => state.offers);
   const departures = offers.map((o) => o.departure);
-  console.log(departures);
+
   React.useEffect(() => {
     dispatch(getAllOffers);
   }, [dispatch]);

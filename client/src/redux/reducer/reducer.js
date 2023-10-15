@@ -2,7 +2,8 @@ import {
   GET_ALL_BANNERS,
   GET_ALL_OFFERS,
   POST_USER,
-  ALL_FILTERS,
+  FILTER_CATEGORY,
+  FILTER_DEPARTURE,
 } from "../actions/actions";
 const initialState = {
   offers: [],
@@ -29,7 +30,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
-    case ALL_FILTERS:
+    case FILTER_CATEGORY:
       var categorys = state.filters.filter((offer) =>
         offer.category.name.includes(action.payload)
       );
@@ -38,7 +39,17 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         offers: [...categorys],
       };
-
+    case FILTER_DEPARTURE:
+      var departures = state.filters.filter(
+        (offer) =>
+          typeof offer.departure === "string" &&
+          offer.departure.includes(action.payload)
+      );
+      console.log(departures, "SALIDA");
+      return {
+        ...state,
+        offers: [...departures],
+      };
     default:
       return state;
   }

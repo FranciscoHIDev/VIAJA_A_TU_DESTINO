@@ -4,8 +4,8 @@ export const GET_ALL_BANNERS = "GET_ALL_BANNERS";
 export const GET_ALL_HOTELS = "GET_ALL_HOTELS";
 export const GET_ALL_PACKAGES = "GET_ALL_PACKAGES";
 export const POST_USER = "POST_USER";
-export const ALL_FILTERS = "ALL_FILTERS";
-
+export const FILTER_CATEGORY = "FILTER_CATEGORY";
+export const FILTER_DEPARTURE = "FILTER_DEPARTURE";
 
 export const getAllOffers = async (dispatch) => {
   try {
@@ -57,9 +57,14 @@ export const postUser = (payload) => async (dispatch) => {
 
 export const filterByCategory = (payload) => {
   return {
-    type: "ALL_FILTERS",
+    type: "FILTER_CATEGORY",
     payload,
   };
 };
 
-
+export const filterByDeparture = (payload) => {
+  return {
+    type: "FILTER_DEPARTURE",
+    payload,
+  };
+};
