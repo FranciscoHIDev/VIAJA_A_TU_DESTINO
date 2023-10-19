@@ -22,22 +22,18 @@ import Tours from "./pages/Tours/Tours";
 import Flights from "./pages/Flights/Flights";
 import Packages from "./pages/Packages/Packages";
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
-
-  React.useEffect(() => {
-    window.scrollTo(0, 0); // Esto hará que la página se desplace hacia arriba al cambiar de ruta.
-  }, [pathname]);
-
+const ScrollToTop = () => {
+  window.scrollTo(0, 0);
   return null;
-}
+};
+
 function App() {
   return (
     <div>
       <BrowserRouter>
         
         <Routes>
-          <ScrollToTop /> 
+          <Route component={ScrollToTop} />
           {/* <Route path="/" element={<ComingSoon />} /> */}
           <Route path="/" element={<Home />} />
           <Route exact path="/oferta/:id" element={<Details />} />
