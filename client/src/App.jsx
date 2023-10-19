@@ -35,8 +35,9 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <ScrollToTop /> 
+        
         <Routes>
+          <ScrollToTop /> 
           {/* <Route path="/" element={<ComingSoon />} /> */}
           <Route path="/" element={<Home />} />
           <Route exact path="/oferta/:id" element={<Details />} />
