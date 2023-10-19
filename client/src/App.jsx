@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, withRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react"
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
@@ -33,7 +33,10 @@ function App() {
       <BrowserRouter>
         
         <Routes>
-          <Route component={ScrollToTop} />
+          <Route
+          path="/*"
+          element={<ScrollToTop />} // Añade ScrollToTop como un elemento
+        />
           {/* <Route path="/" element={<ComingSoon />} /> */}
           <Route path="/" element={<Home />} />
           <Route exact path="/oferta/:id" element={<Details />} />
