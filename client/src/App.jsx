@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
+import React from "react"
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import FrequentQuestions from "./pages/FrequentQuestions/FrequentQuestions";
@@ -22,10 +22,20 @@ import Tours from "./pages/Tours/Tours";
 import Flights from "./pages/Flights/Flights";
 import Packages from "./pages/Packages/Packages";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0); // Esto hará que la página se desplace hacia arriba al cambiar de ruta.
+  }, [pathname]);
+
+  return null;
+}
 function App() {
   return (
     <div>
       <BrowserRouter>
+        <ScrollToTop /> 
         <Routes>
           {/* <Route path="/" element={<ComingSoon />} /> */}
           <Route path="/" element={<Home />} />
