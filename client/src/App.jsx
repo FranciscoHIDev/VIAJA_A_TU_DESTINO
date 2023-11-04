@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React from "react"
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import FrequentQuestions from "./pages/FrequentQuestions/FrequentQuestions";
@@ -21,24 +20,15 @@ import NewTour from "./LayoutAdmin/pages/NewTour";
 import Tours from "./pages/Tours/Tours";
 import Flights from "./pages/Flights/Flights";
 import Packages from "./pages/Packages/Packages";
-
-const ScrollToTop = () => {
-  window.scrollTo(0, 0);
-  return null;
-};
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
   return (
-    <div>
-      <BrowserRouter>
-        
-        <Routes>
-          <Route
-          path="/*"
-          element={<ScrollToTop />} // Añade ScrollToTop como un elemento
-        />
-          {/* <Route path="/" element={<ComingSoon />} /> */}
-          <Route path="/" element={<Home />} />
+    <div>  
+      <BrowserRouter>    
+      <ScrollToTop></ScrollToTop>      
+        <Routes>      
+         <Route path="/" element={<Home />} />
           <Route exact path="/oferta/:id" element={<Details />} />
           <Route path="/sobre-nosotros" element={<About />} />
           <Route path="/hoteles" element={<Hotels />} />

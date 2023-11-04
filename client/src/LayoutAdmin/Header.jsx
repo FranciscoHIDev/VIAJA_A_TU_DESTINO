@@ -91,9 +91,10 @@ function Header() {
                   </div>
                 </MenuButton>
               }
-              align="end"
+              align="start"
               arrow
               transition
+             
             >
               <MenuItem className=" hover:bg-transparent">
                 <div className="flex flex-row items-center">

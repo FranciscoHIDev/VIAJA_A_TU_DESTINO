@@ -23,6 +23,7 @@ function NavBar() {
   const { isAuthenticated, user } = useAuth0();
   const dispatch = useDispatch();
   const [userDB, setUserDB] = useState({});
+
   const usersDB = useSelector((state) => state.users);
   React.useEffect(() => {
     dispatch(getAllUsers);
@@ -31,6 +32,7 @@ function NavBar() {
   React.useEffect(() => {
     if (user && isAuthenticated) {
       const myUser = usersDB.find((e) => e.email === user.email);
+      console.log(myUser);
       if (!myUser) {
         const newUser = {
           name: user.given_name,
@@ -147,15 +149,16 @@ function NavBar() {
                             </div>
                           </MenuButton>
                         }
-                        align="start"
+                        align="end"
                         transition
-                        menuClassName="bg-[#1E1F25]"
+                        arrow
+                        menuClassName="bg-white"
                       >
                         <MenuItem className=" hover:bg-transparent">
                           <div className="flex flex-row items-center border-b-[1px]">
                             <Link
                               to="#"
-                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1"
+                              className="rounded-lg transition-colors  flex items-center gap-x-2 py-1 px-4 flex-1"
                             >
                               <div className="flex mr-3">
                                 <img
@@ -164,9 +167,9 @@ function NavBar() {
                                   alt={user.name}
                                 />
                               </div>
-                              <div className="flex flex-col">
-                                <span className="text-white">{user.name}</span>
-                                <span className="text-white">{user.email}</span>
+                              <div className="flex flex-col ">
+                                <span className="text-black ">{user.name}</span>
+                                <span className="text-black">{user.email}</span>
                               </div>
                             </Link>
                           </div>
@@ -174,7 +177,7 @@ function NavBar() {
                         <MenuItem className="hover:bg-transparent">
                           <Link
                             to="#"
-                            className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-white"
+                            className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black hover:text-white"
                           >
                             Favoritos
                           </Link>
@@ -183,7 +186,7 @@ function NavBar() {
                           <MenuItem className="hover:bg-transparent">
                             <Link
                               to="/auth"
-                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-white"
+                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black  hover:text-white"
                             >
                               Mi Perfil
                             </Link>
@@ -192,7 +195,7 @@ function NavBar() {
                           <MenuItem className="hover:bg-transparent">
                             <Link
                               to="/auth"
-                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-white"
+                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black  hover:text-white"
                             >
                               Dashboard
                             </Link>
@@ -201,7 +204,7 @@ function NavBar() {
                         <MenuItem className="hover:bg-transparent">
                           <Link
                             to="#"
-                            className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1"
+                            className="rounded-lg transition-colors hover:bg-[#131517]  flex items-center gap-x-2 py-1 px-4 flex-1 "
                           >
                             <LogoutButton />
                           </Link>

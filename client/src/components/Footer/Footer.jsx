@@ -97,12 +97,12 @@ function Footer() {
             Copyright © 2023 viajaatudestino.com. Todos los derechos reservados.
           </p>
           <a
-            href="https://franciscodev.vercel.app/"
+            href="https://codelabhub.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <p className="text-white drop-shadow-[0.1em_0.1em_0.1em_black] hover:text-[#ff3e02]">
-              Desarrollado by FranciscoDEv
+              Desarrollado by codelabhub
             </p>
           </a>
         </div>

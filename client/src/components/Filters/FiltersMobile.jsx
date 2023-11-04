@@ -18,21 +18,20 @@ function FiltersMobile() {
 
   return (
     <React.Fragment>
-      <div className="flex flex-row md:hidden justify-around">
+      <div className="flex flex-row  items-center justify-between md:hidden">       
         <div>
           <select
             className="rounded-xl  border-2 border-[#53b3cb] p-1"
             onChange={handleCategory}
           >
             <option value={""}>Categorías</option>
-
             <option value="Paquete">Paquetes</option>
             <option value="Hotel">Hoteles</option>
             <option value="Vuelo">Vuelos</option>
             <option value="Tour">Tours</option>
           </select>
         </div>
-        <div>
+        <div >
           <select className="rounded-xl  border-2 border-[#53b3cb] p-1">
             <option value={""}>Saliendo desde</option>
             {departures.filter((d) => (

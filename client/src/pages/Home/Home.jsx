@@ -37,21 +37,12 @@ function Home() {
                   vacaciones
                 </h1>
               </div>
-              <div className="mt-3 md:hidden ">
+              <div className="mt-3  ">
                 <FiltersMobile />
+                <Filters />
                 <CardsOffers />
               </div>
 
-              <div className=" hidden md:flex">
-                <div className="md:grid  md:grid-cols-6">
-                  <div className="mt-5 ml-5">
-                    <Filters />
-                  </div>
-                  <div className="md:col-span-5 md:ml-10  mt-5">
-                    <CardsOffers />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </main>

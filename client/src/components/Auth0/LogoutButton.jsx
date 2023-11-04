@@ -5,7 +5,7 @@ function LogoutButton() {
   return (
     <React.Fragment>
       <button
-        className="text-white"
+        className="text-black hover:text-white"
         onClick={() => logout({ returnTo: window.location.origin })}
       >
         Cerrar sesión

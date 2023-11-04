@@ -4,6 +4,7 @@ import {
   POST_USER,
   FILTER_CATEGORY,
   FILTER_DEPARTURE,
+  CLEAR_FILTER
 } from "../actions/actions";
 const initialState = {
   offers: [],
@@ -39,6 +40,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         offers: [...categorys],
       };
+      case CLEAR_FILTER:
+        return{
+          ...state,
+          offers:initialState.filters
+        }
     case FILTER_DEPARTURE:
       var departures = state.filters.filter(
         (offer) =>
