@@ -4,7 +4,9 @@ import {
   POST_USER,
   FILTER_CATEGORY,
   FILTER_DEPARTURE,
-  CLEAR_FILTER
+  CLEAR_FILTER,
+  FILTER_DESTINATION
+
 } from "../actions/actions";
 const initialState = {
   offers: [],
@@ -35,7 +37,6 @@ const rootReducer = (state = initialState, action) => {
       var categorys = state.filters.filter((offer) =>
         offer.category.name.includes(action.payload)
       );
-
       return {
         ...state,
         offers: [...categorys],
@@ -46,15 +47,20 @@ const rootReducer = (state = initialState, action) => {
           offers:initialState.filters
         }
     case FILTER_DEPARTURE:
-      var departures = state.filters.filter(
-        (offer) =>
-          typeof offer.departure === "string" &&
+      var departure = state.filters.filter((offer) =>          
           offer.departure.includes(action.payload)
-      );
-      console.log(departures, "SALIDA");
+      );    
       return {
         ...state,
-        offers: [...departures],
+        offers: [...departure],
+      };
+      case FILTER_DESTINATION:
+      var destination = state.filters.filter((offer) =>          
+          offer.destination.name.includes(action.payload)
+      );    
+      return {
+        ...state,
+        offers: [...destination],
       };
     default:
       return state;

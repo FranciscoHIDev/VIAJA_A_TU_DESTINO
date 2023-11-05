@@ -24,11 +24,11 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
   return (
-    <div>  
-      <BrowserRouter>    
-      <ScrollToTop></ScrollToTop>      
-        <Routes>      
-         <Route path="/" element={<Home />} />
+    <div>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
           <Route exact path="/oferta/:id" element={<Details />} />
           <Route path="/sobre-nosotros" element={<About />} />
           <Route path="/hoteles" element={<Hotels />} />

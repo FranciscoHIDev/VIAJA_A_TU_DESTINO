@@ -7,6 +7,7 @@ export const POST_USER = "POST_USER";
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const FILTER_DEPARTURE = "FILTER_DEPARTURE";
 export  const CLEAR_FILTER = "CLEAR_FILTER"
+export const FILTER_DESTINATION = "FILTER_DESTINATION"
 
 export const getAllOffers = async (dispatch) => {
   try {
@@ -70,6 +71,12 @@ export const filterByDeparture = (payload) => {
   };
 };
 
+export const filterByDestination = (payload) => {
+  return {
+    type: "FILTER_DESTINATION",
+    payload,
+  };
+};
 export const clearFilter = ()=>{
   return{
     type:"CLEAR_FILTER"

@@ -1,11 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByCategory, getAllOffers } from "../../redux/actions/actions";
+import {
+  filterByCategory,
+  filterByDeparture,
+  filterByDestination,
+  getAllOffers,
+} from "../../redux/actions/actions";
 
 function FiltersMobile() {
   const dispatch = useDispatch();
   const offers = useSelector((state) => state.offers);
-  const departures = offers.map((o) => o.departure);
 
   React.useEffect(() => {
     dispatch(getAllOffers);
@@ -16,9 +20,17 @@ function FiltersMobile() {
     dispatch(filterByCategory(e.target.value));
   }
 
+  function handleDeparture(e) {
+    e.preventDefault(e);
+    dispatch(filterByDeparture(e.target.value));
+  }
+  function handleDestination(e) {
+    e.preventDefault(e);
+    dispatch(filterByDestination(e.target.value));
+  }
   return (
     <React.Fragment>
-      <div className="flex flex-row  items-center justify-between md:hidden">       
+      <div className="flex flex-row  items-center justify-between md:hidden">
         <div>
           <select
             className="rounded-xl  border-2 border-[#53b3cb] p-1"
@@ -31,24 +43,30 @@ function FiltersMobile() {
             <option value="Tour">Tours</option>
           </select>
         </div>
-        <div >
-          <select className="rounded-xl  border-2 border-[#53b3cb] p-1">
+        <div>
+          <select
+            className="rounded-xl  border-2 border-[#53b3cb] p-1"
+            onChange={handleDeparture}
+          >
             <option value={""}>Saliendo desde</option>
-            {departures.filter((d) => (
-              <option key="d">{d}</option>
-            ))}
+            {[...new Set(offers.map((offer) => offer.departure))].map(
+              (d, index) => (
+                <option key={index}>{d}</option>
+              )
+            )}
           </select>
         </div>
         <div>
-          <select className="rounded-xl  border-2 border-[#53b3cb] p-1">
+          <select
+            className="rounded-xl  border-2 border-[#53b3cb] p-1"
+            onChange={handleDestination}
+          >
             <option value={""}>Destinos</option>
-            {[
-              ...new Set(
-                offers.map((offer) => offer.destination.name.toLowerCase())
-              ),
-            ].map((destination, index) => (
-              <option key={index}>{destination}</option>
-            ))}
+            {[...new Set(offers.map((offer) => offer.destination.name))].map(
+              (destination, index) => (
+                <option key={index}>{destination}</option>
+              )
+            )}
           </select>
         </div>
       </div>
