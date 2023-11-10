@@ -13,36 +13,27 @@ function Home() {
         <header>
           <NavBar />
         </header>
-        <main className="flex-grow mt-5">
-          <div className="flex flex-col md:mx-[10px] mx-[10px] mb-20">
+        <main className="flex-grow">
+          <div className="flex flex-col  mb-20">
             <div className="flex flex-col">
-              <div>
-                <h1 className=" md:text-2xl text-[20px] text-[#253777] font-semibold ">
-                  Diseñamos las mejores ofertas de viajes
-                </h1>
-
-                <p className="  md:text-[18px]  mt-1">
-                  Diariamente buscamos las mejores tarifas ¡reserva facil,
-                  rapido y seguro!{" "}
-                </p>
-              </div>
               <div className="flex justify-center">
                 <CardsBanners />
               </div>
             </div>
             <div className="flex flex-col mt-5">
               <div>
-                <h1 className="md:text-2xl text-[20px] text-[#253777] font-semibold ">
-                  Encuentra la oferta a tu destino favorito, y disfruta de tus
-                  vacaciones
-                </h1>
+                <div className="md:mx-[30px] mx-[10px]">
+                  <h1 className="md:text-2xl text-[20px] text-[#253777] font-semibold ">
+                    Encuentra la oferta a tu destino favorito, y disfruta de tus
+                    vacaciones
+                  </h1>
+                </div>
               </div>
               <div className="mt-3  ">
                 <FiltersMobile />
                 <Filters />
                 <CardsOffers />
               </div>
-
             </div>
           </div>
         </main>

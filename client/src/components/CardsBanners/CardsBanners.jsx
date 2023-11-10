@@ -1,73 +1,47 @@
 import React from "react";
-import CardBanner from "../CardBanner/CardBanner";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import "./Carrusel.css";
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllBanners } from '../../redux/actions/actions';
-
+import { GiTruce } from "react-icons/gi";
 
 function CardsBanners() {
-  const dispatch= useDispatch()
-  const banners= useSelector((state) => state.banners)
-
-  React.useEffect(()=>{
-    dispatch(getAllBanners)
-  },[dispatch])
-
-  const mobileSettings = {
+  const settings = {
     dots: true,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    speed: 1500,
+    speed: 5000,
     autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: false,
-  };
-
-  const desktopSettings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    speed: 1500,
-    autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
+    arrows: false
   };
   return (
-    <>
-      <div className="container px-4 md:px-0 md:mx-0 items-center">
-        <Slider {...mobileSettings} className="md:hidden">
-          {banners.map((e) => (
-            <CardBanner
-              key={crypto.randomUUID()}
-              destination={e.destination}
-              image={e.image}
-              discount={e.discount}
-              textDiscount={e.textDiscount}
-              textPromotion={e.textPromotion}
-              link={e.link}
+    <React.Fragment>
+      <div className="container  items-center">
+        <Slider {...settings} className="">
+          <div>
+            <img
+              className=""
+              src="https://res.cloudinary.com/duaysiozi/image/upload/v1699582346/slider_2_jeu4jy.jpg"
+              alt="slider 1 "
             />
-          ))}
-        </Slider>
-
-        <Slider {...desktopSettings} className="hidden md:block">
-          {banners.map((e) => (
-            <CardBanner
-              key={crypto.randomUUID()}
-              destination={e.destination}
-              image={e.image}
-              discount={e.discount}
-              textDiscount={e.textDiscount}
-              textPromotion={e.textPromotion}
-              link={e.link}
+          </div>
+          <div>
+            <img
+              src="https://res.cloudinary.com/duaysiozi/image/upload/v1699582346/slider_1_j5u7wi.jpg"
+              alt="slider 2"
             />
-          ))}
+          </div>
+          <div>
+            <img
+              src="https://res.cloudinary.com/duaysiozi/image/upload/v1699582346/slider_3_cisyxx.jpg"
+              alt="slider 3"
+            />
+          </div>
         </Slider>
       </div>
-    </>
+    </React.Fragment>
   );
 }
 
