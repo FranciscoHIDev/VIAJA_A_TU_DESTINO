@@ -19,7 +19,7 @@ function Home() {
             <div className="flex flex-col">
               <div className="flex justify-center">
                 {/* <CardsBanners /> */}
-                <BannerTravel />
+                {/* <BannerTravel /> */}
               </div>
             </div>
             <div className="flex flex-col mt-5">
