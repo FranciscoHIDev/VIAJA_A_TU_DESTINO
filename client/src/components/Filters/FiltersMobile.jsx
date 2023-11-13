@@ -30,7 +30,7 @@ function FiltersMobile() {
   }
   return (
     <React.Fragment>
-      <div className="flex flex-row  items-center justify-between md:hidden">
+      <div className="flex flex-row  items-center justify-between md:hidden px-2">
         <div>
           <select
             className="rounded-xl  border-2 border-[#53b3cb] p-1"

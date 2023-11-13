@@ -5,6 +5,7 @@ import Footer from "../../components/Footer/Footer";
 import CardsOffers from "../../components/CardsOffers/CardsOffers";
 import Filters from "../../components/Filters/Filters";
 import FiltersMobile from "../../components/Filters/FiltersMobile";
+import BannerTravel from "../../components/BannerTravel/BannerTRavel";
 
 function Home() {
   return (
@@ -17,19 +18,20 @@ function Home() {
           <div className="flex flex-col  mb-20">
             <div className="flex flex-col">
               <div className="flex justify-center">
-                <CardsBanners />
+                {/* <CardsBanners /> */}
+                <BannerTravel />
               </div>
             </div>
             <div className="flex flex-col mt-5">
-              <div>
-                <div className="md:mx-[30px] mx-[10px]">
-                  <h1 className="md:text-2xl text-[20px] text-[#253777] font-semibold ">
-                    Encuentra la oferta a tu destino favorito, y disfruta de tus
-                    vacaciones
-                  </h1>
-                </div>
+              <div className="flex flex-col items-center">
+                <h2 className="md:text-5xl text-[20px] text-[#253777] font-semibold ">
+                  Las mejores ofertas de viajes{" "}
+                </h2>
+                <p className="text-[20px] mt-2">
+                  ¡Reserva facil, rápido y seguro!
+                </p>
               </div>
-              <div className="mt-3  ">
+              <div className="mt-12">
                 <FiltersMobile />
                 <Filters />
                 <CardsOffers />

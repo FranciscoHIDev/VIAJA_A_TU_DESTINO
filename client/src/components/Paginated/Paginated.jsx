@@ -20,17 +20,17 @@ function Paginated({ offers, offerPerPage, paginate, page, setPage, maxPage }) {
       <nav className="flex justify-center mb-[50px]">
         <button
           className=" m-1 text-xl px-2"
-          disabled={page === 1}
+          hidden={page === 1}
           onClick={Prev}
         >
           {`«`}
         </button>
         {pageNumbers?.map((num) => (
           <button
-            className={`m-1 text-xl px-2 rounded-md ${
+            className={` text-xl px-2 border ${
               page === num
-                ? "bg-[#ff3e02] text-white"
-                : "bg-[#53b3cb] text-white"
+                ? "bg-[#f9f9f9] text-[#ff3e02]"
+                : "bg-[#fff] text-black hover:bg-slate-200"
             }`}
             key={crypto.randomUUID()}
             onClick={(e) => paginate(e, num)}
@@ -39,8 +39,8 @@ function Paginated({ offers, offerPerPage, paginate, page, setPage, maxPage }) {
           </button>
         ))}
         <button
-          className=" m-1 text-xl px-2"
-          disabled={page === maxPage}
+          className=" m-1 text-xl px-2 hover:text-[#ff3e02]"
+          hidden={page === maxPage}
           onClick={Next}
         >{`»`}</button>
       </nav>
