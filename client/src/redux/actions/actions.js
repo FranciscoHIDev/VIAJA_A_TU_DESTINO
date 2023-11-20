@@ -3,7 +3,7 @@ export const GET_ALL_OFFERS = "GET_ALL_OFFERS";
 export const GET_ALL_BANNERS = "GET_ALL_BANNERS";
 export const GET_ALL_HOTELS = "GET_ALL_HOTELS";
 export const GET_ALL_PACKAGES = "GET_ALL_PACKAGES";
-export const POST_USER = "POST_USER";
+export const GET_ALL_USERS = "GET_ALL_USERS";
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const FILTER_DEPARTURE = "FILTER_DEPARTURE";
 export  const CLEAR_FILTER = "CLEAR_FILTER"
@@ -35,7 +35,7 @@ export const getAllBanners = async (dispatch) => {
 
 export const getAllUsers = async (dispatch) => {
   try {
-    const allUsers = await axios.get("/api/users");
+    const allUsers = await axios.get("/api/users");   
     dispatch({
       type: "GET_ALL_USERS",
       payload: allUsers.data,

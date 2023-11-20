@@ -4,7 +4,6 @@ import {
   FaSuitcase,
   FaPlane,
   FaMapMarkedAlt,
-  FaRocket,
   FaImages,
   FaBlog,
 } from "react-icons/fa";

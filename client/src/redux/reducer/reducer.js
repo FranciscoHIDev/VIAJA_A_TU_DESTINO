@@ -1,7 +1,7 @@
 import {
   GET_ALL_BANNERS,
   GET_ALL_OFFERS,
-  POST_USER,
+  GET_ALL_USERS,
   FILTER_CATEGORY,
   FILTER_DEPARTURE,
   CLEAR_FILTER,
@@ -23,15 +23,16 @@ const rootReducer = (state = initialState, action) => {
         offers: action.payload,
         filters: action.payload,
       };
+
     case GET_ALL_BANNERS:
       return {
         ...state,
         banners: action.payload,
       };
-    case POST_USER:
+    case GET_ALL_USERS:
       return {
         ...state,
-        user: action.payload,
+        users: action.payload,
       };
     case FILTER_CATEGORY:
       var categorys = state.filters.filter((offer) =>

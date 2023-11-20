@@ -1,11 +1,11 @@
 import React from "react";
-import CardsBanners from "../../components/CardsBanners/CardsBanners";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import CardsOffers from "../../components/CardsOffers/CardsOffers";
 import Filters from "../../components/Filters/Filters";
 import FiltersMobile from "../../components/Filters/FiltersMobile";
 import BannerTravel from "../../components/BannerTravel/BannerTRavel";
+import CardsTops from "../../components/CardsTops/CardsTops";
 
 function Home() {
   return (
@@ -17,17 +17,26 @@ function Home() {
         <main className="flex-grow">
           <div className="flex flex-col  mb-20">
             <div className="flex flex-col">
-              <div className="flex justify-center">
-                {/* <CardsBanners /> */}
-                {/* <BannerTravel /> */}
+              <div className="flex flex-col justify-center bg-[#2e3b69] pb-12 ">
+                <div className="flex flex-col mt-12 items-center">
+                  <h2 className="md:text-4xl text-2xl text-white font-semibold">
+                    TOP OFERTAS
+                  </h2>
+                  <p className="mt-2 md:text-2xl text-[18px] text-white">
+                    ¡Últimas ofertas encontradas!
+                  </p>
+                </div>
+                <div className="md:px-0 px-3">
+                  <CardsTops />
+                </div>
               </div>
             </div>
-            <div className="flex flex-col mt-5">
-              <div className="flex flex-col items-center">
-                <h2 className="md:text-5xl text-[20px] text-[#253777] font-semibold ">
-                  Las mejores ofertas de viajes{" "}
+            <div className="flex flex-col  mt-8">
+              <div className="flex flex-col justify-center items-center">
+                <h2 className="md:text-5xl text-2xl text-[#253777] font-semibold ">
+                  Las mejores ofertas de viajes
                 </h2>
-                <p className="text-[20px] mt-2">
+                <p className="md:text-2xl  text-[20px] mt-2">
                   ¡Reserva facil, rápido y seguro!
                 </p>
               </div>

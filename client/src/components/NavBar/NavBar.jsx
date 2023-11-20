@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaHeadset,
-  FaRegHeart,
   FaSuitcase,
   FaPlane,
   FaHotel,
@@ -24,16 +23,18 @@ function NavBar() {
   const dispatch = useDispatch();
   const [userDB, setUserDB] = useState({});
 
-  const usersDB = useSelector((state) => state.users);
   React.useEffect(() => {
     dispatch(getAllUsers);
   }, [dispatch]);
 
+  const usersDB = useSelector((state) => state.users);
+
   React.useEffect(() => {
     if (user && isAuthenticated) {
       const myUser = usersDB.find((e) => e.email === user.email);
-      console.log(myUser);
-      if (!myUser) {
+      if (myUser) {
+        setUserDB(myUser);
+      } else {
         const newUser = {
           name: user.given_name,
           lastName: user.family_name,
@@ -41,8 +42,6 @@ function NavBar() {
           image: user.image,
         };
         dispatch(postUser(newUser));
-      } else {
-        setUserDB(myUser);
       }
     }
   }, [user, isAuthenticated, usersDB, dispatch]);
@@ -120,16 +119,7 @@ function NavBar() {
                     </span>
                   </a>
                 </li>
-                <li className="flex md:mr-[25px] mr-2  color-[#444] text-[16px] items-center font-[400] ">
-                  <span className="mr-[5px] text-[#8d9fa6]">
-                    <Link to="#">
-                      <FaRegHeart className="text-[19px] md:text-[18px] text-[#035373] " />
-                    </Link>
-                  </span>
-                  <Link to="#">
-                    <span className="hidden lg:block">Favoritos</span>
-                  </Link>
-                </li>
+
                 <li className="flex md:mr-[25px]  mr-2 color-[#444] text-[16px] items-center font-[400]">
                   {isAuthenticated && user ? (
                     <>
@@ -142,7 +132,7 @@ function NavBar() {
                               </div>
                               <div>
                                 <span className="text-[15px]">
-                                  Hi, {user.given_name}
+                                  Hi, {userDB.name}
                                 </span>
                               </div>
                               <FaChevronDown className="ml-2 text-[#035373] text-[15px]" />
@@ -163,29 +153,36 @@ function NavBar() {
                               <div className="flex mr-3">
                                 <img
                                   className="w-5 h-5"
-                                  src={user.image}
-                                  alt={user.name}
+                                  src={userDB.image}
+                                  alt={userDB.name}
                                 />
                               </div>
                               <div className="flex flex-col ">
-                                <span className="text-black ">{user.name}</span>
-                                <span className="text-black">{user.email}</span>
+                                <span className="text-black ">
+                                  {userDB.name}
+                                </span>
+                                <span className="text-black">
+                                  {userDB.email}
+                                </span>
                               </div>
                             </Link>
                           </div>
                         </MenuItem>
-                        <MenuItem className="hover:bg-transparent">
-                          <Link
-                            to="#"
-                            className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black hover:text-white"
-                          >
-                            Favoritos
-                          </Link>
-                        </MenuItem>
+                        {userDB.role === "user" ? (
+                          <MenuItem className="hover:bg-transparent">
+                            <Link
+                              to="#"
+                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black hover:text-white"
+                            >
+                              Favoritos
+                            </Link>
+                          </MenuItem>
+                        ) : null}
+
                         {isAuthenticated && userDB.role === "user" ? (
                           <MenuItem className="hover:bg-transparent">
                             <Link
-                              to="/auth"
+                              to="/mi-perfil"
                               className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black  hover:text-white"
                             >
                               Mi Perfil
@@ -197,14 +194,14 @@ function NavBar() {
                               to="/auth"
                               className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black  hover:text-white"
                             >
-                              Dashboard
+                              Web Admin
                             </Link>
                           </MenuItem>
                         )}
                         <MenuItem className="hover:bg-transparent">
                           <Link
                             to="#"
-                            className="rounded-lg transition-colors hover:bg-[#131517]  flex items-center gap-x-2 py-1 px-4 flex-1 "
+                            className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black  hover:text-white"
                           >
                             <LogoutButton />
                           </Link>

@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Hotels from "./pages/Hotels/Hotels";
 import Destinations from "./pages/Destinations/Destinations";
 import LayoutAdmin from "./LayoutAdmin/LayoutAdmin";
+import LayoutProfile from "./LayoutProfile/LayoutProfile";
 import OffersAdmin from "./LayoutAdmin/pages/OffersAdmin";
 import PackagesAdmin from "./LayoutAdmin/pages/PackagesAdmin";
 import HomeAdmin from "./LayoutAdmin/pages/HomeAdmin";
@@ -45,7 +46,7 @@ function App() {
             <Route path="new-flight" element={<NewFlight />} />
             <Route path="new-tour" element={<NewTour />} />
           </Route>
-
+          <Route path="/mi-perfil" element={<LayoutProfile />}></Route>
           <Route path="/preguntas-frecuentes" element={<FrequentQuestions />} />
           <Route path="/aviso-de-privacidad" element={<NoticeOfPrivacy />} />
           <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
