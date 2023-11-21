@@ -3,7 +3,9 @@ import {
   FaRegCalendarAlt,
   FaPlaneDeparture,
   FaPlaneArrival,
+  FaMapMarkedAlt,
 } from "react-icons/fa";
+
 import { NavLink } from "react-router-dom";
 function CardTop({
   _id,
@@ -39,24 +41,18 @@ function CardTop({
             <p className="uppercase font-bold text-[20px] text-[#333]">
               {title}
             </p>
-            <div className="flex flex-row items-center mt-2">
-              <FaPlaneDeparture className="text-[#666] text-[20px]" />
-              <p className="ml-[10px] text-[#666] font-[400]">
-                Saliendo desde:{" "}
-                <span className="text-[15px] font-[600] text-[#666]">
-                  {departure}
-                </span>
-              </p>
-            </div>
-            <div className="flex flex-row items-center mt-2">
-              <FaPlaneArrival className="text-[#666] text-[20px]" />
-              <p className="ml-[10px] text-[#666] font-[400]">
-                Llegando a:{" "}
-                <span className="text-[15px] font-[600] text-[#666]">
-                  {arrival}
-                </span>
-              </p>
-            </div>
+            {category.name === "Tour" ? (
+              <div className="flex flex-row items-center mt-2">
+                <FaMapMarkedAlt className="text-[#666] text-[20px]" />
+                <p className="ml-[10px] text-[#666] font-[400] ">
+                  Destino:{" "}
+                  <span className="text-[15px] font-[600] text-[#666]">
+                    {destination.name}
+                  </span>
+                </p>
+              </div>
+            ) : null}
+
             <div className="flex flex-row items-center mt-2">
               <FaRegCalendarAlt className="text-[#666] text-[20px]" />
               <p className="ml-[10px] text-[#666] font-[400] ">
@@ -66,6 +62,30 @@ function CardTop({
                 </span>
               </p>
             </div>
+
+            {departure ? (
+              <div className="flex flex-row items-center mt-2">
+                <FaPlaneDeparture className="text-[#666] text-[20px]" />
+                <p className="ml-[10px] text-[#666] font-[400]">
+                  Saliendo desde:{" "}
+                  <span className="text-[15px] font-[600] text-[#666]">
+                    {departure}
+                  </span>
+                </p>
+              </div>
+            ) : null}
+
+            {arrival ? (
+              <div className="flex flex-row items-center mt-2">
+                <FaPlaneArrival className="text-[#666] text-[20px]" />
+                <p className="ml-[10px] text-[#666] font-[400]">
+                  Llegando a:{" "}
+                  <span className="text-[15px] font-[600] text-[#666]">
+                    {arrival}
+                  </span>
+                </p>
+              </div>
+            ) : null}
             <div className="mt-4">
               <p className="text-[#666]">{summary}</p>
             </div>

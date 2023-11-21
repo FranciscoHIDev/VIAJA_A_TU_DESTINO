@@ -11,6 +11,7 @@ import {
 const initialState = {
   offers: [],
   banners: [],
+  topOffers:[],
   users: [],
   filters: [],
 };
@@ -22,6 +23,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         offers: action.payload,
         filters: action.payload,
+        topOffers:action.payload
       };
 
     case GET_ALL_BANNERS:

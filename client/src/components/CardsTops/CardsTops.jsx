@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOffers } from "../../redux/actions/actions";
 import CardTop from "../CardTop/CardTop";
-// import CardOffers from "../CardOffers/CardOffers";
 
 function CardsTops() {
   const dispatch = useDispatch();
-  const allOffers = useSelector((state) => state.offers);
+  const allOffers = useSelector((state) => state.topOffers);
   const offersTop = allOffers.slice(-3);
   useEffect(() => {
     dispatch(getAllOffers);
