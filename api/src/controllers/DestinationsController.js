@@ -3,7 +3,8 @@ const destinationSchema = require("../models/Destinations")
 /* Routes to create a new destination */
 const routerPostDestination = async (req, res) => {
     try {
-        const destination = destinationSchema(req.body)
+        const { name } = req.body;
+        const destination = new destinationSchema({ name: name.toLowerCase() });        
         await destination.save()
         res.status(201).json(destination)
 

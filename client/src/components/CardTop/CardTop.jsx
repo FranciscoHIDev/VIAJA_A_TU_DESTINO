@@ -41,13 +41,14 @@ function CardTop({
             <p className="uppercase font-bold text-[20px] text-[#333]">
               {title}
             </p>
-            {category.name === "Tour" ? (
+            {category.name === "Tour" || category.name === "Hotel" ? (
               <div className="flex flex-row items-center mt-2">
                 <FaMapMarkedAlt className="text-[#666] text-[20px]" />
                 <p className="ml-[10px] text-[#666] font-[400] ">
                   Destino:{" "}
                   <span className="text-[15px] font-[600] text-[#666]">
-                    {destination.name}
+                    {destination.name.charAt(0).toUpperCase() +
+                      destination.name.slice(1).toLowerCase()}
                   </span>
                 </p>
               </div>

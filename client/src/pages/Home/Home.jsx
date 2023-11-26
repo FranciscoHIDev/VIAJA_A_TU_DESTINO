@@ -17,8 +17,8 @@ function Home() {
         <main className="flex-grow">
           <div className="flex flex-col  mb-20">
             <div className="flex flex-col">
-              <div className="flex flex-col justify-center bg-[#2e3b69] pb-12 ">
-                <div className="flex flex-col mt-12 items-center">
+              <div className="flex flex-col justify-center bg-[#2e3b69] pb-10 ">
+                <div className="flex flex-col mt-10 items-center">
                   <h2 className="md:text-4xl text-2xl text-white font-semibold">
                     TOP OFERTAS
                   </h2>
@@ -26,7 +26,7 @@ function Home() {
                     ¡Últimas ofertas encontradas!
                   </p>
                 </div>
-                <div className="md:px-0 px-3">
+                <div className="md:px-0 px-3 md:mt-[-8px] mt-[-15px]">
                   <CardsTops />
                 </div>
               </div>

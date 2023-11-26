@@ -127,7 +127,7 @@ function Details() {
                           {offer.destination.name}
                         </p>
                         <p className="mt-5 text-[17px]">
-                          Creado el {offer.date} by {offer.author}
+                          Publicado el {offer.date} by {offer.author}
                         </p>
                         <p className="mt-2 text-2xl font-bold text-[#253777] flex  items-center">
                           <span className="mr-2">
@@ -209,14 +209,26 @@ function Details() {
                             ))}
                           </div>
                         </div>
-                      ) : (
-                        <div className="flex mt-14 justify-center">
-                          <button className="bg-[#ff3e02] p-2 rounded-xl text-white text-2xl hover:bg-[#53b3cb]">
-                            RESERVAR OFERTA
-                          </button>
-                        </div>
-                      )}
+                      ) : null}
                     </div>
+                    {offer.category.name === "Tour" ? (
+                      <div className="flex mt-14 justify-center">
+                        {offer.buyLinks.map((e, index) => (
+                          <div key={index}>
+                            <a
+                              href={e.link}
+                              rel="noopener noreferrer"
+                              target="_blank"
+                              className="cursor-pointer"
+                            >
+                              <button className="bg-[#ff3e02] p-2 rounded-xl text-white text-2xl hover:bg-[#53b3cb]">
+                                IR A LA OFERTA
+                              </button>
+                            </a>
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
                   </div>
                   {offer.category.name === "Paquete" ||
                   offer.category.name === "Hotel" ||
@@ -233,6 +245,12 @@ function Details() {
                             <ImPriceTag className="mr-2 mt-1" />
                             <p className="text-[20px] mr-2">Desde </p>
                             <p className="text-[25px]">${offer.price}</p>
+                            {offer.category.name === "Hotel" ? (
+                              <p className="pl-4">Precio por noche</p>
+                            ) : null}
+                            {offer.category.name === "Paquete" ? (
+                              <p className="pl-4">Precio por persona</p>
+                            ) : null}
                           </div>
                         </div>
                         <div className="mt-5 mx-5">

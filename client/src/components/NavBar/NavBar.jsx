@@ -179,22 +179,22 @@ function NavBar() {
                           </MenuItem>
                         ) : null}
 
-                        {isAuthenticated && userDB.role === "user" ? (
-                          <MenuItem className="hover:bg-transparent">
-                            <Link
-                              to="/mi-perfil"
-                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black  hover:text-white"
-                            >
-                              Mi Perfil
-                            </Link>
-                          </MenuItem>
-                        ) : (
+                        {isAuthenticated && userDB.role === "superAdmin" ? (
                           <MenuItem className="hover:bg-transparent">
                             <Link
                               to="/auth"
                               className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black  hover:text-white"
                             >
                               Web Admin
+                            </Link>
+                          </MenuItem>
+                        ) : (
+                          <MenuItem className="hover:bg-transparent">
+                            <Link
+                              to="/mi-perfil"
+                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black  hover:text-white"
+                            >
+                              Mi Perfil
                             </Link>
                           </MenuItem>
                         )}

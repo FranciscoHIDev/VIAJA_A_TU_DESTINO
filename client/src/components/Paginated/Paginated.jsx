@@ -17,7 +17,7 @@ function Paginated({ offers, offerPerPage, paginate, page, setPage, maxPage }) {
   }
   return (
     <React.Fragment>
-      <nav className="flex justify-center mb-[50px]">
+      <nav className="flex justify-center my-[20px]">
         <button
           className=" m-1 text-xl px-2"
           hidden={page === 1}

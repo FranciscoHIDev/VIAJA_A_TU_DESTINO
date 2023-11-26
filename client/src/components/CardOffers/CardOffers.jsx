@@ -53,7 +53,7 @@ function CardOffers({
         </div>
         <div>
           <div>
-            <h1 className="text-[17px] text-[#035373] hover:text-[#ff3e02] ml-[20px] mr-[20px] font-[600] uppercase">
+            <h1 className="text-[17px] text-[#035373]  ml-[20px] mr-[20px] font-[600] uppercase">
               {title}
             </h1>
             <p className="ml-[20px] mb-3 font-light">{summary}</p>
@@ -91,11 +91,15 @@ function CardOffers({
           ) : (
             <br></br>
           )}
-          {category.name === "Hotel" && "Tour" ? (
+          {category.name === "Hotel" || category.name === "Tour" ? (
             <div className="flex flex-row items-center ml-[20px] mt-[-20px] ">
               <FaMapMarkedAlt className="text-[#ff3e02] mr-[5px] text-[20px]" />
-              <p className="text-[15px] font-[600] text-[#323231]">
-                {destination.name}
+              <p className=" text-[#323231] font-[400] ">
+                Destino:{" "}
+                <span className="text-[15px] font-[600] text-[#323231]">
+                  {destination.name.charAt(0).toUpperCase() +
+                    destination.name.slice(1)}
+                </span>
               </p>
             </div>
           ) : null}

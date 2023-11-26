@@ -6,11 +6,12 @@ const destinationSchema = require("../models/Destinations")
 const routerPostOffer = async (req, res) => {
     try {
         const { title, summary, description, category, destination, price, image, sampleImages, promotion, departure, arrival, availability, daysOfStay, hotel, buyLinks, author } = req.body
-        let dest = await destinationSchema.findOne({ name: { $regex: new RegExp(destination, "i") } })
+        const dest = await destinationSchema.findOne({ name: destination  }) 
+
         if (!dest) {
-            dest = await destinationSchema.create({ name: destination.toUpperCase() })
+            dest = await destinationSchema.create({ name: destination })
         }
-        const newOffer = await new offerSchema({
+        const newOffer = await offerSchema.create({
             title: title,
             summary: summary,
             description: description,
@@ -28,8 +29,8 @@ const routerPostOffer = async (req, res) => {
             buyLinks: buyLinks,
             author: author
         })
-        await newOffer.save()
-        await newOffer.populate("destination")
+        // await newOffer.save()
+        await newOffer.populate("destination").execPopulate()
         res.status(201).json(newOffer)
 
     } catch (error) {
@@ -66,9 +67,9 @@ const routerPutOffer = async (req, res) => {
     try {
         const { id } = req.params
         const { title, summary, description, category, destination, price, image, sampleImages, promotion, departure, arrival, availability, daysOfStay, hotel, buyLinks, author, active } = req.body
-        let dest = await destinationSchema.findOne({ name: { $regex: new RegExp(destination, "i") } })
+        let dest = await destinationSchema.findOne({ name:destination })
         if (!dest) {
-            dest = await destinationSchema.create({ name: destination.toUpperCase() })
+            dest = await destinationSchema.create({ name: destination})
         }
         const offer = await offerSchema.updateOne({ _id: id }, { $set: { title, summary, description, category, destination: dest._id, price, image, sampleImages, promotion, departure, arrival, availability, daysOfStay, hotel, buyLinks, author, active } })
         res.status(200).json(offer)
