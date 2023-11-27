@@ -172,7 +172,7 @@ function NewOffer() {
               margin="normal"
               name="category.name"
               label="Categoría"
-              value={formik.values.category.name}
+              value={formik.values.category.name.toLowerCase()}
               onChange={formik.handleChange}
             >
               <MenuItem value="Paquete">Paquete</MenuItem>

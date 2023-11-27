@@ -6,12 +6,12 @@ const destinationSchema = require("../models/Destinations")
 const routerPostOffer = async (req, res) => {
     try {
         const { title, summary, description, category, destination, price, image, sampleImages, promotion, departure, arrival, availability, daysOfStay, hotel, buyLinks, author } = req.body
-        const dest = await destinationSchema.findOne({ name: destination  }) 
-
+        const dest = await destinationSchema.findOne({ name: { $regex: new RegExp(destination) } }) 
+        console.log(dest)
         if (!dest) {
-            dest = await destinationSchema.create({ name: destination })
+            dest = await destinationSchema.create({ name: destination.toLowerCase() })
         }
-        const newOffer = await offerSchema.create({
+        const newOffer = await new offerSchema({
             title: title,
             summary: summary,
             description: description,
@@ -29,8 +29,8 @@ const routerPostOffer = async (req, res) => {
             buyLinks: buyLinks,
             author: author
         })
-        // await newOffer.save()
-        await newOffer.populate("destination").execPopulate()
+        await newOffer.save()
+        await newOffer.populate("destination")
         res.status(201).json(newOffer)
 
     } catch (error) {
@@ -67,9 +67,10 @@ const routerPutOffer = async (req, res) => {
     try {
         const { id } = req.params
         const { title, summary, description, category, destination, price, image, sampleImages, promotion, departure, arrival, availability, daysOfStay, hotel, buyLinks, author, active } = req.body
-        let dest = await destinationSchema.findOne({ name:destination })
+        let dest = await destinationSchema.findOne({ name: { $regex: new RegExp(destination, "i") } })
+        console.log(dest)
         if (!dest) {
-            dest = await destinationSchema.create({ name: destination})
+            dest = await destinationSchema.create({ name: destination.toLowerCase()})
         }
         const offer = await offerSchema.updateOne({ _id: id }, { $set: { title, summary, description, category, destination: dest._id, price, image, sampleImages, promotion, departure, arrival, availability, daysOfStay, hotel, buyLinks, author, active } })
         res.status(200).json(offer)

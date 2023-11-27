@@ -189,7 +189,7 @@ function NewTour() {
               margin="normal"
               name="destination.name"
               label="Destino"
-              value={formik.values.destination.name}
+              value={formik.values.destination.name.toLowerCase()}
               onChange={formik.handleChange}
               required
             />
