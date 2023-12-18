@@ -97,12 +97,13 @@ function Footer() {
             Copyright © 2023 viajaatudestino.com. Todos los derechos reservados.
           </p>
           <a
-            href="https://codelabhub.com/"
+            href="https://codelabtech.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <p className="text-white drop-shadow-[0.1em_0.1em_0.1em_black] hover:text-[#ff3e02]">
-              Desarrollado by codelabhub
+            <p className="text-white drop-shadow-[0.1em_0.1em_0.1em_black] ">
+              Desarrollado by{" "}
+              <span className="text-[#ff3e02] font-bold">CodeLab Tech</span>
             </p>
           </a>
         </div>

@@ -28,12 +28,17 @@ function FiltersMobile() {
     e.preventDefault(e);
     dispatch(filterByDestination(e.target.value));
   }
+
+  function handleClearFilter(e) {
+    e.preventDefault(e);
+    dispatch(getAllOffers);
+  }
   return (
     <React.Fragment>
-      <div className="flex flex-row  items-center justify-between md:hidden px-2">
+      <div className="flex flex-row  items-center justify-between md:hidden px-2 bg-white mx-3 py-2 rounded-xl border">
         <div>
           <select
-            className="rounded-xl  border-2 border-[#53b3cb] p-1"
+            className="rounded-xl  border-2 p-1 outline-none text-[12px]"
             onChange={handleCategory}
           >
             <option value={""}>Categorías</option>
@@ -45,7 +50,7 @@ function FiltersMobile() {
         </div>
         <div>
           <select
-            className="rounded-xl  border-2 border-[#53b3cb] p-1"
+            className="rounded-xl  border-2  p-1 outline-none text-[12px]"
             onChange={handleDeparture}
           >
             <option value={""}>Saliendo desde</option>
@@ -58,7 +63,7 @@ function FiltersMobile() {
         </div>
         <div>
           <select
-            className="rounded-xl  border-2 border-[#53b3cb] p-1"
+            className="rounded-xl  border-2  p-1 outline-none text-[12px]"
             onChange={handleDestination}
           >
             <option value={""}>Destinos</option>
@@ -68,6 +73,14 @@ function FiltersMobile() {
               )
             )}
           </select>
+        </div>
+        <div>
+          <button
+            className=" bg-[#ff3e02] text-white px-1 rounded-md text-[12px]"
+            onClick={(e) => handleClearFilter(e)}
+          >
+            Limpiar
+          </button>
         </div>
       </div>
     </React.Fragment>

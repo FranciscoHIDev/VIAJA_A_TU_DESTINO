@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  clearFilter,
   filterByCategory,
   filterByDeparture,
   filterByDestination,
@@ -29,15 +30,20 @@ function Filters() {
     e.preventDefault(e);
     dispatch(filterByDestination(e.target.value));
   }
+
+  function handleClearFilter(e) {
+    e.preventDefault(e);
+    dispatch(getAllOffers);
+  }
   return (
     <React.Fragment>
-      <div className="md:flex flex-row justify-center items-center hidden">
+      <div className="md:flex flex-row justify-center items-center hidden bg-white mx-40 py-4 rounded-md border ">
         <div className="mr-10 hidden md:block">
           <p className="text-[#ff3e02] font-bold">Filtrar por:</p>
         </div>
         <div className="mr-10">
           <select
-            className="rounded-xl  border-2 border-[#53b3cb] p-1"
+            className="rounded-xl  border-2  p-1 outline-none"
             onChange={handleCategory}
           >
             <option value={""}>Categorías</option>
@@ -50,7 +56,7 @@ function Filters() {
         </div>
         <div className="mr-10">
           <select
-            className="rounded-xl border-2 border-[#53b3cb] p-1"
+            className="rounded-xl border-2  p-1 outline-none"
             onChange={handleDeparture}
           >
             <option value={""}>Saliendo desde</option>
@@ -63,7 +69,7 @@ function Filters() {
         </div>
         <div>
           <select
-            className="rounded-xl  border-2 border-[#53b3cb] p-1"
+            className="rounded-xl  border-2  p-1 outline-none"
             onChange={handleDestination}
           >
             <option value={""}>Destinos</option>
@@ -73,6 +79,14 @@ function Filters() {
               )
             )}
           </select>
+        </div>
+        <div>
+          <button
+            className="ml-10 bg-[#ff3e02] text-white px-2 rounded-md"
+            onClick={(e) => handleClearFilter(e)}
+          >
+            Limpiar
+          </button>
         </div>
       </div>
     </React.Fragment>
