@@ -1,7 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
-const { routerPostUser, routerGetUsers, routerGetByIdUser, routerDeleteUser, routerPutUser } = require('../controllers/UsersController')
+const { routerGetFavorites,routerPostUser, routerGetUsers, routerGetByIdUser, routerDeleteUser, routerPutUser } = require('../controllers/UsersController')
+
+router.post("/favorite", (req,res)=>{
+    routerGetFavorites(req,res)
+})
 
 /* This route is to create a user */
 router.post("/", (req, res) => {

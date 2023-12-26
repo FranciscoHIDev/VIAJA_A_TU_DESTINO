@@ -8,6 +8,7 @@ export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const FILTER_DEPARTURE = "FILTER_DEPARTURE";
 export  const CLEAR_FILTER = "CLEAR_FILTER"
 export const FILTER_DESTINATION = "FILTER_DESTINATION"
+export const ADD_FAVORITE = "ADD_FAVORITE"
 
 export const getAllOffers = async (dispatch) => {
   try {
@@ -56,6 +57,16 @@ export const postUser = (payload) => async (dispatch) => {
     console.error(error);
   }
 };
+
+export const addFavorite = (payload) =>async (dispatch)=>{
+  try{
+    const newFavorite = await axios.post("/users/favorite", payload )
+    dispatch({type:"ADD_FAVORITE",
+    payload:newFavorite.data})
+  }catch(error){
+    console.error(error)
+  }
+}
 
 export const filterByCategory = (payload) => {
   return {

@@ -74,7 +74,7 @@ function FiltersMobile() {
             )}
           </select>
         </div>
-        <div>
+        <div className="flex items-center">
           <button
             className=" bg-[#ff3e02] text-white px-1 rounded-md text-[12px]"
             onClick={(e) => handleClearFilter(e)}

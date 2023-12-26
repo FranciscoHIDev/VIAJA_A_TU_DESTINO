@@ -2,6 +2,34 @@ const Users = require("../models/Users");
 const Offers = require("../models/Offers");
 const userSchema = require("../models/Users");
 
+
+const routerGetFavorites = async(req,res)=>{
+try{
+  const {favorite, email} = req.body
+  let users = await Users.find({email: email})
+  let offers = await Offers.findById({_id:favorite})
+  let favorites = users[0].favorites
+
+  let flag = []
+  if(favorites.length > 0 ){
+    favorites.forEach((element,index) => {
+      if(JSON.stringify(element._id) === JSON.stringify(favorite)){
+        flag.push(element);
+        users[0].favorites.splice(index,1)
+      }
+    })
+    if(flag.length ===0) favorites.push(offers)     
+    }else favorites.push(offers);     
+    await Users.updateOne({_id: users[0]._id}, {favorites})
+    res.status(200).json(users[0].favorites)
+  
+  
+}catch (error) { 
+  res.status(500).send(`{messaje: ${error}}`)
+}
+}
+
+
 /* Routes to create a new user */
 const routerPostUser = async (req, res) => {
   try {
@@ -66,6 +94,7 @@ const routerDeleteUser = async (req, res) => {
   }
 };
 module.exports = {
+  routerGetFavorites,
   routerPostUser,
   routerGetUsers,
   routerGetByIdUser,

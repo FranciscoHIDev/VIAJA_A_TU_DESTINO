@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaRegCalendarAlt,
   FaPlaneDeparture,
   FaPlaneArrival,
   FaMapMarkedAlt,
 } from "react-icons/fa";
-import { MdFavoriteBorder } from "react-icons/md";
-import { RiShareForwardLine } from "react-icons/ri";
+import Swal from "sweetalert2";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite, getAllUsers } from "../../redux/actions/actions";
 
 function CardOffers({
   _id,
@@ -25,6 +28,54 @@ function CardOffers({
   author,
   date,
 }) {
+  const dispatch = useDispatch();
+  const { isAuthenticated, user } = useAuth0();
+  const [click, setClick] = useState(false);
+
+  React.useEffect(() => {
+    dispatch(getAllUsers);
+  }, [dispatch]);
+
+  const usersDB = useSelector((state) => state.users);
+
+  const onClick = () => {
+    if (
+      isAuthenticated &&
+      user &&
+      usersDB.find((u) => u.email === user.email)
+    ) {
+      const newFavorite = {
+        favorite: _id,
+        email: user.email,
+      };
+      dispatch(addFavorite(newFavorite));
+      if (!click) {
+        setClick(true);
+      } else {
+        setClick(false);
+      }
+    } else {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Necesitas iniciar sesión",
+        showConfirmButton: true,
+      });
+    }
+  };
+
+  React.useEffect(() => {
+    if (isAuthenticated && user) {
+      const userDB = usersDB.find((u) => u.email === user.email);
+      const favorite = userDB.favorites.map((e) => e._id);
+      for (let i = 0; i < favorite.length; i++) {
+        if (favorite[i] === _id) {
+          setClick(true);
+        }
+      }
+    }
+  }, [isAuthenticated, _id, user, usersDB]);
+
   return (
     <React.Fragment>
       <div
@@ -32,8 +83,15 @@ function CardOffers({
         "
       >
         <div>
-          <RiShareForwardLine className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[30px] md:ml-[245px] ml-[245px] mt-[20px] text-[#323231] opacity-[80%] p-[2px]" />
-          <MdFavoriteBorder className="cursor-pointer bg-[hsla(0,0%,100%,.5)] rounded-[50%] absolute text-[30px] md:ml-[285px] ml-[285px] mt-[20px] text-[#323231] opacity-[80%] p-[2px]" />
+          {/* <RiShareForwardLine className="cursor-pointer bg-white rounded-md absolute text-[30px] md:ml-[245px] ml-[245px] mt-[20px] text-[#323231] opacity-[80%] p-[2px]" /> */}
+          <span onClick={onClick} className=" cursor-pointer">
+            {click ? (
+              <MdFavorite className="cursor-pointer bg-white absolute rounded-md text-[30px] md:ml-[285px] ml-[285px] mt-[20px] text-black opacity-[80%] p-[2px]" />
+            ) : (
+              <MdFavoriteBorder className="cursor-pointer bg-white rounded-md absolute text-[30px] md:ml-[285px] ml-[285px] mt-[20px] text-[#323231] opacity-[80%] p-[2px]" />
+            )}
+          </span>
+
           <img
             className="w-[330px] h-[200px] rounded-tl-[20px] rounded-tr-[20px] "
             src={image[0]}

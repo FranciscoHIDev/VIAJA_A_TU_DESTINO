@@ -16,6 +16,9 @@ const userSchema = mongoose.Schema({
     unique:true
     
   },
+  favorites:{
+    type: Array
+  },
   role: {
     type: String,
     enum: ["user", "admin", "superAdmin"],
