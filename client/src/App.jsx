@@ -22,6 +22,7 @@ import Tours from "./pages/Tours/Tours";
 import Flights from "./pages/Flights/Flights";
 import Packages from "./pages/Packages/Packages";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import Favorites from "./LayoutProfile/pages/favorites";
 
 function App() {
   return (
@@ -46,7 +47,9 @@ function App() {
             <Route path="new-flight" element={<NewFlight />} />
             <Route path="new-tour" element={<NewTour />} />
           </Route>
-          <Route path="/mi-perfil" element={<LayoutProfile />}></Route>
+          <Route path="/mi-perfil" element={<LayoutProfile />}>
+            <Route path="favoritos" element={<Favorites />} />
+          </Route>
           <Route path="/preguntas-frecuentes" element={<FrequentQuestions />} />
           <Route path="/aviso-de-privacidad" element={<NoticeOfPrivacy />} />
           <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
