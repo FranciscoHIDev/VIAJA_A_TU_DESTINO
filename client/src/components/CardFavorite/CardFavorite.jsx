@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import {
   FaRegCalendarAlt,
@@ -7,11 +7,11 @@ import {
   FaMapMarkedAlt,
 } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { MdFavorite } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavorite, getAllUsers } from "../../redux/actions/actions";
+import { getAllUsers } from "../../redux/actions/actions";
 
 function CardsFavorites({
   _id,
@@ -43,6 +43,13 @@ function CardsFavorites({
       };
       await axios.post("/api/users/favorite", favorite);
       dispatch(getAllUsers);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Favorito eliminado",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       console.log(error, "error error");
     }
@@ -55,7 +62,6 @@ function CardsFavorites({
         "
       >
         <div>
-          {/* <RiShareForwardLine className="cursor-pointer bg-white rounded-md absolute text-[30px] md:ml-[245px] ml-[245px] mt-[20px] text-[#323231] opacity-[80%] p-[2px]" /> */}
           <span onClick={onClick} className=" cursor-pointer">
             <MdFavorite className="cursor-pointer bg-white absolute rounded-md text-[30px] md:ml-[285px] ml-[285px] mt-[20px] text-black opacity-[80%] p-[2px]" />
           </span>
@@ -65,9 +71,9 @@ function CardsFavorites({
             src={image[0]}
             alt="image"
           />
-          <p className="absolute mt-[-180px] rounded-tr-[8px] rounded-br-[8px] px-[1.2em] py-[0.6em] text-[1em] font-[500] bg-[hsla(0,0%,100%,.8)] text-[#323231]">
+          {/* <p className="absolute mt-[-180px] rounded-tr-[8px] rounded-br-[8px] px-[1.2em] py-[0.6em] text-[1em] font-[500] bg-[hsla(0,0%,100%,.8)] text-[#323231]">
             {promotion}
-          </p>
+          </p> */}
         </div>
         <div className="flex flex-row items-center mt-2">
           <img

@@ -60,7 +60,7 @@ export const postUser = (payload) => async (dispatch) => {
 
 export const addFavorite = (payload) =>async (dispatch)=>{
   try{
-    const newFavorite = await axios.post("/users/favorite", payload )
+    const newFavorite = await axios.post("api/users/favorite", payload )
     dispatch({type:"ADD_FAVORITE",
     payload:newFavorite.data})
   }catch(error){

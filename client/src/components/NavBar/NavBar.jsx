@@ -171,7 +171,7 @@ function NavBar() {
                         {userDB.role === "user" ? (
                           <MenuItem className="hover:bg-transparent">
                             <Link
-                              to="#"
+                              to="/mi-perfil/favoritos"
                               className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black hover:text-white"
                             >
                               Favoritos

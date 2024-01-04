@@ -21,9 +21,7 @@ try{
     if(flag.length ===0) favorites.push(offers)     
     }else favorites.push(offers);     
     await Users.updateOne({_id: users[0]._id}, {favorites})
-    res.status(200).json(users[0].favorites)
-  
-  
+    res.status(200).json(users[0].favorites)   
 }catch (error) { 
   res.status(500).send(`{messaje: ${error}}`)
 }

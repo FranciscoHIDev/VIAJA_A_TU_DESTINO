@@ -1,4 +1,5 @@
-import { FaUsers, FaHotel, FaImages, FaBlog } from "react-icons/fa";
+import { FaUsers, FaHotel, FaImages } from "react-icons/fa";
+import { MdFavorite } from "react-icons/md";
 import { MdLogout } from "react-icons/md";
 import { Link } from "react-router-dom";
 
@@ -20,9 +21,9 @@ function SideBar() {
               <p className="text-2xl text-white">Mis datos</p>
             </div>
           </Link>
-          <Link to="/">
+          <Link to="favoritos">
             <div className="flex items-center mt-4">
-              <FaBlog className="text-[#ff3e02] mr-3 text-2xl" />
+              <MdFavorite className="text-[#ff3e02] mr-3 text-2xl" />
               <p className="text-2xl text-white">Favoritos</p>
             </div>
           </Link>

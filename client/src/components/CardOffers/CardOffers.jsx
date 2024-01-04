@@ -48,6 +48,7 @@ function CardOffers({
         favorite: _id,
         email: user.email,
       };
+     
       dispatch(addFavorite(newFavorite));
       if (!click) {
         setClick(true);
