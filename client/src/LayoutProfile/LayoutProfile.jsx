@@ -8,15 +8,21 @@ import { CiDiscount1 } from "react-icons/ci";
 import { MdOutlineAdsClick } from "react-icons/md";
 import { BsCartCheck } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
+import Breadcrumb from "../components/Breadcrumb/Breadcrumb"
 
 
 function LayoutProfile() {
+  const crumbs = [
+    { label: 'Inicio', path: '/' },
+    { label: 'Mi perfil', path: '/mi-perfil' }
+  ]
   return (
     <React.Fragment>
       <div className="min-h-screen h-screen flex flex-col">
         <header>
           <NavBar />
         </header>
+        <Breadcrumb crumbs={crumbs} />
         <main className="flex-grow pt-20 pb-40">
           <div className="flex flex-row mx-40  justify-center">
             <NavLink to={"/mi-perfil/datos-personales"}>

@@ -4,16 +4,18 @@ import Footer from "../../components/Footer/Footer";
 import CardsOffers from "../../components/CardsOffers/CardsOffers";
 import Filters from "../../components/Filters/Filters";
 import FiltersMobile from "../../components/Filters/FiltersMobile";
-import BannerTravel from "../../components/BannerTravel/BannerTRavel";
 import CardsTops from "../../components/CardsTops/CardsTops";
 
+
 function Home() {
+  
   return (
     <React.Fragment>
       <div className="min-h-screen h-screen flex flex-col">
         <header>
           <NavBar />
         </header>
+       
         <main className="flex-grow">
           <div className="flex flex-col  mb-20">
             <div className="flex flex-col">
