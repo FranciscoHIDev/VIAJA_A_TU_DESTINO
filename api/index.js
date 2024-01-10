@@ -9,8 +9,15 @@ require("dotenv").config()
 const app = express()
 const port = process.env.PORT || 3000
 
+const corsOptions = {
+    origin: 'https://viajaatudestino.com',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Habilita el intercambio de cookies a través de dominios
+    optionsSuccessStatus: 204,
+  };
+
 /* Middleware */
-app.use(cors())
+app.use(cors(corsOptions));
 app.use(morgan("dev"))
 app.use(express.json())
 app.use("/api", router)
