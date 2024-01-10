@@ -62,6 +62,7 @@ function CardsFavorites({
         "
       >
         <div>
+          {/* <RiShareForwardLine className="cursor-pointer bg-white rounded-md absolute text-[30px] md:ml-[245px] ml-[245px] mt-[20px] text-[#323231] opacity-[80%] p-[2px]" /> */}
           <span onClick={onClick} className=" cursor-pointer">
             <MdFavorite className="cursor-pointer bg-white absolute rounded-md text-[30px] md:ml-[285px] ml-[285px] mt-[20px] text-black opacity-[80%] p-[2px]" />
           </span>
@@ -71,9 +72,9 @@ function CardsFavorites({
             src={image[0]}
             alt="image"
           />
-          {/* <p className="absolute mt-[-180px] rounded-tr-[8px] rounded-br-[8px] px-[1.2em] py-[0.6em] text-[1em] font-[500] bg-[hsla(0,0%,100%,.8)] text-[#323231]">
+          <p className="absolute mt-[-180px] rounded-tr-[8px] rounded-br-[8px] px-[1.2em] py-[0.6em] text-[1em] font-[500] bg-[hsla(0,0%,100%,.8)] text-[#323231]">
             {promotion}
-          </p> */}
+          </p>
         </div>
         <div className="flex flex-row items-center mt-2">
           <img
@@ -123,18 +124,18 @@ function CardsFavorites({
           ) : (
             <br></br>
           )}
-          {category.name === "Hotel" || category.name === "Tour" ? (
+          {/* {category.name === "Hotel" || category.name === "Tour" ? (
             <div className="flex flex-row items-center ml-[20px] mt-[-20px] ">
               <FaMapMarkedAlt className="text-[#ff3e02] mr-[5px] text-[20px]" />
               <p className=" text-[#323231] font-[400] ">
                 Destino:{" "}
-                {/* <span className="text-[15px] font-[600] text-[#323231]">
+                <span className="text-[15px] font-[600] text-[#323231]">
                   {destination.name.charAt(0).toUpperCase() +
                     destination.name.slice(1)}
-                </span> */}
+                </span>
               </p>
             </div>
-          ) : null}
+          ) : null} */}
         </div>
         <div className="flex flex-row-reverse justify-between items-center m-[30px] ">
           <p className="text-[15px]">

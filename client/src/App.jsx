@@ -23,8 +23,6 @@ import Flights from "./pages/Flights/Flights";
 import Packages from "./pages/Packages/Packages";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Favorites from "./LayoutProfile/pages/Favorites";
-// import Favorites from "./LayoutProfile/pages/favorites";
-
 function App() {
   return (
     <div>
@@ -48,10 +46,8 @@ function App() {
             <Route path="new-flight" element={<NewFlight />} />
             <Route path="new-tour" element={<NewTour />} />
           </Route>
-          <Route path="/mi-perfil" element={<LayoutProfile />}>
-            
-          </Route>
-          <Route path="mi-perfil/favoritos" element={<Favorites/>}/>
+          <Route path="/mi-perfil" element={<LayoutProfile />}></Route>
+          <Route path="mi-perfil/favoritos" element={<Favorites />} />
           <Route path="/preguntas-frecuentes" element={<FrequentQuestions />} />
           <Route path="/aviso-de-privacidad" element={<NoticeOfPrivacy />} />
           <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
