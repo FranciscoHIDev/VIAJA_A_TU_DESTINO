@@ -34,6 +34,7 @@ function CardsFavorites({
 
   const usersDB = useSelector((state) => state.users);
   const userDB = usersDB.find((e) => e.email === user.email);
+  console.log(userDB);
 
   const onClick = async () => {
     try {
@@ -44,7 +45,7 @@ function CardsFavorites({
       await axios.post("/api/users/favorite", favorite);
       dispatch(getAllUsers);
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "success",
         title: "Favorito eliminado",
         showConfirmButton: false,
@@ -58,99 +59,104 @@ function CardsFavorites({
   return (
     <React.Fragment>
       <div
-        className="mt-[30px] rounded-[20px] bg-[#fff] w-[330px] h-[490px] m-[12px] border-none 
+        className="flex flex-row  mt-[30px] rounded-[20px] bg-[#fff] w-[900px] h-[300px] m-[12px] border
         "
       >
-        <div>
-          {/* <RiShareForwardLine className="cursor-pointer bg-white rounded-md absolute text-[30px] md:ml-[245px] ml-[245px] mt-[20px] text-[#323231] opacity-[80%] p-[2px]" /> */}
-          <span onClick={onClick} className=" cursor-pointer">
-            <MdFavorite className="cursor-pointer bg-white absolute rounded-md text-[30px] md:ml-[285px] ml-[285px] mt-[20px] text-black opacity-[80%] p-[2px]" />
-          </span>
-
-          <img
-            className="w-[330px] h-[200px] rounded-tl-[20px] rounded-tr-[20px] "
-            src={image[0]}
-            alt="image"
-          />
-          <p className="absolute mt-[-180px] rounded-tr-[8px] rounded-br-[8px] px-[1.2em] py-[0.6em] text-[1em] font-[500] bg-[hsla(0,0%,100%,.8)] text-[#323231]">
-            {promotion}
-          </p>
+        <div className="flex w-[360px] h-[300px] ">
+          <div className="flex items-start">
+            <span onClick={onClick} className=" cursor-pointer">
+              <MdFavorite className="cursor-pointer bg-white absolute rounded-md text-[30px] ml-72 mt-[28px] text-black opacity-[80%] p-[2px]" />
+            </span>
+            <p className="absolute mt-[20px] rounded-tr-[8px] rounded-br-[8px] px-5 py-1 text-[20px] font-[500] bg-[hsla(0,0%,100%,.8)] text-[#323231]">
+              {promotion}
+            </p>
+            <img
+              className="w-[360px] h-[300px] rounded-tl-[20px] rounded-bl-[20px] "
+              src={image[0]}
+              alt="image"
+            />
+          </div>
         </div>
-        <div className="flex flex-row items-center mt-2">
-          <img
-            className="w-[20px] ml-[20px] mr-[10px]"
-            src={category.image}
-            alt={category.name}
-          />
-          <p className="text-[20px] text-[#323231]">{category.name}</p>
-        </div>
-        <div>
-          <div>
-            <h1 className="text-[17px] text-[#035373]  ml-[20px] mr-[20px] font-[600] uppercase">
+        <div className="flex flex-col mt-2 mx-5">
+          <div className="flex flex-col ">
+            <h1 className="text-[22px] text-[#035373]  font-[600] uppercase">
               {title}
             </h1>
-            <p className="ml-[20px] mb-3 font-light">{summary}</p>
-            <div className="flex flex-row items-center ml-[20px]">
-              <FaRegCalendarAlt className="text-[#ff3e02]" />
-              <p className="ml-[10px] text-[#323231] font-[400] ">
+            <div className="flex flex-row items-center">
+              <img
+                className="w-[20px] mr-[10px]"
+                src={category.image}
+                alt={category.name}
+              />
+              <p className="text-[20px] text-[#323231]">{category.name}</p>
+            </div>
+            <div>
+              <p className="mb-1 font-light text-[20px]">{summary}</p>
+            </div>
+            <div className="flex flex-row items-center">
+              <FaRegCalendarAlt className="text-[#ff3e02] text-[20px]" />
+              <p className="ml-[10px] text-[#323231] font-[400] text-[20px]">
                 Disponibilidad:{" "}
-                <span className="text-[15px] font-[600] text-[#323231]">
+                <span className=" font-[600] text-[#323231] text-[20px]">
                   {availability}
                 </span>
               </p>
             </div>
             {departure ? (
-              <div className="flex flex-row items-center ml-[20px]">
-                <FaPlaneDeparture className="text-[#ff3e02]" />
-                <p className="ml-[10px] text-[#323231] font-[400]">
+              <div className="flex flex-row items-center">
+                <FaPlaneDeparture className="text-[#ff3e02] text-[20px]" />
+                <p className="ml-[10px] text-[#323231] font-[400] text-[20px]">
                   Salida:{" "}
-                  <span className="text-[15px] font-[600] text-[#323231]">
+                  <span className="text-[20px] font-[600] text-[#323231]">
                     {departure}
                   </span>
                 </p>
               </div>
             ) : null}
           </div>
-          {arrival ? (
-            <div className="flex flex-row items-center ml-[20px]">
-              <FaPlaneArrival className="text-[#ff3e02]" />
-              <p className="ml-[10px] text-[#323231] font-[400]">
-                Llegada:{" "}
-                <span className="text-[15px] font-[600] text-[#323231]">
-                  {arrival}
-                </span>
-              </p>
-            </div>
-          ) : (
-            <br></br>
-          )}
-          {/* {category.name === "Hotel" || category.name === "Tour" ? (
-            <div className="flex flex-row items-center ml-[20px] mt-[-20px] ">
-              <FaMapMarkedAlt className="text-[#ff3e02] mr-[5px] text-[20px]" />
-              <p className=" text-[#323231] font-[400] ">
-                Destino:{" "}
-                <span className="text-[15px] font-[600] text-[#323231]">
-                  {destination.name.charAt(0).toUpperCase() +
-                    destination.name.slice(1)}
-                </span>
-              </p>
-            </div>
-          ) : null} */}
-        </div>
-        <div className="flex flex-row-reverse justify-between items-center m-[30px] ">
-          <p className="text-[15px]">
-            Desde
-            <span className="text-[#ff3e02] font-bold text-[20px]">
-              {" "}
-              ${price}{" "}
-            </span>
-          </p>
 
-          <NavLink to={`/oferta/${_id}`}>
-            <button className="rounded-md border border-[#242424] bg-[#ff] py-[0.4em] px-[1.2em]   hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02]">
-              Ver oferta
-            </button>
-          </NavLink>
+          <div>
+            {arrival ? (
+              <div className="flex flex-row items-center">
+                <FaPlaneArrival className="text-[#ff3e02] text-[20px]" />
+                <p className="ml-[10px] text-[#323231] font-[400] text-[20px]">
+                  Llegada:{" "}
+                  <span className="text-[20px] font-[600] text-[#323231]">
+                    {arrival}
+                  </span>
+                </p>
+              </div>
+            ) : null}
+            {/* {category.name === "Hotel" || category.name === "Tour" ? (
+              <div className="flex flex-row items-center ">
+                <FaMapMarkedAlt className="text-[#ff3e02] mr-[5px] text-[20px]" />
+                <p className=" text-[#323231] font-[400] text-[20px] ">
+                  Destino:{" "}
+                  <span className="text-[20px] font-[600] text-[#323231]">
+                    {destination.name}
+                  </span>
+                </p>
+              </div>
+            ) : null} */}
+          </div>
+          <div className="flex flex-row mt-2 items-center ">
+            <div className="mr-10">
+              <p className="text-[25px]">
+                Desde
+                <span className="text-[#ff3e02] font-bold text-[25px]">
+                  {" "}
+                  ${price}{" "}
+                </span>
+              </p>
+            </div>
+            <div>
+              <NavLink to={`/oferta/${_id}`}>
+                <button className="text-[20px] rounded-md border border-[#242424] bg-[#ff] py-1 px-1   hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02]">
+                  Ver oferta
+                </button>
+              </NavLink>
+            </div>
+          </div>
         </div>
       </div>
     </React.Fragment>

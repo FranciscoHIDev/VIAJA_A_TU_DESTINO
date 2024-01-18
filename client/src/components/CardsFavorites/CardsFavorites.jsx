@@ -20,7 +20,7 @@ function CardsFavorites() {
     <>
       <div className="flex  flex-col text-3xl text-black items-center">
         <div>
-          <h1>¡Bienvenido al mejor buscador de ofertas de viajes!</h1>
+          <h1>¡Mi lista de favoritos!</h1>
         </div>
         <div className="flex flex-wrap items-center justify-center">
           {myFavorites?.length > 0 ? (
