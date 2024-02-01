@@ -48,19 +48,7 @@ function FiltersMobile() {
             <option value="Tour">Tours</option>
           </select>
         </div>
-        <div>
-          <select
-            className="rounded-xl  border-2  p-1 outline-none text-[12px]"
-            onChange={handleDeparture}
-          >
-            <option value={""}>Saliendo desde</option>
-            {[...new Set(offers.map((offer) => offer.departure))].map(
-              (d, index) => (
-                <option key={index}>{d}</option>
-              )
-            )}
-          </select>
-        </div>
+
         <div>
           <select
             className="rounded-xl  border-2  p-1 outline-none text-[12px]"
