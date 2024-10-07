@@ -59,7 +59,7 @@ function Home() {
               <div className="flex flex-col justify-center bg-[#2e3b69] pb-10 ">
                 <div className="flex flex-col mt-10 items-center">
                   <h2 className="md:text-4xl text-2xl text-white font-semibold">
-                    TOP OFERTAS
+                    MEJORES OFERTAS
                   </h2>
                   <p className="mt-2 md:text-2xl text-[18px] text-white">
                     ¡Últimas ofertas encontradas!
