@@ -5,7 +5,7 @@ import CardsOffers from "../../components/CardsOffers/CardsOffers";
 import Filters from "../../components/Filters/Filters";
 import FiltersMobile from "../../components/Filters/FiltersMobile";
 import CardsTops from "../../components/CardsTops/CardsTops";
-import CardsTops from "../../components/BookerWidget
+import BookerWidget from "../../components/BookerWidget
 
 function Home() {
   
