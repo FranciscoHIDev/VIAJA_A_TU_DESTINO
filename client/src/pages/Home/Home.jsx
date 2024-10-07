@@ -16,11 +16,7 @@ function Home() {
           <NavBar />
         </header>
        
-        <main className="flex-grow">
-          <div class="bookerBox">
-        <div id="slideContainer" class="slideshow">
-            <script type="text/javascript" src="//widgets.priceres.com.mx/viaja-a-tu-destino/AWvAyO1EkkkodL41TeY3Bw/JsDisplaySlide?bLoadSlideJS=true"></script>
-        </div>
+        <main className="flex-grow">         
         <div id="ptw-container" class="ptw-horizontal-search bookerContainer">
           <script>
             jQuery(function(){
@@ -57,8 +53,7 @@ function Home() {
                 }
             });
           </script> 
-        </div>
-    </div>
+        </div>   
           <div className="flex flex-col  mb-20">
             <div className="flex flex-col">
               <div className="flex flex-col justify-center bg-[#2e3b69] pb-10 ">
