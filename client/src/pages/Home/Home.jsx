@@ -5,7 +5,7 @@ import CardsOffers from "../../components/CardsOffers/CardsOffers";
 import Filters from "../../components/Filters/Filters";
 import FiltersMobile from "../../components/Filters/FiltersMobile";
 import CardsTops from "../../components/CardsTops/CardsTops";
-import BookerWidget from "../../components/BookerWidget
+
 
 function Home() {
   
@@ -16,8 +16,10 @@ function Home() {
           <NavBar />
         </header>
        
-        <main className="flex-grow">         
-        
+        <main className="flex-grow">     
+        <div id="ptw-container" class="ptw-horizontal-search"></div>
+<script type="text/javascript" src="https://widgets.priceres.com.mx/viaja-a-tu-destino/jsonpBooker/startWidget?container=ptw-container&UseConfigs=false&IsHorizontal=true"></script>
+
           <div className="flex flex-col  mb-20">
             <div className="flex flex-col">
               <div className="flex flex-col justify-center bg-[#2e3b69] pb-10 ">
@@ -29,8 +31,7 @@ function Home() {
                     ¡Últimas ofertas encontradas!
                   </p>
                 </div>
-                <div className="md:px-0 px-3 md:mt-[-8px] mt-[-15px]">
-                  <BookerWidget/>
+                <div className="md:px-0 px-3 md:mt-[-8px] mt-[-15px]">                
                   <CardsTops />
                 </div>
               </div>
