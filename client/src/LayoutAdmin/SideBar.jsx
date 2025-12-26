@@ -25,44 +25,44 @@ function SideBar() {
           <Link to="/">
             <div className="flex items-center">
               <FaUsers className="text-[#ff3e02] mr-3 text-2xl" />
-              <p className="text-2xl">Usuarios</p>
+              <p className="text-2xl text-white">Usuarios</p>
             </div>
           </Link>
           <Link to="/">
             <div className="flex items-center mt-4">
               <FaBlog className="text-[#ff3e02] mr-3 text-2xl" />
-              <p className="text-2xl">Blog</p>
+              <p className="text-2xl text-white">Blog</p>
             </div>
           </Link>
           <Link to="/">
             <div className="flex items-center mt-4">
               <FaImages className="text-[#ff3e02] mr-3 text-2xl" />
-              <p className="text-2xl">Banners</p>
+              <p className="text-2xl text-white">Banners</p>
             </div>
           </Link>
 
           <Link to="/">
             <div className="flex items-center mt-4">
               <FaHotel className="text-[#ff3e02] mr-3 text-2xl" />
-              <p className="text-2xl">Hoteles</p>
+              <p className="text-2xl text-white">Hoteles</p>
             </div>
           </Link>
           <Link to="paquetes">
             <div className="flex items-center mt-4">
               <FaSuitcase className="text-[#ff3e02] mr-3 text-2xl" />
-              <p className="text-2xl">Paquetes</p>
+              <p className="text-2xl text-white">Paquetes</p>
             </div>
           </Link>
           <Link to="/">
             <div className="flex items-center mt-4">
               <FaPlane className="text-[#ff3e02] mr-3 text-2xl" />
-              <p className="text-2xl">Vuelos</p>
+              <p className="text-2xl text-white">Vuelos</p>
             </div>
           </Link>
           <Link to="/">
             <div className="flex items-center mt-4">
               <FaMapMarkedAlt className="text-[#ff3e02] mr-3 text-2xl" />
-              <p className="text-2xl">Tours</p>
+              <p className="text-2xl text-white">Tours</p>
             </div>
           </Link>
         </div>

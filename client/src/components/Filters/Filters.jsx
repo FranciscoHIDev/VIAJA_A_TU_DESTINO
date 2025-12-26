@@ -39,11 +39,11 @@ function Filters() {
     <React.Fragment>
       <div className="md:flex flex-row justify-center items-center hidden bg-white mx-40 py-4 rounded-md border ">
         <div className="mr-10 hidden md:block">
-          <p className="text-[#ff3e02] font-bold">Filtrar por:</p>
+          <p className="text-[#ff3e02] font-bold text-[15px]">Filtrar por:</p>
         </div>
         <div className="mr-10">
           <select
-            className="rounded-xl  border-2  p-1 outline-none"
+            className="rounded-xl  border-2  p-1 outline-none text-[15px]"
             onChange={handleCategory}
           >
             <option value={""}>Categorías</option>
@@ -57,7 +57,7 @@ function Filters() {
        
         <div>
           <select
-            className="rounded-xl  border-2  p-1 outline-none"
+            className="rounded-xl  border-2  p-1 outline-none text-[15px]"
             onChange={handleDestination}
           >
             <option value={""}>Destinos</option>
@@ -70,7 +70,7 @@ function Filters() {
         </div>
         <div>
           <button
-            className="ml-10 bg-[#ff3e02] text-white px-2 rounded-md"
+            className="ml-10 bg-[#ff3e02] text-white px-2 rounded-md text-[18px]"
             onClick={(e) => handleClearFilter(e)}
           >
             Limpiar

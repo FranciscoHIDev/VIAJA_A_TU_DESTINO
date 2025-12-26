@@ -55,8 +55,8 @@ function NavBar() {
               <div>
                 <Link to="/">
                   <img
-                    className="md:ml-[40px] w-[150px] md:mt-[5px] ml-[15px] mt-[2px]"
-                    src="https://res.cloudinary.com/duaysiozi/image/upload/v1684173882/LOGO-OFICIAL-_lmdwby.svg"
+                    className="md:ml-[40px] w-[180px] md:mt-[5px] ml-[15px] mt-[2px]"
+                    src="https://viajaatudestino.com/wp-content/uploads/2025/11/Logo-oficial-vtd.png"
                     alt="logo-oficial"
                   />
                 </Link>

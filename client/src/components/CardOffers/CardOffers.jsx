@@ -115,12 +115,12 @@ function CardOffers({
             <h1 className="text-[17px] text-[#035373]  ml-[20px] mr-[20px] font-[600] uppercase">
               {title}
             </h1>
-            <p className="ml-[20px] mb-3 font-light">{summary}</p>
+            <p className="ml-[20px] mb-3 font-light text-[15px]">{summary}</p>
             <div className="flex flex-row items-center ml-[20px]">
               <FaRegCalendarAlt className="text-[#ff3e02]" />
-              <p className="ml-[10px] text-[#323231] font-[400] ">
+              <p className="ml-[10px] text-[#323231] font-[400 text-[15px] ">
                 Disponibilidad:{" "}
-                <span className="text-[15px] font-[600] text-[#323231]">
+                <span className="text-[15px] font-[600] text-[#323231] ">
                   {availability}
                 </span>
               </p>
@@ -128,7 +128,7 @@ function CardOffers({
             {departure ? (
               <div className="flex flex-row items-center ml-[20px]">
                 <FaPlaneDeparture className="text-[#ff3e02]" />
-                <p className="ml-[10px] text-[#323231] font-[400]">
+                <p className="ml-[10px] text-[#323231] font-[400] text-[15px]">
                   Salida:{" "}
                   <span className="text-[15px] font-[600] text-[#323231]">
                     {departure}
@@ -140,7 +140,7 @@ function CardOffers({
           {arrival ? (
             <div className="flex flex-row items-center ml-[20px]">
               <FaPlaneArrival className="text-[#ff3e02]" />
-              <p className="ml-[10px] text-[#323231] font-[400]">
+              <p className="ml-[10px] text-[#323231] font-[400] text-[15px]">
                 Llegada:{" "}
                 <span className="text-[15px] font-[600] text-[#323231]">
                   {arrival}
@@ -153,7 +153,7 @@ function CardOffers({
           {category.name === "Hotel" || category.name === "Tour" ? (
             <div className="flex flex-row items-center ml-[20px] mt-[-20px] ">
               <FaMapMarkedAlt className="text-[#ff3e02] mr-[5px] text-[20px]" />
-              <p className=" text-[#323231] font-[400] ">
+              <p className=" text-[#323231] font-[400] text-[15px]">
                 Destino:{" "}
                 <span className="text-[15px] font-[600] text-[#323231]">
                   {destination.name.charAt(0).toUpperCase() +
@@ -173,7 +173,7 @@ function CardOffers({
           </p>
 
           <NavLink to={`/oferta/${_id}`}>
-            <button className="rounded-md border border-[#242424] bg-[#ff] py-[0.4em] px-[1.2em]   hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02]">
+            <button className="rounded-md border border-[#242424] bg-[#ff] py-[0.4em] px-[1.2em]   hover:bg-[#ff3e02] hover:text-[#fff] hover:border-[#ff3e02] text-[15px] ">
               Ver oferta
             </button>
           </NavLink>
