@@ -38,7 +38,7 @@ function FiltersMobile() {
       <div className="flex flex-row  items-center justify-between md:hidden px-2 bg-white mx-3 py-2 rounded-xl border">
         <div>
           <select
-            className="rounded-xl  border-2 p-1 outline-none text-[12px]"
+            className="rounded-xl  border-2 p-1 outline-none text-[15px]"
             onChange={handleCategory}
           >
             <option value={""}>Categorías</option>
@@ -51,7 +51,7 @@ function FiltersMobile() {
 
         <div>
           <select
-            className="rounded-xl  border-2  p-1 outline-none text-[12px]"
+            className="rounded-xl  border-2  p-1 outline-none text-[15px]"
             onChange={handleDestination}
           >
             <option value={""}>Destinos</option>
@@ -64,7 +64,7 @@ function FiltersMobile() {
         </div>
         <div className="flex items-center">
           <button
-            className=" bg-[#ff3e02] text-white px-1 rounded-md text-[12px]"
+            className=" bg-[#FF6600] text-white px-1 rounded-md text-[15px]"
             onClick={(e) => handleClearFilter(e)}
           >
             Limpiar
