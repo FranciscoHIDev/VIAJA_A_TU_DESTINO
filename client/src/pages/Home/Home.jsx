@@ -42,9 +42,9 @@ function Home() {
               </div>
             </div>
             <div className="flex flex-col  mt-8">
-              <CardsTops/>
+              
               <div className="mt-12">
-                
+                <CardsTops/>
                 <FiltersMobile />
                 <Filters />
                 <CardsOffers />

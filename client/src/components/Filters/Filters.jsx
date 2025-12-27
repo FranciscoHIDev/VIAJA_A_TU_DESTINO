@@ -70,7 +70,7 @@ function Filters() {
         </div>
         <div>
           <button
-            className="ml-10 bg-[#ff3e02] text-white px-2 rounded-md text-[18px]"
+            className="ml-10 bg-[#FF6600] text-white px-2 rounded-md text-[18px]"
             onClick={(e) => handleClearFilter(e)}
           >
             Limpiar

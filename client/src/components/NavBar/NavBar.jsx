@@ -53,13 +53,13 @@ function NavBar() {
           <div className="flex flex-row items-center justify-between ">
             <div className="flex items-center">
               <div>
-                <Link to="/">
+                <a href="/">
                   <img
                     className="md:ml-[40px] w-[180px] md:mt-[5px] ml-[15px] mt-[2px]"
                     src="https://viajaatudestino.com/wp-content/uploads/2025/11/Logo-oficial-vtd.png"
                     alt="logo-oficial"
                   />
-                </Link>
+                </a>
               </div>
 
               <div className="lg:flex ml-16 hidden">
