@@ -41,10 +41,16 @@ function Home() {
                 
               </div>
             </div>
-            <div className="flex flex-col  mt-8">
+            <div className="flex flex-col  mt-2">
+              <div className="flex justify-center">
+<h2 className="md:text-5xl text-2xl text-[#3794FF] font-semibold mt-4">
+                  Descubre las ofertas Top
+                </h2>
+              </div>
               
+              <CardsTops/>
               <div className="mt-12">
-                <CardsTops/>
+                
                 <FiltersMobile />
                 <Filters />
                 <CardsOffers />
