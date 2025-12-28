@@ -229,13 +229,13 @@ function Details() {
                         <div className="flex   justify-center bg-[#3794ff] pb-3 pt-3">
                           <div className="flex flex-row items-center text-white">
                             <ImPriceTag className="mr-2 mt-1 text-[16px]" />
-                            <p className="text-[20px] mr-2 font-600">Desde </p>
-                            <p className="text-[25px] font-bold">${offer.price}<span className="ml-2">MXN</span></p>
+                            <p className="md:text-[20px] text-[16px] mr-1 font-600">Desde </p>
+                            <p className="text-[25px]  font-bold">${offer.price}<span className="ml-2">MXN</span></p>
                             {offer.category.name === "Hotel" ? (
-                              <p className="pl-4">Precio por noche</p>
+                              <p className="md:pl-4 pl-2">Precio por noche</p>
                             ) : null}
                             {offer.category.name === "Paquete" ? (
-                              <p className="pl-3 font-medium text-[14px]">Precio por persona</p>
+                              <p className="md:pl-3 pl-2 font-medium text-[14px]">Precio por persona</p>
                             ) : null}
                           </div>
                         </div>
@@ -243,7 +243,7 @@ function Details() {
                           {offer.departure ? (
                             <div className="flex flex-row items-center">
                               <FaPlaneDeparture className="text-[#ff6600] mr-2 text-[16px]"  />
-                              <p className="md:text-[19px] font-[400]">
+                              <p className="md:text-[19px] text-[15px] font-[400]">
                                 Salida:{" "}
                                 <span className="md:text-[19px] text-[15px] font-[300]">
                                   {offer.departure}
@@ -254,7 +254,7 @@ function Details() {
                           {offer.arrival ? (
                             <div className="flex flex-row items-center mt-2">
                               <FaPlaneArrival className="text-[#ff6600] mr-2 text-[16px]" />
-                              <p className="md:text-[19px] font-[400]">
+                              <p className="md:text-[19px] font-[400] text-[15px]">
                                 LLegada:{" "}
                                 <span className="md:text-[19px] text-[15px] font-[300]">
                                   {offer.arrival}
@@ -264,7 +264,7 @@ function Details() {
                           ) : null}
                           <div className="flex flex-row items-center mt-2">
                             <FaRegCalendarAlt className="text-[#ff6600] mr-2 text-[16px]" />
-                            <p className="md:text-[19px] font-[400]">
+                            <p className="md:text-[19px] font-[400] text-[15px]">
                               Disponibilidad:{" "}
                               <span className="md:text-[19px] text-[15px] font-[300]">
                                 {offer.availability}
@@ -275,7 +275,7 @@ function Details() {
                           offer.category.name === "Hotel" ? (
                             <div className="flex flex-row items-center mt-2">
                               <FaHotel className="text-[#ff6600] mr-2 text-[16px]" />
-                              <p className="md:text-[19px] font-[400]">
+                              <p className="md:text-[19px] font-[400] text-[15px]">
                                 Hotel:{" "}
                                 <span className="md:text-[19px] text-[15px] font-[300]">
                                   {offer.hotel}
@@ -288,8 +288,8 @@ function Details() {
                           {offer.category.name === "Paquete" ||
                           offer.category.name === "Hotel" ? (
                             <div className="flex flex-row items-center mt-2">
-                              <MdOutlineNightsStay className="text-[#ff6600] text-[20px] mr-1 text-[16px]" />
-                              <p className="md:text-[19px] font-[400]">
+                              <MdOutlineNightsStay className="text-[#ff6600]  mr-1 text-[20px]" />
+                              <p className="md:text-[19px] font-[400] text-[15px]">
                                 Estancia:{" "}
                                 <span className="md:text-[19px] text-[15px] font-[300]">
                                   {offer.daysOfStay}

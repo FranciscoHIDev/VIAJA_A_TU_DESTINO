@@ -14,7 +14,7 @@ function Home() {
     <React.Fragment>
       <div className="min-h-screen h-screen flex flex-col">
         <header>
-          <NavBar />
+         <NavBar />
         </header>
        
         <main className="flex-grow">     
