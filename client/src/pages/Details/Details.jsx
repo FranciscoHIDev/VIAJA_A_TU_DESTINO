@@ -77,7 +77,7 @@ function Details() {
         <header>
           <NavBar />
         </header>
-        <main className="flex-grow border-solid border-t-[3px] border-[#53b3cb] mb-40">
+        <main className="flex-grow border-solid border-t-[2px] border-[#FF6600] mb-40">
           <div className="  flex felx-col items-center ">
             {offer.length !== 0 ? (
               <div className="flex flex-col ">
@@ -110,26 +110,13 @@ function Details() {
                 <div className="flex flex-col-reverse lg:flex-row mt-8  md:mx-10 mx-5 gap-20">
                   <div className="flex flex-col md:mt-0 mt-[-30px]">
                     <div className="flex flex-col">
+                      
                       <div>
-                        <button className="bg-[#53b3cb] px-4  py-1 rounded-md text-white font-medium">
-                          🔥{offer.promotion}
-                        </button>
-                      </div>
-                      <div>
-                        <h1 className="mt-3 text-2xl font-bold text-[#035373] uppercase">
+                        <h1 className="mt-3 text-2xl font-bold text-[#0260fe] uppercase">
                           {offer.title}
                         </h1>
-                        <p className="mt-2 text-[20px]">{offer.summary}</p>
-                        <p className="mt-2 text-[#ff3e02] font-bold flex">
-                          <span className="mt-1 mr-1">
-                            <MdLocationOn />
-                          </span>
-                          {offer.destination.name}
-                        </p>
-                        <p className="mt-5 text-[17px]">
-                          Publicado el {offer.date} by {offer.author}
-                        </p>
-                        <p className="mt-2 text-2xl font-bold text-[#253777] flex  items-center">
+                        
+                        <p className="mt-4 text-2xl font-bold text-[#3794ff] flex  items-center">
                           <span className="mr-2">
                             <FaClipboardList />
                           </span>
@@ -145,7 +132,7 @@ function Details() {
                       </div>
 
                       <div className="flex flex-col items-center">
-                        <p className="mt-5 text-[20px] font-semibold text-[#253777] ">
+                        <p className="mt-5 text-[20px] font-semibold text-[#ff6600] ">
                           Imagen de muestra
                         </p>
                         <div className="  md:w-[700px] md:h-[400px] px-2 w-[320px] h-[200px]">
@@ -167,16 +154,16 @@ function Details() {
                       offer.category.name === "Hotel" ||
                       offer.category.name === "Vuelo" ? (
                         <div ref={targetRef}>
-                          <p className="mt-10 mb-5 text-2xl font-bold flex text-[#253777] items-center">
+                          <p className="mt-10 mb-5 text-2xl font-bold flex text-[#3794ff] items-center">
                             <span className="mr-2">
                               <FaRegCalendarAlt />
                             </span>{" "}
                             Fechas disponibles
                           </p>
-                          <div className="flex justify-between md:px-10 px-5 bg-[#b6b5b5] mx-[5px]  font-medium mb-[-4px] text-[15px]">
+                          <div className="flex justify-between md:px-10 px-5 bg-[#0260fe] mx-[5px]  font-medium mb-[-4px] text-[15px] text-white py-3" >
                             <p>IDA</p>
                             <p>VUELTA</p>
-                            <p className="ml-[-40px]">PRECIO</p>
+                            <p className="ml-[-40px]">PRECIO DESDE</p>
                             <p></p>
                           </div>
 
@@ -184,7 +171,7 @@ function Details() {
                             {offer.buyLinks.map((e, index) => (
                               <div
                                 key={index}
-                                className="border bg-white m-1 p-2 block hover:bg-[#53b3cb] md:px-5 px-2"
+                                className="border bg-white m-1 p-2 block hover:bg-[#3794ff] md:px-5 px-2 hover:text-white"
                               >
                                 <a
                                   href={e.link}
@@ -192,16 +179,15 @@ function Details() {
                                   target="_blank"
                                   className="cursor-pointer"
                                 >
-                                  <div className="flex items-center justify-between text-[#035373] md:font-[500] hover:text-white text-[15px] md:text-[16px]">
+                                  <div className="flex items-center justify-between text-[#035373] md:font-[500]  text-[15px] md:text-[16px] hover:text-white">
                                     <p>{e.departureDate}</p>
                                     <p>{e.returnDate}</p>
                                     <p>${e.price}</p>
                                     <p className="flex">
                                       {" "}
-                                      <span>Reservar </span>
-                                      <span className="mt-1 ml-2">
-                                        <FaArrowRight className="text-[#ff3e02]" />
-                                      </span>
+                                      <div className=" flex items-center bg-[#ff6600] p-1 rounded-md text-white">Reservar<FaArrowRight className="text-white ml-1" />
+                                    </div>
+                                      
                                     </p>
                                   </div>
                                 </a>
@@ -235,28 +221,28 @@ function Details() {
                   offer.category.name === "Vuelo" ? (
                     <div className="">
                       <div className="md:w-[380px] md:h-[420px] border-none rounded-lg bg-white flex flex-col md:mt-0 mt-5">
-                        <div className="bg-[#035373] py-2 rounded-tl-lg rounded-tr-lg border-b-2">
+                        <div className="bg-[#0260fe] py-2 rounded-tl-lg rounded-tr-lg border-b-2">
                           <p className="text-center text-[20px] font-semibold text-white uppercase">
                             Resumen
                           </p>
                         </div>
-                        <div className="flex   justify-center bg-[#035373] pb-3 pt-3">
+                        <div className="flex   justify-center bg-[#3794ff] pb-3 pt-3">
                           <div className="flex flex-row items-center text-white">
-                            <ImPriceTag className="mr-2 mt-1" />
-                            <p className="text-[20px] mr-2">Desde </p>
-                            <p className="text-[25px]">${offer.price}</p>
+                            <ImPriceTag className="mr-2 mt-1 text-[16px]" />
+                            <p className="text-[20px] mr-2 font-600">Desde </p>
+                            <p className="text-[25px] font-bold">${offer.price}<span className="ml-2">MXN</span></p>
                             {offer.category.name === "Hotel" ? (
                               <p className="pl-4">Precio por noche</p>
                             ) : null}
                             {offer.category.name === "Paquete" ? (
-                              <p className="pl-4">Precio por persona</p>
+                              <p className="pl-3 font-medium text-[14px]">Precio por persona</p>
                             ) : null}
                           </div>
                         </div>
                         <div className="mt-5 mx-5">
                           {offer.departure ? (
                             <div className="flex flex-row items-center">
-                              <FaPlaneDeparture className="text-[#ff3e02] mr-2" />
+                              <FaPlaneDeparture className="text-[#ff6600] mr-2 text-[16px]"  />
                               <p className="md:text-[19px] font-[400]">
                                 Salida:{" "}
                                 <span className="md:text-[19px] text-[15px] font-[300]">
@@ -267,7 +253,7 @@ function Details() {
                           ) : null}
                           {offer.arrival ? (
                             <div className="flex flex-row items-center mt-2">
-                              <FaPlaneArrival className="text-[#ff3e02] mr-2" />
+                              <FaPlaneArrival className="text-[#ff6600] mr-2 text-[16px]" />
                               <p className="md:text-[19px] font-[400]">
                                 LLegada:{" "}
                                 <span className="md:text-[19px] text-[15px] font-[300]">
@@ -277,7 +263,7 @@ function Details() {
                             </div>
                           ) : null}
                           <div className="flex flex-row items-center mt-2">
-                            <FaRegCalendarAlt className="text-[#ff3e02] mr-2" />
+                            <FaRegCalendarAlt className="text-[#ff6600] mr-2 text-[16px]" />
                             <p className="md:text-[19px] font-[400]">
                               Disponibilidad:{" "}
                               <span className="md:text-[19px] text-[15px] font-[300]">
@@ -288,7 +274,7 @@ function Details() {
                           {offer.category.name === "Paquete" ||
                           offer.category.name === "Hotel" ? (
                             <div className="flex flex-row items-center mt-2">
-                              <FaHotel className="text-[#ff3e02] mr-2" />
+                              <FaHotel className="text-[#ff6600] mr-2 text-[16px]" />
                               <p className="md:text-[19px] font-[400]">
                                 Hotel:{" "}
                                 <span className="md:text-[19px] text-[15px] font-[300]">
@@ -302,7 +288,7 @@ function Details() {
                           {offer.category.name === "Paquete" ||
                           offer.category.name === "Hotel" ? (
                             <div className="flex flex-row items-center mt-2">
-                              <MdOutlineNightsStay className="text-[#ff3e02] text-[20px] mr-1" />
+                              <MdOutlineNightsStay className="text-[#ff6600] text-[20px] mr-1 text-[16px]" />
                               <p className="md:text-[19px] font-[400]">
                                 Estancia:{" "}
                                 <span className="md:text-[19px] text-[15px] font-[300]">
@@ -315,7 +301,7 @@ function Details() {
                         <div className="md:mt-10 mt-12 md:mb-0 mb-10 flex justify-center ">
                           <button
                             onClick={scrollToTarget}
-                            className="bg-[#ff3e02] p-2 rounded-md text-[#fff] font-[500] hover:bg-[#53b3cb]"
+                            className="bg-[#ff6600] p-2 rounded-md text-[#fff] font-[500] hover:bg-[#53b3cb] text-[15px]"
                           >
                             Fechas disponibles
                           </button>

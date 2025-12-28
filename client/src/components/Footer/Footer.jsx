@@ -6,60 +6,49 @@ function Footer() {
   return (
     <React.Fragment>
       <div className="flex flex-col w-full">
-        <div className="flex md:flex-row flex-col md:justify-around bg-[#011c39] py-20  md:items-center md:pl-0 pl-10">
-          <div>
-            <div className="flex  flex-col mb-4 md:items-center ">
+        <div className="grid grid-cols-3 md:flex-row md:justify-around bg-[#3794ff] py-20 md:items-center md:pl-0 justify-center">
+          <div className="grid justify-center pl-20">
+            <div className="mb-4 md:items-center ">
               <h2 className="text-2xl uppercase text-white font-[500]">
                 Sobre nosotros
               </h2>
             </div>
-            <div className="text-[18px] md:mb-0 mb-4  flex flex-col">
-              <NavLink to="/sobre-nosotros">
-                {" "}
-                <p className="text-white hover:text-[#ff3e02]">
-                  ¿Quiénes somos?
+            <div className="text-[18px] md:mb-0 mb-4">
+                <p className="text-white">
+                  Somos una agencia de viajes 100% en línea, 
+                  especializada en encontrar  las mejores ofertas 
+                  de hoteles y Paquetes vuelo + hotel al mejor precio.
                 </p>
-              </NavLink>
-              <NavLink to="/preguntas-frecuentes">
-                <p className="text-white hover:text-[#ff3e02]">
-                  Preguntas frecuentes
-                </p>
-              </NavLink>
-              <NavLink to="#">
-                <p className="text-white hover:text-[#ff3e02]">
-                  Trabaja con nosotros
-                </p>
-              </NavLink>
             </div>
           </div>
-          <div>
-            <div className="flex flex-col mb-4 md:items-center">
+          <div className="grid justify-center">
+            <div className="mb-4 md:items-center">
               <h2 className="text-2xl uppercase text-white font-[500]">
                 Legales
               </h2>
             </div>
-            <div className="text-[18px] md:mb-0 mb-4 flex flex-col ">
+            <div className="text-[18px] md:mb-0 mb-4">
               <NavLink to="/aviso-de-privacidad">
                 {" "}
-                <p className="text-white hover:text-[#ff3e02]">
+                <p className="text-white hover:text-[#FF6600]">
                   Aviso de privacidad
                 </p>
               </NavLink>
               <NavLink to="/politica-de-privacidad">
                 {" "}
-                <p className="text-white hover:text-[#ff3e02]">
+                <p className="text-white hover:text-[#FF6600]">
                   Política de privacidad
                 </p>
               </NavLink>
               <NavLink to="/terminos-y-condiciones">
-                <p className="text-white hover:text-[#ff3e02]">
+                <p className="text-white hover:text-[#FF6600]">
                   Términos y condiciones
                 </p>
               </NavLink>
             </div>
           </div>
-          <div className="flex flex-col ">
-            <div className="flex mb-4 flex-col md:items-center">
+          <div className="grid justify-center">
+            <div className="mb-4 md:items-center">
               <h2 className="text-2xl uppercase text-white font-[500]">
                 Contacto
               </h2>
@@ -78,32 +67,32 @@ function Footer() {
                   rel="noopener noreferrer"
                 >
                   {" "}
-                  <FaFacebook className="mr-2 text-2xl text-white hover:text-[#ff3e02]" />
+                  <FaFacebook className="mr-2 text-2xl text-white hover:text-[#FF6600]" />
                 </a>
                 <a
                   href="https://www.instagram.com/viajaatudestinomx/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <FaInstagram className="text-2xl text-white hover:text-[#ff3e02]" />
+                  <FaInstagram className="text-2xl text-white hover:text-[#FF6600]" />
                 </a>
               </div>
               <br></br>
             </div>
           </div>
         </div>
-        <div className="flex md:flex-row md:justify-around bg-[#051225] py-2 flex-col items-center ">
+        <div className="flex md:flex-row md:justify-around bg-[#3794ff] py-4 flex-col items-center text-[15px]">
           <p className="text-center text-white drop-shadow-[0.1em_0.1em_0.1em_black]">
-            Copyright © 2023 viajaatudestino.com. Todos los derechos reservados.
+            Copyright © 2025 viajaatudestino.com. Todos los derechos reservados.
           </p>
           <a
-            href="https://codelabtech.com/"
+            href="https://franciscodev.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <p className="text-white drop-shadow-[0.1em_0.1em_0.1em_black] ">
+            <p className="text-white">
               Desarrollado by{" "}
-              <span className="text-[#ff3e02] font-bold">CodeLab Tech</span>
+              <span className="text-[#FF6600] font-extrabold drop-shadow-[0.1em_0.1em_0.1em_white]">Isidoro de Viaje</span>
             </p>
           </a>
         </div>
