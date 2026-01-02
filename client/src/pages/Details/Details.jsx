@@ -110,12 +110,11 @@ function Details() {
                 <div className="flex flex-col-reverse lg:flex-row mt-8  md:mx-10 mx-5 gap-20">
                   <div className="flex flex-col md:mt-0 mt-[-30px]">
                     <div className="flex flex-col">
-                      
                       <div>
                         <h1 className="mt-3 text-2xl font-bold text-[#0260fe] uppercase">
                           {offer.title}
                         </h1>
-                        
+
                         <p className="mt-4 text-2xl font-bold text-[#3794ff] flex  items-center">
                           <span className="mr-2">
                             <FaClipboardList />
@@ -154,13 +153,16 @@ function Details() {
                       offer.category.name === "Hotel" ||
                       offer.category.name === "Vuelo" ? (
                         <div ref={targetRef}>
-                          <p className="mt-10 mb-5 text-2xl font-bold flex text-[#3794ff] items-center">
+                          <p className="mt-10 mb-3 text-2xl font-bold flex text-[#3794ff] items-center">
                             <span className="mr-2">
                               <FaRegCalendarAlt />
                             </span>{" "}
                             Fechas disponibles
                           </p>
-                          <div className="flex justify-between md:px-10 px-5 bg-[#0260fe] mx-[5px]  font-medium mb-[-4px] text-[15px] text-white py-3" >
+                          <p className="text-[20px] text-[#ff6600] font-semibold">
+                            ¡Da click en la fecha que te interese!
+                          </p>
+                          <div className="flex justify-between md:px-10 px-5 bg-[#0260fe] mx-[5px]  font-medium mb-[-4px] text-[15px] text-white py-3 mt-3">
                             <p>IDA</p>
                             <p>VUELTA</p>
                             <p className="ml-[-40px]">PRECIO DESDE</p>
@@ -185,9 +187,10 @@ function Details() {
                                     <p>${e.price}</p>
                                     <p className="flex">
                                       {" "}
-                                      <div className=" flex items-center bg-[#ff6600] p-1 rounded-md text-white">Reservar<FaArrowRight className="text-white ml-1" />
-                                    </div>
-                                      
+                                      <div className=" flex items-center bg-[#ff6600] p-1 rounded-md text-white">
+                                        Reservar
+                                        <FaArrowRight className="text-white ml-1" />
+                                      </div>
                                     </p>
                                   </div>
                                 </a>
@@ -229,20 +232,27 @@ function Details() {
                         <div className="flex   justify-center bg-[#3794ff] pb-3 pt-3">
                           <div className="flex flex-row items-center text-white">
                             <ImPriceTag className="mr-2 mt-1 text-[16px]" />
-                            <p className="md:text-[20px] text-[16px] mr-1 font-600">Desde </p>
-                            <p className="text-[25px]  font-bold">${offer.price}<span className="ml-2">MXN</span></p>
+                            <p className="md:text-[20px] text-[16px] mr-1 font-600">
+                              Desde{" "}
+                            </p>
+                            <p className="text-[25px]  font-bold">
+                              ${offer.price}
+                              <span className="ml-2">MXN</span>
+                            </p>
                             {offer.category.name === "Hotel" ? (
                               <p className="md:pl-4 pl-2">Precio por noche</p>
                             ) : null}
                             {offer.category.name === "Paquete" ? (
-                              <p className="md:pl-3 pl-2 font-medium text-[14px]">Precio por persona</p>
+                              <p className="md:pl-3 pl-2 font-medium text-[14px]">
+                                Precio por persona
+                              </p>
                             ) : null}
                           </div>
                         </div>
                         <div className="mt-5 mx-5">
                           {offer.departure ? (
                             <div className="flex flex-row items-center">
-                              <FaPlaneDeparture className="text-[#ff6600] mr-2 text-[16px]"  />
+                              <FaPlaneDeparture className="text-[#ff6600] mr-2 text-[16px]" />
                               <p className="md:text-[19px] text-[15px] font-[400]">
                                 Salida:{" "}
                                 <span className="md:text-[19px] text-[15px] font-[300]">
