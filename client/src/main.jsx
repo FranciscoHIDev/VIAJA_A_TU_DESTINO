@@ -7,8 +7,8 @@ import { Provider } from "react-redux";
 import store from "./redux/store/store";
 import { Auth0Provider } from "@auth0/auth0-react";
 
-//axios.defaults.baseURL = "http://localhost:3000";
-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+axios.defaults.baseURL = "https://viaja-a-tu-destino-back.vercel.app";
+//axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>

@@ -5,7 +5,7 @@ import {
   FaPlaneArrival,
   FaMapMarkedAlt,
 } from "react-icons/fa";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 import { NavLink } from "react-router-dom";
 function CardTop({
@@ -20,18 +20,18 @@ function CardTop({
   departure,
   arrival,
 }) {
-  // CardTop.propTypes = {
-  //   _id: PropTypes.string.isRequired,
-  //   title: PropTypes.string.isRequired,
-  //   summary: PropTypes.string,
-  //   category: PropTypes.string,
-  //   image: PropTypes.string.isRequired,
-  //   price: PropTypes.number,
-  //   destination: PropTypes.string,
-  //   availability: PropTypes.string,
-  //   departure: PropTypes.string,
-  //   arrival: PropTypes.string,
-  // };
+  CardTop.propTypes = {
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    summary: PropTypes.string,
+    category: PropTypes.string,
+    image: PropTypes.string.isRequired,
+    price: PropTypes.number,
+    destination: PropTypes.string,
+    availability: PropTypes.string,
+    departure: PropTypes.string,
+    arrival: PropTypes.string,
+  };
   return (
     <React.Fragment>
       <NavLink to={`/oferta/${_id}`}>
