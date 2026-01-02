@@ -11,12 +11,12 @@ function Header() {
         <div className="flex flex-row justify-between">
           <div className="flex">
             <Link to="/">
-              <div className="flex items-center hover:text-[#ff3e02]">
+              <div className="flex items-center text-white text-[18px] rounded-lg bg-[#3794ff] p-1">
                 <FaHome />
                 <p className="ml-2">Home</p>
               </div>
             </Link>
-            <div className="flex  ml-10 hover:text-[#ff3e02]">
+            <div className="flex  ml-10  text-white text-[18px] rounded-lg bg-[#3794ff] p-1">
               <Menu
                 menuButton={
                   <MenuButton className="flex flex-row items-center">
@@ -67,7 +67,7 @@ function Header() {
                 </MenuItem>
               </Menu>
             </div>
-            <div className="flex items-center ml-10 hover:text-[#ff3e02]">
+            <div className="flex items-center ml-10 text-white text-[18px] rounded-lg bg-[#3794ff] p-1">
               <FaSignal />
               <p className="ml-2">Insights</p>
             </div>
@@ -76,15 +76,15 @@ function Header() {
             <Menu
               menuButton={
                 <MenuButton className="">
-                  <div className="flex flex-row items-center">
-                    <div>
+                  <div className="flex flex-row items-center rounded-lg bg-[#3794ff] p-1 ">
+                    <div className="text-[18px]">
                       <img
                         className="w-5 h-5  mr-2"
                         src="https://res.cloudinary.com/duaysiozi/image/upload/v1690172933/favicon_idaanl.png"
                         alt="image"
                       />
                     </div>
-                    <div>
+                    <div className="text-[15px]  ">
                       <span className="">Hola, Admin</span>
                     </div>
                     <FaChevronDown className="ml-2" />
@@ -102,14 +102,14 @@ function Header() {
                     to="#"
                     className="rounded-lg transition-colors hover:bg-[#a8a9aa] flex items-center gap-x-2 py-1 px-4 flex-1"
                   >
-                    <div className="flex mr-3">
+                    <div className="flex mr-3 ">
                       <img
                         className="w-5 h-5"
                         src="https://res.cloudinary.com/duaysiozi/image/upload/v1690172933/favicon_idaanl.png"
                         alt="name"
                       />
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col text-[18px]">
                       <span>Isidoro</span>
                       <span>ihilario00@gamil.com</span>
                     </div>

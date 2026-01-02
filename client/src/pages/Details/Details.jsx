@@ -77,7 +77,7 @@ function Details() {
         <header>
           <NavBar />
         </header>
-        <main className="flex-grow border-solid border-t-[2px] border-[#FF6600] mb-40">
+        <main className="flex-grow border-solid border-t-[2px] border-[#FF6600] mb-40 ">
           <div className="  flex felx-col items-center ">
             {offer.length !== 0 ? (
               <div className="flex flex-col ">
@@ -167,7 +167,7 @@ function Details() {
                             <p></p>
                           </div>
 
-                          <div>
+                          <div className="bg-[#f9fafa]">
                             {offer.buyLinks.map((e, index) => (
                               <div
                                 key={index}
@@ -207,7 +207,7 @@ function Details() {
                               target="_blank"
                               className="cursor-pointer"
                             >
-                              <button className="bg-[#ff3e02] p-2 rounded-xl text-white text-2xl hover:bg-[#53b3cb]">
+                              <button className="bg-[#ff6600] p-2 rounded-xl text-white text-2xl hover:bg-[#53b3cb]">
                                 IR A LA OFERTA
                               </button>
                             </a>
