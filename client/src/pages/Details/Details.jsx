@@ -81,8 +81,16 @@ function Details() {
           <div className="  flex felx-col items-center ">
             {offer.length !== 0 ? (
               <div className="flex flex-col ">
-                <div className="flex items-center justify-center">
-                  <div className="block md:container  w-screen">
+                <div className="flex flex-col justify-center border rounded-xl mt-5 mx-10 py-10 bg-white">
+                  <div className="ml-10 mb-10">
+                    <h1 className="mt-3 text-3xl font-bold text-[#0260fe] text-left">
+                      {offer.title}
+                    </h1>
+                    <p className="text-[18px] font-medium mt-2">
+                      {offer.summary}
+                    </p>
+                  </div>
+                  <div className="block md:container  w-screen ml-10">
                     <Slider {...mobileSettings} className="  md:hidden">
                       {offer.image.map((e, index) => (
                         <div key={index}>
@@ -111,10 +119,6 @@ function Details() {
                   <div className="flex flex-col md:mt-0 mt-[-30px]">
                     <div className="flex flex-col">
                       <div>
-                        <h1 className="mt-3 text-2xl font-bold text-[#0260fe] uppercase">
-                          {offer.title}
-                        </h1>
-
                         <p className="mt-4 text-2xl font-bold text-[#3794ff] flex  items-center">
                           <span className="mr-2">
                             <FaClipboardList />

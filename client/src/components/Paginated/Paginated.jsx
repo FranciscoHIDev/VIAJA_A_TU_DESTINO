@@ -23,13 +23,13 @@ function Paginated({ offers, offerPerPage, paginate, page, setPage, maxPage }) {
           hidden={page === 1}
           onClick={Prev}
         >
-          {`«`}
+          {`Atras`}
         </button>
         {pageNumbers?.map((num) => (
           <button
-            className={` text-xl px-2 border ${
+            className={` text-xl px-4 border rounded-full ${
               page === num
-                ? "bg-[#f9f9f9] text-[#ff3e02]"
+                ? "bg-[#3794ff]  text-white font-bold"
                 : "bg-[#fff] text-black hover:bg-slate-200"
             }`}
             key={crypto.randomUUID()}
@@ -42,7 +42,7 @@ function Paginated({ offers, offerPerPage, paginate, page, setPage, maxPage }) {
           className=" m-1 text-xl px-2 hover:text-[#ff3e02]"
           hidden={page === maxPage}
           onClick={Next}
-        >{`»`}</button>
+        >{`Siguiente`}</button>
       </nav>
     </React.Fragment>
   );
