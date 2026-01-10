@@ -78,24 +78,24 @@ function Details() {
           <NavBar />
         </header>
         <main className="flex-grow border-solid border-t-[2px] border-[#FF6600] mb-40 ">
-          <div className="  flex felx-col items-center ">
+          <div className="  flex felx-col">
             {offer.length !== 0 ? (
               <div className="flex flex-col ">
-                <div className="flex flex-col justify-center border rounded-xl mt-5 mx-10 py-10 bg-white">
-                  <div className="ml-10 mb-10">
-                    <h1 className="mt-3 text-3xl font-bold text-[#0260fe] text-left">
+                <div className="flex flex-col justify-center border rounded-xl mt-5 md:mx-10 py-10 bg-white">
+                  <div className="md:ml-10 mb-10 px-2">
+                    <h1 className="md:mt-3 md:text-3xl text-[20px] font-bold text-[#0260fe] text-left">
                       {offer.title}
                     </h1>
                     <p className="text-[18px] font-medium mt-2">
                       {offer.summary}
                     </p>
                   </div>
-                  <div className="block md:container  w-screen ml-10">
+                  <div className=" block md:container  w-screen px-3 justify-center">
                     <Slider {...mobileSettings} className="  md:hidden">
                       {offer.image.map((e, index) => (
                         <div key={index}>
                           <img
-                            className="w-[500px] h-[270px]"
+                            className="w-[400px] h-[270px]"
                             src={e}
                             alt="image"
                           />
@@ -107,7 +107,7 @@ function Details() {
                       {offer.image.map((e, index) => (
                         <img
                           key={index}
-                          className="w-[650px] h-[420px] px-1"
+                          className="w-[650px] h-[420px] px-1 rounded-xl"
                           src={e}
                           alt="image"
                         />
