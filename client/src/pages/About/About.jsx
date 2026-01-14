@@ -18,12 +18,13 @@ function About() {
             </div>
             <div className="mt-10">
               <p className="md:text-[20px] text-justify">
-                ¡Bienvenido a Viaja a tu Destino! Somos un buscador de ofertas
-                de viajes en México, y nuestro objetivo es ayudarte a encontrar
-                las mejores tarifas del mercado para que puedas viajar de manera
-                económica a los destinos más increíbles. Todos los días,
-                rastreamos y seleccionamos cuidadosamente las ofertas más
-                atractivas y las compartimos contigo en nuestro sitio web.
+                ¡Bienvenido a Viaja a tu Destino! Somos una agencia de viajes
+                especializada en encontrar las mejores ofertas en México, y
+                nuestro objetivo es ayudarte a encontrar las mejores tarifas del
+                mercado para que puedas viajar de manera económica a los
+                destinos más increíbles. Todos los días, rastreamos y
+                seleccionamos cuidadosamente las ofertas más atractivas y las
+                compartimos contigo en nuestro sitio web.
               </p>
               <p className="md:text-[20px] mt-5 text-justify">
                 Te proporcionamos toda la información necesaria sobre las
