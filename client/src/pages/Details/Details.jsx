@@ -77,7 +77,7 @@ function Details() {
         <header>
           <NavBar />
         </header>
-        <main className="flex-grow border-solid border-t-[2px] border-[#FF6600] mb-40 ">
+        <main className="flex-grow border-solid border-t-[1px]  mb-40 ">
           <div className="  flex felx-col">
             {offer.length !== 0 ? (
               <div className="flex flex-col ">
