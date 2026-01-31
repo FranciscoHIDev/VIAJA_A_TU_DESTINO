@@ -107,7 +107,7 @@ function Details() {
                       {offer.image.map((e, index) => (
                         <img
                           key={index}
-                          className="w-[650px] h-[420px] px-1 rounded-xl"
+                          className="w-[650px] h-[420px] px-1 rounded-xl "
                           src={e}
                           alt="image"
                         />
@@ -144,9 +144,10 @@ function Details() {
                               <div key={index}>
                                 <img
                                   key={index}
-                                  className="mt-4 w-[320px] h-[200px] md:w-[700px] md:h-[400px] "
+                                  className="mt-4 w-full h-full md:w-full md:h-full "
                                   src={e}
                                   alt="image"
+                                  onClick={() => setOpen(false)}
                                 />
                               </div>
                             ))}
