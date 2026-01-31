@@ -89,22 +89,21 @@ function NavBar() {
                     </Link>
                     <Link to="/tours">Tours</Link>
                   </li>
-                 
                 </ul>
               </div>
             </div>
 
-            <div className="flex flex-row bg-[#eee] items-center md:pr-[20px] md:pl-[30px] pl-2 top-0 absolute right-0 md:h-[60px] h-[50px] rounded-tl-none rounded-bl-[30px]">
+            <div className="flex flex-row bg-[#ff6600] items-center md:pr-[20px] md:pl-[30px] pl-2 top-0 absolute right-0 md:h-[60px] h-[50px] rounded-tl-none rounded-bl-[30px]">
               <ul className="flex flex-row list-none ml-2 md:ml-0 ">
                 <li className="flex md:mr-[25px]  mr-2 color-[#444] text-[16px] items-center font-[400] ">
                   <span className="mr-[5px] ">
                     {" "}
                     <a href="tel:+52 998 283 0657">
-                      <FaHeadset className="text-[19px] md:text-[18px] text-[#035373]" />
+                      <FaHeadset className="text-[19px] md:text-[18px] text-white" />
                     </a>
                   </span>{" "}
                   <a href="tel:+52 998 283 0657">
-                    <span className="hidden lg:block">
+                    <span className="hidden lg:block text-white font-semibold">
                       Reservar: 998 283 0657
                     </span>
                   </a>
@@ -118,14 +117,14 @@ function NavBar() {
                           <MenuButton className="">
                             <div className="flex flex-row items-center">
                               <div>
-                                <FaUserCircle className="text-[19px] md:text-[18px] text-[#035373] mr-[5px]" />
+                                <FaUserCircle className="text-[19px] md:text-[18px] text-white mr-[5px]" />
                               </div>
                               <div>
-                                <span className="text-[15px]">
+                                <span className="text-[15px] text-white font-semibold">
                                   Hi, {userDB.name}
                                 </span>
                               </div>
-                              <FaChevronDown className="ml-2 text-[#035373] text-[15px]" />
+                              <FaChevronDown className="ml-2 text-white text-[15px]" />
                             </div>
                           </MenuButton>
                         }
@@ -236,7 +235,6 @@ function NavBar() {
                   </li>
                 </ul>
               </div>
-              
             </div>
           </div>
         </div>

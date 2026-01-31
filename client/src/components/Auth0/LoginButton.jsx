@@ -7,17 +7,17 @@ function LoginButton() {
   return (
     <React.Fragment>
       <button
-        className="hidden lg:flex items-center "
+        className="hidden lg:flex items-center border-none "
         onClick={() => loginWithPopup()}
       >
-        <FaUserCircle className="text-[20px] md:text-[18px] text-[#035373] mr-[5px]" />
-        Iniciar sesión
+        <FaUserCircle className="text-[20px] md:text-[18px] mr-[5px] text-white" />
+        <span className="text-white font-semibold">Iniciar sesión</span>
       </button>
       <button
-        className=" lg:hidden items-center "
+        className=" lg:hidden items-center border-none"
         onClick={() => loginWithPopup()}
       >
-        <FaUserCircle className="text-[20px] md:text-[18px] text-[#035373] mr-[5px]" />
+        <FaUserCircle className="text-[20px] md:text-[18px] mr-[5px] text-white font-semibold" />
       </button>
     </React.Fragment>
   );

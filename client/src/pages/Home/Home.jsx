@@ -17,8 +17,8 @@ function Home() {
         <main className="flex-grow">
           <div className="flex flex-col  mb-20">
             <div className="flex flex-col">
-              <div className="flex flex-col justify-center bg-[#3794ff] pb-20 ">
-                <div className="flex flex-col justify-center items-center">
+              <div className="flex flex-col justify-center pb-20 bg-[#3794FF]">
+                <div className="flex flex-col justify-center items-center ">
                   <h2 className="md:text-5xl text-2xl text-white font-semibold mt-10 md:mx-10 mx-5 text-center">
                     Reserva las mejores ofertas de viajes
                   </h2>
@@ -28,26 +28,17 @@ function Home() {
                 </div>
                 <div className="flex flex-col mt-10 md:mx-40 mx-2">
                   <div id="ptw-container" class="ptw-horizontal-search"></div>
-                  <script
-                    type="text/javascript"
-                    src="https://widgets.priceres.com.mx/viaja-a-tu-destino/jsonpBooker/startWidget?container=ptw-container&UseConfigs=false&IsHorizontal=true"
-                  ></script>
                 </div>
               </div>
             </div>
             <div className="flex flex-col  mt-2">
               <div className="flex justify-center text-center">
-                <h2 className="md:text-5xl text-2xl text-[#3794FF] font-semibold mt-3">
-                  Descubre las últimas ofertas
+                <h2 className="md:text-4xl text-2xl text-[#3794FF] font-semibold mt-3">
+                  Descubre las últimas ofertas a diferentes destinos
                 </h2>
               </div>
 
-              <CardsTops />
-              <div className="mt-12">
-                <FiltersMobile />
-                <Filters />
-                <CardsOferts />
-              </div>
+              <CardsOferts />
             </div>
           </div>
         </main>

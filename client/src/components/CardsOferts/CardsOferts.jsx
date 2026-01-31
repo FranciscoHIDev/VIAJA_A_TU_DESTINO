@@ -13,7 +13,7 @@ function CardsOferts() {
   }, [dispatch]);
 
   const [page, setPage] = useState(1);
-  const [offerPerPage] = useState(3);
+  const [offerPerPage] = useState(6);
   const lastOffer = page * offerPerPage;
 
   const firstOffer = lastOffer - offerPerPage;
