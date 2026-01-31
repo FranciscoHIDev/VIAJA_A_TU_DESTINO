@@ -4,7 +4,10 @@ function LogoutButton() {
   const { logout } = useAuth0();
   return (
     <React.Fragment>
-      <button onClick={() => logout({ returnTo: window.location.origin })}>
+      <button
+        onClick={() => logout({ returnTo: window.location.origin })}
+        className="border-none"
+      >
         Cerrar sesión
       </button>
     </React.Fragment>

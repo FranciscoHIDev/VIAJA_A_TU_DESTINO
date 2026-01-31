@@ -114,13 +114,13 @@ function NavBar() {
                     <>
                       <Menu
                         menuButton={
-                          <MenuButton className="">
-                            <div className="flex flex-row items-center">
+                          <MenuButton className="border-none">
+                            <div className="flex flex-row items-center border-none">
                               <div>
                                 <FaUserCircle className="text-[19px] md:text-[18px] text-white mr-[5px]" />
                               </div>
-                              <div>
-                                <span className="text-[15px] text-white font-semibold">
+                              <div className="">
+                                <span className="text-[15px] text-white font-semibold ">
                                   Hi, {userDB.name}
                                 </span>
                               </div>
@@ -139,7 +139,7 @@ function NavBar() {
                               to="#"
                               className="rounded-lg transition-colors  flex items-center gap-x-2 py-1 px-4 flex-1"
                             >
-                              <div className="flex mr-3">
+                              <div className="flex mr-3 border-none">
                                 <img
                                   className="w-5 h-5"
                                   src={userDB.image}
