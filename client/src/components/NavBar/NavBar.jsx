@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {
   FaHeadset,
   FaSuitcase,
-  FaPlane,
+  FaBookReader,
   FaHotel,
   FaUserCircle,
 } from "react-icons/fa";
@@ -76,12 +76,7 @@ function NavBar() {
                     </Link>
                     <Link to="/hoteles">Hoteles</Link>
                   </li>
-                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
-                    <Link to="/vuelos">
-                      <FaPlane className="text-[20px]" />
-                    </Link>
-                    <Link to="/vuelos">Vuelos</Link>
-                  </li>
+
                   <li className="flex  flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="/tours">
                       {" "}
@@ -89,117 +84,30 @@ function NavBar() {
                     </Link>
                     <Link to="/tours">Tours</Link>
                   </li>
+                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
+                    <Link to="/blog">
+                      <FaBookReader className="text-[20px]" />
+                    </Link>
+                    <Link to="/blog">Blog</Link>
+                  </li>
                 </ul>
               </div>
             </div>
 
             <div className="flex flex-row bg-[#ff6600] items-center md:pr-[20px] md:pl-[30px] pl-2 top-0 absolute right-0 md:h-[60px] h-[50px] rounded-tl-none rounded-bl-[30px]">
               <ul className="flex flex-row list-none ml-2 md:ml-0 ">
-                <li className="flex md:mr-[25px]  mr-2 color-[#444] text-[16px] items-center font-[400] ">
+                <li className="flex md:mr-[25px]  mr-2 color-[#444] text-[14px] md:text-[17px] items-center font-[400] ">
                   <span className="mr-[5px] ">
                     {" "}
                     <a href="tel:+52 998 283 0657">
-                      <FaHeadset className="text-[19px] md:text-[18px] text-white" />
+                      <FaHeadset className="text-[15px] md:text-[18px] text-white" />
                     </a>
                   </span>{" "}
                   <a href="tel:+52 998 283 0657">
-                    <span className="hidden lg:block text-white font-semibold">
+                    <span className="lg:block text-white font-semibold">
                       Reservar: 998 283 0657
                     </span>
                   </a>
-                </li>
-
-                <li className="flex md:mr-[25px]  mr-2 color-[#444] text-[16px] items-center font-[400]">
-                  {isAuthenticated && user ? (
-                    <>
-                      <Menu
-                        menuButton={
-                          <MenuButton className="border-none">
-                            <div className="flex flex-row items-center border-none">
-                              <div>
-                                <FaUserCircle className="text-[19px] md:text-[18px] text-white mr-[5px]" />
-                              </div>
-                              <div className="">
-                                <span className="text-[15px] text-white font-semibold ">
-                                  Hi, {userDB.name}
-                                </span>
-                              </div>
-                              <FaChevronDown className="ml-2 text-white text-[15px]" />
-                            </div>
-                          </MenuButton>
-                        }
-                        align="end"
-                        transition
-                        arrow
-                        menuClassName="bg-white"
-                      >
-                        <MenuItem className=" hover:bg-transparent">
-                          <div className="flex flex-row items-center border-b-[1px]">
-                            <Link
-                              to="#"
-                              className="rounded-lg transition-colors  flex items-center gap-x-2 py-1 px-4 flex-1"
-                            >
-                              <div className="flex mr-3 border-none">
-                                <img
-                                  className="w-5 h-5"
-                                  src={userDB.image}
-                                  alt={userDB.name}
-                                />
-                              </div>
-                              <div className="flex flex-col ">
-                                <span className="text-black ">
-                                  {userDB.name}
-                                </span>
-                                <span className="text-black">
-                                  {userDB.email}
-                                </span>
-                              </div>
-                            </Link>
-                          </div>
-                        </MenuItem>
-                        {userDB.role === "user" ? (
-                          <MenuItem className="hover:bg-transparent">
-                            <Link
-                              to="/mi-perfil/favoritos"
-                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black hover:text-white"
-                            >
-                              Favoritos
-                            </Link>
-                          </MenuItem>
-                        ) : null}
-
-                        {isAuthenticated && userDB.role === "superAdmin" ? (
-                          <MenuItem className="hover:bg-transparent">
-                            <Link
-                              to="/auth"
-                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black  hover:text-white"
-                            >
-                              Web Admin
-                            </Link>
-                          </MenuItem>
-                        ) : (
-                          <MenuItem className="hover:bg-transparent">
-                            <Link
-                              to="/mi-perfil"
-                              className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black  hover:text-white"
-                            >
-                              Mi Perfil
-                            </Link>
-                          </MenuItem>
-                        )}
-                        <MenuItem className="hover:bg-transparent">
-                          <Link
-                            to="#"
-                            className="rounded-lg transition-colors hover:bg-[#131517] flex items-center gap-x-2 py-1 px-4 flex-1 text-black  hover:text-white"
-                          >
-                            <LogoutButton />
-                          </Link>
-                        </MenuItem>
-                      </Menu>
-                    </>
-                  ) : (
-                    <LoginButton />
-                  )}
                 </li>
               </ul>
             </div>
@@ -220,18 +128,19 @@ function NavBar() {
                     </Link>
                     <Link to="/hoteles">Hoteles</Link>
                   </li>
-                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
-                    <Link to="/vuelos">
-                      <FaPlane className="text-[20px]" />
-                    </Link>
-                    <Link to="/vuelos">Vuelos</Link>
-                  </li>
+
                   <li className="flex  flex-col items-center md:mr-[50px] mr-[14px]   text-[16px] text-[#444]  hover:text-[#035373]">
                     <Link to="/tours">
                       {" "}
                       <GiMayanPyramid className="text-[20px]" />
                     </Link>
                     <Link to="/tours">Tours</Link>
+                  </li>
+                  <li className="flex flex-col items-center md:mr-[50px] mr-[14px]  text-[16px] text-[#444]  hover:text-[#035373]">
+                    <Link to="/blog">
+                      <FaBookReader className="text-[20px]" />
+                    </Link>
+                    <Link to="/blog">Blog</Link>
                   </li>
                 </ul>
               </div>
