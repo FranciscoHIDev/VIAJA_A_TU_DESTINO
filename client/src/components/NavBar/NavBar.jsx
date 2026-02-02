@@ -17,6 +17,7 @@ import { FaChevronDown } from "react-icons/fa";
 import LogoutButton from "../Auth0/LogoutButton";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers, postUser } from "../../redux/actions/actions";
+import imageLogo from "../../../public/Logo-oficial.webp";
 
 function NavBar() {
   const { isAuthenticated, user } = useAuth0();
@@ -56,7 +57,7 @@ function NavBar() {
                 <a href="/">
                   <img
                     className="md:ml-[40px] w-[180px] md:mt-[5px] ml-[15px] mt-[2px]"
-                    src="https://viajaatudestino.com/wp-content/uploads/2025/11/Logo-oficial-vtd.png"
+                    src={imageLogo}
                     alt="logo-oficial"
                   />
                 </a>
