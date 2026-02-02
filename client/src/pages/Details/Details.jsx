@@ -80,34 +80,43 @@ function Details() {
         <main className="flex-grow border-solid border-t-[1px]  mb-40 ">
           <div className="  flex felx-col">
             {offer.length !== 0 ? (
-              <div className="flex flex-col ">
-                <div className="flex flex-col justify-center border rounded-xl mt-5 md:mx-10 py-10 bg-white">
+              <div className="flex flex-col">
+                <div className="block md:hidden w-screen px-3 justify-center pt-1.5">
                   <div className="md:ml-10 mb-10 px-2">
-                    <h1 className="md:mt-3 md:text-3xl text-[20px] font-bold text-[#0260fe] text-left">
+                    <h1 className="md:mt-3 md:text-3xl text-[20px] font-bold text-[#0260fe]">
                       {offer.title}
                     </h1>
                     <p className="text-[18px] font-medium mt-2">
                       {offer.summary}
                     </p>
                   </div>
-                  <div className=" block md:container  w-screen px-3 justify-center">
-                    <Slider {...mobileSettings} className="  md:hidden">
-                      {offer.image.map((e, index) => (
-                        <div key={index}>
-                          <img
-                            className="w-[400px] h-[270px]"
-                            src={e}
-                            alt="image"
-                          />
-                        </div>
-                      ))}
-                    </Slider>
-
-                    <Slider {...desktopSettings} className="hidden md:block">
+                  <Slider {...mobileSettings} className="  ">
+                    {offer.image.map((e, index) => (
+                      <div key={index}>
+                        <img
+                          className="w-[500px] h-[270px]"
+                          src={e}
+                          alt="image"
+                        />
+                      </div>
+                    ))}
+                  </Slider>
+                </div>
+                <div className="hidden md:flex flex-col border rounded-xl mt-5 md:mx-10 py-10 bg-white px-0">
+                  <div className=" hidden md:block  px-3 justify-center">
+                    <div className="md:ml-10 mb-10 px-2">
+                      <h1 className="md:mt-3 md:text-3xl text-[20px] font-bold text-[#0260fe]">
+                        {offer.title}
+                      </h1>
+                      <p className="text-[18px] font-medium mt-2">
+                        {offer.summary}
+                      </p>
+                    </div>
+                    <Slider {...desktopSettings} className="">
                       {offer.image.map((e, index) => (
                         <img
                           key={index}
-                          className="w-[650px] h-[420px] px-1 rounded-xl "
+                          className="w-[250px] h-[420px] px-1 rounded-xl "
                           src={e}
                           alt="image"
                         />
@@ -127,7 +136,7 @@ function Details() {
                         </p>
 
                         <p
-                          className="mt-3 text-[18px] text-neutral-800"
+                          className="mt-3 text-[15px] md:text-[16px] text-neutral-800 text-justify"
                           dangerouslySetInnerHTML={{
                             __html: offer.description,
                           }}
@@ -234,13 +243,13 @@ function Details() {
                             Resumen
                           </p>
                         </div>
-                        <div className="flex   justify-center bg-[#3794ff] pb-3 pt-3">
+                        <div className="flex justify-center bg-[#3794ff] pb-3 pt-3">
                           <div className="flex flex-row items-center text-white">
                             <ImPriceTag className="mr-2 mt-1 text-[16px]" />
                             <p className="md:text-[20px] text-[16px] mr-1 font-600">
                               Desde{" "}
                             </p>
-                            <p className="text-[25px]  font-bold">
+                            <p className="text-[23px]  font-bold">
                               ${offer.price}
                               <span className="ml-2">MXN</span>
                             </p>
@@ -248,7 +257,7 @@ function Details() {
                               <p className="md:pl-4 pl-2">Precio por noche</p>
                             ) : null}
                             {offer.category.name === "Paquete" ? (
-                              <p className="md:pl-3 pl-2 font-medium text-[14px]">
+                              <p className="md:pl-3 pl-2 font-medium text-[13px]">
                                 Precio por persona
                               </p>
                             ) : null}
