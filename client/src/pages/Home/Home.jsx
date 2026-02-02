@@ -34,7 +34,7 @@ function Home() {
             <div className="flex flex-col  mt-2">
               <div className="flex justify-center text-center">
                 <h2 className="md:text-4xl text-2xl text-[#3794FF] font-semibold mt-3">
-                  Descubre las últimas ofertas a diferentes destinos
+                  Descubre las últimas ofertas a diferentes destinos  
                 </h2>
               </div>
 
