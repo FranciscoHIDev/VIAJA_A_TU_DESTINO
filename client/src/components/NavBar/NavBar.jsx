@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  FaHeadset,
-  FaSuitcase,
-  FaBookReader,
-  FaHotel,
-  FaUserCircle,
-} from "react-icons/fa";
+import { FaHeadset, FaSuitcase, FaBookReader, FaHotel } from "react-icons/fa";
 import { GiMayanPyramid } from "react-icons/gi";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../Auth0/LoginButton";

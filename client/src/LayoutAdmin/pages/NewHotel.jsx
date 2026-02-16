@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import "react-quill/dist/quill.snow.css";
 import { FaPen } from "react-icons/fa";
 import { MenuItem } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Swal from "sweetalert2";
 
 const validationSchema = yup.object({
@@ -52,6 +52,9 @@ const validationSchema = yup.object({
 function NewHotel() {
   const [selectedImages, setSelectedImages] = useState([]);
   const [selectedSampleImages, setSelectedSampleImages] = useState([]);
+
+  const widgetRef = useRef(null);
+  const currentField = useRef(null);
 
   const formik = useFormik({
     initialValues: {
@@ -125,32 +128,43 @@ function NewHotel() {
     formik.setFieldValue("description", value);
   };
 
-  const openWidget = (e, field) => {
-    e.preventDefault();
-    var widget = window.cloudinary.createUploadWidget(
+  useEffect(() => {
+    if (!window.cloudinary || widgetRef.current) return;
+
+    widgetRef.current = window.cloudinary.createUploadWidget(
       {
         cloudName: "duaysiozi",
-        uploadPreset: "pmba0f4i",
+        uploadPreset: "viajaatudestino",
         multiple: true,
       },
       (error, result) => {
-        if (!error && result && result.event === "success") {
-          const imageUrl = result.info.url;
-          console.log(imageUrl);
-          if (field === "image") {
-            setSelectedImages((prevImages) => [...prevImages, imageUrl]);
-            formik.setFieldValue("image", [...formik.values.image, imageUrl]);
-          } else if (field === "sampleImages") {
-            setSelectedSampleImages((prevImages) => [...prevImages, imageUrl]);
-            formik.setFieldValue("sampleImages", [
-              ...formik.values.sampleImages,
-              imageUrl,
-            ]);
+        if (!error && result?.event === "success") {
+          const imageUrl = result.info.secure_url;
+
+          if (currentField.current === "image") {
+            setSelectedImages((prev) => [...prev, imageUrl]);
           }
+
+          if (currentField.current === "sampleImages") {
+            setSelectedSampleImages((prev) => [...prev, imageUrl]);
+          }
+
+          formik.setValues((prev) => ({
+            ...prev,
+            [currentField.current]: [
+              ...(prev[currentField.current] || []),
+              imageUrl,
+            ],
+          }));
         }
-      }
+      },
     );
-    widget.open();
+  }, [formik]);
+
+  const openWidget = (e, field) => {
+    e.preventDefault();
+    currentField.current = field;
+    widgetRef.current?.open();
   };
 
   return (
