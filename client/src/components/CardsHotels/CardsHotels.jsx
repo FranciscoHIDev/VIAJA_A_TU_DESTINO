@@ -2,8 +2,7 @@ import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getAllOffers } from "../../redux/actions/actions";
-import CardOffers from "../CardOffers/CardOffers";
-
+import CardTop from "../CardTop/CardTop";
 function CardsHotels() {
   const dispatch = useDispatch();
   const offers = useSelector((state) => state.offers);
@@ -18,7 +17,7 @@ function CardsHotels() {
     <div className="flex flex-wrap items-center justify-center">
       {all.map((e) => {
         return (
-          <CardOffers
+          <CardTop
             key={crypto.randomUUID()}
             _id={e._id}
             title={e.title}

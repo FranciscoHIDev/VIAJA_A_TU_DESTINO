@@ -136,39 +136,7 @@ function NewOffer() {
     formik.setFieldValue("description", value);
   };
 
-  // ✅ Cloudinary Widget (se inicializa UNA SOLA VEZ)
-  // useEffect(() => {
-  //   if (!window.cloudinary || widgetRef.current) return;
-
-  //   widgetRef.current = window.cloudinary.createUploadWidget(
-  //     {
-  //       cloudName: "duaysiozi",
-  //       uploadPreset: "viajaatudestino",
-  //       multiple: true,
-  //     },
-  //     (error, result) => {
-  //       if (!error && result?.event === "success") {
-  //         const imageUrl = result.info.secure_url;
-
-  //         if (currentField.current === "image") {
-  //           setSelectedImages((prev) => [...prev, imageUrl]);
-  //           formik.setFieldValue("image", [
-  //             ...formik.values.image,
-  //             imageUrl,
-  //           ]);
-  //         }
-
-  //         if (currentField.current === "sampleImages") {
-  //           setSelectedSampleImages((prev) => [...prev, imageUrl]);
-  //           formik.setFieldValue("sampleImages", [
-  //             ...formik.values.sampleImages,
-  //             imageUrl,
-  //           ]);
-  //         }
-  //       }
-  //     }
-  //   );
-  // }, [formik]);
+  
   useEffect(() => {
     if (!window.cloudinary || widgetRef.current) return;
 
