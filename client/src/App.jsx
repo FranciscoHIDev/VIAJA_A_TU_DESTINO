@@ -37,7 +37,7 @@ function App() {
           <Route path="/tours" element={<Tours />} />
           <Route path="/destinos" element={<Destinations />} />
           <Route path="/vuelos" element={<Flights />} />
-          <Route path="/auth" element={<LayoutAdmin />}>
+          <Route path="/auth-login-dev" element={<LayoutAdmin />}>
             <Route index element={<HomeAdmin />} />
             <Route path="ofertas" element={<OffersAdmin />} />
             <Route path="paquetes" element={<PackagesAdmin />} />
