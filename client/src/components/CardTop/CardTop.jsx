@@ -35,7 +35,7 @@ function CardTop({
   return (
     <React.Fragment>
       <NavLink to={`/oferta/${_id}`}>
-        <div className="bg-white mt-10 h-[480px] md:w-[400px] m-2 w-auto rounded-xl">
+        <div className="bg-white mt-10 h-[480px] md:w-[350px] m-2 w-auto rounded-xl">
           <div>
             <img
               className="p-[1px] h-[250px] w-[400px] rounded-xl"

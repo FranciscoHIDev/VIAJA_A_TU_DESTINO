@@ -23,14 +23,17 @@ import Flights from "./pages/Flights/Flights";
 import Packages from "./pages/Packages/Packages";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Favorites from "./LayoutProfile/pages/Favorites";
+import BlogPage from "./pages/Blog/BlogPage";
+import HomeNew from "./pages/Home/HomeNew";
 function App() {
   return (
     <div>
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomeNew />} />
           <Route exact path="/oferta/:id" element={<Details />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/sobre-nosotros" element={<About />} />
           <Route path="/hoteles" element={<Hotels />} />
           <Route path="/paquetes" element={<Packages />} />
