@@ -254,9 +254,7 @@ function Details() {
                               <span className="ml-2">MXN</span>
                             </p>
                             {offer.category.name === "Hotel" ? (
-                              <p className="md:pl-2 pl-1">
-                                Precio por persona x noche
-                              </p>
+                              <p className="md:pl-2 pl-1">Precio por persona</p>
                             ) : null}
                             {offer.category.name === "Paquete" ? (
                               <p className="md:pl-3 pl-2 font-medium text-[13px]">
