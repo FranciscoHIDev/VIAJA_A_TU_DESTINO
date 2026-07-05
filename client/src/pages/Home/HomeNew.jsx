@@ -54,7 +54,7 @@ export default function HomeNew() {
 
         {/* BARRA INFO */}
         <section className="bg-[#0260fe] text-white py-4">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between text-sm px-4 gap-2 text-center">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between text-sm px-4 gap-2 text-center text-[16px]">
             <p>✈️ Vuelos baratos</p>
             <p>🏨 Hoteles todo incluido</p>
             <p>💳 Meses sin intereses</p>
@@ -74,7 +74,7 @@ export default function HomeNew() {
               <h3 className="font-bold mt-3 text-[18px]">
                 Buscamos ofertas reales
               </h3>
-              <p className="text-gray-600 mt-2  ">
+              <p className="text-gray-600 mt-2 text-[16px] ">
                 Analizamos precios en tiempo real.
               </p>
             </div>
@@ -82,7 +82,7 @@ export default function HomeNew() {
             <div>
               <p className="text-4xl text-[#3794ff]">⚡</p>
               <h3 className="font-bold mt-3 text-[18px]">Filtramos lo mejor</h3>
-              <p className="text-gray-600 mt-2">
+              <p className="text-gray-600 mt-2 text-[16px]">
                 Solo lo más barato y confiable.
               </p>
             </div>
@@ -90,7 +90,7 @@ export default function HomeNew() {
             <div>
               <p className="text-4xl text-[#ff6600]">📲</p>
               <h3 className="font-bold mt-3 text-[18px]">Te lo enviamos</h3>
-              <p className="text-gray-600 mt-2">
+              <p className="text-gray-600 mt-2 text-[16px]">
                 Directo a WhatsApp listo para reservar.
               </p>
             </div>
@@ -101,11 +101,11 @@ export default function HomeNew() {
         <section id="ofertas" className="bg-gray-50 py-10 px-6">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center">
-              🔥 Ofertas que están volando hoy
+              🔥 Ofertas que están volando
             </h2>
 
-            <p className="text-center text-gray-500 mt-3">
-              Actualizadas diariamente
+            <p className="text-center text-gray-500 mt-3 text-[16px]">
+              Encuentra lo más destacado y mucho más
             </p>
 
             <div>
@@ -116,7 +116,7 @@ export default function HomeNew() {
 
         {/* DIFERENCIADOR */}
         <section className="bg-[#0260fe] text-white py-24 px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
             No somos una agencia tradicional ✈️
           </h2>
 
@@ -130,7 +130,7 @@ export default function HomeNew() {
               <h3 className="font-bold text-[#ff6600] text-2xl">
                 ⚡ Velocidad
               </h3>
-              <p className="text-blue-100 mt-2 text-[15px]">
+              <p className="text-blue-100 mt-2 text-[16px]">
                 Respuesta inmediata por WhatsApp
               </p>
             </div>
@@ -139,7 +139,7 @@ export default function HomeNew() {
               <h3 className="font-bold text-[#ff6600] text-2xl">
                 🔥 Ofertas reales
               </h3>
-              <p className="text-blue-100 mt-2 text-[15px]">
+              <p className="text-blue-100 mt-2 text-[16px]">
                 Sin precios inflados
               </p>
             </div>
@@ -148,7 +148,7 @@ export default function HomeNew() {
               <h3 className="font-bold text-[#ff6600] text-2xl">
                 💳 Flexibilidad
               </h3>
-              <p className="text-blue-100 mt-2 text-[15px]">
+              <p className="text-blue-100 mt-2 text-[16px]">
                 Meses sin intereses
               </p>
             </div>

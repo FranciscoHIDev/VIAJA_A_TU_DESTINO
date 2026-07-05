@@ -167,7 +167,7 @@ function Details() {
                       offer.category.name === "Hotel" ||
                       offer.category.name === "Vuelo" ? (
                         <div ref={targetRef}>
-                          <p className="mt-10 mb-3 text-2xl font-bold flex text-[#3794ff] items-center">
+                          <p className="mt-20 mb-3 text-2xl font-bold flex text-[#3794ff] items-center">
                             <span className="mr-2">
                               <FaRegCalendarAlt />
                             </span>{" "}
