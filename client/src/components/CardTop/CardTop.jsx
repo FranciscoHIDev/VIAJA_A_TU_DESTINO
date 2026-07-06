@@ -35,27 +35,30 @@ function CardTop({
   return (
     <React.Fragment>
       <NavLink to={`/oferta/${_id}`}>
-        <div className="bg-white mt-10 h-[480px] md:w-[350px] m-2 w-auto rounded-xl">
+        <div className="bg-white mt-10 h-[520px] md:w-[360px] m-2  w-auto rounded-[16px] border-[1px]">
           <div>
             <img
-              className="p-[1px] h-[250px] w-[400px] rounded-xl"
+              className="p-[5px] h-[227px] w-[360px] rounded-[20px]"
               src={image[0]}
               alt="image"
             />
-            <button className="bg-[#FF6600] px-2 py-2 rounded-lg text-white font-medium absolute mt-[-60px] ml-4 text-[15px]">
-              Desde ${price} MXN{" "}
+            <button className="bg-black px-2 py-1 rounded-lg text-white font-bold absolute mt-[-200px] ml-4 text-[12px]">
+              💳 Hasta 12 MSI
             </button>
           </div>
           <div className="mt-3 ml-4 mr-4">
-            <p className="uppercase font-bold text-[20px] text-[#0260FE] hover:text-[#3794FF]">
-              {title}
-            </p>
-            {category.name === "Tour" || category.name === "Hotel" ? (
+            <p className=" font-bold text-[18px] text-[#0e1734]">{title}</p>
+            <div className="mt-2">
+              <p className="text-[#4b5563] text-[14px]">{summary}</p>
+            </div>
+            {category.name === "Tour" ||
+            category.name === "Hotel" ||
+            category.name === "Paquete" ? (
               <div className="flex flex-row items-center mt-2">
-                <FaMapMarkedAlt className="text-[#666] text-[20px]" />
-                <p className="ml-[10px] text-[#666] font-[400] text-[15px]">
+                <FaMapMarkedAlt className="text-[#4b5563] text-[15px]" />
+                <p className="ml-[10px] text-[#4b5563] font-[400] text-[14px]">
                   Destino:{" "}
-                  <span className="text-[15px] font-[600] text-[#666]">
+                  <span className="text-[14px] font-[500] text-[#4b5563]">
                     {destination.name.charAt(0).toUpperCase() +
                       destination.name.slice(1).toLowerCase()}
                   </span>
@@ -63,22 +66,23 @@ function CardTop({
               </div>
             ) : null}
 
-            <div className="flex flex-row items-center mt-2">
-              <FaRegCalendarAlt className="text-[#666] text-[20px]" />
-              <p className="ml-[10px] text-[#666] font-[400] text-[15px]">
+            <div className="flex flex-row items-center mt-1">
+              <FaRegCalendarAlt className="text-[#4b5563] text-[15px]" />
+              <p className="ml-[10px] text-[#4b5563] font-[400] text-[14px]">
                 Disponibilidad:{" "}
-                <span className="text-[15px] font-[600] text-[#666]">
+                <span className="text-[14px] font-[500] text-[#4b5563]">
                   {availability}
                 </span>
               </p>
             </div>
+            <hr className="border-t-1 w-3/8 mt-8" />
 
-            {departure ? (
+            {/* {departure ? (
               <div className="flex flex-row items-center mt-2">
-                <FaPlaneDeparture className="text-[#666] text-[20px]" />
-                <p className="ml-[10px] text-[#666] font-[400] text-[15px]">
+                <FaPlaneDeparture className="text-[#4b5563] text-[15px]" />
+                <p className="ml-[10px] text-[#4b5563] font-[400] text-[14px]">
                   Saliendo desde:{" "}
-                  <span className="text-[15px] font-[600] text-[#666]">
+                  <span className="text-[14px] font-[500] text-[#4b5563]">
                     {departure}
                   </span>
                 </p>
@@ -87,17 +91,28 @@ function CardTop({
 
             {arrival ? (
               <div className="flex flex-row items-center mt-2">
-                <FaPlaneArrival className="text-[#666] text-[20px]" />
-                <p className="ml-[10px] text-[#666] font-[400] text-[15px]">
+                <FaPlaneArrival className="text-[#4b5563] text-[15px]" />
+                <p className="ml-[10px] text-[#4b5563] font-[400] text-[14px]">
                   Llegando a:{" "}
-                  <span className="text-[15px] font-[600] text-[#666]">
+                  <span className="text-[14px] font-[500] text-[#4b5563]">
                     {arrival}
                   </span>
                 </p>
               </div>
-            ) : null}
-            <div className="mt-4">
-              <p className="text-[#666] text-[15px]">{summary}</p>
+            ) : null} */}
+          </div>
+          <p className=" px-2 pt-2 rounded-lg text-[#0e1734] font-ligth ml-4 text-[15px]">
+            Desde
+          </p>
+          <p className="text-2xl px-5 font-[900] text-[#0e1734]">
+            ${price} <span className="text-[17px] font-medium ">MXN</span>
+          </p>
+          <div className="flex justify-between  mt-2">
+            <div className="flex bg-[#ff6600] w-[180px] h-16 justify-center items-center rounded-bl-lg">
+              <p className="text-[20px] text-white font-bold">Ver oferta</p>
+            </div>
+            <div className="flex bg-[#f3f4f6] w-[180px] justify-center items-center rounded-br-lg">
+              <p className="text-[20px] font-bold text-[#0e1734]">WhatsApp</p>
             </div>
           </div>
         </div>

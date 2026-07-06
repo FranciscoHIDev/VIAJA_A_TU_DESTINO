@@ -48,7 +48,7 @@ function CardOffers({
         favorite: _id,
         email: user.email,
       };
-     
+
       dispatch(addFavorite(newFavorite));
       if (!click) {
         setClick(true);
@@ -80,7 +80,7 @@ function CardOffers({
   return (
     <React.Fragment>
       <div
-        className="mt-[30px] rounded-[20px] bg-[#fff] w-[330px] h-[490px] m-[12px] border-none 
+        className="mt-[30px] rounded-[20px] bg-[#fff] w-[330px] h-[490px] m-[12px] border-red-50
         "
       >
         <div>
