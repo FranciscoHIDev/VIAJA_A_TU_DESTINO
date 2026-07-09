@@ -34,8 +34,8 @@ function CardTop({
   };
   return (
     <React.Fragment>
-      <NavLink to={`/oferta/${_id}`}>
-        <div className="bg-white mt-10 h-[520px] md:w-[360px] m-2  w-auto rounded-[16px] border-[1px]">
+      <div className="bg-white mt-10 h-[520px] md:w-[360px] m-2  w-auto rounded-[16px] border-[1px]">
+        <NavLink to={`/oferta/${_id}`}>
           <div>
             <img
               className="p-[5px] h-[227px] w-[360px] rounded-[20px]"
@@ -101,22 +101,26 @@ function CardTop({
               </div>
             ) : null} */}
           </div>
-          <p className=" px-2 pt-2 rounded-lg text-[#0e1734] font-ligth ml-4 text-[15px]">
+          <p className=" px-2 pt-2 rounded-lg text-[#0e1734] font-ligth ml-4 text-[15px] mt-2">
             Desde
           </p>
           <p className="text-2xl px-5 font-[900] text-[#0e1734]">
             ${price} <span className="text-[17px] font-medium ">MXN</span>
           </p>
-          <div className="flex justify-between  mt-2">
-            <div className="flex bg-[#ff6600] w-[180px] h-16 justify-center items-center rounded-bl-lg">
-              <p className="text-[20px] text-white font-bold">Ver oferta</p>
+        </NavLink>
+        <div className="flex justify-between  mt-4">
+          <NavLink to={`/oferta/${_id}`}>
+            <div className="flex bg-[#ff6600] w-[180px] h-12 justify-center items-center rounded-bl-lg">
+              <p className="text-[16px] text-white font-bold">Ver oferta</p>
             </div>
-            <div className="flex bg-[#f3f4f6] w-[180px] justify-center items-center rounded-br-lg">
-              <p className="text-[20px] font-bold text-[#0e1734]">WhatsApp</p>
+          </NavLink>
+          <a href="https://api.whatsapp.com/send/?phone=5219984954637&text&type=phone_number&app_absent=0">
+            <div className="flex bg-[#f3f4f6] w-[180px]  h-12 justify-center items-center rounded-br-lg">
+              <p className="text-[16px] font-bold text-[#0e1734]">WhatsApp</p>
             </div>
-          </div>
+          </a>
         </div>
-      </NavLink>
+      </div>
     </React.Fragment>
   );
 }
