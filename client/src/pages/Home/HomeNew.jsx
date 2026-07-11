@@ -9,61 +9,37 @@ export default function HomeNew() {
       <header>
         <NavBar />
       </header>
+      <section className="bg-gradient-to-b from-gray-950 via-black to-gray-900 min-h-[650px] flex items-center justify-center px-2">
+        <div className="w-full mx-60 text-center">
+          {/* Texto */}
+          <div className="max-w-4xl mx-auto">
+            <span className="inline-block bg-[#ff6600]/10 border border-[#ff6600]/30 text-[#ff6600] px-5 py-2 rounded-full text-sm md:text-base font-semibold uppercase tracking-wider">
+              Cazadores de Ofertas de Viajes
+            </span>
+
+            <h2 className="mt-6 text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
+              Cazamos las mejores
+              <br />
+              ofertas de viaje para ti
+            </h2>
+
+            <p className="mt-6 text-lg md:text-2xl text-gray-300">
+              Hoteles, vuelos y paquetes todo incluido al mejor precio
+            </p>
+          </div>
+
+          {/* Buscador */}
+          <div className="mt-10 h-12">
+            <div id="ptw-container" className="ptw-horizontal-search"></div>
+          </div>
+        </div>
+      </section>
 
       <div className="bg-white text-gray-900">
         {/* HERO */}
-        <section className="relative h-[92vh] flex items-center justify-center text-center">
-          <img
-            src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21"
-            className="absolute inset-0 w-full h-full object-cover"
-            alt="viajes caribe"
-          />
-
-          <div className="absolute inset-0 bg-black/60" />
-
-          <div className="relative z-10 max-w-4xl px-6">
-            <p className="text-[#ff6600] text-1xl font-semibold tracking-widest uppercase">
-              Cazadores de Ofertas de Viajes
-            </p>
-
-            <h1 className="text-4xl md:text-6xl font-bold text-white mt-4 leading-tight">
-              🔥 Cazamos las mejores ofertas de viaje para ti
-            </h1>
-
-            <p className="text-gray-200 mt-6 text-lg">
-              Hoteles, vuelos y paquetes todo incluido al mejor precio
-            </p>
-
-            <div className="mt-8 flex flex-col md:flex-row gap-4 justify-center">
-              <a
-                href="https://api.whatsapp.com/send/?phone=5219984954637&text&type=phone_number&app_absent=0"
-                className="bg-[#ff6600] hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold transition text-[15px]"
-              >
-                📲 Cotizar ahora
-              </a>
-
-              <a
-                href="#ofertas"
-                className="border border-white text-white px-8 py-3 rounded-full bg-white hover:text-[#0260fe] transition text-[15px]"
-              >
-                Ver ofertas 🔎
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* BARRA INFO */}
-        <section className="bg-[#0260fe] text-white py-4">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between text-sm px-4 gap-2 text-center text-[16px]">
-            <p>✈️ Vuelos baratos</p>
-            <p>🏨 Hoteles todo incluido</p>
-            <p>💳 Meses sin intereses</p>
-            <p>Pagos flexibles</p>
-          </div>
-        </section>
 
         {/* COMO FUNCIONA */}
-        <section className="py-20 px-6 max-w-6xl mx-auto text-center">
+        <section className="py-20 px-6 max-w-8xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold">
             ¿Cómo encontramos tu viaje? 🎯
           </h2>
@@ -99,7 +75,7 @@ export default function HomeNew() {
 
         {/* OFERTAS */}
         <section id="ofertas" className="bg-gray-50 py-10 px-6">
-          <div className="max-w-6xl mx-auto">
+          <div className=" mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center">
               🔥 Ofertas que están volando
             </h2>

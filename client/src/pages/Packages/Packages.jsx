@@ -167,7 +167,7 @@ function Packages() {
         ========================================== */}
 
         <section className="py-24 bg-slate-50">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-8xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
               <div>
                 <span className="text-[#ff6600] font-bold uppercase tracking-wider">
@@ -189,7 +189,7 @@ function Packages() {
               </button>
             </div>
 
-            <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-8">
+            <div className="flex flex-col">
               <CardsPackages />
             </div>
           </div>
@@ -199,7 +199,7 @@ function Packages() {
         ========================================== */}
 
         <section className="py-24">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-8xl mx-auto px-6">
             <div className="rounded-[40px] overflow-hidden relative">
               <img
                 src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1800&auto=format&fit=crop"
@@ -234,7 +234,7 @@ function Packages() {
         ========================================== */}
 
         <section className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-8xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
               <div>
                 <span className="text-[#ff6600] font-bold uppercase tracking-wider">
@@ -256,7 +256,7 @@ function Packages() {
               </button>
             </div>
 
-            <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-8">
+            <div className="flex- flex-col">
               <CardsPackages />
             </div>
           </div>
@@ -300,7 +300,7 @@ function Packages() {
         ========================================== */}
 
         <section className="pb-24 px-6">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-8xl mx-auto">
             <div className="relative rounded-[40px] overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2000&auto=format&fit=crop"
