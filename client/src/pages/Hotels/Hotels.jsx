@@ -12,47 +12,12 @@ function Hotels() {
                     HERO
         ========================================== */}
 
-        <section className="relative h-[650px]">
+        <section className="relative h-[450px]">
           <img
-            src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2000&auto=format&fit=crop"
+            src="https://res.cloudinary.com/duaysiozi/image/upload/v1783823645/xcyd5bpxwttbkmv5ce4i.png"
             alt="Hoteles"
             className="absolute inset-0 w-full h-full object-cover"
           />
-
-          <div className="absolute inset-0 bg-gradient-to-r from-[#001233]/90 via-[#001233]/65 to-transparent"></div>
-
-          <div className="relative max-w-7xl mx-auto px-6 h-full flex items-center">
-            <div className="max-w-2xl">
-              <span className="inline-flex bg-[#ff6600] text-white px-5 py-2 rounded-full font-semibold">
-                🏨 Hoteles alrededor del mundo
-              </span>
-
-              <h1 className="text-white text-5xl lg:text-6xl font-black leading-tight mt-8">
-                Encuentra el hotel perfecto para tus vacaciones
-              </h1>
-
-              <p className="text-blue-100 text-xl mt-8 leading-relaxed">
-                Reserva miles de hoteles nacionales e internacionales al mejor
-                precio y disfruta promociones exclusivas.
-              </p>
-
-              <div className="flex flex-wrap gap-5 mt-10">
-                <button
-                  href="#buscar"
-                  className="bg-[#ff6600] hover:bg-orange-600 transition text-white px-8 py-4 rounded-full font-bold"
-                >
-                  Buscar Hoteles
-                </button>
-
-                <button
-                  href="https://api.whatsapp.com/send/?phone=5219984954637"
-                  className="border border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-[#001233] transition"
-                >
-                  WhatsApp
-                </button>
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* ==========================================

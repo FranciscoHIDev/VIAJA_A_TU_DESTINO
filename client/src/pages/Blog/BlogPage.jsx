@@ -39,38 +39,14 @@ export default function Home() {
       <NavBar />
       <div className="bg-white text-gray-800">
         {/* HERO EDITORIAL */}
-        <section className="relative h-[85vh] flex items-center justify-center text-center">
+        <section className="relative h-[450px] flex items-center justify-center text-center">
           <img
-            src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21"
+            src="https://res.cloudinary.com/duaysiozi/image/upload/v1783824133/f8d3xgu961lepnrtotu0.png"
             className="absolute inset-0 w-full h-full object-cover"
             alt="caribe"
           />
 
-          <div className="absolute inset-0 bg-black/60" />
-
-          <div className="relative z-10 max-w-3xl px-6">
-            <p className="text-[#ff6600] font-semibold tracking-widest uppercase">
-              Blog de Viajes • Caribe Mexicano
-            </p>
-
-            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mt-4">
-              Inspírate, viaja y encuentra las mejores ofertas 🌴
-            </h1>
-
-            <p className="mt-6 text-lg text-gray-200">
-              Guías, tips y ofertas reales para viajar más barato por México y
-              el Caribe.
-            </p>
-
-            <div className="mt-8">
-              <a
-                href="https://api.whatsapp.com/send/?phone=5219984954637&text&type=phone_number&app_absent=0"
-                className="bg-[#ff6600] hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold transition"
-              >
-                📲 Cotizar viaje
-              </a>
-            </div>
-          </div>
+          <div className="absolute inset-0 bg-black/20" />
         </section>
 
         {/* CATEGORÍAS */}

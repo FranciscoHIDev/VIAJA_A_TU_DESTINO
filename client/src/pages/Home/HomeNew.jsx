@@ -39,10 +39,13 @@ export default function HomeNew() {
         {/* HERO */}
 
         {/* COMO FUNCIONA */}
-        <section className="py-20 px-6 max-w-8xl mx-auto text-center">
+        {/* <section className="py-20 px-6 max-w-8xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold">
-            ¿Cómo encontramos tu viaje? 🎯
+            ¿Qué tipo de viaje estás buscando?
           </h2>
+          <p className="text-center text-gray-500 mt-3 text-[17px]">
+            Descubre todas las experiencias que tenemos para ti
+          </p>
 
           <div className="grid md:grid-cols-3 gap-10 mt-12">
             <div>
@@ -71,16 +74,16 @@ export default function HomeNew() {
               </p>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* OFERTAS */}
-        <section id="ofertas" className="bg-gray-50 py-10 px-6">
+        <section id="ofertas" className="bg-white py-20 px-6">
           <div className=" mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center">
-              🔥 Ofertas que están volando
+            <h2 className="text-3xl md:text-5xl font-bold text-center">
+              ¡Encuentra tu viaje al mejor precio!
             </h2>
 
-            <p className="text-center text-gray-500 mt-3 text-[16px]">
+            <p className="text-center text-gray-500 mt-3 text-[17px]">
               Encuentra lo más destacado y mucho más
             </p>
 
@@ -92,39 +95,39 @@ export default function HomeNew() {
 
         {/* DIFERENCIADOR */}
         <section className="bg-[#0260fe] text-white py-24 px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+          <h2 className="text-3xl md:text-5xl font-bold text-white">
             No somos una agencia tradicional ✈️
           </h2>
 
-          <p className="text-blue-100 mt-6 max-w-3xl mx-auto text-[18px]">
+          <p className="text-blue-100 mt-6 max-w-3xl mx-auto text-[19px]">
             Somos cazadores de ofertas: encontramos precios ocultos y
             promociones reales.
           </p>
 
           <div className="grid md:grid-cols-3 gap-10 mt-12 max-w-5xl mx-auto">
             <div>
-              <h3 className="font-bold text-[#ff6600] text-2xl">
+              <h3 className="font-bold text-[#ff6600] text-3xl">
                 ⚡ Velocidad
               </h3>
-              <p className="text-blue-100 mt-2 text-[16px]">
-                Respuesta inmediata por WhatsApp
+              <p className="text-blue-100 mt-2 text-[17px]">
+                Reserva en minutos
               </p>
             </div>
 
             <div>
-              <h3 className="font-bold text-[#ff6600] text-2xl">
+              <h3 className="font-bold text-[#ff6600] text-3xl">
                 🔥 Ofertas reales
               </h3>
-              <p className="text-blue-100 mt-2 text-[16px]">
-                Sin precios inflados
+              <p className="text-blue-100 mt-2 text-[17px]">
+                Precios increibles
               </p>
             </div>
 
             <div>
-              <h3 className="font-bold text-[#ff6600] text-2xl">
+              <h3 className="font-bold text-[#ff6600] text-3xl">
                 💳 Flexibilidad
               </h3>
-              <p className="text-blue-100 mt-2 text-[16px]">
+              <p className="text-blue-100 mt-2 text-[17px]">
                 Meses sin intereses
               </p>
             </div>
@@ -141,12 +144,12 @@ export default function HomeNew() {
             Escríbenos y te enviamos opciones en minutos
           </p>
 
-          <a
+          <button
             href="https://api.whatsapp.com/send/?phone=5219984954637&text&type=phone_number&app_absent=0"
             className="mt-8 inline-block bg-[#ff6600] hover:bg-orange-600 text-white px-10 py-4 rounded-full font-bold transition text-2xl"
           >
             🚀 Cazar oferta ahora
-          </a>
+          </button>
         </section>
       </div>
       <Footer />

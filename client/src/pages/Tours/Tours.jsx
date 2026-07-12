@@ -12,40 +12,12 @@ function Tours() {
                     HERO
         ========================================== */}
 
-        <section className="relative h-[600px]">
+        <section className="relative h-[450px]">
           <img
-            src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2000&auto=format&fit=crop"
+            src="https://res.cloudinary.com/duaysiozi/image/upload/v1783823834/do2zz7decguznmrmq5le.png"
             alt="Tours"
             className="absolute inset-0 w-full h-full object-cover"
           />
-
-          <div className="absolute inset-0 bg-gradient-to-r from-[#001233]/90 via-[#001233]/60 to-transparent"></div>
-
-          <div className="relative max-w-7xl mx-auto px-6 h-full flex items-center">
-            <div className="max-w-2xl">
-              <span className="bg-[#ff6600] text-white px-5 py-2 rounded-full font-semibold">
-                🌎 Tours y Experiencias
-              </span>
-
-              <h1 className="text-white text-5xl lg:text-6xl font-black mt-8 leading-tight">
-                Vive experiencias
-                <br />
-                que recordarás siempre
-              </h1>
-
-              <p className="text-blue-100 text-xl mt-6">
-                Descubre tours, actividades y aventuras en los mejores destinos
-                de México y el mundo.
-              </p>
-
-              <button
-                href="#tours"
-                className="inline-block bg-[#ff6600] text-white px-8 py-4 rounded-full font-bold mt-10"
-              >
-                Explorar Tours
-              </button>
-            </div>
-          </div>
         </section>
 
         {/* ==========================================

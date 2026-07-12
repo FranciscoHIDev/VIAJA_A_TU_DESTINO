@@ -1,10 +1,7 @@
 import React from "react";
-import {
-  FaRegCalendarAlt,
-  FaPlaneDeparture,
-  FaPlaneArrival,
-  FaMapMarkedAlt,
-} from "react-icons/fa";
+import { FaRegCalendarAlt, FaHotel, FaTicketAlt } from "react-icons/fa";
+import { MdPeople, MdFlight } from "react-icons/md";
+
 import PropTypes from "prop-types";
 
 import { NavLink } from "react-router-dom";
@@ -15,10 +12,8 @@ function CardTop({
   category,
   image,
   price,
-  destination,
+
   availability,
-  departure,
-  arrival,
 }) {
   CardTop.propTypes = {
     _id: PropTypes.string.isRequired,
@@ -34,7 +29,7 @@ function CardTop({
   };
   return (
     <React.Fragment>
-      <div className="bg-white mt-10 h-[469px] md:w-[360px] m-2  w-auto rounded-[16px] border-[1px]">
+      <div className="bg-white mt-10 h-[490px] md:w-[360px] m-2  w-auto rounded-[16px] border-[1px]">
         <NavLink to={`/oferta/${_id}`}>
           <div>
             <img
@@ -51,55 +46,58 @@ function CardTop({
             <div className="mt-2">
               <p className="text-[#4b5563] text-[14px]">{summary}</p>
             </div>
-            {category.name === "Tour" ||
-            category.name === "Hotel" ||
-            category.name === "Paquete" ? (
+            {category.name === "Paquete" ? (
               <div className="flex flex-row items-center mt-2">
-                <FaMapMarkedAlt className="text-[#4b5563] text-[15px]" />
-                <p className="ml-[10px] text-[#4b5563] font-[400] text-[14px]">
-                  Destino:{" "}
-                  <span className="text-[14px] font-[500] text-[#4b5563]">
-                    {destination.name.charAt(0).toUpperCase() +
-                      destination.name.slice(1).toLowerCase()}
-                  </span>
+                <p className=" mr-2 text-[#4b5563] font-[400] text-[14px]">
+                  Incluye:
                 </p>
+                <div className="flex flex-row mr-4 rounded-md bg-[#fef2f2] py-1 px-1">
+                  <MdFlight className="text-[#4b5563] text-[15px] mr-2 " />
+                  <span className="text-[#ff6600] font-medium">Vuelo</span>
+                </div>
+                <div className="flex flex-row rounded-md bg-[#fef2f2] p-1">
+                  <FaHotel className="text-[#4b5563] text-[15px] mr-2" />
+                  <span className="text-[#ff6600] font-medium">Hotel</span>
+                </div>
               </div>
-            ) : null}
-
+            ) : (
+              <div className="flex flex-row items-center mt-2">
+                <div className="flex flex-row mr-4 rounded-md bg-[#fef2f2] py-1 px-1">
+                  <FaTicketAlt className="text-[#4b5563] text-[15px] mr-2 " />
+                  <span className="text-[#ff6600] font-medium">
+                    {" "}
+                    Oferta Exlusiva
+                  </span>
+                </div>
+              </div>
+            )}
             <div className="flex flex-row items-center mt-1">
               <FaRegCalendarAlt className="text-[#4b5563] text-[15px]" />
               <p className="ml-[10px] text-[#4b5563] font-[400] text-[14px]">
-                Disponibilidad:{" "}
-                <span className="text-[14px] font-[500] text-[#4b5563]">
+                Viajando en{" "}
+                <span className="text-[14px] font-[400] text-[#4b5563]">
                   {availability}
                 </span>
               </p>
             </div>
+            {category.name === "Tour" ||
+            category.name === "Vuelo" ||
+            category.name === "Paquete" ? (
+              <div className="flex flex-row items-center mt-2">
+                <MdPeople className="text-[#4b5563] text-[16px]" />
+                <p className="ml-[10px] text-[#4b5563] font-[400] text-[14px]">
+                  Precio por persona
+                </p>
+              </div>
+            ) : (
+              <div className="flex flex-row items-center mt-2">
+                <MdPeople className="text-[#4b5563] text-[16px]" />
+                <p className="ml-[10px] text-[#4b5563] font-[400] text-[14px]">
+                  Precio por persona
+                </p>
+              </div>
+            )}
             <hr className="border-t-1 w-3/8 mt-8" />
-
-            {/* {departure ? (
-              <div className="flex flex-row items-center mt-2">
-                <FaPlaneDeparture className="text-[#4b5563] text-[15px]" />
-                <p className="ml-[10px] text-[#4b5563] font-[400] text-[14px]">
-                  Saliendo desde:{" "}
-                  <span className="text-[14px] font-[500] text-[#4b5563]">
-                    {departure}
-                  </span>
-                </p>
-              </div>
-            ) : null}
-
-            {arrival ? (
-              <div className="flex flex-row items-center mt-2">
-                <FaPlaneArrival className="text-[#4b5563] text-[15px]" />
-                <p className="ml-[10px] text-[#4b5563] font-[400] text-[14px]">
-                  Llegando a:{" "}
-                  <span className="text-[14px] font-[500] text-[#4b5563]">
-                    {arrival}
-                  </span>
-                </p>
-              </div>
-            ) : null} */}
           </div>
           <p className=" px-2 pt-4 rounded-lg text-[#0e1734] font-ligth ml-4 text-[15px] mt-2">
             Desde
