@@ -8,7 +8,7 @@ export default function HomeNew() {
     <>
       <NavBar />
 
-      <section className=" relative flex items-center justify-center px-2 md:h-[450px] h-[170px]">
+      <section className=" relative flex items-center justify-center px-2 md:h-[450px] h-[160px]">
         <div>
           {/* Buscador */}
 

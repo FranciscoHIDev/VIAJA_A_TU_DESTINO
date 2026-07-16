@@ -39,7 +39,7 @@ export default function Home() {
       <NavBar />
       <div className="bg-white text-gray-800">
         {/* HERO EDITORIAL */}
-        <section className="relative h-[450px] flex items-center justify-center text-center">
+        <section className="relative md:h-[450px] h-[160px] flex items-center justify-center text-center">
           <img
             src="https://res.cloudinary.com/duaysiozi/image/upload/v1784166871/f6thrmw2fynxpyo0ak5e.png"
             className="absolute inset-0 w-full h-full object-cover"

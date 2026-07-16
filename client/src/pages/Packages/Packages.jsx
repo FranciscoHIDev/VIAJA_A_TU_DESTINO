@@ -12,7 +12,7 @@ function Packages() {
                     HERO
         ========================================== */}
 
-        <section className="relative h-[450px]">
+        <section className="relative md:h-[450px] h-[160px]">
           <img
             src="https://res.cloudinary.com/duaysiozi/image/upload/v1784167024/rronfkns99mtnhpb514v.png"
             alt="Paquetes vacacionales"

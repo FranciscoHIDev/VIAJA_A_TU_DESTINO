@@ -12,7 +12,7 @@ function Hotels() {
                     HERO
         ========================================== */}
 
-        <section className="relative h-[450px]">
+        <section className="relative md:h-[450px] h-[160px]">
           <img
             src="https://res.cloudinary.com/duaysiozi/image/upload/v1784166872/ycojgupbhfq8cplu0lzg.png"
             alt="Hoteles"
