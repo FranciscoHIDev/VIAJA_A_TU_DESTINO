@@ -14,7 +14,7 @@ function Hotels() {
 
         <section className="relative h-[450px]">
           <img
-            src="https://res.cloudinary.com/duaysiozi/image/upload/v1783823645/xcyd5bpxwttbkmv5ce4i.png"
+            src="https://res.cloudinary.com/duaysiozi/image/upload/v1784166872/ycojgupbhfq8cplu0lzg.png"
             alt="Hoteles"
             className="absolute inset-0 w-full h-full object-cover"
           />

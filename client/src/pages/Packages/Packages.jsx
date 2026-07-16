@@ -14,7 +14,7 @@ function Packages() {
 
         <section className="relative h-[450px]">
           <img
-            src="https://res.cloudinary.com/duaysiozi/image/upload/v1783823970/e5dyhj4smanvwqq7prkp.png"
+            src="https://res.cloudinary.com/duaysiozi/image/upload/v1784167024/rronfkns99mtnhpb514v.png"
             alt="Paquetes vacacionales"
             className="absolute inset-0 w-full h-full object-cover"
           />

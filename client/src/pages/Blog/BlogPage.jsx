@@ -41,7 +41,7 @@ export default function Home() {
         {/* HERO EDITORIAL */}
         <section className="relative h-[450px] flex items-center justify-center text-center">
           <img
-            src="https://res.cloudinary.com/duaysiozi/image/upload/v1783824133/f8d3xgu961lepnrtotu0.png"
+            src="https://res.cloudinary.com/duaysiozi/image/upload/v1784166871/f6thrmw2fynxpyo0ak5e.png"
             className="absolute inset-0 w-full h-full object-cover"
             alt="caribe"
           />

@@ -14,7 +14,7 @@ function Tours() {
 
         <section className="relative h-[450px]">
           <img
-            src="https://res.cloudinary.com/duaysiozi/image/upload/v1783823834/do2zz7decguznmrmq5le.png"
+            src="https://res.cloudinary.com/duaysiozi/image/upload/v1784166872/caqcw1fv4r0dfxrebs4j.png"
             alt="Tours"
             className="absolute inset-0 w-full h-full object-cover"
           />
