@@ -8,7 +8,7 @@ export default function HomeNew() {
     <>
       <NavBar />
 
-      <section className=" relative flex items-center justify-center px-2 h-[450px]">
+      <section className=" relative flex items-center justify-center px-2 md:h-[450px] h-[170px]">
         <div>
           {/* Buscador */}
 
@@ -19,7 +19,7 @@ export default function HomeNew() {
           />
         </div>
       </section>
-      <div className="mt-[-190px] mx-60">
+      <div className="md:mt-[-190px] md:mx-60">
         <div id="ptw-container" className="ptw-horizontal-search"></div>
       </div>
       {/* OFERTAS */}
