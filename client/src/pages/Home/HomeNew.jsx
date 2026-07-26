@@ -2,26 +2,29 @@ import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import CardsOferts from "../../components/CardsOferts/CardsOferts";
+import PriceResWidget from "../../components/PriceRes/PriceResWidget";
 
 export default function HomeNew() {
   return (
     <>
       <NavBar />
 
-      <section className=" relative flex items-center justify-center px-2 md:h-[450px] h-[160px]">
-        <div>
-          {/* Buscador */}
-
+      <section className="relative">
+        {/* Hero */}
+        <div className="relative flex items-center justify-center px-2 md:h-[450px] h-[160px]">
           <img
             src="https://res.cloudinary.com/duaysiozi/image/upload/v1784166724/z5qgffi2ipgyjltwnqls.png"
             className="absolute inset-0 w-full h-full object-cover"
             alt="caribe"
           />
         </div>
+
+        {/* Widget flotante */}
+        <div className="absolute left-1/2 bottom-0 z-20 w-full max-w-6xl -translate-x-1/2 translate-y-1/2 px-4">
+          <PriceResWidget />
+        </div>
       </section>
-      <div className="md:mt-[-190px] md:mx-60">
-        <div id="ptw-container" className="ptw-horizontal-search"></div>
-      </div>
+
       {/* OFERTAS */}
       <section id="ofertas" className="bg-white py-20 px-6">
         <div className=" mx-auto">

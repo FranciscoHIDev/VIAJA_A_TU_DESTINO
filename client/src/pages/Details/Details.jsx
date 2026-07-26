@@ -1,22 +1,34 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import Loading from "../../components/Loading/Loading";
+
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import { MdLocationOn, MdOutlineNightsStay } from "react-icons/md";
-import { ImPriceTag } from "react-icons/im";
+import { MdOutlineNightsStay, MdAlarm } from "react-icons/md";
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+
 import {
   FaHotel,
-  FaRegCalendarAlt,
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaCheckCircle,
+  FaWhatsapp,
+  FaArrowRight,
+  FaStar,
+  FaShieldAlt,
+  FaCreditCard,
   FaPlaneDeparture,
   FaPlaneArrival,
-  FaArrowRight,
-  FaClipboardList,
 } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+
 import "../../components/CardsBanners/Carrusel.css";
 
 function Details() {
@@ -36,309 +48,1456 @@ function Details() {
     getOffersById(id);
   }, [id]);
 
-  const mobileSettings = {
-    dots: true,
-    lazyLoad: true,
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    speed: 1500,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: false,
+  const [openGallery, setOpenGallery] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const galleryImages = Array.isArray(offer?.image)
+    ? offer.image.filter(Boolean)
+    : offer?.image
+      ? [offer.image]
+      : [];
+
+  const openImageGallery = (index = 0) => {
+    if (!galleryImages.length) return;
+
+    setCurrentImage(index);
+    setOpenGallery(true);
   };
 
-  const desktopSettings = {
-    dots: true,
-    lazyLoad: true,
-    infinite: true,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    speed: 1500,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: true,
-  };
-  const imageSettings = {
-    dots: true,
-    lazyLoad: true,
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    speed: 1500,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: true,
-  };
+  const [viewers, setViewers] = useState(Math.floor(Math.random() * 43) + 8);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setViewers((prev) => {
+        // Cambia entre -3 y +3
+        const change = Math.floor(Math.random() * 7) - 3;
+
+        let next = prev + change;
+
+        // Mantener entre 8 y 50
+        if (next < 8) next = 8;
+        if (next > 50) next = 50;
+
+        return next;
+      });
+    }, 4000); // Cambia cada 4 segundos
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const [relatedOffers, setRelatedOffers] = useState([]);
+  const [loadingRelated, setLoadingRelated] = useState(true);
+  useEffect(() => {
+    const getRelatedOffers = async () => {
+      if (!offer?._id) return;
+
+      try {
+        setLoadingRelated(true);
+
+        /*
+         * Cambia "/api/offers" únicamente si tu endpoint
+         * para obtener todas las ofertas es diferente.
+         */
+        const response = await axios.get("/api/offers");
+
+        const offersData = Array.isArray(response.data)
+          ? response.data
+          : response.data?.offers || [];
+
+        const currentCategory = offer.category?.name || offer.category || "";
+
+        const currentDestination =
+          offer.destination?.name || offer.destination || offer.location || "";
+
+        const filteredOffers = offersData
+          .filter((relatedOffer) => {
+            const relatedId = relatedOffer._id || relatedOffer.id;
+
+            if (String(relatedId) === String(offer._id)) {
+              return false;
+            }
+
+            const relatedCategory =
+              relatedOffer.category?.name || relatedOffer.category || "";
+
+            const relatedDestination =
+              relatedOffer.destination?.name ||
+              relatedOffer.destination ||
+              relatedOffer.location ||
+              "";
+
+            const sameCategory =
+              currentCategory && relatedCategory === currentCategory;
+
+            const sameDestination =
+              currentDestination && relatedDestination === currentDestination;
+
+            return sameCategory || sameDestination;
+          })
+          .slice(0, 4);
+
+        setRelatedOffers(filteredOffers);
+      } catch (error) {
+        console.error("Error al obtener ofertas relacionadas:", error);
+
+        setRelatedOffers([]);
+      } finally {
+        setLoadingRelated(false);
+      }
+    };
+
+    getRelatedOffers();
+  }, [offer]);
   return (
     <React.Fragment>
       <div className="min-h-screen h-screen flex flex-col">
         <header>
           <NavBar />
         </header>
-        <main className="flex-grow border-solid border-t-[1px]  mb-40 ">
-          <div className="  flex felx-col">
-            {offer.length !== 0 ? (
-              <div className="flex flex-col">
-                <div className="block md:hidden w-screen px-3 justify-center pt-1.5">
-                  <div className="md:ml-10 mb-10 px-2">
-                    <h1 className="md:mt-3 md:text-3xl text-[20px] font-bold text-[#0260fe]">
-                      {offer.title}
-                    </h1>
-                    <p className="text-[18px] font-medium mt-2">
-                      {offer.summary}
-                    </p>
-                  </div>
-                  <Slider {...mobileSettings} className="  ">
-                    {offer.image.map((e, index) => (
-                      <div key={index}>
-                        <img
-                          className="w-[500px] h-[270px]"
-                          src={e}
-                          alt="image"
-                        />
-                      </div>
-                    ))}
-                  </Slider>
+
+        <main className="">
+          <section className="relative h-[640px] overflow-hidden rounded-b-3xl shadow-2xl">
+            {/* Imagen */}
+
+            <img
+              src={offer.image?.[0]}
+              alt={offer.title}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+
+            {/* Overlay */}
+
+            <div className="absolute inset-0 bg-gradient-to-r from-[#022B57]/95 via-[#022B57]/75 to-[#022B57]/35"></div>
+
+            <div className="relative z-20 max-w-7xl mx-auto h-full flex items-center justify-between px-10">
+              {/* ========================= */}
+              {/* IZQUIERDA */}
+              {/* ========================= */}
+
+              <div className="max-w-3xl">
+                <div className="flex gap-3">
+                  <span className="bg-[#ff6600] text-white px-5 py-2 rounded-full font-semibold shadow-lg flex items-center gap-2">
+                    <MdAlarm className="font-bold text-[17px]" />
+                    Quedan pocas fechas disponibles
+                  </span>
+
+                  <span className="bg-green-600 text-white px-5 py-2 rounded-full font-semibold shadow-lg">
+                    Actualizada Hoy
+                  </span>
                 </div>
-                <div className="hidden md:flex flex-col border rounded-xl mt-5 md:mx-10 py-10 bg-white px-0">
-                  <div className=" hidden md:block  px-3 justify-center">
-                    <div className="md:ml-10 mb-10 px-2">
-                      <h1 className="md:mt-3 md:text-3xl text-[20px] font-bold text-[#0260fe]">
-                        {offer.title}
-                      </h1>
-                      <p className="text-[18px] font-medium mt-2">
-                        {offer.summary}
-                      </p>
-                    </div>
-                    <Slider {...desktopSettings} className="">
-                      {offer.image.map((e, index) => (
-                        <img
-                          key={index}
-                          className="w-[250px] h-[420px] px-1 rounded-xl "
-                          src={e}
-                          alt="image"
-                        />
-                      ))}
-                    </Slider>
+
+                <h1 className="mt-8 text-5xl font-black text-white leading-tight">
+                  {offer.title}
+                </h1>
+
+                <p className="mt-6 text-xl text-white/90 leading-relaxed">
+                  {offer.summary}
+                </p>
+
+                {/* UBICACION */}
+
+                <div className="flex gap-8 mt-8 text-white text-lg">
+                  <div className="flex items-center gap-2">
+                    <FaMapMarkerAlt className="text-[#ff6600]" />
+                    Cancún
                   </div>
+
+                  <div className="flex items-center gap-2">⭐⭐⭐⭐</div>
                 </div>
-                <div className="flex flex-col-reverse lg:flex-row mt-8  md:mx-10 mx-5 gap-20">
-                  <div className="flex flex-col md:mt-0 mt-[-30px]">
-                    <div className="flex flex-col">
-                      <div>
-                        <p className="mt-4 text-2xl font-bold text-[#3794ff] flex  items-center">
-                          <span className="mr-2">
-                            <FaClipboardList />
-                          </span>
-                          Detalles de la oferta
-                        </p>
 
-                        <p
-                          className="mt-3 text-[15px] md:text-[16px] text-neutral-800 text-justify"
-                          dangerouslySetInnerHTML={{
-                            __html: offer.description,
-                          }}
-                        ></p>
-                      </div>
+                {/* TARJETAS */}
 
-                      <div className="flex flex-col items-center">
-                        <p className="mt-5 text-[20px] font-semibold text-[#ff6600] ">
-                          Imagen de muestra
-                        </p>
-                        <div className="  md:w-[700px] md:h-[400px] px-2 w-[320px] h-[200px]">
-                          <Slider {...imageSettings} className="block">
-                            {offer.sampleImages.map((e, index) => (
-                              <div key={index}>
-                                <img
-                                  key={index}
-                                  className="mt-4 w-full h-full md:w-full md:h-full "
-                                  src={e}
-                                  alt="image"
-                                  onClick={() => setOpen(false)}
-                                />
-                              </div>
-                            ))}
-                          </Slider>
-                        </div>
-                      </div>
-                      {offer.category.name === "Paquete" ||
-                      offer.category.name === "Hotel" ||
-                      offer.category.name === "Vuelo" ? (
-                        <div ref={targetRef}>
-                          <p className="mt-20 mb-3 text-2xl font-bold flex text-[#3794ff] items-center">
-                            <span className="mr-2">
-                              <FaRegCalendarAlt />
-                            </span>{" "}
-                            Fechas disponibles
-                          </p>
-                          <p className="text-[20px] text-[#ff6600] font-semibold">
-                            ¡Da click en la fecha que te interese!
-                          </p>
-                          <div className="flex justify-between md:px-10 px-5 bg-[#0260fe] mx-[5px]  font-medium mb-[-4px] text-[15px] text-white py-3 mt-3">
-                            <p>IDA</p>
-                            <p>VUELTA</p>
-                            <p className="ml-[-40px]">PRECIO DESDE</p>
-                            <p></p>
-                          </div>
+                <div className="flex gap-5 mt-10">
+                  <div className="flex flex-col bg-white rounded-2xl px-6 py-5 shadow-xl justify-center items-center">
+                    <div className="text-sm text-gray-500">Hasta</div>
 
-                          <div className="bg-[#f9fafa]">
-                            {offer.buyLinks.map((e, index) => (
-                              <div
-                                key={index}
-                                className="border bg-white m-1 p-2 block hover:bg-[#3794ff] md:px-5 px-2 hover:text-white"
-                              >
-                                <a
-                                  href={e.link}
-                                  rel="noopener noreferrer"
-                                  target="_blank"
-                                  className="cursor-pointer"
-                                >
-                                  <div className="flex items-center justify-between text-[#035373] md:font-[500]  text-[15px] md:text-[16px] hover:text-white">
-                                    <p>{e.departureDate}</p>
-                                    <p>{e.returnDate}</p>
-                                    <p>${e.price}</p>
-                                    <p className="flex">
-                                      {" "}
-                                      <div className=" flex items-center bg-[#ff6600] p-1 rounded-md text-white">
-                                        Reservar
-                                        <FaArrowRight className="text-white ml-1" />
-                                      </div>
-                                    </p>
-                                  </div>
-                                </a>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      ) : null}
+                    <div className="text-3xl font-black text-[#ff6600]">
+                      12 MSI
                     </div>
-                    {offer.category.name === "Tour" ? (
-                      <div className="flex mt-14 justify-center">
-                        {offer.buyLinks.map((e, index) => (
-                          <div key={index}>
-                            <a
-                              href={e.link}
-                              rel="noopener noreferrer"
-                              target="_blank"
-                              className="cursor-pointer"
-                            >
-                              <button className="bg-[#ff6600] p-2 rounded-xl text-white text-2xl hover:bg-[#53b3cb]">
-                                IR A LA OFERTA
-                              </button>
-                            </a>
-                          </div>
-                        ))}
-                      </div>
-                    ) : null}
                   </div>
-                  {offer.category.name === "Paquete" ||
-                  offer.category.name === "Hotel" ||
-                  offer.category.name === "Vuelo" ? (
-                    <div className="">
-                      <div className="md:w-[380px] md:h-[420px] border-none rounded-lg bg-white flex flex-col md:mt-0 mt-5">
-                        <div className="bg-[#0260fe] py-2 rounded-tl-lg rounded-tr-lg border-b-2">
-                          <p className="text-center text-[20px] font-semibold text-white uppercase">
-                            Resumen
-                          </p>
-                        </div>
-                        <div className="flex justify-center bg-[#3794ff] pb-3 pt-3">
-                          <div className="flex flex-row items-center text-white">
-                            <ImPriceTag className="mr-2 mt-1 text-[16px]" />
-                            <p className="md:text-[20px] text-[16px] mr-1 font-600">
-                              Desde{" "}
-                            </p>
-                            <p className="text-[23px]  font-bold">
-                              ${offer.price}
-                              <span className="ml-2">MXN</span>
-                            </p>
-                            {offer.category.name === "Hotel" ? (
-                              <p className="md:pl-2 pl-1">Precio por persona</p>
-                            ) : null}
-                            {offer.category.name === "Paquete" ? (
-                              <p className="md:pl-3 pl-2 font-medium text-[13px]">
-                                Precio por persona
-                              </p>
-                            ) : null}
-                          </div>
-                        </div>
-                        <div className="mt-5 mx-5">
-                          {offer.departure ? (
-                            <div className="flex flex-row items-center">
-                              <FaPlaneDeparture className="text-[#ff6600] mr-2 text-[16px]" />
-                              <p className="md:text-[19px] text-[15px] font-[400]">
-                                Salida:{" "}
-                                <span className="md:text-[19px] text-[15px] font-[300]">
-                                  {offer.departure}
-                                </span>
-                              </p>
-                            </div>
-                          ) : null}
-                          {offer.arrival ? (
-                            <div className="flex flex-row items-center mt-2">
-                              <FaPlaneArrival className="text-[#ff6600] mr-2 text-[16px]" />
-                              <p className="md:text-[19px] font-[400] text-[15px]">
-                                LLegada:{" "}
-                                <span className="md:text-[19px] text-[15px] font-[300]">
-                                  {offer.arrival}
-                                </span>
-                              </p>
-                            </div>
-                          ) : null}
-                          <div className="flex flex-row items-center mt-2">
-                            <FaRegCalendarAlt className="text-[#ff6600] mr-2 text-[16px]" />
-                            <p className="md:text-[19px] font-[400] text-[15px]">
-                              Disponibilidad:{" "}
-                              <span className="md:text-[19px] text-[15px] font-[300]">
-                                {offer.availability}
-                              </span>
-                            </p>
-                          </div>
-                          {offer.category.name === "Paquete" ||
-                          offer.category.name === "Hotel" ? (
-                            <div className="flex flex-row items-center mt-2">
-                              <FaHotel className="text-[#ff6600] mr-2 text-[16px]" />
-                              <p className="md:text-[19px] font-[400] text-[15px]">
-                                Hotel:{" "}
-                                <span className="md:text-[19px] text-[15px] font-[300]">
-                                  {offer.hotel}
-                                </span>
-                              </p>
-                            </div>
-                          ) : (
-                            <br></br>
-                          )}
-                          {offer.category.name === "Paquete" ||
-                          offer.category.name === "Hotel" ? (
-                            <div className="flex flex-row items-center mt-2">
-                              <MdOutlineNightsStay className="text-[#ff6600]  mr-1 text-[20px]" />
-                              <p className="md:text-[19px] font-[400] text-[15px]">
-                                Estancia:{" "}
-                                <span className="md:text-[19px] text-[15px] font-[300]">
-                                  {offer.daysOfStay}
-                                </span>
-                              </p>
-                            </div>
-                          ) : null}
-                        </div>
-                        <div className="md:mt-10 mt-12 md:mb-0 mb-10 flex justify-center ">
-                          <button
-                            onClick={scrollToTarget}
-                            className="bg-[#ff6600] p-2 rounded-md text-[#fff] font-[500] hover:bg-[#53b3cb] text-[15px]"
-                          >
-                            Fechas disponibles
-                          </button>
-                        </div>
-                      </div>
+
+                  <div className="flex flex-col bg-white rounded-2xl px-6 py-5 shadow-xl justify-center items-center ">
+                    <div className="text-sm text-gray-500 items-center">
+                      <p>👀 Personas interesadas</p>
                     </div>
-                  ) : null}
+
+                    <div className="text-3xl font-black text-[#0260fe] justify-center">
+                      <p>{viewers}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex bg-red-500 rounded-2xl px-6 py-5 shadow-xl text-white justify-center items-center">
+                    <div className="font-bold">Últimos lugares</div>
+                  </div>
                 </div>
               </div>
-            ) : (
-              <Loading />
-            )}
-          </div>
+
+              {/* ========================= */}
+              {/* DERECHA */}
+              {/* ========================= */}
+
+              <div className="w-[390px] bg-white rounded-3xl shadow-2xl overflow-hidden h-[520px] border-sky-100 border-4">
+                <div className="bg-[#0260fe] p-4 flex justify-center items-center">
+                  <p className="text-white tracking-widest mr-1">Desde</p>
+                  <p className="text-2xl font-black text-white mr-1">
+                    ${offer.price}
+                  </p>
+                  <p className="text-white/90">MXN por persona</p>
+                </div>
+
+                <div className="p-4 space-y-3">
+                  <div className="flex justify-between">
+                    <span>
+                      <FaHotel className="inline mr-2" />
+                      Hotel
+                    </span>
+
+                    <span>{offer.hotel}</span>
+                  </div>
+
+                  <div className="flex justify-between">
+                    <span>
+                      <FaCalendarAlt className="inline mr-2" />
+                      Estancia
+                    </span>
+
+                    <span>{offer.daysOfStay}</span>
+                  </div>
+
+                  <div className="flex justify-between">
+                    <span>
+                      <FaPlaneDeparture className="inline mr-2" />
+                      Salida
+                    </span>
+
+                    <span>{offer.departure}</span>
+                  </div>
+
+                  <div className="flex justify-between">
+                    <span>Disponibilidad</span>
+
+                    <span>{offer.availability}</span>
+                  </div>
+
+                  <hr />
+
+                  <div className="space-y-2 bg-orange-100 p-2 rounded-xl">
+                    <div className="flex items-center gap-3">
+                      <FaShieldAlt className="text-[#0260fe]" />
+                      Pago 100% seguro
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <FaCreditCard className="text-[#0260fe]" />
+                      Paga a meses sin intereses
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <FaStar className="text-[#ff6600]" />
+                      Confirmación inmediata
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={scrollToTarget}
+                    className="w-full bg-[#ff6600] text-white py-4 rounded-xl font-bold hover:bg-orange-600 transition flex items-center justify-center gap-3"
+                  >
+                    Ver Fechas Disponibles
+                    <FaArrowRight />
+                  </button>
+
+                  <a
+                    href={`https://wa.me/529984954637?text=${encodeURIComponent(
+                      `✈️ Hola, me interesa la oferta: ${offer.title}.
+
+🔗 Oferta: https://www.viajaatudestino.com/oferta/${offer.slug || offer._id}
+
+Quiero consultar fechas y disponibilidad. 😊`,
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full border-2 border-[#25D366] text-[#25D366] py-4 rounded-xl font-bold hover:bg-[#25D366] hover:text-white transition flex items-center justify-center gap-3"
+                  >
+                    <FaWhatsapp />
+                    Hablar por WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+          {/* ========================================================= */}
+          {/* BARRA DE CONFIANZA */}
+          {/* ========================================================= */}
+
+          <section className="relative z-30 mx-auto -mt-10 max-w-7xl px-5">
+            <div className="grid grid-cols-2 overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-xl lg:grid-cols-4">
+              <div className="flex items-center gap-4 border-b border-r border-gray-100 p-6 lg:border-b-0">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-2xl">
+                  🛡️
+                </div>
+
+                <div>
+                  <p className="font-bold text-gray-900">Pago seguro</p>
+                  <p className="mt-1 text-sm text-gray-500">Compra protegida</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 border-b border-gray-100 p-6 lg:border-b-0 lg:border-r">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-orange-50 text-2xl">
+                  🔥
+                </div>
+
+                <div>
+                  <p className="font-bold text-gray-900">Oferta verificada</p>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Seleccionada por expertos
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 border-r border-gray-100 p-6">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-green-50 text-2xl">
+                  💬
+                </div>
+
+                <div>
+                  <p className="font-bold text-gray-900">
+                    Asesoría personalizada
+                  </p>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Antes y durante tu viaje
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 p-6">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-purple-50 text-2xl">
+                  💳
+                </div>
+
+                <div>
+                  <p className="font-bold text-gray-900">Hasta 12 MSI</p>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Con tarjetas participantes
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          {/* ========================================================= */}
+          {/* PRESENTACIÓN DE LA OFERTA */}
+          {/* ========================================================= */}
+
+          <section className="bg-[#f7f9fc] pb-20 pt-20">
+            <div className="mx-auto max-w-7xl px-5">
+              <div className="mb-10 flex items-end justify-between">
+                <div>
+                  <span className="inline-flex rounded-full bg-orange-100 px-4 py-2 text-sm font-bold uppercase tracking-wide text-[#ff6600]">
+                    Conoce esta oferta
+                  </span>
+
+                  <h2 className="mt-4 text-4xl font-black text-[#023e73]">
+                    Una escapada que vale la pena
+                  </h2>
+
+                  <p className="mt-3 max-w-3xl text-lg leading-relaxed text-gray-600">
+                    Descubre las instalaciones, habitaciones y experiencias que
+                    podrás disfrutar durante tu estancia.
+                  </p>
+                </div>
+              </div>
+
+              {/* GALERÍA DE IMÁGENES */}
+              {/* ========================================================= */}
+
+              {galleryImages.length > 0 ? (
+                <>
+                  <div className="grid h-auto grid-cols-2 gap-2 overflow-hidden rounded-2xl sm:gap-3 lg:h-[520px] lg:grid-cols-4 lg:grid-rows-2 lg:rounded-3xl">
+                    {/* IMAGEN PRINCIPAL */}
+
+                    <button
+                      type="button"
+                      onClick={() => openImageGallery(0)}
+                      className="
+          group
+          relative
+          col-span-2
+          h-[280px]
+          cursor-zoom-in
+          overflow-hidden
+          text-left
+          sm:h-[360px]
+          lg:row-span-2
+          lg:h-full
+        "
+                      aria-label="Abrir imagen principal"
+                    >
+                      <img
+                        src={galleryImages[0]}
+                        alt={`${offer.title} imagen principal`}
+                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                      />
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/10 opacity-0 transition duration-300 group-hover:opacity-100">
+                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-2xl shadow-xl">
+                          🔍
+                        </div>
+                      </div>
+
+                      <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6">
+                        <span className="rounded-full bg-white/90 px-4 py-2 text-sm font-bold text-[#023e73] shadow-lg backdrop-blur">
+                          Vista principal
+                        </span>
+                      </div>
+                    </button>
+
+                    {/* IMAGEN 2 */}
+
+                    <button
+                      type="button"
+                      onClick={() => openImageGallery(1)}
+                      className="
+          group
+          relative
+          h-[170px]
+          cursor-zoom-in
+          overflow-hidden
+          lg:h-full
+        "
+                      aria-label="Abrir fotografía 2"
+                    >
+                      <img
+                        src={galleryImages[1] || galleryImages[0]}
+                        alt={`${offer.title} instalación`}
+                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                      />
+
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition duration-300 group-hover:opacity-100">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/95 text-xl shadow-lg">
+                          🔍
+                        </span>
+                      </div>
+                    </button>
+
+                    {/* IMAGEN 3 */}
+
+                    <button
+                      type="button"
+                      onClick={() => openImageGallery(2)}
+                      className="
+          group
+          relative
+          h-[170px]
+          cursor-zoom-in
+          overflow-hidden
+          lg:h-full
+        "
+                      aria-label="Abrir fotografía 3"
+                    >
+                      <img
+                        src={galleryImages[2] || galleryImages[0]}
+                        alt={`${offer.title} amenidades`}
+                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                      />
+
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition duration-300 group-hover:opacity-100">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/95 text-xl shadow-lg">
+                          🔍
+                        </span>
+                      </div>
+                    </button>
+
+                    {/* IMAGEN 4 */}
+
+                    <button
+                      type="button"
+                      onClick={() => openImageGallery(3)}
+                      className="
+          group
+          relative
+          h-[170px]
+          cursor-zoom-in
+          overflow-hidden
+          lg:h-full
+        "
+                      aria-label="Abrir fotografía 4"
+                    >
+                      <img
+                        src={galleryImages[3] || galleryImages[0]}
+                        alt={`${offer.title} habitación`}
+                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                      />
+
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition duration-300 group-hover:opacity-100">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/95 text-xl shadow-lg">
+                          🔍
+                        </span>
+                      </div>
+                    </button>
+
+                    {/* IMAGEN 5 / VER TODAS */}
+
+                    <button
+                      type="button"
+                      onClick={() => openImageGallery(0)}
+                      className="
+          group
+          relative
+          h-[170px]
+          cursor-pointer
+          overflow-hidden
+          lg:h-full
+        "
+                      aria-label="Ver todas las fotografías"
+                    >
+                      <img
+                        src={galleryImages[4] || galleryImages[0]}
+                        alt={`${offer.title} experiencia`}
+                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                      />
+
+                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 px-4 text-center transition duration-300 group-hover:bg-black/60">
+                        <span className="text-2xl">📷</span>
+
+                        <span className="mt-2 rounded-xl border border-white/50 bg-white/95 px-4 py-3 text-sm font-bold text-[#023e73] shadow-lg">
+                          Ver todas las fotos
+                        </span>
+
+                        <span className="mt-2 text-xs font-semibold text-white">
+                          {galleryImages.length} fotografías
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+
+                  {/* VISOR LIGHTBOX */}
+
+                  <Lightbox
+                    open={openGallery}
+                    close={() => setOpenGallery(false)}
+                    index={currentImage}
+                    slides={galleryImages.map((image, index) => ({
+                      src: image,
+                      alt: `${offer.title} fotografía ${index + 1}`,
+                    }))}
+                    plugins={[Zoom, Thumbnails]}
+                    carousel={{
+                      finite: galleryImages.length <= 1,
+                    }}
+                    controller={{
+                      closeOnBackdropClick: true,
+                    }}
+                    zoom={{
+                      maxZoomPixelRatio: 3,
+                      zoomInMultiplier: 2,
+                      doubleTapDelay: 300,
+                      doubleClickDelay: 300,
+                      doubleClickMaxStops: 2,
+                      keyboardMoveDistance: 50,
+                      wheelZoomDistanceFactor: 100,
+                      pinchZoomDistanceFactor: 100,
+                      scrollToZoom: true,
+                    }}
+                    thumbnails={{
+                      position: "bottom",
+                      width: 110,
+                      height: 70,
+                      border: 2,
+                      borderRadius: 10,
+                      padding: 4,
+                      gap: 12,
+                    }}
+                    styles={{
+                      container: {
+                        backgroundColor: "rgba(1, 25, 48, 0.96)",
+                      },
+                    }}
+                  />
+                </>
+              ) : (
+                <div className="flex h-[320px] items-center justify-center rounded-3xl bg-gray-100">
+                  <div className="text-center">
+                    <div className="text-5xl">🏨</div>
+
+                    <p className="mt-4 font-bold text-gray-500">
+                      No hay fotografías disponibles
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* DESCRIPCIÓN */}
+
+              <div className="mt-12 grid grid-cols-3 gap-8">
+                <article className="col-span-2 rounded-3xl bg-white p-9 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-2xl">
+                      🧳
+                    </div>
+
+                    <div>
+                      <p className="text-sm font-bold uppercase tracking-wider text-[#ff6600]">
+                        Detalles de la oferta
+                      </p>
+
+                      <h3 className="text-2xl font-black text-[#023e73]">
+                        ¿Por qué elegir esta experiencia?
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div
+                    className="prose mt-7 max-w-none text-base leading-8 text-gray-600"
+                    dangerouslySetInnerHTML={{
+                      __html: offer.description,
+                    }}
+                  />
+                </article>
+
+                {/* TARJETA DE BENEFICIOS */}
+
+                <aside className="rounded-3xl bg-[#023e73] p-8 text-white shadow-lg">
+                  <p className="text-sm font-bold uppercase tracking-widest text-orange-300">
+                    Lo mejor de esta oferta
+                  </p>
+
+                  <h3 className="mt-3 text-2xl font-black">
+                    Todo lo necesario para disfrutar
+                  </h3>
+
+                  <div className="mt-7 space-y-5">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10">
+                        🏨
+                      </div>
+
+                      <div>
+                        <p className="font-bold">Hospedaje seleccionado</p>
+                        <p className="mt-1 text-sm leading-relaxed text-white/70">
+                          Hotel elegido por ubicación, servicio y relación
+                          calidad-precio.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10">
+                        🍽️
+                      </div>
+
+                      <div>
+                        <p className="font-bold">Experiencia completa</p>
+                        <p className="mt-1 text-sm leading-relaxed text-white/70">
+                          Disfruta los servicios incluidos según el plan
+                          contratado.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10">
+                        📲
+                      </div>
+
+                      <div>
+                        <p className="font-bold">Atención personalizada</p>
+                        <p className="mt-1 text-sm leading-relaxed text-white/70">
+                          Te acompañamos antes, durante y después de reservar.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10">
+                        💳
+                      </div>
+
+                      <div>
+                        <p className="font-bold">Opciones de pago</p>
+                        <p className="mt-1 text-sm leading-relaxed text-white/70">
+                          Paga de forma segura y aprovecha promociones
+                          bancarias.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={scrollToTarget}
+                    className="mt-8 w-full rounded-xl bg-[#ff6600] px-5 py-4 font-bold text-white transition hover:bg-orange-600"
+                  >
+                    Consultar fechas disponibles
+                  </button>
+                </aside>
+              </div>
+            </div>
+          </section>
+          {/* ========================================================= */}
+          {/* FECHAS DISPONIBLES */}
+          {/* ========================================================= */}
+
+          {offer.category?.name === "Paquete" ||
+          offer.category?.name === "Hotel" ||
+          offer.category?.name === "Vuelo" ? (
+            <section ref={targetRef} className="bg-white py-20">
+              <div className="mx-auto max-w-7xl px-5">
+                {/* ENCABEZADO */}
+
+                <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+                  <div>
+                    <span className="inline-flex rounded-full bg-blue-50 px-4 py-2 text-sm font-bold uppercase tracking-wide text-[#0260fe]">
+                      Reserva tu viaje
+                    </span>
+
+                    <h2 className="mt-4 text-4xl font-black text-[#023e73]">
+                      Fechas disponibles
+                    </h2>
+
+                    <p className="mt-3 max-w-3xl text-lg leading-relaxed text-gray-600">
+                      Elige la fecha que mejor se adapte a tu viaje y consulta
+                      el precio disponible.
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-orange-100 bg-orange-50 px-5 py-4">
+                    <p className="text-sm font-semibold text-gray-500">
+                      Precio de esta oferta desde
+                    </p>
+
+                    <p className="mt-1 text-3xl font-black text-[#ff6600]">
+                      ${offer.price.toLocaleString("es-MX")}
+                      <span className="ml-2 text-base font-semibold text-gray-500">
+                        MXN
+                      </span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* AVISO */}
+
+                <div className="mt-8 flex items-start gap-4 rounded-2xl border border-blue-100 bg-blue-50 p-5">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-xl shadow-sm">
+                    💡
+                  </div>
+
+                  <div>
+                    <p className="font-bold text-[#023e73]">
+                      Selecciona la opción que te interese
+                    </p>
+
+                    <p className="mt-1 text-sm leading-relaxed text-gray-600">
+                      Al presionar “Ver oferta”, serás dirigido al proveedor
+                      para consultar disponibilidad, condiciones y completar la
+                      compra.
+                    </p>
+                  </div>
+                </div>
+
+                {/* TARJETAS */}
+
+                <div className="mt-10 grid gap-5">
+                  {offer.buyLinks?.length > 0 ? (
+                    offer.buyLinks.map((item, index) => {
+                      const formattedPrice = Number(
+                        String(item.price || 0).replace(/,/g, ""),
+                      ).toLocaleString("es-MX");
+
+                      return (
+                        <article
+                          key={`${item.departureDate}-${item.returnDate}-${index}`}
+                          role="button"
+                          tabIndex={0}
+                          onClick={() =>
+                            window.open(
+                              item.link,
+                              "_blank",
+                              "noopener,noreferrer",
+                            )
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              window.open(
+                                item.link,
+                                "_blank",
+                                "noopener,noreferrer",
+                              );
+                            }
+                          }}
+                          className="
+    group
+    cursor-pointer
+    overflow-hidden
+    rounded-3xl
+    border
+    border-gray-300
+    bg-white
+    shadow-sm
+    transition-all
+    duration-300
+    hover:-translate-y-1
+    hover:border-[#0260fe]
+    hover:shadow-xl
+  "
+                        >
+                          <div className="grid items-stretch lg:grid-cols-[1.1fr_1.1fr_0.8fr_1fr_0.8fr]">
+                            {/* SALIDA */}
+
+                            <div className="border-b border-gray-100 p-6 lg:border-b-0 lg:border-r">
+                              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                                Salida
+                              </p>
+
+                              <div className="mt-3 flex items-center gap-3">
+                                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-[#0260fe]">
+                                  <FaPlaneDeparture />
+                                </div>
+
+                                <div>
+                                  <p className="text-xl font-black text-[#023e73]">
+                                    {item.departureDate}
+                                  </p>
+
+                                  {item.departureCity ? (
+                                    <p className="mt-1 text-sm text-gray-500">
+                                      Desde {item.departureCity}
+                                    </p>
+                                  ) : (
+                                    <p className="mt-1 text-sm text-gray-500">
+                                      Fecha de inicio
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* REGRESO */}
+
+                            <div className="border-b border-gray-100 p-6 lg:border-b-0 lg:border-r">
+                              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                                Regreso
+                              </p>
+
+                              <div className="mt-3 flex items-center gap-3">
+                                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-50 text-[#ff6600]">
+                                  <FaPlaneArrival />
+                                </div>
+
+                                <div>
+                                  <p className="text-xl font-black text-[#023e73]">
+                                    {item.returnDate}
+                                  </p>
+
+                                  <p className="mt-1 text-sm text-gray-500">
+                                    Fecha de regreso
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* ESTANCIA */}
+
+                            <div className="border-b border-gray-100 p-6 lg:border-b-0 lg:border-r">
+                              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                                Estancia
+                              </p>
+
+                              <div className="mt-3 flex items-center gap-3">
+                                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
+                                  <MdOutlineNightsStay />
+                                </div>
+
+                                <div>
+                                  <p className="text-lg font-black text-[#023e73]">
+                                    {item.daysOfStay ||
+                                      item.nights ||
+                                      offer.daysOfStay ||
+                                      "Consultar"}
+                                  </p>
+
+                                  <p className="mt-1 text-sm text-gray-500">
+                                    Duración del viaje
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* PRECIO */}
+
+                            <div className="border-b border-gray-100 p-6 lg:border-b-0 lg:border-r">
+                              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                                Precio desde
+                              </p>
+
+                              <p className="mt-2 text-3xl font-black text-[#0260fe]">
+                                ${formattedPrice}
+                              </p>
+
+                              <p className="mt-1 text-sm text-gray-500">
+                                MXN por persona
+                              </p>
+
+                              <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-green-50 px-3 py-1 text-xs font-bold text-green-700">
+                                <span className="h-2 w-2 rounded-full bg-green-500" />
+                                Disponible
+                              </div>
+                            </div>
+
+                            {/* BOTÓN */}
+
+                            <div className="flex items-center p-6">
+                              <a
+                                href={item.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="
+      flex
+      w-full
+      items-center
+      justify-center
+      gap-3
+      rounded-xl
+      bg-[#ff6600]
+      px-5
+      py-4
+      font-bold
+      text-white
+      shadow-md
+      transition-all
+      duration-300
+      hover:bg-orange-600
+      hover:shadow-lg
+    "
+                              >
+                                Ver oferta
+                                <FaArrowRight />
+                              </a>
+                            </div>
+                          </div>
+
+                          {/* INFORMACIÓN COMPLEMENTARIA */}
+
+                          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-gray-100 bg-[#f8fafc] px-6 py-4">
+                            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600">
+                              <span className="flex items-center gap-2">
+                                <FaCheckCircle className="text-green-500" />
+                                Precio sujeto a disponibilidad
+                              </span>
+
+                              <span className="flex items-center gap-2">
+                                <FaCreditCard className="text-[#0260fe]" />
+                                Consulta meses sin intereses
+                              </span>
+
+                              <span className="flex items-center gap-2">
+                                <FaShieldAlt className="text-[#0260fe]" />
+                                Compra con proveedor autorizado
+                              </span>
+                            </div>
+
+                            {item.people ? (
+                              <span className="rounded-full bg-white px-4 py-2 text-sm font-bold text-[#023e73] shadow-sm">
+                                👥 {item.people} personas
+                              </span>
+                            ) : null}
+                          </div>
+                        </article>
+                      );
+                    })
+                  ) : (
+                    <div className="rounded-3xl border border-dashed border-gray-300 bg-gray-50 px-6 py-14 text-center">
+                      <div className="text-5xl">📅</div>
+
+                      <h3 className="mt-4 text-2xl font-black text-[#023e73]">
+                        No hay fechas publicadas
+                      </h3>
+
+                      <p className="mx-auto mt-3 max-w-xl text-gray-600">
+                        Comunícate con uno de nuestros asesores para consultar
+                        nuevas fechas y disponibilidad.
+                      </p>
+
+                      <a
+                        href="https://wa.me/529981234567"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-6 inline-flex items-center gap-3 rounded-xl bg-[#25D366] px-6 py-4 font-bold text-white transition hover:bg-green-600"
+                      >
+                        <FaWhatsapp />
+                        Consultar por WhatsApp
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                {/* NOTA FINAL */}
+
+                {offer.buyLinks?.length > 0 ? (
+                  <div className="mt-8 rounded-2xl bg-[#023e73] p-6 text-white">
+                    <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+                      <div>
+                        <p className="text-xl font-black">
+                          ¿No encontraste la fecha que necesitas?
+                        </p>
+
+                        <p className="mt-2 text-sm leading-relaxed text-white/75">
+                          Nuestros asesores pueden ayudarte a localizar otras
+                          fechas, hoteles o ciudades de salida.
+                        </p>
+                      </div>
+
+                      <a
+                        href={`https://wa.me/529984954637?text=${encodeURIComponent(
+                          `✈️ Hola, me interesa la oferta: ${offer.title}.
+
+🔗 Oferta: https://www.viajaatudestino.com/oferta/${offer.slug || offer._id}
+
+Quiero consultar fechas y disponibilidad. 😊`,
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex shrink-0 items-center justify-center gap-3 rounded-xl bg-[#25D366] px-6 py-4 font-bold text-white transition hover:bg-green-600"
+                      >
+                        <FaWhatsapp />
+                        Solicitar otra fecha
+                      </a>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            </section>
+          ) : null}
+          {/* ========================================================= */}
+          {/* INFORMACIÓN IMPORTANTE */}
+          {/* ========================================================= */}
+
+          <section className="bg-[#f8f9fc] py-20">
+            <div className="mx-auto max-w-7xl px-5">
+              <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+                {/* ENCABEZADO */}
+
+                <div className="lg:sticky lg:top-24">
+                  <span className="inline-flex rounded-full bg-blue-50 px-4 py-2 text-sm font-bold uppercase tracking-wide text-[#0260fe]">
+                    Antes de reservar
+                  </span>
+
+                  <h2 className="mt-4 text-4xl font-black leading-tight text-[#023e73]">
+                    Información importante
+                  </h2>
+
+                  <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                    Revisa estas condiciones antes de seleccionar una fecha y
+                    completar tu reservación.
+                  </p>
+
+                  <div className="mt-8 rounded-3xl bg-[#023e73] p-7 text-white shadow-lg">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-3xl">
+                      🛡️
+                    </div>
+
+                    <h3 className="mt-5 text-2xl font-black">
+                      Compra con tranquilidad
+                    </h3>
+
+                    <p className="mt-3 leading-relaxed text-white/75">
+                      Verifica el precio final, las políticas de cancelación y
+                      los servicios incluidos antes de realizar el pago.
+                    </p>
+
+                    <button
+                      type="button"
+                      onClick={scrollToTarget}
+                      className="mt-7 w-full rounded-xl bg-[#ff6600] px-6 py-4 font-bold text-white transition hover:bg-orange-600"
+                    >
+                      Consultar fechas disponibles
+                    </button>
+                  </div>
+                </div>
+
+                {/* TARJETAS */}
+
+                <div className="grid gap-5 sm:grid-cols-2">
+                  {[
+                    {
+                      icon: "👥",
+                      title: "Precio por persona",
+                      description:
+                        "La tarifa publicada generalmente corresponde a una persona en habitación doble.",
+                    },
+                    {
+                      icon: "📅",
+                      title: "Sujeto a disponibilidad",
+                      description:
+                        "Los lugares y habitaciones disponibles pueden agotarse en cualquier momento.",
+                    },
+                    {
+                      icon: "💰",
+                      title: "Cambios de precio",
+                      description:
+                        "Las tarifas pueden cambiar sin previo aviso hasta confirmar la reservación.",
+                    },
+                    {
+                      icon: "📄",
+                      title: "Términos y condiciones",
+                      description:
+                        "Cada proveedor establece sus propias condiciones de compra, cambio y cancelación.",
+                    },
+                    {
+                      icon: "❌",
+                      title: "Políticas de cancelación",
+                      description:
+                        "Algunas tarifas pueden ser no reembolsables o generar cargos por modificación.",
+                    },
+                    {
+                      icon: "🪪",
+                      title: "Documentación",
+                      description:
+                        "Las personas viajeras deberán presentar identificación y documentos vigentes.",
+                    },
+                    {
+                      icon: "💳",
+                      title: "Promociones bancarias",
+                      description:
+                        "Los meses sin intereses dependen del banco, la tarjeta y el proveedor participante.",
+                    },
+                    {
+                      icon: "🧳",
+                      title: "Gastos no incluidos",
+                      description:
+                        "No se incluyen gastos personales, propinas ni servicios no señalados expresamente.",
+                    },
+                  ].map((item) => (
+                    <article
+                      key={item.title}
+                      className="group rounded-3xl border border-gray-100 bg-[#f8fafc] p-6 transition duration-300 hover:-translate-y-1 hover:border-blue-100 hover:bg-white hover:shadow-xl"
+                    >
+                      <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-white text-2xl shadow-sm">
+                        {item.icon}
+                      </div>
+
+                      <h3 className="mt-5 text-xl font-black text-[#023e73]">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-3 leading-relaxed text-gray-600">
+                        {item.description}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+          {/* ========================================================= */}
+          {/* CTA FINAL WHATSAPP */}
+          {/* ========================================================= */}
+
+          <section className="relative overflow-hidden bg-[#023e73] py-20">
+            {/* DECORACIÓN */}
+
+            <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#0260fe]/30 blur-3xl" />
+            <div className="absolute -bottom-28 -right-20 h-80 w-80 rounded-full bg-[#ff6600]/20 blur-3xl" />
+
+            <div className="relative mx-auto max-w-7xl px-5">
+              <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur sm:p-12 lg:p-14">
+                <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
+                  <div>
+                    <span className="inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-wide text-orange-300">
+                      Atención personalizada
+                    </span>
+
+                    <h2 className="mt-5 max-w-3xl text-4xl font-black leading-tight text-white sm:text-5xl">
+                      ¿Listo para vivir esta experiencia?
+                    </h2>
+
+                    <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+                      Escríbenos por WhatsApp y uno de nuestros asesores te
+                      ayudará a consultar fechas, disponibilidad y opciones de
+                      pago.
+                    </p>
+
+                    <div className="mt-8 flex flex-wrap gap-x-7 gap-y-4">
+                      {[
+                        "Cotización sin compromiso",
+                        "Atención personalizada",
+                        "Pago seguro",
+                        "Hasta 12 meses sin intereses",
+                      ].map((benefit) => (
+                        <div
+                          key={benefit}
+                          className="flex items-center gap-3 text-sm font-semibold text-white"
+                        >
+                          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-green-400/20 text-green-300">
+                            ✓
+                          </span>
+
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="w-full lg:w-[320px]">
+                    <div className="rounded-3xl bg-white p-6 shadow-xl">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-50 text-3xl">
+                        💬
+                      </div>
+
+                      <h3 className="mt-5 text-2xl font-black text-[#023e73]">
+                        Habla con un asesor
+                      </h3>
+
+                      <p className="mt-3 text-sm leading-relaxed text-gray-600">
+                        Recibe ayuda para encontrar la mejor fecha y completar
+                        tu reservación.
+                      </p>
+
+                      <a
+                        href={`https://wa.me/529984954637?text=${encodeURIComponent(
+                          `✈️ Hola, me interesa la oferta: ${offer.title}.
+
+🔗 Oferta: https://www.viajaatudestino.com/oferta/${offer.slug || offer._id}
+
+Quiero consultar fechas y disponibilidad. 😊`,
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-6 flex w-full items-center justify-center gap-3 rounded-xl bg-[#25D366] px-6 py-4 font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-600 hover:shadow-lg"
+                      >
+                        <FaWhatsapp className="text-xl" />
+                        Cotizar por WhatsApp
+                      </a>
+
+                      <button
+                        type="button"
+                        onClick={scrollToTarget}
+                        className="mt-3 w-full rounded-xl border border-gray-200 px-6 py-4 font-bold text-[#023e73] transition hover:border-[#0260fe] hover:bg-blue-50"
+                      >
+                        Ver fechas disponibles
+                      </button>
+
+                      <p className="mt-4 text-center text-xs leading-relaxed text-gray-400">
+                        Tarifas sujetas a disponibilidad y cambios sin previo
+                        aviso.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          {/* ========================================================= */}
+          {/* OFERTAS RELACIONADAS */}
+          {/* ========================================================= */}
+
+          <section className="bg-[#f7f9fc] py-20">
+            <div className="mx-auto max-w-7xl px-5">
+              {/* ENCABEZADO */}
+
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+                <div>
+                  <span className="inline-flex rounded-full bg-orange-100 px-4 py-2 text-sm font-bold uppercase tracking-wide text-[#ff6600]">
+                    Sigue explorando
+                  </span>
+
+                  <h2 className="mt-4 text-4xl font-black text-[#023e73]">
+                    También te puede interesar
+                  </h2>
+
+                  <p className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-600">
+                    Descubre otras ofertas seleccionadas para que encuentres la
+                    experiencia ideal para tu próximo viaje.
+                  </p>
+                </div>
+
+                <Link
+                  to="/ofertas"
+                  className="inline-flex items-center gap-3 font-bold text-[#0260fe] transition hover:text-[#ff6600]"
+                >
+                  Ver todas las ofertas
+                  <FaArrowRight />
+                </Link>
+              </div>
+
+              {/* CARGANDO */}
+
+              {loadingRelated ? (
+                <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                  {[1, 2, 3, 4].map((item) => (
+                    <div
+                      key={item}
+                      className="overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm"
+                    >
+                      <div className="h-56 animate-pulse bg-gray-200" />
+
+                      <div className="space-y-4 p-6">
+                        <div className="h-4 w-24 animate-pulse rounded bg-gray-200" />
+                        <div className="h-6 w-full animate-pulse rounded bg-gray-200" />
+                        <div className="h-4 w-3/4 animate-pulse rounded bg-gray-200" />
+                        <div className="h-10 w-full animate-pulse rounded-xl bg-gray-200" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : relatedOffers.length > 0 ? (
+                <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                  {relatedOffers.map((relatedOffer) => {
+                    const relatedId = relatedOffer._id || relatedOffer.id;
+
+                    const relatedImage = Array.isArray(relatedOffer.image)
+                      ? relatedOffer.image[0]
+                      : relatedOffer.image || relatedOffer.images?.[0];
+
+                    const relatedCategory =
+                      relatedOffer.category?.name ||
+                      relatedOffer.category ||
+                      "Oferta de viaje";
+
+                    const relatedDestination =
+                      relatedOffer.destination?.name ||
+                      relatedOffer.destination ||
+                      relatedOffer.location ||
+                      relatedOffer.departure ||
+                      "México";
+
+                    const formattedRelatedPrice = Number(
+                      String(relatedOffer.price || 0).replace(/,/g, ""),
+                    ).toLocaleString("es-MX");
+
+                    return (
+                      <Link
+                        key={relatedId}
+                        to={`/oferta/${relatedId}`}
+                        className="group block"
+                      >
+                        <article className="relative h-full overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-all duration-300 group-hover:-translate-y-2 group-hover:border-blue-200 group-hover:shadow-2xl">
+                          {/* IMAGEN */}
+
+                          <div className="relative h-56 overflow-hidden bg-gray-100">
+                            {relatedImage ? (
+                              <img
+                                src={relatedImage}
+                                alt={relatedOffer.title}
+                                loading="lazy"
+                                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              />
+                            ) : (
+                              <div className="flex h-full items-center justify-center text-5xl">
+                                🏖️
+                              </div>
+                            )}
+
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+
+                            {/* CATEGORÍA */}
+
+                            <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-2 text-xs font-black uppercase tracking-wide text-[#0260fe] shadow-md backdrop-blur">
+                              {relatedCategory}
+                            </span>
+
+                            {/* OFERTA */}
+
+                            <span className="absolute right-4 top-4 rounded-full bg-[#ff6600] px-3 py-2 text-xs font-black text-white shadow-md">
+                              🔥 Oferta
+                            </span>
+
+                            {/* DESTINO */}
+
+                            <div className="absolute bottom-4 left-4 flex items-center gap-2 text-sm font-bold text-white">
+                              <FaMapMarkerAlt />
+                              <span>{relatedDestination}</span>
+                            </div>
+                          </div>
+
+                          {/* CONTENIDO */}
+
+                          <div className="flex h-[calc(100%-14rem)] flex-col p-6">
+                            <h3 className="line-clamp-2 text-xl font-black leading-snug text-[#023e73] transition group-hover:text-[#0260fe]">
+                              {relatedOffer.title}
+                            </h3>
+
+                            <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-gray-600">
+                              {relatedOffer.summary ||
+                                "Descubre esta oferta seleccionada y encuentra la mejor opción para tu próximo viaje."}
+                            </p>
+
+                            {/* DATOS */}
+
+                            <div className="mt-5 flex flex-wrap gap-2">
+                              {relatedOffer.daysOfStay ? (
+                                <span className="rounded-full bg-blue-50 px-3 py-2 text-xs font-bold text-[#0260fe]">
+                                  📅 {relatedOffer.daysOfStay}
+                                </span>
+                              ) : null}
+
+                              {relatedOffer.hotel ? (
+                                <span className="max-w-full truncate rounded-full bg-orange-50 px-3 py-2 text-xs font-bold text-[#ff6600]">
+                                  🏨 {relatedOffer.hotel}
+                                </span>
+                              ) : null}
+                            </div>
+
+                            {/* PRECIO */}
+
+                            <div className="mt-auto pt-6">
+                              <div className="border-t border-gray-100 pt-5">
+                                <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                                  Desde
+                                </p>
+
+                                <div className="mt-1 flex items-end justify-between gap-4">
+                                  <div>
+                                    <p className="text-3xl font-black text-[#0260fe]">
+                                      ${formattedRelatedPrice}
+                                    </p>
+
+                                    <p className="mt-1 text-xs font-medium text-gray-500">
+                                      MXN por persona
+                                    </p>
+                                  </div>
+
+                                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#ff6600] text-white shadow-md transition-all duration-300 group-hover:bg-[#0260fe]">
+                                    <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </article>
+                      </Link>
+                    );
+                  })}
+                </div>
+              ) : (
+                /* SIN RESULTADOS */
+
+                <div className="mt-12 rounded-3xl border border-dashed border-gray-300 bg-white px-6 py-14 text-center">
+                  <div className="text-5xl">🌴</div>
+
+                  <h3 className="mt-5 text-2xl font-black text-[#023e73]">
+                    Sigue descubriendo nuevas ofertas
+                  </h3>
+
+                  <p className="mx-auto mt-3 max-w-xl leading-relaxed text-gray-600">
+                    Por ahora no encontramos ofertas relacionadas, pero puedes
+                    consultar todas nuestras promociones disponibles.
+                  </p>
+
+                  <Link
+                    to="/ofertas"
+                    className="mt-7 inline-flex items-center gap-3 rounded-xl bg-[#0260fe] px-6 py-4 font-bold text-white transition hover:bg-blue-700"
+                  >
+                    Explorar todas las ofertas
+                    <FaArrowRight />
+                  </Link>
+                </div>
+              )}
+            </div>
+          </section>
         </main>
         <footer className="mt-10">
           <Footer />

@@ -7,3 +7,30 @@ body{
 font-family: '';
 }
 
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eef3fb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #0260fe 0%,
+    #3794ff 100%
+  );
+  border-radius: 999px;
+  border: 2px solid #eef3fb;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #014ad4 0%,
+    #0260fe 100%
+  );
+}

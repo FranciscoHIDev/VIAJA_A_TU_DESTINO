@@ -29,7 +29,7 @@ function CardTop({
   };
   return (
     <React.Fragment>
-      <div className="bg-white mt-10 h-[490px] md:w-[360px] m-2  w-auto rounded-[16px] border-[1px]">
+      <div className="bg-white mt-10 h-[517px] md:w-[360px] m-2  w-auto rounded-[16px] border-[1px]">
         <NavLink to={`/oferta/${_id}`}>
           <div>
             <img
@@ -51,20 +51,24 @@ function CardTop({
                 <p className=" mr-2 text-[#4b5563] font-[400] text-[14px]">
                   Incluye:
                 </p>
-                <div className="flex flex-row mr-4 rounded-md bg-[#fef2f2] py-1 px-1">
-                  <MdFlight className="text-[#4b5563] text-[15px] mr-2 " />
-                  <span className="text-[#ff6600] font-medium">Vuelo</span>
+                <div className="flex flex-row items-center mr-4 rounded-md bg-[#fef2f2] py-1 px-1">
+                  <MdFlight className="text-[#4b5563] text-[15px] mr-1 " />
+                  <span className="text-[#ff6600] font-normal text-[14px]">
+                    Vuelo
+                  </span>
                 </div>
-                <div className="flex flex-row rounded-md bg-[#fef2f2] p-1">
-                  <FaHotel className="text-[#4b5563] text-[15px] mr-2" />
-                  <span className="text-[#ff6600] font-medium">Hotel</span>
+                <div className="flex flex-row items-center rounded-md bg-[#fef2f2] p-1">
+                  <FaHotel className="text-[#4b5563] text-[14px] mr-1" />
+                  <span className="text-[#ff6600] font-normal text-[14px]">
+                    Hotel
+                  </span>
                 </div>
               </div>
             ) : (
               <div className="flex flex-row items-center mt-2">
-                <div className="flex flex-row mr-4 rounded-md bg-[#fef2f2] py-1 px-1">
-                  <FaTicketAlt className="text-[#4b5563] text-[15px] mr-2 " />
-                  <span className="text-[#ff6600] font-medium">
+                <div className="flex flex-row mr-4 rounded-md items-center bg-[#fef2f2] py-1 px-1">
+                  <FaTicketAlt className="text-[#4b5563] text-[15px] mr-1 " />
+                  <span className="text-[#ff6600] font-normal text-[14px]">
                     {" "}
                     Oferta Exlusiva
                   </span>
@@ -97,23 +101,23 @@ function CardTop({
                 </p>
               </div>
             )}
-            <hr className="border-t-1 w-3/8 mt-8" />
+            <hr className="border-t-1 w-3/8 mt-4" />
           </div>
-          <p className=" px-2 pt-4 rounded-lg text-[#0e1734] font-ligth ml-4 text-[15px] mt-2">
+          <p className=" px-2 pt-2 rounded-lg text-[#0e1734] font-ligth ml-4 text-[15px] ">
             Desde
           </p>
-          <p className="text-4xl px-5 font-[900] text-[#0e1734]">
+          <p className="text-2xl px-5 font-[900] text-[#0e1734]">
             ${price} <span className="text-[17px] font-medium ">MXN</span>
           </p>
         </NavLink>
-        <div className="flex justify-between  mt-4">
+        <div className="flex justify-between  mt-2">
           <NavLink to={`/oferta/${_id}`}>
-            <div className="flex bg-[#ff6600] w-[180px] h-14 justify-center items-center rounded-bl-lg">
+            <div className="flex bg-[#ff6600] w-[180px] h-10 justify-center items-center rounded-bl-lg">
               <p className="text-[16px] text-white font-bold">Ver oferta</p>
             </div>
           </NavLink>
           <a href="https://api.whatsapp.com/send/?phone=5219984954637&text&type=phone_number&app_absent=0">
-            <div className="flex bg-[#f3f4f6] w-[180px]  h-14 justify-center items-center rounded-br-lg">
+            <div className="flex bg-[#f3f4f6] w-[180px]  h-10 justify-center items-center rounded-br-lg">
               <p className="text-[16px] font-bold text-[#0e1734]">WhatsApp</p>
             </div>
           </a>
