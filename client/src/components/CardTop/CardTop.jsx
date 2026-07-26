@@ -116,7 +116,15 @@ function CardTop({
               <p className="text-[16px] text-white font-bold">Ver oferta</p>
             </div>
           </NavLink>
-          <a href="https://api.whatsapp.com/send/?phone=5219984954637&text&type=phone_number&app_absent=0">
+          <a
+            href={`https://wa.me/529984954637?text=${encodeURIComponent(
+              `Hola, me interesa la oferta: ${title}.
+
+ Oferta: https://www.viajaatudestino.com/oferta/${_id}
+
+Quiero consultar fechas y disponibilidad.`,
+            )}`}
+          >
             <div className="flex bg-[#f3f4f6] w-[180px]  h-10 justify-center items-center rounded-br-lg">
               <p className="text-[16px] font-bold text-[#0e1734]">WhatsApp</p>
             </div>

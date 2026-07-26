@@ -7,10 +7,14 @@ export default function PriceResWidget() {
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   />
+
+  <!-- Fuerza que enlaces y formularios salgan del iframe -->
+  <base target="_top" />
 
   <link
     rel="stylesheet"
@@ -37,25 +41,22 @@ export default function PriceResWidget() {
 
     #ptw-container {
       width: 100%;
-      min-height: 160px;
+      min-height: 100%;
     }
   </style>
 </head>
 
 <body>
-  <div
-    id="ptw-container"
-    class="ptw-horizontal-search"
-  ></div>
+  <div id="ptw-container" class="ptw-horizontal-search"></div>
 
   <script
     async
     type="text/javascript"
-    src="https://widgets.priceres.com.mx/viaja-a-tu-destino/jsonpBooker/startWidget?container=ptw-container&UseConfigs=false&IsHorizontal=true"
-  ></script>
+    src="https://widgets.priceres.com.mx/viaja-a-tu-destino/jsonpBooker/startWidget?container=ptw-container&UseConfigs=false&IsHorizontal=true">
+  </script>
 </body>
 </html>
-    `,
+`,
     [],
   );
 
@@ -66,7 +67,7 @@ export default function PriceResWidget() {
       className="block w-full"
       style={{
         width: "100%",
-        height: "270px",
+        height: "380px",
         border: "none",
         background: "transparent",
       }}
