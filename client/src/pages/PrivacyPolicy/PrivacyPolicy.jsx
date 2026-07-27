@@ -2,199 +2,671 @@ import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 
+const policySections = [
+  {
+    id: "responsable",
+    number: "01",
+    title: "Responsable del tratamiento",
+    content: (
+      <>
+        <p>
+          <strong>VIAJA A TU DESTINO, S.A.S. DE C.V.</strong>, en adelante{" "}
+          <strong>“Viaja a tu Destino”</strong>, es responsable del tratamiento,
+          protección y resguardo de los datos personales proporcionados por sus
+          clientes, usuarios y visitantes.
+        </p>
+
+        <p>
+          El domicilio fiscal del responsable se encuentra en Mallorca Norte E-A
+          D-209, Supermanzana 260, Manzana 73, Lote 2, Privada Talaia, Real
+          Valencia, Cancún, Quintana Roo, C.P. 77539.
+        </p>
+
+        <p>
+          Esta Política de Privacidad describe la forma en que obtenemos,
+          utilizamos, almacenamos, protegemos y, cuando resulte necesario,
+          compartimos la información personal relacionada con nuestros servicios
+          turísticos.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "datos-recabados",
+    number: "02",
+    title: "Datos personales que recabamos",
+    content: (
+      <>
+        <p>
+          Para proporcionar nuestros servicios, elaborar cotizaciones y
+          gestionar solicitudes de viaje, podemos recabar los siguientes datos:
+        </p>
+
+        <ul>
+          <li>Nombre y apellidos.</li>
+          <li>Correo electrónico.</li>
+          <li>Número telefónico.</li>
+          <li>Ciudad o aeropuerto de origen.</li>
+          <li>Destino de interés.</li>
+          <li>Fechas previstas de viaje.</li>
+          <li>Número de adultos, menores o viajeros.</li>
+          <li>Preferencias de hospedaje y servicios turísticos.</li>
+          <li>
+            Información necesaria para elaborar o gestionar una reservación.
+          </li>
+        </ul>
+
+        <p>
+          Cuando sea indispensable para formalizar una reservación, también
+          podremos solicitar información adicional relacionada con los
+          pasajeros, siempre que resulte necesaria para prestar el servicio
+          solicitado.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "obtencion",
+    number: "03",
+    title: "Medios de obtención de los datos",
+    content: (
+      <>
+        <p>
+          Los datos personales pueden ser recabados directamente cuando el
+          usuario se comunica con Viaja a tu Destino o utiliza alguno de
+          nuestros canales de atención.
+        </p>
+
+        <p>La información podrá obtenerse mediante:</p>
+
+        <ul>
+          <li>Formularios disponibles en nuestro sitio web.</li>
+          <li>Conversaciones por WhatsApp o servicios de mensajería.</li>
+          <li>Correo electrónico.</li>
+          <li>Llamadas telefónicas.</li>
+          <li>Redes sociales.</li>
+          <li>Solicitudes de cotización.</li>
+          <li>Procesos de reservación.</li>
+          <li>
+            Fuentes de acceso público permitidas por la legislación aplicable.
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    id: "finalidades",
+    number: "04",
+    title: "Finalidades del tratamiento",
+    content: (
+      <>
+        <p>
+          Los datos personales proporcionados serán utilizados principalmente
+          para atender solicitudes relacionadas con nuestros productos y
+          servicios turísticos.
+        </p>
+
+        <p className="font-bold text-slate-800">Finalidades necesarias:</p>
+
+        <ul>
+          <li>Elaborar cotizaciones de hoteles, vuelos, tours y paquetes.</li>
+          <li>Contactar al usuario para dar seguimiento a su solicitud.</li>
+          <li>Confirmar disponibilidad, precios y condiciones del servicio.</li>
+          <li>Gestionar reservaciones con proveedores turísticos.</li>
+          <li>Procesar solicitudes de cambios o cancelaciones.</li>
+          <li>Brindar atención antes, durante y después del viaje.</li>
+          <li>
+            Cumplir las obligaciones derivadas de los servicios contratados.
+          </li>
+          <li>Atender aclaraciones, dudas, comentarios o reclamaciones.</li>
+          <li>Cumplir requerimientos de autoridades competentes.</li>
+        </ul>
+
+        <p className="font-bold text-slate-800">Finalidades secundarias:</p>
+
+        <ul>
+          <li>Enviar promociones, ofertas y descuentos.</li>
+          <li>Informar sobre nuevos productos o servicios.</li>
+          <li>Realizar encuestas de satisfacción.</li>
+          <li>Evaluar y mejorar la calidad de nuestros servicios.</li>
+          <li>Realizar análisis estadísticos y estudios de mercado.</li>
+          <li>Mostrar publicidad relacionada con intereses de viaje.</li>
+        </ul>
+
+        <p>
+          El usuario podrá solicitar en cualquier momento que sus datos no sean
+          utilizados para las finalidades secundarias.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "pagos",
+    number: "05",
+    title: "Información relacionada con pagos",
+    content: (
+      <>
+        <p>
+          Cuando sea necesario procesar el pago de una reservación, podrán
+          solicitarse datos financieros o bancarios indispensables para
+          completar la operación.
+        </p>
+
+        <p>
+          En determinados casos, los pagos podrán ser procesados directamente
+          por instituciones bancarias, plataformas de pago o proveedores
+          turísticos externos. El tratamiento realizado por dichos terceros
+          estará sujeto a sus propios avisos y políticas de privacidad.
+        </p>
+
+        <p>
+          Viaja a tu Destino únicamente utilizará la información relacionada con
+          el pago para gestionar la operación solicitada, verificarla, atender
+          aclaraciones y cumplir las obligaciones legales aplicables.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "cookies",
+    number: "06",
+    title: "Cookies y tecnologías de seguimiento",
+    content: (
+      <>
+        <p>
+          Nuestro sitio web puede utilizar cookies y tecnologías similares para
+          reconocer el dispositivo del usuario, recordar preferencias, analizar
+          el funcionamiento del sitio y mejorar la experiencia de navegación.
+        </p>
+
+        <p>Estas tecnologías podrán utilizarse para:</p>
+
+        <ul>
+          <li>Conocer el número de visitas a nuestro sitio.</li>
+          <li>Analizar las páginas y ofertas consultadas.</li>
+          <li>Medir el rendimiento de campañas publicitarias.</li>
+          <li>Recordar determinadas preferencias del usuario.</li>
+          <li>Mejorar la navegación y funcionamiento de la página.</li>
+          <li>Mostrar anuncios relacionados con viajes y turismo.</li>
+          <li>Realizar mediciones estadísticas y de audiencia.</li>
+        </ul>
+
+        <p>
+          Podremos utilizar servicios de análisis y publicidad proporcionados
+          por terceros, incluyendo herramientas de Google y plataformas de redes
+          sociales, las cuales podrían instalar sus propias cookies.
+        </p>
+
+        <p>
+          El usuario puede bloquear, restringir o eliminar las cookies desde la
+          configuración de su navegador. La desactivación de determinadas
+          cookies podría afectar algunas funciones del sitio web.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "transferencias",
+    number: "07",
+    title: "Transferencia de datos personales",
+    content: (
+      <>
+        <p>
+          Para gestionar una cotización o reservación, los datos personales
+          podrán ser compartidos dentro o fuera de México con terceros que
+          participen en la prestación del servicio solicitado.
+        </p>
+
+        <p>Entre dichos terceros pueden encontrarse:</p>
+
+        <ul>
+          <li>Hoteles y establecimientos de hospedaje.</li>
+          <li>Aerolíneas.</li>
+          <li>Operadores de tours y actividades.</li>
+          <li>Empresas de transportación y traslados.</li>
+          <li>Mayoristas y consolidadores turísticos.</li>
+          <li>Plataformas y motores de reservaciones.</li>
+          <li>Instituciones bancarias y procesadores de pago.</li>
+          <li>Compañías aseguradoras.</li>
+          <li>Autoridades competentes cuando exista una obligación legal.</li>
+        </ul>
+
+        <p>
+          Los terceros que reciban los datos deberán utilizarlos únicamente para
+          cumplir las finalidades relacionadas con la contratación, operación o
+          prestación de los servicios correspondientes.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "derechos-arco",
+    number: "08",
+    title: "Derechos ARCO",
+    content: (
+      <>
+        <p>
+          El titular podrá ejercer en cualquier momento sus derechos de{" "}
+          <strong>Acceso, Rectificación, Cancelación y Oposición</strong>,
+          conocidos como derechos ARCO.
+        </p>
+
+        <ul>
+          <li>
+            <strong>Acceso:</strong> conocer qué datos personales conservamos y
+            cómo son utilizados.
+          </li>
+
+          <li>
+            <strong>Rectificación:</strong> solicitar la corrección o
+            actualización de datos incorrectos o incompletos.
+          </li>
+
+          <li>
+            <strong>Cancelación:</strong> solicitar la eliminación de los datos
+            cuando considere que ya no son necesarios.
+          </li>
+
+          <li>
+            <strong>Oposición:</strong> solicitar que sus datos no sean tratados
+            para determinadas finalidades.
+          </li>
+        </ul>
+
+        <p>La solicitud deberá incluir:</p>
+
+        <ul>
+          <li>Nombre completo del titular.</li>
+          <li>Domicilio o medio para recibir notificaciones.</li>
+          <li>Documento que acredite su identidad.</li>
+          <li>
+            En su caso, documento que acredite la representación del titular.
+          </li>
+          <li>
+            Descripción clara de los datos personales relacionados con la
+            solicitud.
+          </li>
+          <li>Descripción del derecho que desea ejercer.</li>
+          <li>
+            Cualquier documento que facilite la localización de la información.
+          </li>
+        </ul>
+
+        <p>
+          Viaja a tu Destino comunicará la determinación adoptada dentro del
+          plazo establecido por la legislación aplicable. Cuando la solicitud
+          resulte procedente, se implementarán las acciones correspondientes
+          dentro del plazo legal.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "revocacion",
+    number: "09",
+    title: "Revocación y limitación del consentimiento",
+    content: (
+      <>
+        <p>
+          El titular podrá revocar el consentimiento otorgado para el
+          tratamiento de sus datos personales o solicitar que se limite su uso y
+          divulgación.
+        </p>
+
+        <p>
+          También podrá cancelar su suscripción a promociones, publicidad,
+          ofertas y comunicaciones comerciales enviando una solicitud al correo:
+        </p>
+
+        <a
+          href="mailto:contacto@viajaatudestino.com?subject=Limitación del uso de datos personales"
+          className="inline-flex break-all font-bold text-[#0260fe] underline decoration-[#0260fe]/30 underline-offset-4 transition hover:text-[#ff6600]"
+        >
+          contacto@viajaatudestino.com
+        </a>
+
+        <p>
+          La revocación no tendrá efectos retroactivos ni impedirá el
+          cumplimiento de obligaciones legales, contractuales o administrativas
+          previamente adquiridas.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "seguridad",
+    number: "10",
+    title: "Protección y seguridad de la información",
+    content: (
+      <>
+        <p>
+          Viaja a tu Destino implementa medidas administrativas, técnicas y
+          organizacionales razonables para proteger los datos personales contra
+          daño, pérdida, alteración, destrucción, acceso, uso o divulgación no
+          autorizados.
+        </p>
+
+        <p>
+          El acceso a la información se limita al personal, proveedores y
+          colaboradores que necesitan conocerla para cumplir las finalidades
+          descritas en esta Política de Privacidad.
+        </p>
+
+        <p>
+          Ninguna transmisión o sistema de almacenamiento electrónico puede
+          considerarse completamente infalible. Por ello, revisamos y mejoramos
+          periódicamente nuestras medidas de protección.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "terceros",
+    number: "11",
+    title: "Enlaces y servicios de terceros",
+    content: (
+      <>
+        <p>
+          Nuestro sitio web puede contener enlaces a páginas, plataformas,
+          motores de reservación o servicios administrados por terceros.
+        </p>
+
+        <p>
+          Al abandonar nuestro sitio web, la información proporcionada al
+          tercero estará sujeta a sus propios términos, condiciones, avisos y
+          políticas de privacidad.
+        </p>
+
+        <p>
+          Viaja a tu Destino no controla las prácticas de privacidad de sitios
+          externos. Recomendamos revisar sus políticas antes de proporcionar
+          información personal o realizar una reservación.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "cambios",
+    number: "12",
+    title: "Cambios a esta Política de Privacidad",
+    content: (
+      <>
+        <p>
+          Viaja a tu Destino podrá modificar o actualizar esta Política de
+          Privacidad como consecuencia de cambios legales, operativos,
+          comerciales, tecnológicos o relacionados con nuestros servicios.
+        </p>
+
+        <p>
+          Las modificaciones estarán disponibles en nuestro sitio web. Cuando el
+          cambio sea relevante, también podremos comunicarlo mediante correo
+          electrónico, redes sociales u otros medios de contacto disponibles.
+        </p>
+
+        <p>
+          Se recomienda consultar periódicamente esta sección para conocer la
+          versión más reciente de la Política de Privacidad.
+        </p>
+      </>
+    ),
+  },
+];
+
+function PrivacyIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-8 w-8">
+      <path
+        d="M12 3L5 6V11C5 15.55 7.98 19.74 12 21C16.02 19.74 19 15.55 19 11V6L12 3Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <path
+        d="M9 11V9.5C9 7.84 10.34 6.5 12 6.5C13.66 6.5 15 7.84 15 9.5V11"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+
+      <rect
+        x="8"
+        y="11"
+        width="8"
+        height="6"
+        rx="1.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-5 w-5">
+      <path
+        d="M4 6H20V18H4V6Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+
+      <path
+        d="M4 7L12 13L20 7"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 function PrivacyPolicy() {
   return (
-    <React.Fragment>
-      <div className="min-h-screen h-screen flex flex-col">
-        <header>
-          <NavBar />
-        </header>
-        <main className="flex-grow my-10">
-          <div className=" md:mx-20 mx-5 flex flex-col items-center">
-            <div>
-              <h1 className="md:text-3xl text-2xl uppercase text-[#035373] font-bold">
+    <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
+      <header className="relative z-50">
+        <NavBar />
+      </header>
+
+      <main className="flex-1">
+        {/* Hero */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-[#023e73] via-[#0260fe] to-[#3794ff] px-5 py-16 text-white md:py-24">
+          <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+          <div className="absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-[#ff6600]/20 blur-3xl" />
+          <div className="absolute right-[15%] top-10 h-24 w-24 rounded-full border border-white/10" />
+
+          <div className="relative mx-auto max-w-6xl">
+            <div className="max-w-3xl">
+              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur">
+                <PrivacyIcon />
+              </div>
+
+              <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] backdrop-blur">
+                Seguridad y confidencialidad
+              </span>
+
+              <h1 className="mt-5 text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
                 Política de privacidad
               </h1>
-            </div>
-            <div className="mt-10 ">
-              <p className="md:text-[20px] text-justify ">
-                Viaja a tu Destino cuida a sus usuarios y está comprometida a
-                salvaguardar su confidencialidad. En el desempeño de dicho
-                compromiso, Viaja a tu Destino ha desarrollado esta «Política de
-                Privacidad», que describe las políticas y prácticas de Viaja a
-                tu Destino en lo que se refiere a la recolección y divulgación
-                de información personal en su página web.
+
+              <p className="mt-6 max-w-2xl text-base leading-8 text-white/85 md:text-lg">
+                Conoce cómo recopilamos, utilizamos y protegemos la información
+                personal que compartes con Viaja a tu Destino.
               </p>
-              <p className="md:text-[20px] mt-5 text-justify">
-                VIAJA A TU DESTINO SAS DE CV como responsable de la protección
-                de sus Datos Personales, con domicilio fiscal en Mallorca Norte
-                E-A D-209 SM260 M73 L2, Privada Talaia, Real Valencia, Cancún ,
-                Quintana Roo. C.P 77539 es responsable, del tratamiento de sus
-                datos personales.
-              </p>
-              <p className="md:text-[20px] mt-5 text-justify">
-                Forma y medios de contacto: Para contactarnos, vía correo
-                electrónico puede ser mediante la siguiente cuenta,
-                (contacto@viajaatudestino.com) , vía correo postal a la
-                dirección Mallorca Norte E-A D-209 SM260 M73 L2, Privada Talaia,
-                Real Valencia, Cancún , Quintana Roo. C.P 77539.
-              </p>
-              <p className="md:text-[20px] mt-5 text-justify">
-                Finalidad de los Datos Personales recabados: Los datos
-                personales que se recaben, serán utilizados para fines de
-                seguimiento, actualización y confirmación en cuanto a productos
-                y servicios contratados; con fines promocionales; dar
-                cumplimiento a obligaciones contraídas con nuestros clientes;
-                evaluar la calidad del servicio.
-              </p>
-              <p className="md:text-[20px] mt-5 text-justify">
-                Los datos personales que recabamos de usted, con los fines
-                descritos en el presente aviso de privacidad, son recabados de
-                manera personal, cuando usted nos los proporciona directamente;
-                por cualquiera de nuestras plataformas, ya sea a través de
-                nuestro Sitio Web, Redes sociales, o bien cuando se proporcionan
-                vía telefónica y por último cuando obtenemos información
-                mediante otras fuentes permitidas por Ley. Los datos que
-                recabamos de manera directa y vía internet, son los siguientes:
-                Nombre y apellidos, correo electrónico y numero telefónico.
-              </p>
-              <p className="md:text-[20px] mt-5 text-justify">
-                Toda vez que, como se estableció en líneas anteriores, está
-                permitido en Ley fuentes adicionales para allegarse de
-                información como lo son directorios telefónicos, directorios de
-                servicios y directorios laborales, los datos que por dichos
-                medios podemos obtener son nombre y apellidos, correo
-                electrónico y número telefónico.
-              </p>
-              <p className="md:text-[20px] mt-5 text-justify">
-                En cuanto a los datos financieros como lo son su número de
-                tarjeta de débito y/o crédito, fecha de expiración de la misma,
-                código de seguridad y dirección de correspondencia de la misma
-                de conformidad con los artículos 8, 10 y 37 de la Ley Federal de
-                Protección de Datos Personales en Posesión de Particulares, no
-                son considerados datos que requieran de su consentimiento
-                expreso para ser utilizados.
-              </p>
-              <p className="md:text-[20px] mt-5 uppercase">
-                Política de Cookies
-              </p>
-              <p className="md:text-[20px] mt-5 text-justify">
-                Al entrar y/o utilizar VIAJA A TU DESTINO , el usuario acepta el
-                uso de cookies por parte de este sitio web. VIAJA A TU DESTINO
-                utiliza cookies para: Obtener estadísticas sobre las visitas a
-                las páginas y el tráfico procedente y dirigido a
-                viajaatudestino.com Permitir el registro y autenticación de los
-                usuarios, para servir publicidad, y en general en todos los
-                casos en los que son útiles para proveer el servicio.
-                Remarketing, informes de impresiones de la Red de Display de
-                Google e informes de datos demográficos e intereses de Google
-                Analytics. El usuario puede inhabilitar Google Analytics para la
-                publicidad de display y personalizar los anuncios de la Red de
-                Display de Google. Mostrar nuestros anuncios a través de otros
-                proveedores, incluido Google, en otros sitios de Internet. Junto
-                con otros proveedores, incluido Google, y mediante las cookies
-                de origen (como la cookie de Google Analytics) y las cookies de
-                terceros (como la cookie de DoubleClick) combinadas, informar,
-                optimizar y publicar anuncios basándose en las visitas
-                anteriores al sitio web. Junto con otros proveedores, incluido
-                Google, mediante las cookies de origen (como la cookie de Google
-                Analytics) y las cookies de terceros (como la cookie de
-                DoubleClick) combinadas, informar sobre cómo se relacionan con
-                las visitas al sitio las impresiones de los anuncios, otros usos
-                de los servicios publicitarios y las interacciones con estas
-                impresiones de los anuncios y servicios publicitarios. En caso
-                de requerirlo el usuario podrá impedir el funcionamiento de
-                nuestras cookies a través de su navegador, aunque esto puede
-                afectar el uso de ciertas funcionalidades de la página web.
-              </p>
-              <p className="md:text-[20px] mt-5 text-justify">
-                Limitaciones al uso de datos: En cualquier momento, ya sea de
-                manera telefónica, por correo electrónico y vía correo postal
-                haciendo llegar una carta escrita, usted puede cancelar su
-                suscripción para recibir promociones, ofertas y servicios, a la
-                dirección para fines de notificaciones relacionadas al caso a la
-                siguiente dirección Mallorca Norte E-A D-209 SM260 M73 L2,
-                Privada Talaia, Real Valencia, Cancún , Quintana Roo. C.P 77539,
-                o al correo electrónico contacto@viajaatudestino.com.
-              </p>
-              <p className="md:text-[20px] mt-5 text-justify">
-                Ejercicio de los Derechos de Acceso, Rectificación, Cancelación
-                y Oposición (ARCO): Usted tiene derecho de acceder a los datos
-                personales que poseemos, a los detalles de tratamiento de los
-                mismos, a la rectificación en el caso de ser estos inexactos o
-                incompletos, a cancelarlos cuando sea su consideración que no
-                son necesarios para alguna de las finalidades contenidas en el
-                presente Aviso de Privacidad, que son utilizados para
-                finalidades no consentidas y finalmente a oponerse al
-                tratamiento de dichos datos para fines específicos y que deberá
-                de manera clara expresar. Los Derechos antes descritos se
-                ejercen a través de la presentación de la solicitud respectiva
-                mediante escrito, mismo que deberá ser presentado en la
-                dirección Mallorca Norte E-A D-209 SM260 M73 L2, Privada Talaia,
-                Real Valencia, Cancún , Quintana Roo. C.P 77539. El plazo para
-                atender su solicitud será en un máximo de treinta días hábiles
-                contados a partir de la fecha de recepción de su solicitud de
-                acceso, rectificación, cancelación u oposición. Le hacemos
-                patente que es el Instituto Federal de Acceso a la Información y
-                Protección de Datos Personales quien tiene encomendado velar por
-                sus derechos ARCO y el encargado de regular y verificar la
-                observancia de la Ley. En todo tiempo usted tiene el derecho de
-                revocar el consentimiento que nos ha entregado para el
-                tratamiento de sus datos personales con el propósito que se deje
-                de hacer uso de los mismos, para ello es necesario que presente
-                su petición según descrito en éste mismo aviso.
-              </p>
-              <p className="md:text-[20px] mt-5 text-justify">
-                Transferencia de datos, nacional e internacional: Sus datos
-                personales pueden ser transferidos y tratados dentro y fuera de
-                los Estados Unidos Mexicanos, por personas distintas a ésta
-                empresa. En ese sentido, su información puede ser compartida con
-                Proveedores de Servicios Turísticos, Instituciones Bancarias y
-                Crediticias, y entre otras. para fines informativos,
-                promocionales, publicitarios y mercantiles. Sus datos personales
-                no serán transmitidos a terceros sin su consentimiento de
-                conformidad con el artículo 37 de la Ley Federal de Protección
-                de Datos Personales en Posesión de Particulares, incluidas las
-                demás excepciones previstas en dicho ordenamiento legal. Nos
-                queda reservado el derecho de efectuar, en cualquier tiempo,
-                modificaciones o actualizaciones al presente aviso de
-                privacidad. Las modificaciones que se efectúen se pondrán a
-                disposición del público a través de algunos o todos los
-                siguientes medios: anuncios visibles en nuestros
-                establecimientos, vía nuestra página de internet, vía correo
-                electrónico a la dirección más reciente que tengamos de usted.
-              </p>
-              <p className="md:text-[20px] mt-5 uppercase">
-                Enlaces a Terceros
-              </p>
-              <p className="md:text-[20px] mt-5 text-justify">
-                Este sitio web pudiera contener enlaces a otros sitios que
-                pudieran ser de su interés. Una vez que usted de clic en estos
-                enlaces y abandone nuestra página, ya no tenemos control sobre
-                al sitio al que es redirigido y por lo tanto no somos
-                responsables de los términos o privacidad ni de la protección de
-                sus datos en esos otros sitios terceros. Dichos sitios están
-                sujetos a sus propias políticas de privacidad por lo cual es
-                recomendable que los consulte para confirmar que usted está de
-                acuerdo con estas.
-              </p>
-              <p className="md:text-[20px] mt-5 text-justify">
-                Consentimiento tácito, en términos del artículo octavo de la
-                Ley: En caso que usted desee manifestar OPOSICIÓN a que sus
-                datos personales sean tratados conforme a lo establecido en el
-                presente aviso de privacidad deberá enviar su negativa por
-                escrito a la dirección ubicada en Mallorca Norte E-A D-209 SM260
-                M73 L2, Privada Talaia, Real Valencia, Cancún , Quintana Roo.
-                C.P 77539.
-              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3 text-sm font-semibold text-white/80">
+                <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
+                  Información protegida
+                </span>
+
+                <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
+                  Derechos ARCO
+                </span>
+
+                <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
+                  Uso responsable
+                </span>
+              </div>
             </div>
           </div>
-        </main>
-        <footer className="mt-auto">
-          <Footer />
-        </footer>
-      </div>
-    </React.Fragment>
+        </section>
+
+        {/* Contenido */}
+        <section className="px-4 py-10 sm:px-6 md:py-16 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[290px_minmax(0,1fr)]">
+            {/* Índice lateral */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                <p className="mb-5 text-xs font-black uppercase tracking-[0.18em] text-[#0260fe]">
+                  Contenido
+                </p>
+
+                <nav aria-label="Secciones de la política de privacidad">
+                  <ul className="space-y-1.5">
+                    {policySections.map((section) => (
+                      <li key={section.id}>
+                        <a
+                          href={`#${section.id}`}
+                          className="group flex items-start gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-[#0260fe]/5 hover:text-[#0260fe]"
+                        >
+                          <span className="mt-0.5 text-xs font-black text-[#ff6600]">
+                            {section.number}
+                          </span>
+
+                          <span>{section.title}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            </aside>
+
+            <article>
+              {/* Introducción */}
+              <div className="mb-8 overflow-hidden rounded-3xl border border-[#0260fe]/10 bg-white shadow-sm">
+                <div className="h-1.5 bg-gradient-to-r from-[#0260fe] to-[#ff6600]" />
+
+                <div className="p-6 sm:p-8">
+                  <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+                    <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[#0260fe]/10 text-[#0260fe]">
+                      <PrivacyIcon />
+                    </div>
+
+                    <div>
+                      <h2 className="text-xl font-black text-[#023e73] sm:text-2xl">
+                        Tu privacidad es importante
+                      </h2>
+
+                      <p className="mt-3 text-base leading-8 text-slate-600">
+                        Viaja a tu Destino está comprometida con la
+                        confidencialidad, seguridad y tratamiento responsable de
+                        la información proporcionada por sus clientes y
+                        usuarios.
+                      </p>
+
+                      <p className="mt-3 text-sm font-semibold text-slate-500">
+                        Última actualización: 26 de julio de 2026.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Secciones */}
+              <div className="space-y-6">
+                {policySections.map((section) => (
+                  <section
+                    key={section.id}
+                    id={section.id}
+                    className="scroll-mt-28 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:p-8 md:p-10"
+                  >
+                    <div className="mb-7 flex flex-col gap-4 border-b border-slate-100 pb-6 sm:flex-row sm:items-start">
+                      <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[#0260fe]/10 text-sm font-black text-[#0260fe]">
+                        {section.number}
+                      </span>
+
+                      <h2 className="text-xl font-black leading-tight text-[#023e73] sm:text-2xl">
+                        {section.title}
+                      </h2>
+                    </div>
+
+                    <div
+                      className="
+                        space-y-5 text-base leading-8 text-slate-600
+                        [&_strong]:font-bold
+                        [&_strong]:text-slate-800
+                        [&_ul]:space-y-3
+                        [&_ul]:pl-1
+                        [&_li]:relative
+                        [&_li]:pl-7
+                        [&_li]:before:absolute
+                        [&_li]:before:left-0
+                        [&_li]:before:top-[11px]
+                        [&_li]:before:h-2
+                        [&_li]:before:w-2
+                        [&_li]:before:rounded-full
+                        [&_li]:before:bg-[#ff6600]
+                      "
+                    >
+                      {section.content}
+                    </div>
+                  </section>
+                ))}
+              </div>
+
+              {/* Contacto */}
+              <section className="relative mt-8 overflow-hidden rounded-3xl bg-[#023e73] p-7 text-white shadow-xl sm:p-10">
+                <div className="absolute -right-16 -top-20 h-52 w-52 rounded-full bg-[#0260fe]/40 blur-3xl" />
+                <div className="absolute -bottom-24 -left-12 h-48 w-48 rounded-full bg-[#ff6600]/20 blur-3xl" />
+
+                <div className="relative flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.2em] text-[#79b5ff]">
+                      Contacto de privacidad
+                    </p>
+
+                    <h2 className="mt-3 text-2xl font-black sm:text-3xl">
+                      ¿Necesitas ejercer tus derechos?
+                    </h2>
+
+                    <p className="mt-3 max-w-2xl leading-7 text-white/75">
+                      Envíanos tu solicitud para acceder, rectificar, cancelar,
+                      limitar u oponerte al tratamiento de tus datos personales.
+                    </p>
+
+                    <p className="mt-3 text-sm text-white/60">
+                      Mallorca Norte E-A D-209, Real Valencia, Cancún, Quintana
+                      Roo, C.P. 77539.
+                    </p>
+                  </div>
+
+                  <a
+                    href="mailto:contacto@viajaatudestino.com?subject=Solicitud relacionada con datos personales"
+                    className="inline-flex flex-none items-center justify-center gap-3 rounded-2xl bg-[#ff6600] px-6 py-4 text-center text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-xl"
+                  >
+                    <MailIcon />
+                    Enviar solicitud
+                  </a>
+                </div>
+              </section>
+
+              <p className="mt-8 text-center text-sm leading-6 text-slate-500">
+                Al utilizar nuestros canales y servicios, reconoces haber
+                consultado esta Política de Privacidad.
+              </p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer className="mt-auto">
+        <Footer />
+      </footer>
+    </div>
   );
 }
 

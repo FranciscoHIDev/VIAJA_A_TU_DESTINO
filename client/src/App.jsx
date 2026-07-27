@@ -1,7 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import About from "./pages/About/About";
-import FrequentQuestions from "./pages/FrequentQuestions/FrequentQuestions";
 import NoticeOfPrivacy from "./pages/NoticeOfPrivacy/NoticeOfPrivacy";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
@@ -25,6 +22,8 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Favorites from "./LayoutProfile/pages/Favorites";
 import BlogPage from "./pages/Blog/BlogPage";
 import HomeNew from "./pages/Home/HomeNew";
+import AboutUs from "./pages/AboutUs/AboutUs";
+import Offers from "./pages/Offerts/Offerts";
 function App() {
   return (
     <div>
@@ -32,9 +31,10 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomeNew />} />
+          <Route path="/ofertas" element={<Offers />} />
           <Route exact path="/oferta/:id" element={<Details />} />
           <Route path="/blog" element={<BlogPage />} />
-          <Route path="/sobre-nosotros" element={<About />} />
+
           <Route path="/hoteles" element={<Hotels />} />
           <Route path="/paquetes" element={<Packages />} />
           <Route path="/tours" element={<Tours />} />
@@ -51,7 +51,7 @@ function App() {
           </Route>
           <Route path="/mi-perfil" element={<LayoutProfile />}></Route>
           <Route path="mi-perfil/favoritos" element={<Favorites />} />
-          <Route path="/preguntas-frecuentes" element={<FrequentQuestions />} />
+          <Route path="/acerca-de-nosotros" element={<AboutUs />} />
           <Route path="/aviso-de-privacidad" element={<NoticeOfPrivacy />} />
           <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
           <Route

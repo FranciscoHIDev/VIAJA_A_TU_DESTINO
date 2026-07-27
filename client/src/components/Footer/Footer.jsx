@@ -223,8 +223,8 @@ function Footer() {
                   path: "/terminos-y-condiciones",
                 },
                 {
-                  name: "Preguntas frecuentes",
-                  path: "/preguntas-frecuentes",
+                  name: "Acerca de nosotros",
+                  path: "/acerca-de-nosotros",
                 },
               ].map((item) => (
                 <Link
