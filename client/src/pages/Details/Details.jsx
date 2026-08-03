@@ -646,7 +646,7 @@ Quiero consultar fechas y disponibilidad.`,
 
               {/* DESCRIPCIÓN */}
 
-              <div className="mt-10 grid grid-cols-1 gap-6 sm:mt-12 lg:grid-cols-3 lg:gap-8">
+              <div className="mt-10 grid grid-cols-1 gap-6 sm:mt-12 lg:grid-cols-1 lg:gap-8">
                 <article className="rounded-3xl bg-white p-5 shadow-sm sm:p-7 lg:col-span-2 lg:p-9">
                   <div className="flex items-center gap-3">
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-xl sm:h-12 sm:w-12 sm:text-2xl">
@@ -654,12 +654,8 @@ Quiero consultar fechas y disponibilidad.`,
                     </div>
 
                     <div>
-                      <p className="text-sm font-bold uppercase tracking-wider text-[#ff6600]">
+                      <h3 className="text-3xl font-black text-[#023e73] sm:text-4xl">
                         Detalles de la oferta
-                      </p>
-
-                      <h3 className="text-xl font-black text-[#023e73] sm:text-2xl">
-                        ¿Por qué elegir esta experiencia?
                       </h3>
                     </div>
                   </div>
@@ -671,83 +667,6 @@ Quiero consultar fechas y disponibilidad.`,
                     }}
                   />
                 </article>
-
-                {/* TARJETA DE BENEFICIOS */}
-
-                <aside className="rounded-3xl bg-[#023e73] p-5 text-white shadow-lg sm:p-7 lg:p-8">
-                  <p className="text-sm font-bold uppercase tracking-widest text-orange-300">
-                    Lo mejor de esta oferta
-                  </p>
-
-                  <h3 className="mt-3 text-2xl font-black">
-                    Todo lo necesario para disfrutar
-                  </h3>
-
-                  <div className="mt-7 space-y-5">
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10">
-                        🏨
-                      </div>
-
-                      <div>
-                        <p className="font-bold">Hospedaje seleccionado</p>
-                        <p className="mt-1 text-sm leading-relaxed text-white/70">
-                          Hotel elegido por ubicación, servicio y relación
-                          calidad-precio.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10">
-                        🍽️
-                      </div>
-
-                      <div>
-                        <p className="font-bold">Experiencia completa</p>
-                        <p className="mt-1 text-sm leading-relaxed text-white/70">
-                          Disfruta los servicios incluidos según el plan
-                          contratado.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10">
-                        📲
-                      </div>
-
-                      <div>
-                        <p className="font-bold">Atención personalizada</p>
-                        <p className="mt-1 text-sm leading-relaxed text-white/70">
-                          Te acompañamos antes, durante y después de reservar.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10">
-                        💳
-                      </div>
-
-                      <div>
-                        <p className="font-bold">Opciones de pago</p>
-                        <p className="mt-1 text-sm leading-relaxed text-white/70">
-                          Paga de forma segura y aprovecha promociones
-                          bancarias.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={scrollToTarget}
-                    className="mt-8 w-full rounded-xl bg-[#ff6600] px-5 py-4 font-bold text-white transition hover:bg-orange-600"
-                  >
-                    Consultar fechas disponibles
-                  </button>
-                </aside>
               </div>
             </div>
           </section>

@@ -229,41 +229,6 @@ function Packages() {
           </div>
         </section>
 
-        {/* BUSCADOR */}
-        <section
-          id="buscar-paquete"
-          className="relative z-20 scroll-mt-24 px-3 sm:px-5 lg:px-8"
-        >
-          <div className="mx-auto -mt-20 max-w-6xl rounded-[2rem] border border-white/60 bg-white p-3 shadow-2xl sm:p-5 md:-mt-24">
-            <div className="mb-5 px-2 pt-2 sm:px-3">
-              <span className="text-xs font-black uppercase tracking-[0.18em] text-[#ff6600]">
-                Motor de reservaciones
-              </span>
-
-              <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                  <h2 className="text-xl font-black text-[#023e73] sm:text-2xl">
-                    Encuentra tu paquete de vuelo y hotel
-                  </h2>
-
-                  <p className="mt-2 text-sm leading-6 text-slate-500">
-                    Ingresa el origen, destino, fechas y número de pasajeros.
-                  </p>
-                </div>
-
-                <span className="hidden items-center gap-2 rounded-full bg-[#0260fe]/10 px-4 py-2 text-xs font-bold text-[#0260fe] sm:inline-flex">
-                  <FaShieldAlt />
-                  Búsqueda segura
-                </span>
-              </div>
-            </div>
-
-            <div className="overflow-hidden rounded-2xl bg-slate-50">
-              <PriceResWidget />
-            </div>
-          </div>
-        </section>
-
         {/* TIPOS DE PAQUETE */}
         <section className="px-4 pb-14 pt-16 sm:px-6 md:pb-20 md:pt-24 lg:px-8">
           <div className="mx-auto max-w-7xl">

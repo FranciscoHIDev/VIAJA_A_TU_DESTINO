@@ -216,25 +216,6 @@ export default function HomeNew() {
           </div>
         </section>
 
-        {/* BUSCADOR */}
-        <section className="relative z-20 px-3 sm:px-5 lg:px-8">
-          <div className="mx-auto -mt-20 max-w-6xl rounded-[2rem] border border-white/60 bg-white p-3 shadow-2xl sm:p-5 md:-mt-24">
-            <div className="mb-4 px-2 pt-2 sm:px-3">
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-[#ff6600]">
-                Busca tu próximo viaje
-              </p>
-
-              <h2 className="mt-1 text-xl font-black text-[#023e73] sm:text-2xl">
-                Hoteles, vuelos y paquetes en un solo lugar
-              </h2>
-            </div>
-
-            <div className="overflow-hidden rounded-2xl">
-              <PriceResWidget />
-            </div>
-          </div>
-        </section>
-
         {/* CATEGORÍAS */}
         <section className="px-4 pb-14 pt-16 sm:px-6 md:pb-20 md:pt-24 lg:px-8">
           <div className="mx-auto max-w-7xl">
