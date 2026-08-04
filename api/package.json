@@ -23,10 +23,13 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^7.1.0",
     "morgan": "^1.10.0",
-    "sanitize-html": "^2.17.6",
+    "sanitize-html": "2.17.6",
     "zod": "^4.4.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
+  },
+  "overrides": {
+    "htmlparser2": "10.1.0"
   }
 }
