@@ -10,6 +10,8 @@ const SESSION_DURATION = 15 * 60 * 1000;
 const MAX_LOGIN_ATTEMPTS = 5;
 const LOCK_DURATION = 15 * 60 * 1000;
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const loginSchema = z.object({
   email: z.string().trim().email().max(254),
   password: z.string().min(12).max(128),
@@ -17,9 +19,19 @@ const loginSchema = z.object({
 
 const cookieOptions = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: "lax",
+  secure: isProduction,
+
+  // Necesario mientras frontend y backend estén en dominios distintos.
+  sameSite: isProduction ? "none" : "lax",
+
   maxAge: SESSION_DURATION,
+  path: "/",
+};
+
+const clearCookieOptions = {
+  httpOnly: true,
+  secure: isProduction,
+  sameSite: isProduction ? "none" : "lax",
   path: "/",
 };
 
@@ -112,17 +124,11 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
   try {
-    // Invalida también cualquier token anterior de este administrador.
     req.admin.sessionVersion += 1;
     await req.admin.save();
 
     return res
-      .clearCookie(COOKIE_NAME, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
-        path: "/",
-      })
+      .clearCookie(COOKIE_NAME, clearCookieOptions)
       .status(204)
       .send();
   } catch {
