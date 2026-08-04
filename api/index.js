@@ -100,7 +100,7 @@ app.use((error, req, res, next) => {
 
 /*
   Conecta MongoDB al iniciar.
-  Vercel utilizará module.exports = app como función serverless.
+  
 */
 MONGODB();
 
