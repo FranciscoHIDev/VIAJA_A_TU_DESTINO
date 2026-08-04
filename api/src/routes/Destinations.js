@@ -1,25 +1,43 @@
-const express = require('express')
-const router = express.Router()
-const { routerPostDestination, routerGetDestination, routerGetByIdDestination, routerPutDestination,  routerDeleteDestination } = require("../controllers/DestinationsController")
+const express = require("express");
+const router = express.Router();
 
-router.post("/", (req, res) => {
-    routerPostDestination(req, res)
-})
+const {
+  routerPostDestination,
+  routerGetDestination,
+  routerGetByIdDestination,
+  routerPutDestination,
+  routerDeleteDestination,
+} = require("../controllers/DestinationsController");
 
-router.get("/", (req, res) => {
-    routerGetDestination(req, res)
-})
+const {
+  requireAdmin,
+  requireTrustedOrigin,
+} = require("../middlewares/requireAdmin");
 
-router.get("/:id", (req, res) => {
-    routerGetByIdDestination(req, res)
-})
+// Públicas: para mostrar destinos en la página web.
+router.get("/", routerGetDestination);
+router.get("/:id", routerGetByIdDestination);
 
-router.put("/:id", (req, res) => {
-    routerPutDestination(req, res)
-})
+// Privadas: solo administrador autenticado.
+router.post(
+  "/",
+  requireTrustedOrigin,
+  requireAdmin,
+  routerPostDestination,
+);
 
-router.delete("/:id", (req, res) => {
-    routerDeleteDestination(req, res)
-})
+router.put(
+  "/:id",
+  requireTrustedOrigin,
+  requireAdmin,
+  routerPutDestination,
+);
 
-module.exports = router
+router.delete(
+  "/:id",
+  requireTrustedOrigin,
+  requireAdmin,
+  routerDeleteDestination,
+);
+
+module.exports = router;

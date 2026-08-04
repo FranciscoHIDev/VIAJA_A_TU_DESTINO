@@ -1,26 +1,26 @@
-const express = require('express')
-const router = express.Router()
-const { routerPostOffer, routerGetOffer, routerGetByIdOffer, routerPutOffer, routerDeleteOffer } = require("../controllers/OffersController")
+const express = require("express");
+const router = express.Router();
 
+const {
+  routerPostOffer,
+  routerGetOffer,
+  routerGetByIdOffer,
+  routerPutOffer,
+  routerDeleteOffer,
+} = require("../controllers/OffersController");
 
-router.post("/", (req, res) => {
-    routerPostOffer(req, res)
-})
+const {
+  requireAdmin,
+  requireTrustedOrigin,
+} = require("../middlewares/requireAdmin");
 
-router.get("/", (req, res) => {
-    routerGetOffer(req, res)
-})
+// Públicas: necesarias para mostrar las ofertas en el sitio web.
+router.get("/", routerGetOffer);
+router.get("/:id", routerGetByIdOffer);
 
-router.get("/:id", (req, res) => {
-    routerGetByIdOffer(req, res)
-})
+// Privadas: solo con sesión válida de administrador.
+router.post("/", requireTrustedOrigin, requireAdmin, routerPostOffer);
+router.put("/:id", requireTrustedOrigin, requireAdmin, routerPutOffer);
+router.delete("/:id", requireTrustedOrigin, requireAdmin, routerDeleteOffer);
 
-router.put("/:id", (req, res) => {
-    routerPutOffer(req, res)
-})
-
-router.delete("/:id", (req, res) => {
-    routerDeleteOffer(req, res)
-})
-
-module.exports = router
+module.exports = router;

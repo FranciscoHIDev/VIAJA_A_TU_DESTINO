@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+mongoose.set("sanitizeFilter", true);
+mongoose.set("strictQuery", true);
 
 const MONGODB = async () => {
   try {

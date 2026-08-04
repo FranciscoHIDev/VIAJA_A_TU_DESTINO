@@ -1,27 +1,26 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const { routerPostHotel, routerGetHotel, routerGetByIdHotel, routerPutHotel, routerDeleteHotel } = require("../controllers/HotelController")
+const {
+  routerPostHotel,
+  routerGetHotel,
+  routerGetByIdHotel,
+  routerPutHotel,
+  routerDeleteHotel,
+} = require("../controllers/HotelController");
 
+const {
+  requireAdmin,
+  requireTrustedOrigin,
+} = require("../middlewares/requireAdmin");
 
-router.post("/", (req, res) => {
-    routerPostHotel(req, res)
-})
+// Públicas: visibles en tu sitio web.
+router.get("/", routerGetHotel);
+router.get("/:id", routerGetByIdHotel);
 
-router.get("/", (req, res) => {
-    routerGetHotel(req, res)
-})
+// Privadas: solo administrador autenticado.
+router.post("/", requireTrustedOrigin, requireAdmin, routerPostHotel);
+router.put("/:id", requireTrustedOrigin, requireAdmin, routerPutHotel);
+router.delete("/:id", requireTrustedOrigin, requireAdmin, routerDeleteHotel);
 
-router.get("/:id", (req, res) => {
-    routerGetByIdHotel(req, res)
-})
-
-router.put("/:id", (req, res) => {
-    routerPutHotel(req, res)
-})
-
-router.delete("/:id", (req, res) => {
-    routerDeleteHotel(req, res)
-})
-
-module.exports = router
+module.exports = router;

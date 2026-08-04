@@ -1,35 +1,33 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const { routerGetFavorites,routerPostUser, routerGetUsers, routerGetByIdUser, routerDeleteUser, routerPutUser } = require('../controllers/UsersController')
+const {
+  routerGetFavorites,
+  routerPostUser,
+  routerGetUsers,
+  routerGetByIdUser,
+  routerDeleteUser,
+  routerPutUser,
+} = require("../controllers/UsersController");
 
-router.post("/favorite", (req,res)=>{
-    routerGetFavorites(req,res)
-})
+const {
+  requireAdmin,
+  requireTrustedOrigin,
+} = require("../middlewares/requireAdmin");
 
-/* This route is to create a user */
-router.post("/", (req, res) => {
-    routerPostUser(req, res)
-})
+// Ningún dato de usuarios puede ser público.
+router.use(requireAdmin);
 
-/* This is a route that allows you to get all the users */
-router.get("/", (req, res) => {
-    routerGetUsers(req, res)
-})
+router.post("/favorite", requireTrustedOrigin, routerGetFavorites);
 
-/* This is a route that allows you to get a user*/
-router.get("/:id", (req, res) => {
-    routerGetByIdUser(req, res)
-})
+router.post("/", requireTrustedOrigin, routerPostUser);
 
-/* This is a route that allows you to modify a user */
-router.put("/:id", (req, res) => {
-    routerPutUser(req, res)
-})
+router.get("/", routerGetUsers);
 
-/* This is a route that allows you to delete a user */
-router.delete("/:id", (req, res) => {
-    routerDeleteUser(req, res)
-})
+router.get("/:id", routerGetByIdUser);
 
-module.exports = router
+router.put("/:id", requireTrustedOrigin, routerPutUser);
+
+router.delete("/:id", requireTrustedOrigin, routerDeleteUser);
+
+module.exports = router;

@@ -1,25 +1,31 @@
-const express = require('express')
-const router = express.Router()
-const { routerPostBanner, routerGetBanner, routerGetByIdBanner, routerPutBanner, routerDeleteBanner } = require("../controllers/BannerOfferController")
+const express = require("express");
+const router = express.Router();
 
-router.post("/", (req, res) => {
-    routerPostBanner(req, res)
-})
+const {
+  routerPostBanner,
+  routerGetBanner,
+  routerGetByIdBanner,
+  routerPutBanner,
+  routerDeleteBanner,
+} = require("../controllers/BannerOfferController");
 
-router.get("/", (req, res) => {
-    routerGetBanner(req, res)
-})
+const {
+  requireAdmin,
+  requireTrustedOrigin,
+} = require("../middlewares/requireAdmin");
 
-router.get("/:id", (req, res) => {
-    routerGetByIdBanner(req, res)
-})
+// Públicos: necesarios para mostrar banners en el sitio.
+router.get("/", routerGetBanner);
+router.get("/:id", routerGetByIdBanner);
 
-router.put("/:id", (req, res) => {
-    routerPutBanner(req, res)
-})
+// Privados: solo para administrador autenticado.
+router.post("/", requireTrustedOrigin, requireAdmin, routerPostBanner);
+router.put("/:id", requireTrustedOrigin, requireAdmin, routerPutBanner);
+router.delete(
+  "/:id",
+  requireTrustedOrigin,
+  requireAdmin,
+  routerDeleteBanner,
+);
 
-router.delete("/:id", (req, res) => {
-    routerDeleteBanner(req, res)
-})
-
-module.exports = router
+module.exports = router;
