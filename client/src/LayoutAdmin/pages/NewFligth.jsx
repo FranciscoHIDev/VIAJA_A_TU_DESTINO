@@ -1,487 +1,808 @@
-import axios from "axios";
 import ReactQuill from "react-quill";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import "react-quill/dist/quill.snow.css";
-import { FaPen } from "react-icons/fa";
 import { MenuItem } from "@mui/material";
-import { useState } from "react";
+import "react-quill/dist/quill.snow.css";
+import { FaArrowLeft, FaPen, FaTrash } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import api from "../../services/api";
+
+const createEmptyLink = () => ({
+  departureDate: "",
+  returnDate: "",
+  price: "",
+  link: "",
+});
+
+const createInitialValues = () => ({
+  category: {
+    name: "Vuelo",
+  },
+  title: "",
+  price: "",
+  destination: {
+    name: "",
+  },
+  summary: "",
+  description: "",
+  image: [],
+  sampleImages: [],
+  promotion: "",
+  availability: "",
+  departure: "",
+  arrival: "",
+  buyLinks: [],
+  author: "Francisco",
+  active: false,
+});
+
+const cleanHtmlText = (value = "") =>
+  String(value)
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .trim();
+
+const toText = (value) =>
+  value === undefined || value === null ? "" : String(value);
+
+const toImageArray = (value) => {
+  if (Array.isArray(value)) {
+    return value.filter(Boolean);
+  }
+
+  return typeof value === "string" && value ? [value] : [];
+};
+
+const mapFlightToFormValues = (offer) => ({
+  ...createInitialValues(),
+
+  category: {
+    name: "Vuelo",
+    ...(offer?.category?.image ? { image: offer.category.image } : {}),
+  },
+
+  title: toText(offer?.title),
+  price: toText(offer?.price),
+
+  destination: {
+    name: toText(
+      typeof offer?.destination === "string"
+        ? offer.destination
+        : offer?.destination?.name,
+    ),
+  },
+
+  summary: toText(offer?.summary),
+  description: toText(offer?.description),
+  image: toImageArray(offer?.image),
+  sampleImages: toImageArray(offer?.sampleImages),
+  promotion: toText(offer?.promotion),
+  availability: toText(offer?.availability),
+  departure: toText(offer?.departure),
+  arrival: toText(offer?.arrival),
+
+  buyLinks: Array.isArray(offer?.buyLinks)
+    ? offer.buyLinks.map((link) => ({
+        departureDate: toText(link?.departureDate),
+        returnDate: toText(link?.returnDate),
+        price: toText(link?.price),
+        link: toText(link?.link),
+      }))
+    : [],
+
+  author: offer?.author === "Susana" ? "Susana" : "Francisco",
+  active: Boolean(offer?.active),
+});
 
 const validationSchema = yup.object({
   title: yup
     .string()
-    .min(20, "Ingrese mínimo 20 caracteres")
-    .max(40, "Ingresa máximo 40 caracteres")
-    .required("El Titulo es requerido"),
+    .trim()
+    .min(20, "Ingresa mínimo 20 caracteres")
+    .max(80, "Ingresa máximo 80 caracteres")
+    .required("El título es requerido"),
+
   price: yup
     .string()
-    .min(3, "Ingrese mínimo 3 caracteres")
-    .max(8, "Ingrese máximo 8 caracteres")
+    .trim()
+    .min(1, "El precio es requerido")
+    .max(30, "Ingresa máximo 30 caracteres")
     .required("El precio es requerido"),
+
+  destination: yup.object({
+    name: yup
+      .string()
+      .trim()
+      .min(2, "Ingresa un destino válido")
+      .max(80, "Ingresa máximo 80 caracteres")
+      .required("El destino es requerido"),
+  }),
+
   summary: yup
     .string()
-    .min(10, "Ingrese mínimo 10 caracteres")
-    .max(40, "Ingrese máximo 40 caracteres")
-    .required("Ingrese un resumen de la oferta"),
+    .trim()
+    .min(10, "Ingresa mínimo 10 caracteres")
+    .max(300, "Ingresa máximo 300 caracteres")
+    .required("Ingresa un resumen del vuelo"),
+
   description: yup
     .string()
-    .min(50, "Ingrese mínimo 50 caracteres")
-    .required("Ingrese una descripción de la oferta"),
-  promotion: yup
-    .string()
-    .min(10, "Mínimo 10 caracteres")
-    .max(25, "Máximo 25 caracteres")
-    .required("Ingrese frase destacada"),
-  availability: yup
-    .string()
-    .min(10, "Mínimo 10 caracteres")
-    .max(40, "Máximo 40 caracteres")
-    .required("La disponibilidad es requerida"),
+    .required("Ingresa una descripción del vuelo")
+    .test(
+      "description-content",
+      "La descripción debe tener al menos 20 caracteres",
+      (value) => cleanHtmlText(value).length >= 20,
+    ),
 
-  buyLinks: yup.array().min(1, "Debes agregar al menos un enlace"),
+  image: yup
+    .array()
+    .of(yup.string().url("Una imagen no tiene una URL válida"))
+    .min(1, "Debes cargar al menos una imagen principal"),
+
+  sampleImages: yup
+    .array()
+    .of(yup.string().url("Una imagen no tiene una URL válida"))
+    .min(1, "Debes cargar al menos una imagen de ejemplo"),
+
+  promotion: yup.string().trim().max(100, "Máximo 100 caracteres"),
+  availability: yup.string().trim().max(120, "Máximo 120 caracteres"),
+
+  departure: yup
+    .string()
+    .trim()
+    .min(2, "Ingresa un aeropuerto de salida válido")
+    .max(100, "Máximo 100 caracteres")
+    .required("El aeropuerto de salida es requerido"),
+
+  arrival: yup
+    .string()
+    .trim()
+    .min(2, "Ingresa un aeropuerto de llegada válido")
+    .max(100, "Máximo 100 caracteres")
+    .required("El aeropuerto de llegada es requerido"),
+
+  buyLinks: yup
+    .array()
+    .of(
+      yup.object({
+        departureDate: yup
+          .string()
+          .trim()
+          .required("Fecha de salida requerida"),
+        returnDate: yup.string().trim().required("Fecha de retorno requerida"),
+        price: yup.string().trim().required("Precio requerido"),
+        link: yup
+          .string()
+          .trim()
+          .url("Ingresa una URL válida")
+          .required("El enlace de compra es requerido"),
+      }),
+    )
+    .min(1, "Debes agregar al menos un enlace de compra"),
+
+  author: yup.string().oneOf(["Francisco", "Susana"]),
+  active: yup.boolean(),
 });
 
 function NewFlight() {
-  const [selectedImages, setSelectedImages] = useState([]);
-  const [selectedSampleImages, setSelectedSampleImages] = useState([]);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const isEditing = Boolean(id);
+
+  const [initialValues, setInitialValues] = useState(createInitialValues);
+  const [newLink, setNewLink] = useState(createEmptyLink);
+  const [loadingFlight, setLoadingFlight] = useState(isEditing);
+
+  const widgetRef = useRef(null);
+  const currentFieldRef = useRef(null);
+  const formikRef = useRef(null);
 
   const formik = useFormik({
-    initialValues: {
-      category: {
-        name: "Vuelo",
-      },
-      title: "",
-      price: "",
-      destination: {
-        name: "",
-      },
-      summary: "",
-      description: "",
-      image: [],
-      sampleImages: [],
-      promotion: "",
-      availability: "",
-      departure: "",
-      arrival: "",
-      buyLinks: [],
-      author: "Francisco",
-    },
-    validationSchema: validationSchema,
-    onSubmit: async (values) => {
-      await axios.post("api/offers", values);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Oferta de vuelo creada con exito",
-      });
-      formik.resetForm();
-      setSelectedImages([]);
-      setSelectedSampleImages([]);
+    initialValues,
+    enableReinitialize: true,
+    validationSchema,
+
+    onSubmit: async (values, { resetForm, setSubmitting }) => {
+      try {
+        const payload = {
+          ...values,
+          category: {
+            ...values.category,
+            name: "Vuelo",
+          },
+        };
+
+        if (isEditing) {
+          await api.put(`/offers/${id}`, payload);
+        } else {
+          await api.post("/offers", payload);
+        }
+
+        await Swal.fire({
+          icon: "success",
+          title: isEditing
+            ? "Vuelo actualizado correctamente"
+            : "Vuelo creado correctamente",
+          showConfirmButton: false,
+          timer: 1800,
+        });
+
+        if (isEditing) {
+          navigate("/auth/ofertas", { replace: true });
+          return;
+        }
+
+        const emptyValues = createInitialValues();
+        setInitialValues(emptyValues);
+        resetForm({ values: emptyValues });
+        setNewLink(createEmptyLink());
+      } catch (error) {
+        const backendMessage =
+          error?.response?.data?.errors?.[0]?.message ||
+          error?.response?.data?.message ||
+          "No fue posible guardar el vuelo. Intenta nuevamente.";
+
+        Swal.fire({
+          icon: "error",
+          title: "No se pudo guardar",
+          text: backendMessage,
+        });
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
-  const [newLink, setNewLink] = useState({
-    departureDate: "",
-    returnDate: "",
-    price: "",
-    link: "",
-  });
+  formikRef.current = formik;
 
-  const handleLinkChange = (e) => {
-    setNewLink((prevLink) => ({
-      ...prevLink,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  useEffect(() => {
+    let mounted = true;
 
-  const handleAddLink = () => {
-    formik.setFieldValue("buyLinks", [...formik.values.buyLinks, newLink]);
-    setNewLink({
-      departureDate: "",
-      returnDate: "",
-      price: "",
-      link: "",
-    });
-  };
+    const loadFlight = async () => {
+      if (!isEditing) {
+        setInitialValues(createInitialValues());
+        setLoadingFlight(false);
+        return;
+      }
 
-  const isFormEmpty = () => {
-    return (
-      !newLink.departureDate ||
-      !newLink.returnDate ||
-      !newLink.price ||
-      !newLink.link
-    );
-  };
+      try {
+        setLoadingFlight(true);
 
-  const handleEditorChange = (value) => {
-    formik.setFieldValue("description", value);
-  };
+        const response = await api.get(`/offers/${id}`);
 
-  const openWidget = (e, field) => {
-    e.preventDefault();
-    var widget = window.cloudinary.createUploadWidget(
+        if (!mounted) return;
+
+        setInitialValues(mapFlightToFormValues(response.data));
+      } catch {
+        Swal.fire({
+          icon: "error",
+          title: "Vuelo no encontrado",
+          text: "No fue posible cargar el vuelo para editar.",
+        });
+
+        navigate("/auth/ofertas", { replace: true });
+      } finally {
+        if (mounted) {
+          setLoadingFlight(false);
+        }
+      }
+    };
+
+    loadFlight();
+
+    return () => {
+      mounted = false;
+    };
+  }, [id, isEditing, navigate]);
+
+  useEffect(() => {
+    if (!window.cloudinary || widgetRef.current) return undefined;
+
+    widgetRef.current = window.cloudinary.createUploadWidget(
       {
         cloudName: "duaysiozi",
-        uploadPreset: "pmba0f4i",
+        uploadPreset: "viajaatudestino",
         multiple: true,
       },
       (error, result) => {
-        if (!error && result && result.event === "success") {
-          const imageUrl = result.info.url;
-          console.log(imageUrl);
-          if (field === "image") {
-            setSelectedImages((prevImages) => [...prevImages, imageUrl]);
-            formik.setFieldValue("image", [...formik.values.image, imageUrl]);
-          } else if (field === "sampleImages") {
-            setSelectedSampleImages((prevImages) => [...prevImages, imageUrl]);
-            formik.setFieldValue("sampleImages", [
-              ...formik.values.sampleImages,
-              imageUrl,
-            ]);
-          }
-        }
-      }
+        if (error || result?.event !== "success") return;
+
+        const field = currentFieldRef.current;
+        const currentFormik = formikRef.current;
+
+        if (!field || !currentFormik) return;
+
+        const imageUrl = result.info.secure_url || result.info.url;
+        const currentImages = currentFormik.values[field] || [];
+
+        currentFormik.setFieldValue(field, [...currentImages, imageUrl]);
+        currentFormik.setFieldTouched(field, true, false);
+      },
     );
-    widget.open();
+
+    return () => {
+      widgetRef.current?.close?.();
+      widgetRef.current = null;
+    };
+  }, []);
+
+  const openWidget = (event, field) => {
+    event.preventDefault();
+
+    if (!widgetRef.current) {
+      Swal.fire({
+        icon: "error",
+        title: "Cloudinary no está disponible",
+        text: "Verifica que el script de Cloudinary esté cargado.",
+      });
+      return;
+    }
+
+    currentFieldRef.current = field;
+    widgetRef.current.open();
   };
 
+  const removeImage = (field, imageUrl) => {
+    formik.setFieldValue(
+      field,
+      formik.values[field].filter((image) => image !== imageUrl),
+    );
+
+    formik.setFieldTouched(field, true, false);
+  };
+
+  const handleLinkChange = (event) => {
+    const { name, value } = event.target;
+
+    setNewLink((previousLink) => ({
+      ...previousLink,
+      [name]: value,
+    }));
+  };
+
+  const isNewLinkIncomplete = Object.values(newLink).some(
+    (value) => !value.trim(),
+  );
+
+  const handleAddLink = () => {
+    if (isNewLinkIncomplete) return;
+
+    try {
+      new URL(newLink.link);
+    } catch {
+      Swal.fire({
+        icon: "warning",
+        title: "Enlace inválido",
+        text: "Escribe una URL completa, por ejemplo: https://ejemplo.com",
+      });
+      return;
+    }
+
+    formik.setFieldValue("buyLinks", [
+      ...formik.values.buyLinks,
+      {
+        departureDate: newLink.departureDate.trim(),
+        returnDate: newLink.returnDate.trim(),
+        price: newLink.price.trim(),
+        link: newLink.link.trim(),
+      },
+    ]);
+
+    formik.setFieldTouched("buyLinks", true, false);
+    setNewLink(createEmptyLink());
+  };
+
+  const removeLink = (index) => {
+    formik.setFieldValue(
+      "buyLinks",
+      formik.values.buyLinks.filter(
+        (_, currentIndex) => currentIndex !== index,
+      ),
+    );
+
+    formik.setFieldTouched("buyLinks", true, false);
+  };
+
+  if (loadingFlight) {
+    return (
+      <div className="rounded-xl bg-white p-8 text-center">
+        <p className="text-lg font-semibold text-[#035373]">
+          Cargando vuelo...
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <>
-      <div className="flex flex-col bg-white px-5 py-5 rounded-xl">
-        <div className="flex flex-row items-center mb-5">
-          <FaPen className="mt-1 text-[#035373]" />
-          <h1 className="text-2xl  font-semibold ml-2">Nueva oferta</h1>
+    <div className="flex flex-col rounded-xl bg-white px-5 py-5">
+      <div className="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <div className="flex items-center">
+          <FaPen className="text-[#035373]" />
+
+          <div className="ml-2">
+            <h1 className="text-2xl font-semibold">
+              {isEditing ? "Editar vuelo" : "Nuevo vuelo"}
+            </h1>
+
+            <p className="text-sm text-gray-500">
+              {isEditing
+                ? "Actualiza la información y guarda los cambios."
+                : "Completa la información para crear una oferta de vuelo."}
+            </p>
+          </div>
         </div>
-        <form onSubmit={formik.handleSubmit}>
-          <div>
-            <TextField
-              select
-              fullWidth
-              margin="normal"
-              name="category.name"
-              label="Categoría"
-              value={formik.values.category.name}
-              onChange={formik.handleChange}
-            >
-              <MenuItem value="Vuelo">Vuelo</MenuItem>
-            </TextField>
-          </div>
-          <div>
-            <TextField
-              fullWidth
-              type="text"
-              margin="normal"
-              name="title"
-              label="Titulo"
-              value={formik.values.title}
-              onChange={formik.handleChange}
-              error={formik.touched.title && Boolean(formik.errors.title)}
-              helperText={formik.touched.title && formik.errors.title}
-            />
-          </div>
-          <div>
-            <TextField
-              fullWidth
-              type="text"
-              margin="normal"
-              name="price"
-              label="Precio desde"
-              value={formik.values.price}
-              onChange={formik.handleChange}
-              error={formik.touched.price && Boolean(formik.errors.price)}
-              helperText={formik.touched.price && formik.errors.price}
-            />
-          </div>
-          <div>
-            <TextField
-              fullWidth
-              type="text"
-              margin="normal"
-              name="destination.name"
-              label="Destino"
-              value={formik.values.destination.name.toLowerCase()}
-              onChange={formik.handleChange}
-              required
-            />
-          </div>
-          <div>
-            <TextField
-              fullWidth
-              type="text"
-              margin="normal"
-              name="summary"
-              label="Resumen"
-              value={formik.values.summary}
-              onChange={formik.handleChange}
-              error={formik.touched.summary && Boolean(formik.errors.summary)}
-              helperText={formik.touched.summary && formik.errors.summary}
-            />
-          </div>
-          <div className="">
-            <label className="font-semibold" htmlFor="description">
-              Descripción:
-            </label>
 
-            <ReactQuill
-              className="mt-3"
-              name="description"
-              value={formik.values.description}
-              onChange={handleEditorChange}
-            />
-          </div>
+        <Button
+          type="button"
+          variant="outlined"
+          startIcon={<FaArrowLeft />}
+          onClick={() => navigate("/auth/ofertas")}
+        >
+          Volver a ofertas
+        </Button>
+      </div>
 
-          <div className="flex flex-col border p-2 border-slate-300 mt-5">
-            <div className="flex   justify-center items-center ">
-              <label className="font-semibold mr-5">
-                Imagenes de las ofertas:
-              </label>
-              <Button
-                color="primary"
-                variant="contained"
-                onClick={(e) => openWidget(e, "image")}
-              >
-                {selectedImages.length > 0
-                  ? "Agregar más imágenes"
-                  : "Cargar archivos"}
-              </Button>
-            </div>
+      <form onSubmit={formik.handleSubmit}>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <TextField fullWidth label="Categoría" value="Vuelo" disabled />
 
-            <div className="flex flex-wrap ">
-              {selectedImages.map((imageUrl) => (
-                <img
-                  className="w-[150px] h-[100px] m-2"
-                  key={imageUrl}
-                  src={imageUrl}
-                  alt="Imagen cargada"
-                />
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col mt-5  border p-2 border-slate-300">
-            <div className="flex justify-center items-center">
-              <label className="font-semibold mr-5">
-                Imagenes de ejemplos:
-              </label>
-              <Button
-                color="primary"
-                variant="contained"
-                onClick={(e) => openWidget(e, "sampleImages")}
-              >
-                {selectedSampleImages.length > 0
-                  ? "Agregar más imágenes"
-                  : "Cargar archivos"}
-              </Button>
-            </div>
+          <TextField
+            fullWidth
+            name="title"
+            label="Título de la oferta"
+            value={formik.values.title}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.title && Boolean(formik.errors.title)}
+            helperText={formik.touched.title && formik.errors.title}
+          />
 
-            <div className="flex flex-row">
-              {selectedSampleImages.map((imageUrl) => (
-                <img
-                  className="w-[150px] h-[100px] m-2"
-                  key={imageUrl}
-                  src={imageUrl}
-                  alt="Imagen cargada"
-                />
-              ))}
-            </div>
-          </div>
+          <TextField
+            fullWidth
+            name="price"
+            label="Precio desde"
+            value={formik.values.price}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.price && Boolean(formik.errors.price)}
+            helperText={formik.touched.price && formik.errors.price}
+          />
 
-          <div className="flex flex-row justify-between">
-            <div>
-              <TextField
-                type="text"
-                fullWidth
-                margin="normal"
-                name="promotion"
-                label="Promo destacado"
-                value={formik.values.promotion}
-                onChange={formik.handleChange}
-                error={
-                  formik.touched.promotion && Boolean(formik.errors.promotion)
-                }
-                helperText={formik.touched.promotion && formik.errors.promotion}
-              />
-            </div>
+          <TextField
+            fullWidth
+            name="destination.name"
+            label="Destino"
+            value={formik.values.destination.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.destination?.name &&
+              Boolean(formik.errors.destination?.name)
+            }
+            helperText={
+              formik.touched.destination?.name &&
+              formik.errors.destination?.name
+            }
+          />
+        </div>
 
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="availability"
-                label="Disponibilidad"
-                value={formik.values.availability}
-                onChange={formik.handleChange}
-                error={
-                  formik.touched.availability &&
-                  Boolean(formik.errors.availability)
-                }
-                helperText={
-                  formik.touched.availability && formik.errors.availability
-                }
-              />
-            </div>
-            <div className="mr-12">
-              <TextField
-                fullWidth
-                margin="normal"
-                name="departure"
-                label="Aeropuerto de salida"
-                value={formik.values.departure}
-                onChange={formik.handleChange}
-                error={
-                  formik.touched.departure && Boolean(formik.errors.departure)
-                }
-                helperText={formik.touched.departure && formik.errors.departure}
-              />
-            </div>
+        <TextField
+          fullWidth
+          multiline
+          minRows={2}
+          className="mt-4"
+          name="summary"
+          label="Resumen"
+          value={formik.values.summary}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.summary && Boolean(formik.errors.summary)}
+          helperText={formik.touched.summary && formik.errors.summary}
+        />
 
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="arrival"
-                label="Aeropuerto de llegada"
-                value={formik.values.arrival}
-                onChange={formik.handleChange}
-                error={formik.touched.arrival && Boolean(formik.errors.arrival)}
-                helperText={formik.touched.arrival && formik.errors.arrival}
-              />
-            </div>
-          </div>
+        <div className="mt-5">
+          <label className="font-semibold" htmlFor="description">
+            Descripción
+          </label>
 
-          <label className="font-semibold">Crear enlaces de cada oferta</label>
-          <div className="flex flex-row justify-between">
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="departureDate"
-                label="Fecha de salida"
-                value={newLink.departureDate}
-                onChange={handleLinkChange}
-              />
-            </div>
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="returnDate"
-                label="Fecha de retorno"
-                value={newLink.returnDate}
-                onChange={handleLinkChange}
-              />
-            </div>
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="price"
-                label="Precio"
-                value={newLink.price}
-                onChange={handleLinkChange}
-              />
-            </div>
-            <div>
-              <TextField
-                fullWidth
-                type="text"
-                margin="normal"
-                name="link"
-                label="Enlace de compra"
-                value={newLink.link}
-                onChange={handleLinkChange}
-              />
-            </div>
-          </div>
-          <div className="flex justify-center items-center mt-5">
+          <ReactQuill
+            className="mt-2"
+            value={formik.values.description}
+            onChange={(value) => formik.setFieldValue("description", value)}
+            onBlur={() => formik.setFieldTouched("description", true)}
+          />
+
+          {formik.touched.description && formik.errors.description && (
+            <p className="mt-2 text-sm text-red-600">
+              {formik.errors.description}
+            </p>
+          )}
+        </div>
+
+        <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <div className="rounded border p-4">
+            <p className="mb-3 font-semibold">Imágenes principales</p>
+
             <Button
-              color="primary"
+              type="button"
+              variant="contained"
+              onClick={(event) => openWidget(event, "image")}
+            >
+              Cargar imágenes
+            </Button>
+
+            <div className="mt-3 flex flex-wrap gap-3">
+              {formik.values.image.map((imageUrl, index) => (
+                <div
+                  key={`${imageUrl}-${index}`}
+                  className="relative overflow-hidden rounded"
+                >
+                  <img
+                    src={imageUrl}
+                    className="h-[100px] w-[150px] object-cover"
+                    alt={`Imagen principal ${index + 1}`}
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => removeImage("image", imageUrl)}
+                    className="absolute right-1 top-1 rounded bg-red-600 p-2 text-white"
+                    aria-label="Eliminar imagen"
+                  >
+                    <FaTrash />
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {formik.touched.image && formik.errors.image && (
+              <p className="mt-3 text-sm text-red-600">{formik.errors.image}</p>
+            )}
+          </div>
+
+          <div className="rounded border p-4">
+            <p className="mb-3 font-semibold">Imágenes de ejemplo</p>
+
+            <Button
+              type="button"
+              variant="contained"
+              onClick={(event) => openWidget(event, "sampleImages")}
+            >
+              Cargar imágenes
+            </Button>
+
+            <div className="mt-3 flex flex-wrap gap-3">
+              {formik.values.sampleImages.map((imageUrl, index) => (
+                <div
+                  key={`${imageUrl}-${index}`}
+                  className="relative overflow-hidden rounded"
+                >
+                  <img
+                    src={imageUrl}
+                    className="h-[100px] w-[150px] object-cover"
+                    alt={`Imagen de ejemplo ${index + 1}`}
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => removeImage("sampleImages", imageUrl)}
+                    className="absolute right-1 top-1 rounded bg-red-600 p-2 text-white"
+                    aria-label="Eliminar imagen"
+                  >
+                    <FaTrash />
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {formik.touched.sampleImages && formik.errors.sampleImages && (
+              <p className="mt-3 text-sm text-red-600">
+                {formik.errors.sampleImages}
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <TextField
+            name="promotion"
+            label="Promoción destacada"
+            value={formik.values.promotion}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.promotion && Boolean(formik.errors.promotion)}
+            helperText={formik.touched.promotion && formik.errors.promotion}
+          />
+
+          <TextField
+            name="availability"
+            label="Disponibilidad"
+            value={formik.values.availability}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.availability && Boolean(formik.errors.availability)
+            }
+            helperText={
+              formik.touched.availability && formik.errors.availability
+            }
+          />
+
+          <TextField
+            name="departure"
+            label="Aeropuerto de salida"
+            value={formik.values.departure}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.departure && Boolean(formik.errors.departure)}
+            helperText={formik.touched.departure && formik.errors.departure}
+          />
+
+          <TextField
+            name="arrival"
+            label="Aeropuerto de llegada"
+            value={formik.values.arrival}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.arrival && Boolean(formik.errors.arrival)}
+            helperText={formik.touched.arrival && formik.errors.arrival}
+          />
+
+          <TextField
+            select
+            name="active"
+            label="Estado"
+            value={formik.values.active ? "true" : "false"}
+            onChange={(event) =>
+              formik.setFieldValue("active", event.target.value === "true")
+            }
+          >
+            <MenuItem value="true">Activa</MenuItem>
+            <MenuItem value="false">Borrador</MenuItem>
+          </TextField>
+
+          <TextField
+            select
+            name="author"
+            label="Autor"
+            value={formik.values.author}
+            onChange={formik.handleChange}
+          >
+            <MenuItem value="Francisco">Francisco</MenuItem>
+            <MenuItem value="Susana">Susana</MenuItem>
+          </TextField>
+        </div>
+
+        <div className="mt-5 rounded border p-4">
+          <h2 className="font-semibold">Enlaces de compra</h2>
+
+          <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <TextField
+              name="departureDate"
+              label="Fecha de salida"
+              value={newLink.departureDate}
+              onChange={handleLinkChange}
+            />
+
+            <TextField
+              name="returnDate"
+              label="Fecha de retorno"
+              value={newLink.returnDate}
+              onChange={handleLinkChange}
+            />
+
+            <TextField
+              name="price"
+              label="Precio"
+              value={newLink.price}
+              onChange={handleLinkChange}
+            />
+
+            <TextField
+              name="link"
+              label="Enlace de compra"
+              value={newLink.link}
+              onChange={handleLinkChange}
+            />
+          </div>
+
+          <div className="mt-4">
+            <Button
+              type="button"
               variant="contained"
               onClick={handleAddLink}
-              disabled={isFormEmpty()}
+              disabled={isNewLinkIncomplete}
             >
               Agregar enlace
             </Button>
-            <p className="mr-1 ">
-              {formik.touched.buyLinks && Boolean(formik.errors.buyLinks)}
-            </p>
-            <p className="text-[#d32f2f]">
-              {formik.touched.buyLinks && formik.errors.buyLinks}
-            </p>
           </div>
-          <label className="font-semibold">Lista de ofertas</label>
-          <div className=" flex mt-5">
+
+          {formik.touched.buyLinks &&
+            typeof formik.errors.buyLinks === "string" && (
+              <p className="mt-3 text-sm text-red-600">
+                {formik.errors.buyLinks}
+              </p>
+            )}
+
+          <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
             {formik.values.buyLinks.map((link, index) => (
-              <div key={index}>
+              <div key={`${link.link}-${index}`} className="rounded border p-3">
+                <div className="mb-3 flex items-center justify-between">
+                  <p className="font-semibold">Enlace {index + 1}</p>
+
+                  <Button
+                    type="button"
+                    color="error"
+                    size="small"
+                    startIcon={<FaTrash />}
+                    onClick={() => removeLink(index)}
+                  >
+                    Eliminar
+                  </Button>
+                </div>
+
                 <TextField
                   fullWidth
-                  margin="normal"
-                  label={`Enlace ${index + 1}`}
+                  margin="dense"
+                  label="Enlace de compra"
                   value={link.link}
-                  InputProps={{
-                    readOnly: true,
-                  }}
+                  InputProps={{ readOnly: true }}
                 />
-                <TextField
-                  fullWidth
-                  margin="normal"
-                  label={`Fecha de salida ${index + 1}`}
-                  value={link.departureDate}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  margin="normal"
-                  label={`Fecha de retorno ${index + 1}`}
-                  value={link.returnDate}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  margin="normal"
-                  label={`Precio ${index + 1}`}
-                  value={link.price}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
+
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                  <TextField
+                    margin="dense"
+                    label="Salida"
+                    value={link.departureDate}
+                    InputProps={{ readOnly: true }}
+                  />
+
+                  <TextField
+                    margin="dense"
+                    label="Retorno"
+                    value={link.returnDate}
+                    InputProps={{ readOnly: true }}
+                  />
+
+                  <TextField
+                    margin="dense"
+                    label="Precio"
+                    value={link.price}
+                    InputProps={{ readOnly: true }}
+                  />
+                </div>
               </div>
             ))}
           </div>
-          <div>
-            <TextField
-              select
-              fullWidth
-              margin="normal"
-              name="author"
-              label="Autor"
-              value={formik.values.author}
-              onChange={formik.handleChange}
-            >
-              <MenuItem value="Francisco">Francisco</MenuItem>
-              <MenuItem value="Susana">Susana</MenuItem>
-            </TextField>
-          </div>
+        </div>
 
-          <div className="flex mt-5 justify-center">
-            <Button color="primary" variant="contained" type="submit">
-              Crear nueva oferta
-            </Button>
-          </div>
-        </form>
-      </div>
-    </>
+        <div className="mt-7 flex justify-center gap-3">
+          <Button
+            type="button"
+            variant="outlined"
+            onClick={() => navigate("/auth/ofertas")}
+          >
+            Cancelar
+          </Button>
+
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={formik.isSubmitting}
+          >
+            {formik.isSubmitting
+              ? "Guardando..."
+              : isEditing
+                ? "Guardar cambios"
+                : "Crear vuelo"}
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }
 

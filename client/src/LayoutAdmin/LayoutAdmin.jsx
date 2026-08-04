@@ -4,17 +4,19 @@ import Header from "./Header";
 
 function LayoutAdmin() {
   return (
-    <>
+    <div className="min-h-screen bg-[#f5f7ff]">
       <Header />
-      <div className="  min-h-[90vh] grid  grid-cols-1 md:grid-cols-6 bg-[#1e1f25] ">
+
+      <div className="flex min-h-[calc(100dvh-68px)] flex-col lg:flex-row">
         <SideBar />
-        <div className="md:col-span-5">
-          <div className="h-[92.4vh] p-4 overflow-y-scroll">
+
+        <main className="min-w-0 flex-1 bg-[#f5f7ff] p-4 sm:p-6 lg:p-8">
+          <div className="mx-auto w-full max-w-7xl">
             <Outlet />
           </div>
-        </div>
+        </main>
       </div>
-    </>
+    </div>
   );
 }
 

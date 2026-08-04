@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import publicApi from "../../Services/publicApi";
 
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
@@ -42,7 +42,7 @@ function Details() {
 
   useEffect(() => {
     const getOffersById = async (_id) => {
-      const { data } = await axios.get(`/api/offers/${_id}`);
+      const { data } = await publicApi.get(`/offers/${_id}`);
       setOffer(data);
     };
     getOffersById(id);
@@ -98,7 +98,7 @@ function Details() {
          * Cambia "/api/offers" únicamente si tu endpoint
          * para obtener todas las ofertas es diferente.
          */
-        const response = await axios.get("/api/offers");
+        const response = await publicApi.get("/offers");
 
         const offersData = Array.isArray(response.data)
           ? response.data

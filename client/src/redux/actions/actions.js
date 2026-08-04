@@ -1,4 +1,5 @@
 import axios from "axios";
+import publicApi from "../../Services/publicApi"
 export const GET_ALL_OFFERS = "GET_ALL_OFFERS";
 export const GET_ALL_BANNERS = "GET_ALL_BANNERS";
 export const GET_ALL_HOTELS = "GET_ALL_HOTELS";
@@ -10,9 +11,12 @@ export  const CLEAR_FILTER = "CLEAR_FILTER"
 export const FILTER_DESTINATION = "FILTER_DESTINATION"
 export const ADD_FAVORITE = "ADD_FAVORITE"
 
+
+
 export const getAllOffers = async (dispatch) => {
+
   try {
-    const offers = await axios.get("/api/offers");
+    const offers = await publicApi.get("/offers")
     dispatch({
       type: "GET_ALL_OFFERS",
       payload: offers.data,
@@ -24,7 +28,7 @@ export const getAllOffers = async (dispatch) => {
 
 export const getAllBanners = async (dispatch) => {
   try {
-    const banners = await axios.get("/api/banners");
+    const banners = await publicApi.get("/banners");
     dispatch({
       type: "GET_ALL_BANNERS",
       payload: banners.data,
@@ -36,7 +40,7 @@ export const getAllBanners = async (dispatch) => {
 
 export const getAllUsers = async (dispatch) => {
   try {
-    const allUsers = await axios.get("/api/users");   
+    const allUsers = await publicApi.get("/users");   
     dispatch({
       type: "GET_ALL_USERS",
       payload: allUsers.data,
@@ -48,7 +52,7 @@ export const getAllUsers = async (dispatch) => {
 
 export const postUser = (payload) => async (dispatch) => {
   try {
-    const newUser = await axios.post("/api/users", payload);
+    const newUser = await publicApi.post("/users", payload);
     dispatch({
       type: "POST_USER",
       payload: newUser.data,
@@ -60,7 +64,7 @@ export const postUser = (payload) => async (dispatch) => {
 
 export const addFavorite = (payload) =>async (dispatch)=>{
   try{
-    const newFavorite = await axios.post("api/users/favorite", payload )
+    const newFavorite = await axios.post("users/favorite", payload )
     dispatch({type:"ADD_FAVORITE",
     payload:newFavorite.data})
   }catch(error){
