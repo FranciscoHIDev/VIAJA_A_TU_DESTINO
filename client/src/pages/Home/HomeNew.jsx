@@ -166,7 +166,6 @@ export default function HomeNew() {
         {/* ================================================= */}
         {/* HERO PREMIUM */}
         {/* ================================================= */}
-
         <section className="relative overflow-hidden bg-white">
           {/* =============================================== */}
           {/* FONDO PREMIUM */}
@@ -265,25 +264,41 @@ export default function HomeNew() {
                   vacaciones.
                 </p>
 
-                {/* Botones */}
+                {/* BOTONES */}
 
-                <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  {/* VER OFERTAS */}
+
                   <button
                     type="button"
                     onClick={scrollToOffers}
-                    className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0260fe] px-8 py-4 text-sm font-black text-white shadow-[0_15px_35px_rgba(2,96,254,0.25)] transition duration-300 hover:-translate-y-1 hover:bg-[#014fd3] hover:shadow-[0_20px_45px_rgba(2,96,254,0.32)]"
+                    className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0260fe] px-7 py-4 text-sm font-black text-white shadow-[0_15px_35px_rgba(2,96,254,0.25)] transition duration-300 hover:-translate-y-1 hover:bg-[#014fd3] hover:shadow-[0_20px_45px_rgba(2,96,254,0.32)]"
                   >
                     Ver ofertas
                     <FaArrowRight className="text-xs transition duration-300 group-hover:translate-x-1" />
                   </button>
 
+                  {/* COTIZAR EN LÍNEA */}
+
+                  <a
+                    href="https://agencias.viajaatudestino.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#ff6600] px-7 py-4 text-sm font-black text-white shadow-[0_15px_35px_rgba(255,102,0,0.22)] transition duration-300 hover:-translate-y-1 hover:bg-[#e85d00] hover:shadow-[0_20px_45px_rgba(255,102,0,0.3)]"
+                  >
+                    <FaPlane className="text-sm transition duration-300 group-hover:translate-x-1" />
+                    Cotizar en línea
+                  </a>
+
+                  {/* WHATSAPP */}
+
                   <a
                     href="https://wa.me/529984954637?text=Hola,%20quiero%20cotizar%20un%20viaje.%0A%0ADestino:%20%0AFechas:%20%0ACiudad%20de%20salida:%20%0ANúmero%20de%20viajeros:%20"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-3 rounded-2xl border-2 border-slate-200 bg-white px-8 py-4 text-sm font-black text-[#023e73] shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#25D366] hover:text-[#18a94b]"
+                    className="inline-flex items-center justify-center gap-3 rounded-2xl border-2 border-slate-200 bg-white px-7 py-4 text-sm font-black text-[#023e73] shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#25D366] hover:bg-[#25D366] hover:text-white"
                   >
-                    <FaWhatsapp className="text-xl text-[#25D366]" />
+                    <FaWhatsapp className="text-xl text-[#25D366] transition group-hover:text-white" />
                     Cotizar por WhatsApp
                   </a>
                 </div>
@@ -445,11 +460,9 @@ export default function HomeNew() {
             </div>
           </div>
         </section>
-
         {/* ================================================= */}
         {/* OFERTAS DESTACADAS */}
         {/* ================================================= */}
-
         <section
           id="ofertas"
           className="scroll-mt-24 bg-white px-4 py-16 sm:px-6 md:py-24 lg:px-8"
@@ -496,11 +509,9 @@ export default function HomeNew() {
             </div>
           </div>
         </section>
-
         {/* ================================================= */}
         {/* DESTINOS */}
         {/* ================================================= */}
-
         <section className="px-4 py-16 sm:px-6 md:py-24 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-3xl text-center">
@@ -560,55 +571,9 @@ export default function HomeNew() {
             </div>
           </div>
         </section>
-
-        {/* ================================================= */}
-        {/* CÓMO FUNCIONA */}
-        {/* ================================================= */}
-
-        <section className="bg-[#023e73] px-4 py-16 text-white sm:px-6 md:py-24 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="text-xs font-black uppercase tracking-[0.2em] text-[#79b5ff]">
-                Fácil, rápido y personalizado
-              </span>
-
-              <h2 className="mt-4 text-3xl font-black sm:text-4xl md:text-5xl">
-                Tu viaje comienza en tres pasos
-              </h2>
-
-              <p className="mt-5 leading-8 text-white/70">
-                Nos encargamos de ayudarte a encontrar opciones para que tú
-                solamente tengas que elegir tu próxima aventura.
-              </p>
-            </div>
-
-            <div className="relative mt-14 grid gap-6 lg:grid-cols-3">
-              <div className="absolute left-[16%] right-[16%] top-10 hidden border-t-2 border-dashed border-white/15 lg:block" />
-
-              {steps.map((step) => (
-                <article
-                  key={step.number}
-                  className="relative rounded-3xl border border-white/10 bg-white/10 p-7 text-center backdrop-blur sm:p-8"
-                >
-                  <span className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-[#ff6600] text-2xl font-black text-white shadow-xl">
-                    {step.number}
-                  </span>
-
-                  <h3 className="mt-7 text-2xl font-black">{step.title}</h3>
-
-                  <p className="mt-4 leading-7 text-white/70">
-                    {step.description}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ================================================= */}
         {/* BENEFICIOS */}
         {/* ================================================= */}
-
         <section className="bg-white px-4 py-16 sm:px-6 md:py-24 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
@@ -677,11 +642,9 @@ export default function HomeNew() {
             </div>
           </div>
         </section>
-
         {/* ================================================= */}
         {/* CTA FINAL */}
         {/* ================================================= */}
-
         <section className="px-4 pb-16 sm:px-6 md:pb-24 lg:px-8">
           <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.2rem] bg-gradient-to-r from-[#0260fe] via-[#086ee9] to-[#3794ff] p-8 text-white shadow-2xl sm:p-12 lg:p-16">
             <div className="absolute -right-24 -top-32 h-80 w-80 rounded-full bg-white/10 blur-3xl" />

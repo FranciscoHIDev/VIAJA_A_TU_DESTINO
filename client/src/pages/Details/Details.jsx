@@ -14,6 +14,7 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 import {
+  FaClock,
   FaHotel,
   FaMapMarkerAlt,
   FaCalendarAlt,
@@ -25,6 +26,7 @@ import {
   FaCreditCard,
   FaPlaneDeparture,
   FaPlaneArrival,
+  FaBookOpen,
 } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -34,6 +36,7 @@ import "../../components/CardsBanners/Carrusel.css";
 function Details() {
   const { id } = useParams();
   const [offer, setOffer] = useState([]);
+
   const targetRef = useRef(null);
 
   const scrollToTarget = () => {
@@ -43,6 +46,7 @@ function Details() {
   useEffect(() => {
     const getOffersById = async (_id) => {
       const { data } = await publicApi.get(`/offers/${_id}`);
+
       setOffer(data);
     };
     getOffersById(id);
@@ -156,7 +160,7 @@ function Details() {
         </header>
 
         <main className="flex-1">
-          <section className="relative overflow-hidden rounded-b-3xl shadow-2xl lg:h-[640px]">
+          <section className="relative overflow-hidden shadow-2xl lg:h-[550px]">
             {/* Imagen */}
 
             <img
@@ -195,7 +199,7 @@ function Details() {
                 <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-base text-white sm:mt-8 sm:gap-8 sm:text-lg">
                   <div className="flex items-center gap-2">
                     <FaMapMarkerAlt className="text-[#ff6600]" />
-                    Cancún
+                    {offer?.destination?.name}
                   </div>
 
                   <div className="flex items-center gap-2">⭐⭐⭐⭐</div>
@@ -231,169 +235,184 @@ function Details() {
               {/* ========================= */}
               {/* DERECHA */}
               {/* ========================= */}
-
-              <div className="h-auto w-full overflow-hidden rounded-3xl border-4 border-sky-100 bg-white shadow-2xl sm:max-w-[520px] sm:self-center lg:h-[480px] lg:w-[390px] lg:max-w-none lg:shrink-0 lg:self-auto">
-                <div className="flex flex-wrap items-baseline justify-center gap-x-1 bg-[#0260fe] p-4 text-center">
-                  <p className="mr-1 tracking-widest text-white">Desde</p>
-                  <p className="mr-1 text-2xl font-black text-white">
-                    ${offer.price}
-                  </p>
-                  <p className="text-white/90">MXN por persona</p>
-                </div>
-
-                <div className="space-y-3 p-4 sm:p-5 lg:p-4">
-                  <div className="flex justify-between gap-4 lg:gap-0">
-                    <span>
-                      <FaHotel className="inline mr-2" />
-                      Hotel
-                    </span>
-
-                    <span className="min-w-0 break-words text-right">
-                      {offer.hotel}
-                    </span>
+              {offer?.category?.name === "Paquete" ||
+              offer?.category?.name === "Hotel" ? (
+                <div className="h-auto w-full overflow-hidden rounded-3xl border-4 border-sky-100 bg-white shadow-2xl sm:max-w-[520px] sm:self-center lg:h-[480px] lg:w-[390px] lg:max-w-none lg:shrink-0 lg:self-auto">
+                  <div className="flex flex-wrap items-baseline justify-center gap-x-1 bg-[#0260fe] p-4 text-center">
+                    <p className="mr-1 tracking-widest text-white">Desde</p>
+                    <p className="mr-1 text-2xl font-black text-white">
+                      ${offer.price}
+                    </p>
+                    <p className="text-white/90">MXN por persona</p>
                   </div>
 
-                  <div className="flex justify-between gap-4 lg:gap-0">
-                    <span>
-                      <FaCalendarAlt className="inline mr-2" />
-                      Estancia
-                    </span>
+                  <div className="space-y-3 p-4 sm:p-5 lg:p-4">
+                    <div className="flex justify-between gap-4 lg:gap-0">
+                      <span>
+                        <FaHotel className="inline mr-2" />
+                        Hotel
+                      </span>
 
-                    <span className="min-w-0 break-words text-right">
-                      {offer.daysOfStay}
-                    </span>
-                  </div>
-
-                  {/* <div className="flex justify-between gap-4 lg:gap-0">
-                    <span>
-                      <FaPlaneDeparture className="inline mr-2" />
-                      Salida
-                    </span>
-
-                    <span className="min-w-0 break-words text-right">
-                      {offer.departure}
-                    </span>
-                  </div> */}
-
-                  <div className="flex justify-between gap-4 lg:gap-0">
-                    <span>Disponibilidad</span>
-
-                    <span className="min-w-0 break-words text-right">
-                      {offer.availability}
-                    </span>
-                  </div>
-
-                  <hr />
-
-                  <div className="space-y-2 bg-orange-100 p-2 rounded-xl">
-                    <div className="flex items-center gap-3">
-                      <FaShieldAlt className="text-[#0260fe]" />
-                      Pago 100% seguro
+                      <span className="min-w-0 break-words text-right">
+                        {offer.hotel}
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-3">
-                      <FaCreditCard className="text-[#0260fe]" />
-                      Paga a meses sin intereses
+                    <div className="flex justify-between gap-4 lg:gap-0">
+                      <span>
+                        <FaClock className="inline mr-2" />
+                        Estancia
+                      </span>
+
+                      <span className="min-w-0 break-words text-right">
+                        {offer.daysOfStay}
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-3">
-                      <FaStar className="text-[#ff6600]" />
-                      Confirmación inmediata
+                    <div className="flex justify-between gap-4 lg:gap-0">
+                      <span>
+                        <FaCalendarAlt className="inline mr-2" />
+                        Disponibilidad
+                      </span>
+
+                      <span className="min-w-0 break-words text-right">
+                        {offer.availability}
+                      </span>
                     </div>
-                  </div>
 
-                  <button
-                    onClick={scrollToTarget}
-                    className="w-full bg-[#ff6600] text-white py-4 rounded-xl font-bold hover:bg-orange-600 transition flex items-center justify-center gap-3"
-                  >
-                    Ver Fechas Disponibles
-                    <FaArrowRight />
-                  </button>
+                    <hr />
 
-                  <a
-                    href={`https://wa.me/529984954637?text=${encodeURIComponent(
-                      `Hola, me interesa la oferta: ${offer.title}.
+                    <div className="space-y-2 bg-orange-100 p-2 rounded-xl">
+                      <div className="flex items-center gap-3">
+                        <FaShieldAlt className="text-[#0260fe]" />
+                        Pago 100% seguro
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <FaCreditCard className="text-[#0260fe]" />
+                        Paga a meses sin intereses
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <FaStar className="text-[#ff6600]" />
+                        Confirmación inmediata
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={scrollToTarget}
+                      className="w-full bg-[#ff6600] text-white py-4 rounded-xl font-bold hover:bg-orange-600 transition flex items-center justify-center gap-3"
+                    >
+                      Ver Fechas Disponibles
+                      <FaArrowRight />
+                    </button>
+
+                    <a
+                      href={`https://wa.me/529984954637?text=${encodeURIComponent(
+                        `Hola, me interesa la oferta: ${offer.title}.
 
 Oferta: https://www.viajaatudestino.com/oferta/${offer.slug || offer._id}
 
 Quiero consultar fechas y disponibilidad.`,
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full border-2 border-[#25D366] text-[#25D366] py-4 rounded-xl font-bold hover:bg-[#25D366] hover:text-white transition flex items-center justify-center gap-3"
-                  >
-                    <FaWhatsapp />
-                    Hablar por WhatsApp
-                  </a>
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full border-2 border-[#25D366] text-[#25D366] py-4 rounded-xl font-bold hover:bg-[#25D366] hover:text-white transition flex items-center justify-center gap-3"
+                    >
+                      <FaWhatsapp />
+                      Hablar por WhatsApp
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </section>
-          {/* ========================================================= */}
-          {/* BARRA DE CONFIANZA */}
-          {/* ========================================================= */}
+              ) : (
+                <div className="h-auto w-full overflow-hidden rounded-3xl border-4 border-sky-100 bg-white shadow-2xl sm:max-w-[520px] sm:self-center lg:h-[480px] lg:w-[390px] lg:max-w-none lg:shrink-0 lg:self-auto">
+                  <div className="flex flex-wrap items-baseline justify-center gap-x-1 bg-[#0260fe] p-4 text-center">
+                    <p className="mr-1 tracking-widest text-white">Desde</p>
+                    <p className="mr-1 text-2xl font-black text-white">
+                      ${offer.price}
+                    </p>
+                    <p className="text-white/90">MXN por persona</p>
+                  </div>
 
-          <section className="relative z-30 mx-auto -mt-6 max-w-7xl px-4 sm:-mt-8 sm:px-5 lg:-mt-10">
-            <div className="grid  grid-cols-4  overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-xl sm:grid-cols-2 lg:grid-cols-4 px-2">
-              <div className="flex  justify-center items-center gap-3 border-b border-gray-100 p-4 sm:border-r sm:p-6 lg:border-b-0">
-                <div className="flex sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 sm:text-2xl text-[18px]">
-                  🛡️
-                </div>
+                  <div className="space-y-3 p-4 sm:p-5 lg:p-4">
+                    <div className="flex justify-between gap-4 lg:gap-0">
+                      <span>
+                        <FaMapMarkerAlt className="inline mr-2" />
+                        Destino
+                      </span>
 
-                <div>
-                  <p className="font-bold text-gray-900 text-[10px] sm:text-lg">
-                    Seguro
-                  </p>
-                  <p className="mt-1 text-[9px] text-gray-500 sm:text-sm">
-                    Compra protegida
-                  </p>
-                </div>
-              </div>
+                      <span className="min-w-0 break-words text-right">
+                        {offer?.destination?.name}
+                      </span>
+                    </div>
 
-              <div className="flex justify-center items-center gap-4 border-b border-gray-100 p-4 sm:p-6 lg:border-b-0 lg:border-r">
-                <div className="flex sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-2xl bg-orange-50 sm:text-2xl text-[18px]">
-                  🔥
-                </div>
+                    <div className="flex justify-between gap-4 lg:gap-0">
+                      <span>
+                        <FaClock className="inline mr-2" />
+                        Duración
+                      </span>
 
-                <div>
-                  <p className="font-bold text-gray-900 text-[10px] sm:text-lg">
-                    Verificada
-                  </p>
-                  <p className="mt-1  text-gray-500 text-[9px] sm:text-sm">
-                    Seleccionada por expertos
-                  </p>
-                </div>
-              </div>
+                      <span className="min-w-0 break-words text-right">
+                        {offer.daysOfStay}
+                      </span>
+                    </div>
 
-              <div className="flex justify-center items-center gap-4 border-b border-gray-100 p-4 sm:border-b-0 sm:border-r sm:p-6">
-                <div className="flex  sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-2xl bg-green-50 sm:text-2xl text-[18px]">
-                  💬
-                </div>
+                    <div className="flex justify-between gap-4 lg:gap-0">
+                      <span>
+                        <FaCalendarAlt className="inline mr-2" />
+                        Disponibilidad
+                      </span>
 
-                <div>
-                  <p className="font-bold text-gray-900 text-[10px] sm:text-lg">
-                    Asesoría
-                  </p>
-                  <p className="mt-1 text-[9px] text-gray-500 sm:text-sm">
-                    Antes y durante tu viaje
-                  </p>
-                </div>
-              </div>
+                      <span className="min-w-0 break-words text-right">
+                        {offer.availability}
+                      </span>
+                    </div>
 
-              <div className="flex justify-center items-center gap-4 p-4 sm:p-6">
-                <div className="flex sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-2xl bg-purple-50 sm:text-2xl text-[18px]">
-                  💳
-                </div>
+                    <hr />
 
-                <div className="items-center">
-                  <p className="font-bold text-gray-900 text-[10px] sm:text-lg">
-                    Paga a MSI
-                  </p>
-                  <p className="mt-1 text-[9px] text-gray-500 sm:text-sm">
-                    Con tarjetas participantes
-                  </p>
+                    <div className="space-y-2 bg-orange-100 p-2 rounded-xl">
+                      <div className="flex items-center gap-3">
+                        <FaShieldAlt className="text-[#0260fe]" />
+                        Pago 100% seguro
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <FaCreditCard className="text-[#0260fe]" />
+                        Paga a meses sin intereses
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <FaStar className="text-[#ff6600]" />
+                        Confirmación inmediata
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={scrollToTarget}
+                      className="w-full bg-[#ff6600] text-white py-4 rounded-xl font-bold hover:bg-orange-600 transition flex items-center justify-center gap-3"
+                    >
+                      Ver Fechas Disponibles
+                      <FaArrowRight />
+                    </button>
+
+                    <a
+                      href={`https://wa.me/529984954637?text=${encodeURIComponent(
+                        `Hola, me interesa la oferta: ${offer.title}.
+
+Oferta: https://www.viajaatudestino.com/oferta/${offer.slug || offer._id}
+
+Quiero consultar fechas y disponibilidad.`,
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full border-2 border-[#25D366] text-[#25D366] py-4 rounded-xl font-bold hover:bg-[#25D366] hover:text-white transition flex items-center justify-center gap-3"
+                    >
+                      <FaWhatsapp />
+                      Hablar por WhatsApp
+                    </a>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </section>
           {/* ========================================================= */}
@@ -405,16 +424,11 @@ Quiero consultar fechas y disponibilidad.`,
               <div className="mb-8 flex flex-col gap-4 sm:mb-10 lg:flex-row lg:items-end lg:justify-between">
                 <div>
                   <span className="inline-flex rounded-full bg-orange-100 px-4 py-2 text-sm font-bold uppercase tracking-wide text-[#ff6600]">
-                    Conoce esta oferta
+                    Galeria
                   </span>
-
-                  <h2 className="mt-4 text-3xl font-black text-[#023e73] sm:text-4xl">
-                    Una escapada que vale la pena
-                  </h2>
-
                   <p className="mt-3 max-w-3xl text-base leading-relaxed text-gray-600 sm:text-lg">
-                    Descubre las instalaciones, habitaciones y experiencias que
-                    podrás disfrutar durante tu estancia.
+                    Descubre las instalaciones y experiencias que podrás
+                    disfrutar durante tu estancia.
                   </p>
                 </div>
               </div>
@@ -424,7 +438,7 @@ Quiero consultar fechas y disponibilidad.`,
 
               {galleryImages.length > 0 ? (
                 <>
-                  <div className="grid h-auto grid-cols-2 gap-2 overflow-hidden rounded-2xl sm:gap-3 lg:h-[520px] lg:grid-cols-4 lg:grid-rows-2 lg:rounded-3xl">
+                  <div className="grid h-auto grid-cols-2 gap-2 overflow-hidden rounded-2xl sm:gap-3 lg:h-[400px] lg:grid-cols-4 lg:grid-rows-2 lg:rounded-3xl">
                     {/* IMAGEN PRINCIPAL */}
 
                     <button
@@ -650,7 +664,7 @@ Quiero consultar fechas y disponibilidad.`,
                 <article className="rounded-3xl bg-white p-5 shadow-sm sm:p-7 lg:col-span-2 lg:p-9">
                   <div className="flex items-center gap-3">
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-xl sm:h-12 sm:w-12 sm:text-2xl">
-                      🧳
+                      <FaBookOpen />
                     </div>
 
                     <div>
@@ -676,7 +690,7 @@ Quiero consultar fechas y disponibilidad.`,
 
           {offer.category?.name === "Paquete" ||
           offer.category?.name === "Hotel" ||
-          offer.category?.name === "Vuelo" ? (
+          offer.category?.name === "Tour" ? (
             <section
               ref={targetRef}
               className="bg-white py-14 sm:py-16 lg:py-20"
