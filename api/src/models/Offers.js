@@ -5,11 +5,33 @@ function currentDate() {
   return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
 }
 
+function createSlug(text = "") {
+  return text
+    .toString()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
 const offerSchema = mongoose.Schema({
   title: {
-    type: String,
-    required: true,
-  },
+  type: String,
+  required: true,
+  trim: true,
+},
+
+slug: {
+  type: String,
+  unique: true,
+  sparse: true,
+  index: true,
+  lowercase: true,
+  trim: true,
+},
   summary: {
     type: String,
     required: true,
@@ -117,4 +139,32 @@ const offerSchema = mongoose.Schema({
   },
 });
 
+offerSchema.pre("validate", async function () {
+  // Si ya tiene slug y el título no cambió, no hacemos nada
+  if (this.slug && !this.isModified("title")) {
+    return;
+  }
+
+  const baseSlug = createSlug(this.title);
+
+  if (!baseSlug) {
+    return;
+  }
+
+  let slug = baseSlug;
+  let counter = 2;
+
+  // Comprobar que no exista otra oferta con el mismo slug
+  while (
+    await this.constructor.exists({
+      slug,
+      _id: { $ne: this._id },
+    })
+  ) {
+    slug = `${baseSlug}-${counter}`;
+    counter += 1;
+  }
+
+  this.slug = slug;
+});
 module.exports = mongoose.model("Offers", offerSchema);
