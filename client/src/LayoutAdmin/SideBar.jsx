@@ -8,7 +8,7 @@ import {
   FaPlus,
   FaTag,
 } from "react-icons/fa";
-import { MdLogout } from "react-icons/md";
+import { MdLogout, MdInsights } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import api from "../Services/api";
 
@@ -28,6 +28,11 @@ const mainNavigation = [
     label: "Paquetes",
     to: "/auth/paquetes",
     icon: FaSuitcase,
+  },
+  {
+    label: "Insights",
+    to: "/auth/insights",
+    icon: MdInsights,
   },
 ];
 

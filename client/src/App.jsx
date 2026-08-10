@@ -24,6 +24,7 @@ import AboutUs from "./pages/AboutUs/AboutUs";
 import Offers from "./pages/Offerts/Offerts";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute/ProtectedAdminRoute.jsx";
+import InsightsAdmin from "./LayoutAdmin/pages/InsightsAdmin.jsx";
 function App() {
   return (
     <div>
@@ -45,7 +46,7 @@ function App() {
           <Route element={<ProtectedAdminRoute />}>
             <Route path="/auth" element={<LayoutAdmin />}>
               <Route index element={<HomeAdmin />} />
-
+              <Route path="insights" element={<InsightsAdmin />} />
               <Route path="ofertas" element={<OffersAdmin />} />
               <Route path="paquetes" element={<PackagesAdmin />} />
               <Route path="new-package" element={<NewOffer />} />
