@@ -12,6 +12,7 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import SEO from "../../components/SEO/SEO";
 
 import {
   FaClock,
@@ -34,7 +35,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "../../components/CardsBanners/Carrusel.css";
 
 function Details() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [offer, setOffer] = useState([]);
 
   const targetRef = useRef(null);
@@ -44,13 +45,18 @@ function Details() {
   };
 
   useEffect(() => {
-    const getOffersById = async (_id) => {
-      const { data } = await publicApi.get(`/offers/${_id}`);
+    const getOffer = async () => {
+      try {
+        const { data } = await publicApi.get(`/offers/${slug}`);
 
-      setOffer(data);
+        setOffer(data);
+      } catch (error) {
+        console.error("Error al obtener la oferta:", error);
+      }
     };
-    getOffersById(id);
-  }, [id]);
+
+    getOffer();
+  }, [slug]);
 
   const [openGallery, setOpenGallery] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
@@ -60,6 +66,39 @@ function Details() {
     : offer?.image
       ? [offer.image]
       : [];
+
+  //SEO
+  const removeHtml = (html = "") => {
+    return html
+      .replace(/<[^>]*>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  };
+
+  const destinationName =
+    offer?.destination?.name || offer?.destination || offer?.location || "";
+
+  const seoTitle = offer?.title
+    ? `${offer.title}${destinationName ? ` en ${destinationName}` : ""}`
+    : "Ofertas de Viajes";
+
+  const seoDescription = (
+    offer?.summary ||
+    removeHtml(offer?.description || "") ||
+    "Descubre esta oferta de viaje con Viaja a tu Destino."
+  )
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 155);
+
+  const seoImage = galleryImages[0] || "";
+
+  const seoUrl = offer?.slug
+    ? `https://www.viajaatudestino.com/oferta/${offer.slug}`
+    : offer?._id
+      ? `https://www.viajaatudestino.com/oferta/${offer._id}`
+      : "https://www.viajaatudestino.com/";
+  //GALERIA
 
   const openImageGallery = (index = 0) => {
     if (!galleryImages.length) return;
@@ -154,6 +193,13 @@ function Details() {
   }, [offer]);
   return (
     <React.Fragment>
+      <SEO
+        title={seoTitle}
+        description={seoDescription}
+        image={seoImage}
+        url={seoUrl}
+      />
+
       <div className="min-h-screen flex flex-col overflow-x-hidden">
         <header>
           <NavBar />
@@ -1082,7 +1128,7 @@ Quiero consultar fechas y disponibilidad. 😊`,
                     <div className="overflow-hidden rounded-xl border border-gray-100 bg-gray-50 sm:rounded-2xl">
                       <img
                         src={offer.sampleImages}
-                        alt={`Captura de la oferta de ${offer.sampleImages}`}
+                        alt={`Captura de la oferta ${offer.title} en ${destinationName}`}
                         loading="lazy"
                         className="h-auto max-h-[750px] w-full object-contain"
                       />
@@ -1408,7 +1454,7 @@ Quiero consultar fechas y disponibilidad. 😊`,
               ) : relatedOffers.length > 0 ? (
                 <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                   {relatedOffers.map((relatedOffer) => {
-                    const relatedId = relatedOffer._id || relatedOffer.id;
+                    const relatedId = relatedOffer.slug || relatedOffer.slug;
 
                     const relatedImage = Array.isArray(relatedOffer.image)
                       ? relatedOffer.image[0]

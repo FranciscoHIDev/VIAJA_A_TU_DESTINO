@@ -12,8 +12,8 @@ function CardTop({
   category,
   image,
   price,
-
   availability,
+  slug,
 }) {
   CardTop.propTypes = {
     _id: PropTypes.string.isRequired,
@@ -26,11 +26,12 @@ function CardTop({
     availability: PropTypes.string,
     departure: PropTypes.string,
     arrival: PropTypes.string,
+    slug: PropTypes.string,
   };
   return (
     <React.Fragment>
       <div className="bg-white mt-10 h-[517px] md:w-[360px] m-2  w-auto rounded-[16px] border-[1px]">
-        <NavLink to={`/oferta/${_id}`}>
+        <NavLink to={`/oferta/${slug}`}>
           <div>
             <img
               className="p-[5px] h-[227px] w-[360px] rounded-[20px]"

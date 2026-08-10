@@ -6,17 +6,22 @@ import Paginated from "../Paginated/Paginated";
 
 function CardsOferts() {
   const dispatch = useDispatch();
-  const allOffers = useSelector((state) => state.topOffers);
+
+  const allOffers = useSelector((state) => state.topOffers || []);
+
+  // Mostrar las ofertas más recientes primero
   const all = allOffers.slice().reverse();
+
   useEffect(() => {
     dispatch(getAllOffers);
   }, [dispatch]);
 
   const [page, setPage] = useState(1);
   const [offerPerPage] = useState(6);
-  const lastOffer = page * offerPerPage;
 
+  const lastOffer = page * offerPerPage;
   const firstOffer = lastOffer - offerPerPage;
+
   const totalOffers = all.slice(firstOffer, lastOffer);
 
   const maxPage = Math.ceil(allOffers.length / offerPerPage);
@@ -29,26 +34,25 @@ function CardsOferts() {
   return (
     <React.Fragment>
       <div className="flex flex-wrap justify-center">
-        {totalOffers.map((e) => {
-          return (
-            <CardTop
-              key={crypto.randomUUID()}
-              _id={e._id}
-              title={e.title}
-              image={e.image}
-              category={e.category}
-              summary={e.summary}
-              promotion={e.promotion}
-              price={e.price}
-              availability={e.availability}
-              departure={e.departure}
-              arrival={e.arrival}
-              destination={e.destination}
-              author={e.author}
-              date={e.date}
-            />
-          );
-        })}
+        {totalOffers.map((e) => (
+          <CardTop
+            key={e._id}
+            _id={e._id}
+            slug={e.slug}
+            title={e.title}
+            image={e.image}
+            category={e.category}
+            summary={e.summary}
+            promotion={e.promotion}
+            price={e.price}
+            availability={e.availability}
+            departure={e.departure}
+            arrival={e.arrival}
+            destination={e.destination}
+            author={e.author}
+            date={e.date}
+          />
+        ))}
       </div>
 
       <Paginated

@@ -18,8 +18,9 @@ function CardsHotels() {
       {all.map((e) => {
         return (
           <CardTop
-            key={crypto.randomUUID()}
+            key={e._id}
             _id={e._id}
+            slug={e.slug}
             title={e.title}
             image={e.image}
             category={e.category}
