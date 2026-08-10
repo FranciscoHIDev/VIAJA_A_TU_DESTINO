@@ -21,7 +21,10 @@ import { GiMayanPyramid } from "react-icons/gi";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import CardsOferts from "../../components/CardsOferts/CardsOferts";
-import PriceResWidget from "../../components/PriceRes/PriceResWidget";
+
+/* =========================================================
+   CATEGORÍAS
+========================================================= */
 
 const categories = [
   {
@@ -44,6 +47,10 @@ const categories = [
   },
 ];
 
+/* =========================================================
+   PASOS
+========================================================= */
+
 const steps = [
   {
     number: "01",
@@ -64,6 +71,10 @@ const steps = [
       "Selecciona la alternativa que más te convenga y confirma tu viaje.",
   },
 ];
+
+/* =========================================================
+   BENEFICIOS
+========================================================= */
 
 const benefits = [
   {
@@ -92,6 +103,10 @@ const benefits = [
   },
 ];
 
+/* =========================================================
+   DESTINOS
+========================================================= */
+
 const featuredDestinations = [
   {
     name: "Cancún",
@@ -119,6 +134,10 @@ const featuredDestinations = [
   },
 ];
 
+/* =========================================================
+   CHECK ICON
+========================================================= */
+
 function CheckIcon() {
   return (
     <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-[#0260fe]/10 text-[#0260fe]">
@@ -126,6 +145,10 @@ function CheckIcon() {
     </span>
   );
 }
+
+/* =========================================================
+   HOME
+========================================================= */
 
 export default function HomeNew() {
   const scrollToOffers = () => {
@@ -140,83 +163,349 @@ export default function HomeNew() {
       <NavBar />
 
       <main className="flex-1">
-        {/* HERO */}
-        <section className="relative overflow-hidden bg-[#023e73]">
-          <div className="absolute inset-0">
-            <img
-              src="https://res.cloudinary.com/duaysiozi/image/upload/v1784166724/z5qgffi2ipgyjltwnqls.png"
-              alt="Viajes y vacaciones en el Caribe"
-              className="h-full w-full object-cover object-center"
+        {/* ================================================= */}
+        {/* HERO PREMIUM */}
+        {/* ================================================= */}
+
+        <section className="relative overflow-hidden bg-white">
+          {/* =============================================== */}
+          {/* FONDO PREMIUM */}
+          {/* =============================================== */}
+
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            {/* Fondo principal */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(2,96,254,0.13),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(55,148,255,0.15),_transparent_32%),linear-gradient(135deg,#f7fbff_0%,#ffffff_46%,#edf5ff_100%)]" />
+
+            {/* Halo azul izquierdo */}
+            <div className="absolute -left-32 top-14 h-[470px] w-[470px] rounded-full bg-[#0260fe]/10 blur-[110px]" />
+
+            {/* Halo superior derecho */}
+            <div className="absolute -right-32 -top-24 h-[540px] w-[540px] rounded-full bg-[#3794ff]/15 blur-[120px]" />
+
+            {/* Halo naranja */}
+            <div className="absolute bottom-[-180px] left-[28%] h-[400px] w-[400px] rounded-full bg-[#ff6600]/10 blur-[120px]" />
+
+            {/* Brillo central */}
+            <div className="absolute left-1/2 top-1/2 h-[450px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/60 blur-[90px]" />
+
+            {/* Forma decorativa derecha */}
+            <div className="absolute right-[7%] top-[15%] h-48 w-48 rotate-12 rounded-[48px] border border-[#0260fe]/10 bg-white/20 backdrop-blur-sm" />
+
+            {/* Forma decorativa izquierda */}
+            <div className="absolute bottom-[10%] left-[5%] h-32 w-32 -rotate-12 rounded-[36px] border border-[#3794ff]/10 bg-white/25 backdrop-blur-sm" />
+
+            {/* Cuadrícula */}
+            <div
+              className="absolute inset-0 opacity-[0.025]"
+              style={{
+                backgroundImage: `
+                  linear-gradient(#023e73 1px, transparent 1px),
+                  linear-gradient(90deg, #023e73 1px, transparent 1px)
+                `,
+                backgroundSize: "56px 56px",
+              }}
             />
 
-            <div className="absolute inset-0 bg-gradient-to-r from-[#023e73]/95 via-[#023e73]/75 to-[#0260fe]/25" />
+            {/* Ruta decorativa */}
+            <svg
+              className="absolute right-0 top-0 hidden h-full w-[52%] opacity-[0.09] lg:block"
+              viewBox="0 0 700 700"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M60 560C180 460 160 330 300 290C445 248 415 135 610 95"
+                stroke="#0260fe"
+                strokeWidth="3"
+                strokeDasharray="12 14"
+                strokeLinecap="round"
+              />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-[#023e73]/70 via-transparent to-transparent" />
+              <circle cx="60" cy="560" r="7" fill="#0260fe" />
+              <circle cx="610" cy="95" r="7" fill="#ff6600" />
+            </svg>
           </div>
 
-          <div className="pointer-events-none absolute -left-28 -top-24 h-80 w-80 rounded-full bg-[#0260fe]/30 blur-3xl" />
+          {/* =============================================== */}
+          {/* CONTENIDO HERO */}
+          {/* =============================================== */}
 
-          <div className="pointer-events-none absolute -bottom-40 right-0 h-96 w-96 rounded-full bg-[#ff6600]/20 blur-3xl" />
+          <div className="relative mx-auto max-w-[1500px] px-5 pb-16 pt-10 sm:px-6 md:pb-20 md:pt-14 lg:px-8 lg:pb-24">
+            <div className="grid min-h-[620px] items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] xl:gap-20">
+              {/* =========================================== */}
+              {/* COLUMNA IZQUIERDA */}
+              {/* =========================================== */}
 
-          <div className="relative mx-auto flex min-h-[560px] max-w-7xl items-center px-5 pb-32 pt-16 sm:px-6 md:min-h-[620px] md:pb-40 lg:px-8">
-            <div className="max-w-3xl text-white">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] backdrop-blur">
-                <FaBolt className="text-[#ff9a4a]" />
-                Cazadores de ofertas de viaje
-              </span>
+              <div className="relative z-10">
+                {/* Badge */}
 
-              <h1 className="mt-6 text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                Viaja más y encuentra precios increíbles
-              </h1>
+                <div className="inline-flex items-center gap-3 rounded-full border border-[#0260fe]/15 bg-white/80 px-4 py-2 shadow-sm backdrop-blur">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0260fe] text-xs text-white shadow-sm">
+                    <FaBolt />
+                  </span>
 
-              <p className="mt-6 max-w-2xl text-base leading-8 text-white/80 sm:text-lg">
-                Buscamos hoteles, vuelos, paquetes y experiencias para que
-                puedas planear tus próximas vacaciones de manera fácil, rápida y
-                confiable.
-              </p>
+                  <span className="text-xs font-black uppercase tracking-[0.16em] text-[#0260fe]">
+                    Cazadores de ofertas de viaje
+                  </span>
+                </div>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <button
-                  type="button"
-                  onClick={scrollToOffers}
-                  className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#ff6600] px-7 py-4 text-sm font-black text-white shadow-lg transition duration-300 hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-xl"
-                >
-                  <FaPlane />
-                  Explorar ofertas
-                </button>
+                {/* Título */}
 
-                <a
-                  href="https://wa.me/529984954637?text=Hola,%20quiero%20cotizar%20un%20viaje.%0A%0ADestino:%20%0AFechas:%20%0ACiudad%20de%20salida:%20%0ANúmero%20de%20viajeros:%20"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/30 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur transition duration-300 hover:bg-white hover:text-[#023e73]"
-                >
-                  <FaWhatsapp className="text-lg" />
-                  Cotizar por WhatsApp
-                </a>
+                <h1 className="mt-7 max-w-[780px] text-[2.8rem] font-black leading-[0.98] tracking-[-0.045em] text-[#023e73] sm:text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.8rem]">
+                  Viaja más.
+                  <span className="block text-[#0260fe]">Paga menos.</span>
+                  <span className="mt-2 block">Disfruta más.</span>
+                </h1>
+
+                {/* Descripción */}
+
+                <p className="mt-7 max-w-[650px] text-base font-medium leading-8 text-slate-600 sm:text-lg">
+                  Encontramos hoteles, paquetes, vuelos y experiencias para
+                  ayudarte a descubrir mejores opciones para tus próximas
+                  vacaciones.
+                </p>
+
+                {/* Botones */}
+
+                <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                  <button
+                    type="button"
+                    onClick={scrollToOffers}
+                    className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0260fe] px-8 py-4 text-sm font-black text-white shadow-[0_15px_35px_rgba(2,96,254,0.25)] transition duration-300 hover:-translate-y-1 hover:bg-[#014fd3] hover:shadow-[0_20px_45px_rgba(2,96,254,0.32)]"
+                  >
+                    Ver ofertas
+                    <FaArrowRight className="text-xs transition duration-300 group-hover:translate-x-1" />
+                  </button>
+
+                  <a
+                    href="https://wa.me/529984954637?text=Hola,%20quiero%20cotizar%20un%20viaje.%0A%0ADestino:%20%0AFechas:%20%0ACiudad%20de%20salida:%20%0ANúmero%20de%20viajeros:%20"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-3 rounded-2xl border-2 border-slate-200 bg-white px-8 py-4 text-sm font-black text-[#023e73] shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#25D366] hover:text-[#18a94b]"
+                  >
+                    <FaWhatsapp className="text-xl text-[#25D366]" />
+                    Cotizar por WhatsApp
+                  </a>
+                </div>
+
+                {/* Beneficios */}
+
+                <div className="mt-10 flex flex-wrap gap-x-7 gap-y-4">
+                  {[
+                    "Atención personalizada",
+                    "Pagos flexibles",
+                    "Ofertas seleccionadas",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-2.5 text-sm font-bold text-slate-600"
+                    >
+                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-green-50 text-green-600">
+                        <FaCheck className="text-[10px]" />
+                      </span>
+
+                      {item}
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div className="mt-8 flex flex-col gap-3 text-sm font-semibold text-white/75 sm:flex-row sm:flex-wrap sm:gap-x-7">
-                <span className="flex items-center gap-2">
-                  <CheckIcon />
-                  Atención personalizada
-                </span>
+              {/* =========================================== */}
+              {/* COLUMNA DERECHA */}
+              {/* =========================================== */}
 
-                <span className="flex items-center gap-2">
-                  <CheckIcon />
-                  Ofertas reales
-                </span>
+              <div className="relative mx-auto w-full max-w-[590px] lg:mx-0">
+                {/* Glow detrás */}
 
-                <span className="flex items-center gap-2">
-                  <CheckIcon />
-                  Pagos flexibles
-                </span>
+                <div className="absolute -inset-8 rounded-[50px] bg-gradient-to-br from-[#0260fe]/10 via-[#3794ff]/5 to-[#ff6600]/10 blur-2xl" />
+
+                {/* Panel principal */}
+
+                <div className="relative overflow-hidden rounded-[36px] border border-white bg-white/90 p-5 shadow-[0_30px_90px_rgba(2,62,115,0.14)] backdrop-blur-xl sm:p-7">
+                  {/* Encabezado */}
+
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#0260fe]">
+                        Encuentra tu próxima aventura
+                      </span>
+
+                      <h2 className="mt-2 text-2xl font-black text-[#023e73] sm:text-3xl">
+                        ¿Qué quieres descubrir?
+                      </h2>
+                    </div>
+
+                    <div className="hidden h-14 w-14 items-center justify-center rounded-2xl bg-[#0260fe] text-xl text-white shadow-lg sm:flex">
+                      <FaPlane />
+                    </div>
+                  </div>
+
+                  {/* OPCIONES */}
+
+                  <div className="mt-7 space-y-3">
+                    {/* Paquetes */}
+
+                    <Link
+                      to="/paquetes"
+                      className="group flex items-center gap-4 rounded-[22px] border border-slate-100 bg-[#f7faff] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#0260fe]/20 hover:bg-white hover:shadow-lg"
+                    >
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#0260fe] text-xl text-white shadow-md">
+                        <FaSuitcase />
+                      </div>
+
+                      <div className="min-w-0">
+                        <h3 className="font-black text-[#023e73]">
+                          Paquetes de viaje
+                        </h3>
+
+                        <p className="mt-1 text-sm text-slate-500">
+                          Vuelo + hotel en una sola reservación
+                        </p>
+                      </div>
+
+                      <span className="ml-auto flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-[#0260fe] shadow-sm transition group-hover:bg-[#0260fe] group-hover:text-white">
+                        <FaArrowRight className="text-xs" />
+                      </span>
+                    </Link>
+
+                    {/* Hoteles */}
+
+                    <Link
+                      to="/hoteles"
+                      className="group flex items-center gap-4 rounded-[22px] border border-slate-100 bg-[#f7fbff] p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-200 hover:bg-white hover:shadow-lg"
+                    >
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-cyan-500 text-xl text-white shadow-md">
+                        <FaHotel />
+                      </div>
+
+                      <div className="min-w-0">
+                        <h3 className="font-black text-[#023e73]">Hoteles</h3>
+
+                        <p className="mt-1 text-sm text-slate-500">
+                          Resorts y opciones Todo Incluido
+                        </p>
+                      </div>
+
+                      <span className="ml-auto flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-cyan-600 shadow-sm transition group-hover:bg-cyan-500 group-hover:text-white">
+                        <FaArrowRight className="text-xs" />
+                      </span>
+                    </Link>
+
+                    {/* Tours */}
+
+                    <Link
+                      to="/tours"
+                      className="group flex items-center gap-4 rounded-[22px] border border-slate-100 bg-[#fffaf5] p-5 transition duration-300 hover:-translate-y-1 hover:border-orange-200 hover:bg-white hover:shadow-lg"
+                    >
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#ff6600] text-xl text-white shadow-md">
+                        <GiMayanPyramid />
+                      </div>
+
+                      <div className="min-w-0">
+                        <h3 className="font-black text-[#023e73]">
+                          Tours y experiencias
+                        </h3>
+
+                        <p className="mt-1 text-sm text-slate-500">
+                          Parques, actividades y aventuras
+                        </p>
+                      </div>
+
+                      <span className="ml-auto flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-[#ff6600] shadow-sm transition group-hover:bg-[#ff6600] group-hover:text-white">
+                        <FaArrowRight className="text-xs" />
+                      </span>
+                    </Link>
+                  </div>
+
+                  {/* Mensaje inferior */}
+
+                  <div className="relative mt-5 overflow-hidden rounded-[24px] bg-[#023e73] p-5 text-white">
+                    <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#0260fe]/50 blur-2xl" />
+
+                    <div className="absolute -bottom-14 left-10 h-28 w-28 rounded-full bg-[#ff6600]/20 blur-2xl" />
+
+                    <div className="relative flex items-center gap-4">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10">
+                        <FaUmbrellaBeach className="text-xl text-[#ff9a4a]" />
+                      </div>
+
+                      <div>
+                        <p className="text-xs font-bold text-white/50">
+                          No sabes qué elegir
+                        </p>
+
+                        <p className="mt-1 font-black">
+                          Nosotros cazamos la oferta por ti.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* =============================================== */}
+            {/* BARRA DE CONFIANZA */}
+            {/* =============================================== */}
+
+            <div className="mt-12 border-t border-slate-200/80 pt-8">
+              <div className="grid gap-6 sm:grid-cols-3">
+                <div className="flex items-center justify-center gap-3 sm:justify-start lg:justify-center">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-[#0260fe]">
+                    <FaShieldAlt />
+                  </div>
+
+                  <div>
+                    <p className="text-sm font-black text-[#023e73]">
+                      Reserva confiable
+                    </p>
+
+                    <p className="mt-0.5 text-xs text-slate-500">
+                      Proveedores reconocidos
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-3 sm:justify-start lg:justify-center">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-[#ff6600]">
+                    <FaCreditCard />
+                  </div>
+
+                  <div>
+                    <p className="text-sm font-black text-[#023e73]">
+                      Pagos flexibles
+                    </p>
+
+                    <p className="mt-0.5 text-xs text-slate-500">
+                      Promociones disponibles
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-3 sm:justify-start lg:justify-center">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-50 text-green-600">
+                    <FaHeadset />
+                  </div>
+
+                  <div>
+                    <p className="text-sm font-black text-[#023e73]">
+                      Atención personalizada
+                    </p>
+
+                    <p className="mt-0.5 text-xs text-slate-500">
+                      Estamos para ayudarte
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
+        {/* ================================================= */}
         {/* CATEGORÍAS */}
+        {/* ================================================= */}
+
         <section className="px-4 pb-14 pt-16 sm:px-6 md:pb-20 md:pt-24 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-3xl text-center">
@@ -271,7 +560,10 @@ export default function HomeNew() {
           </div>
         </section>
 
+        {/* ================================================= */}
         {/* OFERTAS DESTACADAS */}
+        {/* ================================================= */}
+
         <section
           id="ofertas"
           className="scroll-mt-24 bg-white px-4 py-16 sm:px-6 md:py-24 lg:px-8"
@@ -319,7 +611,10 @@ export default function HomeNew() {
           </div>
         </section>
 
+        {/* ================================================= */}
         {/* DESTINOS */}
+        {/* ================================================= */}
+
         <section className="px-4 py-16 sm:px-6 md:py-24 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-3xl text-center">
@@ -380,7 +675,10 @@ export default function HomeNew() {
           </div>
         </section>
 
+        {/* ================================================= */}
         {/* CÓMO FUNCIONA */}
+        {/* ================================================= */}
+
         <section className="bg-[#023e73] px-4 py-16 text-white sm:px-6 md:py-24 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-3xl text-center">
@@ -421,7 +719,10 @@ export default function HomeNew() {
           </div>
         </section>
 
+        {/* ================================================= */}
         {/* BENEFICIOS */}
+        {/* ================================================= */}
+
         <section className="bg-white px-4 py-16 sm:px-6 md:py-24 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
@@ -448,6 +749,7 @@ export default function HomeNew() {
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">
                       <CheckIcon />
+
                       <p className="font-semibold text-slate-700">{item}</p>
                     </div>
                   ))}
@@ -490,7 +792,10 @@ export default function HomeNew() {
           </div>
         </section>
 
+        {/* ================================================= */}
         {/* CTA FINAL */}
+        {/* ================================================= */}
+
         <section className="px-4 pb-16 sm:px-6 md:pb-24 lg:px-8">
           <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.2rem] bg-gradient-to-r from-[#0260fe] via-[#086ee9] to-[#3794ff] p-8 text-white shadow-2xl sm:p-12 lg:p-16">
             <div className="absolute -right-24 -top-32 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
