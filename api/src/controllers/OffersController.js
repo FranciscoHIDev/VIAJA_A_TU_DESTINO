@@ -254,15 +254,29 @@ const routerGetByIdOffer = async (req, res) => {
   try {
     const { id } = req.params;
 
-    if (!isValidId(id)) {
+    const identifier = String(id || "").trim();
+
+    if (!identifier) {
       return res.status(400).json({
-        message: "El identificador de la oferta no es válido.",
+        message: "Debes indicar una oferta.",
       });
     }
 
-    const offer = await Offers.findById(id).populate("destination", {
-      name: 1,
-    });
+    let offer;
+
+    // Si recibimos un ObjectId de MongoDB
+    if (isValidId(identifier)) {
+      offer = await Offers.findById(identifier).populate("destination", {
+        name: 1,
+      });
+    } else {
+      // Si no es ObjectId, buscamos por slug
+      offer = await Offers.findOne({
+        slug: identifier.toLowerCase(),
+      }).populate("destination", {
+        name: 1,
+      });
+    }
 
     if (!offer) {
       return res.status(404).json({
@@ -299,25 +313,27 @@ const routerPutOffer = async (req, res) => {
       prepared.destinationName,
     );
 
-    const offer = await Offers.findByIdAndUpdate(
-      id,
-      {
-        $set: {
-          ...prepared.offer,
-          destination: destination._id,
-        },
-      },
-      {
-        new: true,
-        runValidators: true,
-      },
-    ).populate("destination", { name: 1 });
+    const offer = await Offers.findById(id);
 
     if (!offer) {
       return res.status(404).json({
         message: "Oferta no encontrada.",
       });
     }
+
+    // Actualizamos los datos
+    offer.set({
+      ...prepared.offer,
+      destination: destination._id,
+    });
+
+    // IMPORTANTE:
+    // save() ejecutará el middleware que genera/actualiza el slug
+    await offer.save();
+
+    await offer.populate("destination", {
+      name: 1,
+    });
 
     return res.status(200).json(offer);
   } catch (error) {
