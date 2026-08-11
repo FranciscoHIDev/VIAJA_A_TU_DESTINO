@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
+import SEO from "../../components/SEO/SEO";
 
 const privacySections = [
   {
@@ -228,104 +229,112 @@ function ShieldIcon() {
 
 function NoticeOfPrivacy() {
   return (
-    <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
-      <header className="relative z-50">
-        <NavBar />
-      </header>
+    <React.Fragment>
+      <SEO
+        title="Aviso de Privacidad"
+        description="Consulta el Aviso de Privacidad de Viaja a tu Destino."
+        url="https://www.viajaatudestino.com/aviso-privacidad"
+      />
 
-      <main className="flex-1">
-        {/* Hero */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-[#023e73] via-[#0260fe] to-[#3794ff] px-5 py-16 text-white md:py-24">
-          <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-          <div className="absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-[#ff6600]/20 blur-3xl" />
+      <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
+        <header className="relative z-50">
+          <NavBar />
+        </header>
 
-          <div className="relative mx-auto max-w-6xl">
-            <div className="flex max-w-3xl flex-col items-start">
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur">
-                <ShieldIcon />
-              </div>
+        <main className="flex-1">
+          {/* Hero */}
+          <section className="relative overflow-hidden bg-gradient-to-br from-[#023e73] via-[#0260fe] to-[#3794ff] px-5 py-16 text-white md:py-24">
+            <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+            <div className="absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-[#ff6600]/20 blur-3xl" />
 
-              <span className="mb-4 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] backdrop-blur">
-                Protección de datos personales
-              </span>
-
-              <h1 className="text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
-                Aviso de privacidad
-              </h1>
-
-              <p className="mt-6 max-w-2xl text-base leading-8 text-white/85 md:text-lg">
-                Conoce cómo Viaja a tu Destino obtiene, utiliza, protege y
-                administra la información personal proporcionada por sus
-                clientes y usuarios.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Contenido principal */}
-        <section className="px-4 py-10 sm:px-6 md:py-16 lg:px-8">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
-            {/* Índice */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-24 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                <p className="mb-5 text-xs font-black uppercase tracking-[0.18em] text-[#0260fe]">
-                  Contenido
-                </p>
-
-                <nav aria-label="Secciones del aviso de privacidad">
-                  <ul className="space-y-2">
-                    {privacySections.map((section) => (
-                      <li key={section.id}>
-                        <a
-                          href={`#${section.id}`}
-                          className="group flex items-start gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-600 transition hover:bg-[#0260fe]/5 hover:text-[#0260fe]"
-                        >
-                          <span className="mt-0.5 text-xs font-black text-[#ff6600]">
-                            {section.number}
-                          </span>
-
-                          <span>{section.title}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </div>
-            </aside>
-
-            {/* Aviso */}
-            <article>
-              <div className="mb-8 rounded-3xl border border-[#0260fe]/10 bg-white p-6 shadow-sm sm:p-8">
-                <div className="flex items-start gap-4">
-                  <div className="mt-1 h-10 w-1 flex-none rounded-full bg-[#ff6600]" />
-
-                  <p className="text-base leading-8 text-slate-700 md:text-lg">
-                    De conformidad con lo dispuesto por la legislación aplicable
-                    en materia de protección de datos personales en posesión de
-                    particulares, se emite el presente Aviso de Privacidad.
-                  </p>
+            <div className="relative mx-auto max-w-6xl">
+              <div className="flex max-w-3xl flex-col items-start">
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur">
+                  <ShieldIcon />
                 </div>
+
+                <span className="mb-4 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] backdrop-blur">
+                  Protección de datos personales
+                </span>
+
+                <h1 className="text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
+                  Aviso de privacidad
+                </h1>
+
+                <p className="mt-6 max-w-2xl text-base leading-8 text-white/85 md:text-lg">
+                  Conoce cómo Viaja a tu Destino obtiene, utiliza, protege y
+                  administra la información personal proporcionada por sus
+                  clientes y usuarios.
+                </p>
               </div>
+            </div>
+          </section>
 
-              <div className="space-y-6">
-                {privacySections.map((section) => (
-                  <section
-                    key={section.id}
-                    id={section.id}
-                    className="scroll-mt-28 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:p-8 md:p-10"
-                  >
-                    <div className="mb-7 flex flex-col gap-4 border-b border-slate-100 pb-6 sm:flex-row sm:items-start">
-                      <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[#0260fe]/10 text-sm font-black text-[#0260fe]">
-                        {section.number}
-                      </span>
+          {/* Contenido principal */}
+          <section className="px-4 py-10 sm:px-6 md:py-16 lg:px-8">
+            <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
+              {/* Índice */}
+              <aside className="hidden lg:block">
+                <div className="sticky top-24 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <p className="mb-5 text-xs font-black uppercase tracking-[0.18em] text-[#0260fe]">
+                    Contenido
+                  </p>
 
-                      <h2 className="text-xl font-black leading-tight text-[#023e73] sm:text-2xl">
-                        {section.title}
-                      </h2>
-                    </div>
+                  <nav aria-label="Secciones del aviso de privacidad">
+                    <ul className="space-y-2">
+                      {privacySections.map((section) => (
+                        <li key={section.id}>
+                          <a
+                            href={`#${section.id}`}
+                            className="group flex items-start gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-600 transition hover:bg-[#0260fe]/5 hover:text-[#0260fe]"
+                          >
+                            <span className="mt-0.5 text-xs font-black text-[#ff6600]">
+                              {section.number}
+                            </span>
 
-                    <div
-                      className="
+                            <span>{section.title}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                </div>
+              </aside>
+
+              {/* Aviso */}
+              <article>
+                <div className="mb-8 rounded-3xl border border-[#0260fe]/10 bg-white p-6 shadow-sm sm:p-8">
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1 h-10 w-1 flex-none rounded-full bg-[#ff6600]" />
+
+                    <p className="text-base leading-8 text-slate-700 md:text-lg">
+                      De conformidad con lo dispuesto por la legislación
+                      aplicable en materia de protección de datos personales en
+                      posesión de particulares, se emite el presente Aviso de
+                      Privacidad.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  {privacySections.map((section) => (
+                    <section
+                      key={section.id}
+                      id={section.id}
+                      className="scroll-mt-28 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:p-8 md:p-10"
+                    >
+                      <div className="mb-7 flex flex-col gap-4 border-b border-slate-100 pb-6 sm:flex-row sm:items-start">
+                        <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[#0260fe]/10 text-sm font-black text-[#0260fe]">
+                          {section.number}
+                        </span>
+
+                        <h2 className="text-xl font-black leading-tight text-[#023e73] sm:text-2xl">
+                          {section.title}
+                        </h2>
+                      </div>
+
+                      <div
+                        className="
                         space-y-5 text-base leading-8 text-slate-600
                         [&_strong]:font-bold [&_strong]:text-slate-800
                         [&_ul]:space-y-3
@@ -340,54 +349,55 @@ function NoticeOfPrivacy() {
                         [&_li]:before:rounded-full
                         [&_li]:before:bg-[#ff6600]
                       "
-                    >
-                      {section.content}
-                    </div>
-                  </section>
-                ))}
-              </div>
-
-              {/* Contacto */}
-              <section className="mt-8 overflow-hidden rounded-3xl bg-[#023e73] p-7 text-white shadow-xl sm:p-10">
-                <div className="flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-[0.2em] text-[#79b5ff]">
-                      Atención de datos personales
-                    </p>
-
-                    <h2 className="mt-3 text-2xl font-black sm:text-3xl">
-                      ¿Tienes alguna solicitud?
-                    </h2>
-
-                    <p className="mt-3 max-w-2xl leading-7 text-white/75">
-                      Puedes comunicarte con nosotros para ejercer tus derechos
-                      relacionados con el acceso, rectificación, cancelación u
-                      oposición de tus datos personales.
-                    </p>
-                  </div>
-
-                  <a
-                    href="mailto:contacto@viajaatudestino.com?subject=Solicitud relacionada con datos personales"
-                    className="inline-flex flex-none items-center justify-center rounded-2xl bg-[#ff6600] px-6 py-4 text-center text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-xl"
-                  >
-                    Enviar solicitud
-                  </a>
+                      >
+                        {section.content}
+                      </div>
+                    </section>
+                  ))}
                 </div>
-              </section>
 
-              <p className="mt-8 text-center text-sm leading-6 text-slate-500">
-                Viaja a tu Destino protege la información proporcionada por sus
-                clientes y usuarios.
-              </p>
-            </article>
-          </div>
-        </section>
-      </main>
+                {/* Contacto */}
+                <section className="mt-8 overflow-hidden rounded-3xl bg-[#023e73] p-7 text-white shadow-xl sm:p-10">
+                  <div className="flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.2em] text-[#79b5ff]">
+                        Atención de datos personales
+                      </p>
 
-      <footer className="mt-auto">
-        <Footer />
-      </footer>
-    </div>
+                      <h2 className="mt-3 text-2xl font-black sm:text-3xl">
+                        ¿Tienes alguna solicitud?
+                      </h2>
+
+                      <p className="mt-3 max-w-2xl leading-7 text-white/75">
+                        Puedes comunicarte con nosotros para ejercer tus
+                        derechos relacionados con el acceso, rectificación,
+                        cancelación u oposición de tus datos personales.
+                      </p>
+                    </div>
+
+                    <a
+                      href="mailto:contacto@viajaatudestino.com?subject=Solicitud relacionada con datos personales"
+                      className="inline-flex flex-none items-center justify-center rounded-2xl bg-[#ff6600] px-6 py-4 text-center text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-xl"
+                    >
+                      Enviar solicitud
+                    </a>
+                  </div>
+                </section>
+
+                <p className="mt-8 text-center text-sm leading-6 text-slate-500">
+                  Viaja a tu Destino protege la información proporcionada por
+                  sus clientes y usuarios.
+                </p>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <footer className="mt-auto">
+          <Footer />
+        </footer>
+      </div>
+    </React.Fragment>
   );
 }
 

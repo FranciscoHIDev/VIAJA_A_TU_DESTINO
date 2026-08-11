@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
+import SEO from "../../components/SEO/SEO";
 
 const termsSections = [
   {
@@ -642,158 +643,165 @@ function MailIcon() {
 
 function TermsAndConditions() {
   return (
-    <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
-      <header className="relative z-50">
-        <NavBar />
-      </header>
+    <React.Fragment>
+      <SEO
+        title="Términos y Condiciones"
+        description="Consulta los Términos y Condiciones de Viaja a tu Destino aplicables al uso del sitio, promociones, cotizaciones y servicios de viaje."
+        url="https://www.viajaatudestino.com/terminos-y-condiciones"
+      />
 
-      <main className="flex-1">
-        {/* Hero */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-[#023e73] via-[#0260fe] to-[#3794ff] px-5 py-16 text-white md:py-24">
-          <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-          <div className="absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-[#ff6600]/20 blur-3xl" />
-          <div className="absolute right-[12%] top-12 h-24 w-24 rounded-full border border-white/10" />
+      <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
+        <header className="relative z-50">
+          <NavBar />
+        </header>
 
-          <div className="relative mx-auto max-w-6xl">
-            <div className="max-w-3xl">
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur">
-                <DocumentIcon />
-              </div>
+        <main className="flex-1">
+          {/* Hero */}
+          <section className="relative overflow-hidden bg-gradient-to-br from-[#023e73] via-[#0260fe] to-[#3794ff] px-5 py-16 text-white md:py-24">
+            <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+            <div className="absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-[#ff6600]/20 blur-3xl" />
+            <div className="absolute right-[12%] top-12 h-24 w-24 rounded-full border border-white/10" />
 
-              <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] backdrop-blur">
-                Información legal del servicio
-              </span>
+            <div className="relative mx-auto max-w-6xl">
+              <div className="max-w-3xl">
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur">
+                  <DocumentIcon />
+                </div>
 
-              <h1 className="mt-5 text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
-                Términos y condiciones
-              </h1>
-
-              <p className="mt-6 max-w-2xl text-base leading-8 text-white/85 md:text-lg">
-                Conoce las condiciones aplicables al uso de nuestra página, las
-                cotizaciones y la contratación de servicios turísticos.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3 text-sm font-semibold text-white/80">
-                <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
-                  Precios y disponibilidad
+                <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] backdrop-blur">
+                  Información legal del servicio
                 </span>
 
-                <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
-                  Reservaciones
-                </span>
+                <h1 className="mt-5 text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
+                  Términos y condiciones
+                </h1>
 
-                <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
-                  Cambios y cancelaciones
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Contenido */}
-        <section className="px-4 py-10 sm:px-6 md:py-16 lg:px-8">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[300px_minmax(0,1fr)]">
-            {/* Índice */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                <p className="mb-5 text-xs font-black uppercase tracking-[0.18em] text-[#0260fe]">
-                  Contenido
+                <p className="mt-6 max-w-2xl text-base leading-8 text-white/85 md:text-lg">
+                  Conoce las condiciones aplicables al uso de nuestra página,
+                  las cotizaciones y la contratación de servicios turísticos.
                 </p>
 
-                <nav aria-label="Secciones de los términos y condiciones">
-                  <ul className="space-y-1.5">
-                    {termsSections.map((section) => (
-                      <li key={section.id}>
-                        <a
-                          href={`#${section.id}`}
-                          className="group flex items-start gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-[#0260fe]/5 hover:text-[#0260fe]"
-                        >
-                          <span className="mt-0.5 text-xs font-black text-[#ff6600]">
-                            {section.number}
-                          </span>
-
-                          <span>{section.title}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </div>
-            </aside>
-
-            <article>
-              {/* Introducción */}
-              <div className="mb-8 overflow-hidden rounded-3xl border border-[#0260fe]/10 bg-white shadow-sm">
-                <div className="h-1.5 bg-gradient-to-r from-[#0260fe] to-[#ff6600]" />
-
-                <div className="p-6 sm:p-8">
-                  <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-                    <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[#0260fe]/10 text-[#0260fe]">
-                      <DocumentIcon />
-                    </div>
-
-                    <div>
-                      <h2 className="text-xl font-black text-[#023e73] sm:text-2xl">
-                        Lee antes de reservar
-                      </h2>
-
-                      <p className="mt-3 text-base leading-8 text-slate-600">
-                        Antes de realizar un pago, verifica el precio total, los
-                        servicios incluidos, las fechas, los nombres de los
-                        viajeros y las políticas de cambios, cancelaciones y
-                        reembolsos.
-                      </p>
-
-                      <p className="mt-3 text-sm font-semibold text-slate-500">
-                        Última actualización: 26 de julio de 2026.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Aviso importante */}
-              <div className="mb-8 rounded-3xl border border-orange-200 bg-orange-50 p-6 sm:p-8">
-                <div className="flex items-start gap-4">
-                  <span className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-[#ff6600] text-lg font-black text-white">
-                    !
+                <div className="mt-8 flex flex-wrap gap-3 text-sm font-semibold text-white/80">
+                  <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
+                    Precios y disponibilidad
                   </span>
 
-                  <div>
-                    <h2 className="font-black text-[#9a3c00]">
-                      Condiciones particulares de cada reservación
-                    </h2>
+                  <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
+                    Reservaciones
+                  </span>
 
-                    <p className="mt-2 leading-7 text-[#804000]">
-                      Además de estos términos generales, cada hotel, vuelo,
-                      paquete, tour o traslado puede tener políticas
-                      específicas. Las condiciones mostradas antes del pago
-                      forman parte de la contratación.
-                    </p>
-                  </div>
+                  <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
+                    Cambios y cancelaciones
+                  </span>
                 </div>
               </div>
+            </div>
+          </section>
 
-              {/* Secciones */}
-              <div className="space-y-6">
-                {termsSections.map((section) => (
-                  <section
-                    key={section.id}
-                    id={section.id}
-                    className="scroll-mt-28 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:p-8 md:p-10"
-                  >
-                    <div className="mb-7 flex flex-col gap-4 border-b border-slate-100 pb-6 sm:flex-row sm:items-start">
-                      <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[#0260fe]/10 text-sm font-black text-[#0260fe]">
-                        {section.number}
-                      </span>
+          {/* Contenido */}
+          <section className="px-4 py-10 sm:px-6 md:py-16 lg:px-8">
+            <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[300px_minmax(0,1fr)]">
+              {/* Índice */}
+              <aside className="hidden lg:block">
+                <div className="sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <p className="mb-5 text-xs font-black uppercase tracking-[0.18em] text-[#0260fe]">
+                    Contenido
+                  </p>
 
-                      <h2 className="text-xl font-black leading-tight text-[#023e73] sm:text-2xl">
-                        {section.title}
-                      </h2>
+                  <nav aria-label="Secciones de los términos y condiciones">
+                    <ul className="space-y-1.5">
+                      {termsSections.map((section) => (
+                        <li key={section.id}>
+                          <a
+                            href={`#${section.id}`}
+                            className="group flex items-start gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-[#0260fe]/5 hover:text-[#0260fe]"
+                          >
+                            <span className="mt-0.5 text-xs font-black text-[#ff6600]">
+                              {section.number}
+                            </span>
+
+                            <span>{section.title}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                </div>
+              </aside>
+
+              <article>
+                {/* Introducción */}
+                <div className="mb-8 overflow-hidden rounded-3xl border border-[#0260fe]/10 bg-white shadow-sm">
+                  <div className="h-1.5 bg-gradient-to-r from-[#0260fe] to-[#ff6600]" />
+
+                  <div className="p-6 sm:p-8">
+                    <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+                      <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[#0260fe]/10 text-[#0260fe]">
+                        <DocumentIcon />
+                      </div>
+
+                      <div>
+                        <h2 className="text-xl font-black text-[#023e73] sm:text-2xl">
+                          Lee antes de reservar
+                        </h2>
+
+                        <p className="mt-3 text-base leading-8 text-slate-600">
+                          Antes de realizar un pago, verifica el precio total,
+                          los servicios incluidos, las fechas, los nombres de
+                          los viajeros y las políticas de cambios, cancelaciones
+                          y reembolsos.
+                        </p>
+
+                        <p className="mt-3 text-sm font-semibold text-slate-500">
+                          Última actualización: 26 de julio de 2026.
+                        </p>
+                      </div>
                     </div>
+                  </div>
+                </div>
 
-                    <div
-                      className="
+                {/* Aviso importante */}
+                <div className="mb-8 rounded-3xl border border-orange-200 bg-orange-50 p-6 sm:p-8">
+                  <div className="flex items-start gap-4">
+                    <span className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-[#ff6600] text-lg font-black text-white">
+                      !
+                    </span>
+
+                    <div>
+                      <h2 className="font-black text-[#9a3c00]">
+                        Condiciones particulares de cada reservación
+                      </h2>
+
+                      <p className="mt-2 leading-7 text-[#804000]">
+                        Además de estos términos generales, cada hotel, vuelo,
+                        paquete, tour o traslado puede tener políticas
+                        específicas. Las condiciones mostradas antes del pago
+                        forman parte de la contratación.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Secciones */}
+                <div className="space-y-6">
+                  {termsSections.map((section) => (
+                    <section
+                      key={section.id}
+                      id={section.id}
+                      className="scroll-mt-28 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:p-8 md:p-10"
+                    >
+                      <div className="mb-7 flex flex-col gap-4 border-b border-slate-100 pb-6 sm:flex-row sm:items-start">
+                        <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[#0260fe]/10 text-sm font-black text-[#0260fe]">
+                          {section.number}
+                        </span>
+
+                        <h2 className="text-xl font-black leading-tight text-[#023e73] sm:text-2xl">
+                          {section.title}
+                        </h2>
+                      </div>
+
+                      <div
+                        className="
                         space-y-5 text-base leading-8 text-slate-600
                         [&_strong]:font-bold
                         [&_strong]:text-slate-800
@@ -809,52 +817,53 @@ function TermsAndConditions() {
                         [&_li]:before:rounded-full
                         [&_li]:before:bg-[#ff6600]
                       "
-                    >
-                      {section.content}
-                    </div>
-                  </section>
-                ))}
-              </div>
-
-              {/* Contacto */}
-              <section className="relative mt-8 overflow-hidden rounded-3xl bg-[#023e73] p-7 text-white shadow-xl sm:p-10">
-                <div className="absolute -right-16 -top-20 h-52 w-52 rounded-full bg-[#0260fe]/40 blur-3xl" />
-                <div className="absolute -bottom-24 -left-12 h-48 w-48 rounded-full bg-[#ff6600]/20 blur-3xl" />
-
-                <div className="relative flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-[0.2em] text-[#79b5ff]">
-                      Atención al cliente
-                    </p>
-
-                    <h2 className="mt-3 text-2xl font-black sm:text-3xl">
-                      ¿Tienes dudas sobre una reservación?
-                    </h2>
-
-                    <p className="mt-3 max-w-2xl leading-7 text-white/75">
-                      Escríbenos indicando tu nombre, número de reservación y
-                      una descripción clara de tu solicitud.
-                    </p>
-                  </div>
-
-                  <a
-                    href="mailto:contacto@viajaatudestino.com?subject=Aclaración sobre términos o reservación"
-                    className="inline-flex flex-none items-center justify-center gap-3 rounded-2xl bg-[#ff6600] px-6 py-4 text-center text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-xl"
-                  >
-                    <MailIcon />
-                    Solicitar aclaración
-                  </a>
+                      >
+                        {section.content}
+                      </div>
+                    </section>
+                  ))}
                 </div>
-              </section>
-            </article>
-          </div>
-        </section>
-      </main>
 
-      <footer className="mt-auto">
-        <Footer />
-      </footer>
-    </div>
+                {/* Contacto */}
+                <section className="relative mt-8 overflow-hidden rounded-3xl bg-[#023e73] p-7 text-white shadow-xl sm:p-10">
+                  <div className="absolute -right-16 -top-20 h-52 w-52 rounded-full bg-[#0260fe]/40 blur-3xl" />
+                  <div className="absolute -bottom-24 -left-12 h-48 w-48 rounded-full bg-[#ff6600]/20 blur-3xl" />
+
+                  <div className="relative flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.2em] text-[#79b5ff]">
+                        Atención al cliente
+                      </p>
+
+                      <h2 className="mt-3 text-2xl font-black sm:text-3xl">
+                        ¿Tienes dudas sobre una reservación?
+                      </h2>
+
+                      <p className="mt-3 max-w-2xl leading-7 text-white/75">
+                        Escríbenos indicando tu nombre, número de reservación y
+                        una descripción clara de tu solicitud.
+                      </p>
+                    </div>
+
+                    <a
+                      href="mailto:contacto@viajaatudestino.com?subject=Aclaración sobre términos o reservación"
+                      className="inline-flex flex-none items-center justify-center gap-3 rounded-2xl bg-[#ff6600] px-6 py-4 text-center text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-xl"
+                    >
+                      <MailIcon />
+                      Solicitar aclaración
+                    </a>
+                  </div>
+                </section>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <footer className="mt-auto">
+          <Footer />
+        </footer>
+      </div>
+    </React.Fragment>
   );
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "../../components/Footer/Footer";
 import NavBar from "../../components/NavBar/NavBar";
+import SEO from "../../components/SEO/SEO";
 
 export default function Home() {
   const posts = [
@@ -36,6 +37,11 @@ export default function Home() {
 
   return (
     <>
+      <SEO
+        title="Blog de Viajes, Consejos y Destinos"
+        description="Descubre consejos de viaje, recomendaciones de hoteles, destinos, tours y tips para planear tus próximas vacaciones con Viaja a tu Destino."
+        url="https://www.viajaatudestino.com/blog"
+      />
       <NavBar />
       <div className="bg-white text-gray-800">
         {/* HERO EDITORIAL */}

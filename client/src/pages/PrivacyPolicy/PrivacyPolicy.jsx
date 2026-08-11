@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
+import SEO from "../../components/SEO/SEO";
 
 const policySections = [
   {
@@ -466,136 +467,143 @@ function MailIcon() {
 
 function PrivacyPolicy() {
   return (
-    <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
-      <header className="relative z-50">
-        <NavBar />
-      </header>
+    <React.Fragment>
+      <SEO
+        title="Política de Privacidad"
+        description="Consulta la Política de Privacidad de Viaja a tu Destino y conoce cómo recopilamos, utilizamos y protegemos tu información."
+        url="https://www.viajaatudestino.com/politica-de-privacidad"
+      />
 
-      <main className="flex-1">
-        {/* Hero */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-[#023e73] via-[#0260fe] to-[#3794ff] px-5 py-16 text-white md:py-24">
-          <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-          <div className="absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-[#ff6600]/20 blur-3xl" />
-          <div className="absolute right-[15%] top-10 h-24 w-24 rounded-full border border-white/10" />
+      <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
+        <header className="relative z-50">
+          <NavBar />
+        </header>
 
-          <div className="relative mx-auto max-w-6xl">
-            <div className="max-w-3xl">
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur">
-                <PrivacyIcon />
-              </div>
+        <main className="flex-1">
+          {/* Hero */}
+          <section className="relative overflow-hidden bg-gradient-to-br from-[#023e73] via-[#0260fe] to-[#3794ff] px-5 py-16 text-white md:py-24">
+            <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+            <div className="absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-[#ff6600]/20 blur-3xl" />
+            <div className="absolute right-[15%] top-10 h-24 w-24 rounded-full border border-white/10" />
 
-              <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] backdrop-blur">
-                Seguridad y confidencialidad
-              </span>
+            <div className="relative mx-auto max-w-6xl">
+              <div className="max-w-3xl">
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur">
+                  <PrivacyIcon />
+                </div>
 
-              <h1 className="mt-5 text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
-                Política de privacidad
-              </h1>
-
-              <p className="mt-6 max-w-2xl text-base leading-8 text-white/85 md:text-lg">
-                Conoce cómo recopilamos, utilizamos y protegemos la información
-                personal que compartes con Viaja a tu Destino.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3 text-sm font-semibold text-white/80">
-                <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
-                  Información protegida
+                <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] backdrop-blur">
+                  Seguridad y confidencialidad
                 </span>
 
-                <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
-                  Derechos ARCO
-                </span>
+                <h1 className="mt-5 text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
+                  Política de privacidad
+                </h1>
 
-                <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
-                  Uso responsable
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Contenido */}
-        <section className="px-4 py-10 sm:px-6 md:py-16 lg:px-8">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[290px_minmax(0,1fr)]">
-            {/* Índice lateral */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                <p className="mb-5 text-xs font-black uppercase tracking-[0.18em] text-[#0260fe]">
-                  Contenido
+                <p className="mt-6 max-w-2xl text-base leading-8 text-white/85 md:text-lg">
+                  Conoce cómo recopilamos, utilizamos y protegemos la
+                  información personal que compartes con Viaja a tu Destino.
                 </p>
 
-                <nav aria-label="Secciones de la política de privacidad">
-                  <ul className="space-y-1.5">
-                    {policySections.map((section) => (
-                      <li key={section.id}>
-                        <a
-                          href={`#${section.id}`}
-                          className="group flex items-start gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-[#0260fe]/5 hover:text-[#0260fe]"
-                        >
-                          <span className="mt-0.5 text-xs font-black text-[#ff6600]">
-                            {section.number}
-                          </span>
+                <div className="mt-8 flex flex-wrap gap-3 text-sm font-semibold text-white/80">
+                  <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
+                    Información protegida
+                  </span>
 
-                          <span>{section.title}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
+                  <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
+                    Derechos ARCO
+                  </span>
+
+                  <span className="rounded-full bg-white/10 px-4 py-2 backdrop-blur">
+                    Uso responsable
+                  </span>
+                </div>
               </div>
-            </aside>
+            </div>
+          </section>
 
-            <article>
-              {/* Introducción */}
-              <div className="mb-8 overflow-hidden rounded-3xl border border-[#0260fe]/10 bg-white shadow-sm">
-                <div className="h-1.5 bg-gradient-to-r from-[#0260fe] to-[#ff6600]" />
+          {/* Contenido */}
+          <section className="px-4 py-10 sm:px-6 md:py-16 lg:px-8">
+            <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[290px_minmax(0,1fr)]">
+              {/* Índice lateral */}
+              <aside className="hidden lg:block">
+                <div className="sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <p className="mb-5 text-xs font-black uppercase tracking-[0.18em] text-[#0260fe]">
+                    Contenido
+                  </p>
 
-                <div className="p-6 sm:p-8">
-                  <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-                    <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[#0260fe]/10 text-[#0260fe]">
-                      <PrivacyIcon />
-                    </div>
+                  <nav aria-label="Secciones de la política de privacidad">
+                    <ul className="space-y-1.5">
+                      {policySections.map((section) => (
+                        <li key={section.id}>
+                          <a
+                            href={`#${section.id}`}
+                            className="group flex items-start gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-[#0260fe]/5 hover:text-[#0260fe]"
+                          >
+                            <span className="mt-0.5 text-xs font-black text-[#ff6600]">
+                              {section.number}
+                            </span>
 
-                    <div>
-                      <h2 className="text-xl font-black text-[#023e73] sm:text-2xl">
-                        Tu privacidad es importante
-                      </h2>
+                            <span>{section.title}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                </div>
+              </aside>
 
-                      <p className="mt-3 text-base leading-8 text-slate-600">
-                        Viaja a tu Destino está comprometida con la
-                        confidencialidad, seguridad y tratamiento responsable de
-                        la información proporcionada por sus clientes y
-                        usuarios.
-                      </p>
+              <article>
+                {/* Introducción */}
+                <div className="mb-8 overflow-hidden rounded-3xl border border-[#0260fe]/10 bg-white shadow-sm">
+                  <div className="h-1.5 bg-gradient-to-r from-[#0260fe] to-[#ff6600]" />
 
-                      <p className="mt-3 text-sm font-semibold text-slate-500">
-                        Última actualización: 26 de julio de 2026.
-                      </p>
+                  <div className="p-6 sm:p-8">
+                    <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+                      <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[#0260fe]/10 text-[#0260fe]">
+                        <PrivacyIcon />
+                      </div>
+
+                      <div>
+                        <h2 className="text-xl font-black text-[#023e73] sm:text-2xl">
+                          Tu privacidad es importante
+                        </h2>
+
+                        <p className="mt-3 text-base leading-8 text-slate-600">
+                          Viaja a tu Destino está comprometida con la
+                          confidencialidad, seguridad y tratamiento responsable
+                          de la información proporcionada por sus clientes y
+                          usuarios.
+                        </p>
+
+                        <p className="mt-3 text-sm font-semibold text-slate-500">
+                          Última actualización: 26 de julio de 2026.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Secciones */}
-              <div className="space-y-6">
-                {policySections.map((section) => (
-                  <section
-                    key={section.id}
-                    id={section.id}
-                    className="scroll-mt-28 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:p-8 md:p-10"
-                  >
-                    <div className="mb-7 flex flex-col gap-4 border-b border-slate-100 pb-6 sm:flex-row sm:items-start">
-                      <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[#0260fe]/10 text-sm font-black text-[#0260fe]">
-                        {section.number}
-                      </span>
+                {/* Secciones */}
+                <div className="space-y-6">
+                  {policySections.map((section) => (
+                    <section
+                      key={section.id}
+                      id={section.id}
+                      className="scroll-mt-28 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:p-8 md:p-10"
+                    >
+                      <div className="mb-7 flex flex-col gap-4 border-b border-slate-100 pb-6 sm:flex-row sm:items-start">
+                        <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[#0260fe]/10 text-sm font-black text-[#0260fe]">
+                          {section.number}
+                        </span>
 
-                      <h2 className="text-xl font-black leading-tight text-[#023e73] sm:text-2xl">
-                        {section.title}
-                      </h2>
-                    </div>
+                        <h2 className="text-xl font-black leading-tight text-[#023e73] sm:text-2xl">
+                          {section.title}
+                        </h2>
+                      </div>
 
-                    <div
-                      className="
+                      <div
+                        className="
                         space-y-5 text-base leading-8 text-slate-600
                         [&_strong]:font-bold
                         [&_strong]:text-slate-800
@@ -611,62 +619,64 @@ function PrivacyPolicy() {
                         [&_li]:before:rounded-full
                         [&_li]:before:bg-[#ff6600]
                       "
-                    >
-                      {section.content}
-                    </div>
-                  </section>
-                ))}
-              </div>
-
-              {/* Contacto */}
-              <section className="relative mt-8 overflow-hidden rounded-3xl bg-[#023e73] p-7 text-white shadow-xl sm:p-10">
-                <div className="absolute -right-16 -top-20 h-52 w-52 rounded-full bg-[#0260fe]/40 blur-3xl" />
-                <div className="absolute -bottom-24 -left-12 h-48 w-48 rounded-full bg-[#ff6600]/20 blur-3xl" />
-
-                <div className="relative flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-[0.2em] text-[#79b5ff]">
-                      Contacto de privacidad
-                    </p>
-
-                    <h2 className="mt-3 text-2xl font-black sm:text-3xl">
-                      ¿Necesitas ejercer tus derechos?
-                    </h2>
-
-                    <p className="mt-3 max-w-2xl leading-7 text-white/75">
-                      Envíanos tu solicitud para acceder, rectificar, cancelar,
-                      limitar u oponerte al tratamiento de tus datos personales.
-                    </p>
-
-                    <p className="mt-3 text-sm text-white/60">
-                      Mallorca Norte E-A D-209, Real Valencia, Cancún, Quintana
-                      Roo, C.P. 77539.
-                    </p>
-                  </div>
-
-                  <a
-                    href="mailto:contacto@viajaatudestino.com?subject=Solicitud relacionada con datos personales"
-                    className="inline-flex flex-none items-center justify-center gap-3 rounded-2xl bg-[#ff6600] px-6 py-4 text-center text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-xl"
-                  >
-                    <MailIcon />
-                    Enviar solicitud
-                  </a>
+                      >
+                        {section.content}
+                      </div>
+                    </section>
+                  ))}
                 </div>
-              </section>
 
-              <p className="mt-8 text-center text-sm leading-6 text-slate-500">
-                Al utilizar nuestros canales y servicios, reconoces haber
-                consultado esta Política de Privacidad.
-              </p>
-            </article>
-          </div>
-        </section>
-      </main>
+                {/* Contacto */}
+                <section className="relative mt-8 overflow-hidden rounded-3xl bg-[#023e73] p-7 text-white shadow-xl sm:p-10">
+                  <div className="absolute -right-16 -top-20 h-52 w-52 rounded-full bg-[#0260fe]/40 blur-3xl" />
+                  <div className="absolute -bottom-24 -left-12 h-48 w-48 rounded-full bg-[#ff6600]/20 blur-3xl" />
 
-      <footer className="mt-auto">
-        <Footer />
-      </footer>
-    </div>
+                  <div className="relative flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.2em] text-[#79b5ff]">
+                        Contacto de privacidad
+                      </p>
+
+                      <h2 className="mt-3 text-2xl font-black sm:text-3xl">
+                        ¿Necesitas ejercer tus derechos?
+                      </h2>
+
+                      <p className="mt-3 max-w-2xl leading-7 text-white/75">
+                        Envíanos tu solicitud para acceder, rectificar,
+                        cancelar, limitar u oponerte al tratamiento de tus datos
+                        personales.
+                      </p>
+
+                      <p className="mt-3 text-sm text-white/60">
+                        Mallorca Norte E-A D-209, Real Valencia, Cancún,
+                        Quintana Roo, C.P. 77539.
+                      </p>
+                    </div>
+
+                    <a
+                      href="mailto:contacto@viajaatudestino.com?subject=Solicitud relacionada con datos personales"
+                      className="inline-flex flex-none items-center justify-center gap-3 rounded-2xl bg-[#ff6600] px-6 py-4 text-center text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-xl"
+                    >
+                      <MailIcon />
+                      Enviar solicitud
+                    </a>
+                  </div>
+                </section>
+
+                <p className="mt-8 text-center text-sm leading-6 text-slate-500">
+                  Al utilizar nuestros canales y servicios, reconoces haber
+                  consultado esta Política de Privacidad.
+                </p>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <footer className="mt-auto">
+          <Footer />
+        </footer>
+      </div>
+    </React.Fragment>
   );
 }
 
