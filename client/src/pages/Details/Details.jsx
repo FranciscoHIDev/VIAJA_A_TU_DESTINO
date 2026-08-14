@@ -253,7 +253,7 @@ function Details() {
 
                 {/* TARJETAS */}
 
-                <div className="mt-4 grid grid-cols-3 gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4 lg:flex lg:gap-5">
+                <div className="mt-4 hidden sm:grid grid-cols-3 gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4 lg:flex lg:gap-5">
                   <div className="flex min-w-0 flex-col items-center justify-center rounded-2xl bg-white px-3 py-4 text-center shadow-xl sm:px-5 sm:py-5 lg:px-6">
                     <div className="text-sm text-gray-500">Hasta</div>
 
