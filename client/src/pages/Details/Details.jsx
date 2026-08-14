@@ -796,7 +796,7 @@ Quiero consultar fechas y disponibilidad.`,
 
                 {/* TARJETAS */}
 
-                <div className="mt-10 grid gap-5">
+                <div className="mt-10 grid gap-10">
                   {offer.buyLinks?.length > 0 ? (
                     offer.buyLinks.map((item, index) => {
                       const formattedPrice = Number(
@@ -855,7 +855,7 @@ Quiero consultar fechas y disponibilidad.`,
                                 </div>
 
                                 <div>
-                                  <p className="text-xl font-black text-[#023e73]">
+                                  <p className="text-lg font-black text-[#023e73]">
                                     {item.departureDate}
                                   </p>
 
@@ -885,7 +885,7 @@ Quiero consultar fechas y disponibilidad.`,
                                 </div>
 
                                 <div>
-                                  <p className="text-xl font-black text-[#023e73]">
+                                  <p className="text-lg font-black text-[#023e73]">
                                     {item.returnDate}
                                   </p>
 
@@ -925,12 +925,12 @@ Quiero consultar fechas y disponibilidad.`,
 
                             {/* PRECIO */}
 
-                            <div className="border-b border-gray-100 p-4 sm:p-6 lg:border-b-0 lg:border-r">
+                            <div className="border-b border-gray-100 p-3 sm:p-6 lg:border-b-0 lg:border-r">
                               <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
                                 Precio desde
                               </p>
 
-                              <p className="mt-2 text-3xl font-black text-[#0260fe]">
+                              <p className="mt-2 text-2xl font-black text-[#0260fe]">
                                 ${formattedPrice}
                               </p>
 
@@ -946,7 +946,7 @@ Quiero consultar fechas y disponibilidad.`,
 
                             {/* BOTÓN */}
 
-                            <div className="flex items-center p-4 sm:p-6">
+                            <div className="flex items-center p-2 sm:p-6">
                               <a
                                 href={item.link}
                                 target="_blank"
@@ -979,7 +979,7 @@ Quiero consultar fechas y disponibilidad.`,
 
                           {/* INFORMACIÓN COMPLEMENTARIA */}
 
-                          <div className="flex flex-col items-start justify-between gap-4 border-t border-gray-100 bg-[#f8fafc] px-4 py-4 sm:px-6 lg:flex-row lg:items-center">
+                          <div className="flex flex-col items-start justify-between gap-4 border-t border-gray-100 bg-[#f8fafc] px-4 py-2 sm:px-6 lg:flex-row lg:items-center">
                             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600">
                               <span className="flex items-center gap-2">
                                 <FaCheckCircle className="text-green-500" />
