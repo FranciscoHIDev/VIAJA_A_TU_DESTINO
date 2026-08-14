@@ -51,9 +51,9 @@ function HomeAdmin() {
   }).format(new Date());
 
   return (
-    <React.Fragment>
+    <>
       <SEO
-        title="Administracion"
+        title="Bienvenido al Administrador"
         description="Administración de la agencia de viajes"
         url="https://www.viajaatudestino.com/auth"
         noindex
@@ -186,7 +186,7 @@ function HomeAdmin() {
           </div>
         </div>
       </section>
-    </React.Fragment>
+    </>
   );
 }
 

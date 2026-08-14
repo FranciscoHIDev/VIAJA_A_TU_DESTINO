@@ -47,7 +47,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <SEO
         title="Iniciar sesión al administrador"
         description="Panel de inicio de sesión al administrador de viajes"
@@ -287,6 +287,6 @@ export default function AdminLogin() {
           </div>
         )}
       </main>
-    </React.Fragment>
+    </>
   );
 }
