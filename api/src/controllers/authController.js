@@ -6,7 +6,7 @@ const {
   jwtOptions,
 } = require("../middlewares/requireAdmin");
 
-const SESSION_DURATION = 15 * 60 * 1000;
+const SESSION_DURATION = 8 * 60 *60  * 1000;
 const MAX_LOGIN_ATTEMPTS = 5;
 const LOCK_DURATION = 15 * 60 * 1000;
 
@@ -27,6 +27,7 @@ const cookieOptions = {
   maxAge: SESSION_DURATION,
   path: "/",
 };
+
 
 const clearCookieOptions = {
   httpOnly: true,
@@ -54,7 +55,7 @@ const createSessionToken = (admin) =>
     process.env.JWT_SECRET,
     {
       subject: admin._id.toString(),
-      expiresIn: "15m",
+      expiresIn: "8h",
       ...jwtOptions,
     },
   );
