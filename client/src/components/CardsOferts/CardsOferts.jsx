@@ -9,8 +9,10 @@ function CardsOferts() {
 
   const allOffers = useSelector((state) => state.topOffers || []);
 
-  // Mostrar las ofertas más recientes primero
-  const all = allOffers.slice().reverse();
+  // Ordenar desde la oferta más reciente
+  const all = [...allOffers].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+  );
 
   useEffect(() => {
     dispatch(getAllOffers);
