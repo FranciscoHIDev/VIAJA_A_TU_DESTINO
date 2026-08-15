@@ -112,7 +112,7 @@ function CardTop({
           </p>
         </NavLink>
         <div className="flex justify-between  mt-2">
-          <NavLink to={`/oferta/${_id}`}>
+          <NavLink to={`/oferta/${slug}`}>
             <div className="flex bg-[#ff6600] w-[180px] h-10 justify-center items-center rounded-bl-lg">
               <p className="text-[16px] text-white font-bold">Ver oferta</p>
             </div>
@@ -121,7 +121,7 @@ function CardTop({
             href={`https://wa.me/529984954637?text=${encodeURIComponent(
               `Hola, me interesa la oferta: ${title}.
 
- Oferta: https://www.viajaatudestino.com/oferta/${_id}
+ Oferta: https://www.viajaatudestino.com/oferta/${slug}
 
 Quiero consultar fechas y disponibilidad.`,
             )}`}
