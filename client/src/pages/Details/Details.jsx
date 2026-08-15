@@ -34,9 +34,163 @@ import "slick-carousel/slick/slick-theme.css";
 
 import "../../components/CardsBanners/Carrusel.css";
 
+function DetailsSkeleton() {
+  return (
+    <div className="min-h-screen flex flex-col overflow-x-hidden bg-[#f7f9fc]">
+      <header>
+        <NavBar />
+      </header>
+
+      <main className="flex-1">
+        {/* HERO SKELETON */}
+        <section className="relative overflow-hidden bg-[#dce5ef] shadow-2xl lg:h-[550px]">
+          <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-[#cbd5e1] via-[#dbe3ec] to-[#e7edf3]" />
+
+          <div className="relative z-20 mx-auto flex max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:h-full lg:flex-row lg:items-center lg:justify-between lg:gap-0 lg:px-10 lg:py-0">
+            {/* IZQUIERDA */}
+            <div className="w-full max-w-3xl">
+              <div className="h-9 w-60 max-w-full animate-pulse rounded-full bg-white/70" />
+
+              <div className="mt-6 space-y-3 sm:mt-8">
+                <div className="h-9 w-[92%] animate-pulse rounded-xl bg-white/80 sm:h-12" />
+                <div className="h-9 w-[68%] animate-pulse rounded-xl bg-white/80 sm:h-12" />
+              </div>
+
+              <div className="mt-5 space-y-3 sm:mt-6">
+                <div className="h-5 w-[88%] animate-pulse rounded bg-white/60" />
+                <div className="h-5 w-[72%] animate-pulse rounded bg-white/60" />
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-5 sm:mt-8">
+                <div className="h-5 w-40 animate-pulse rounded bg-white/60" />
+                <div className="h-5 w-28 animate-pulse rounded bg-white/60" />
+              </div>
+
+              <div className="mt-10 hidden grid-cols-3 gap-4 sm:grid lg:flex lg:gap-5">
+                {[1, 2, 3].map((item) => (
+                  <div
+                    key={item}
+                    className="h-24 min-w-0 flex-1 animate-pulse rounded-2xl bg-white/80 shadow-sm lg:w-40 lg:flex-none"
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* TARJETA DERECHA */}
+            <div className="h-auto w-full overflow-hidden rounded-3xl border-4 border-sky-100 bg-white shadow-2xl sm:max-w-[520px] sm:self-center lg:h-[480px] lg:w-[390px] lg:max-w-none lg:shrink-0 lg:self-auto">
+              <div className="h-[70px] animate-pulse bg-blue-200" />
+
+              <div className="space-y-5 p-4 sm:p-5">
+                {[1, 2, 3].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center justify-between gap-4"
+                  >
+                    <div className="h-5 w-24 animate-pulse rounded bg-gray-200" />
+                    <div className="h-5 w-32 animate-pulse rounded bg-gray-200" />
+                  </div>
+                ))}
+
+                <div className="h-px bg-gray-100" />
+
+                <div className="space-y-3 rounded-xl bg-orange-50 p-3">
+                  <div className="h-4 w-44 animate-pulse rounded bg-gray-200" />
+                  <div className="h-4 w-52 animate-pulse rounded bg-gray-200" />
+                  <div className="h-4 w-40 animate-pulse rounded bg-gray-200" />
+                </div>
+
+                <div className="h-14 w-full animate-pulse rounded-xl bg-orange-200" />
+                <div className="h-14 w-full animate-pulse rounded-xl bg-gray-200" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* GALERÍA + DESCRIPCIÓN SKELETON */}
+        <section className="bg-[#f7f9fc] py-14 sm:py-16 lg:pb-20 lg:pt-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-5">
+            <div className="h-8 w-28 animate-pulse rounded-full bg-gray-200" />
+            <div className="mt-3 h-5 w-[520px] max-w-full animate-pulse rounded bg-gray-200" />
+
+            <div className="mt-10 grid h-auto grid-cols-2 gap-2 overflow-hidden rounded-2xl sm:gap-3 lg:h-[400px] lg:grid-cols-4 lg:grid-rows-2 lg:rounded-3xl">
+              <div className="col-span-2 h-[230px] animate-pulse bg-gray-200 sm:h-[360px] lg:row-span-2 lg:h-full" />
+
+              {[1, 2, 3, 4].map((item) => (
+                <div
+                  key={item}
+                  className="h-[135px] animate-pulse bg-gray-200 sm:h-[170px] lg:h-full"
+                />
+              ))}
+            </div>
+
+            <div className="mt-10 rounded-3xl bg-white p-5 shadow-sm sm:mt-12 sm:p-7 lg:p-9">
+              <div className="flex items-center gap-3">
+                <div className="h-12 w-12 animate-pulse rounded-2xl bg-gray-200" />
+                <div className="h-9 w-64 max-w-[70%] animate-pulse rounded bg-gray-200" />
+              </div>
+
+              <div className="mt-7 space-y-4">
+                <div className="h-4 w-full animate-pulse rounded bg-gray-200" />
+                <div className="h-4 w-[96%] animate-pulse rounded bg-gray-200" />
+                <div className="h-4 w-[91%] animate-pulse rounded bg-gray-200" />
+                <div className="h-4 w-[85%] animate-pulse rounded bg-gray-200" />
+                <div className="h-4 w-[62%] animate-pulse rounded bg-gray-200" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FECHAS SKELETON */}
+        <section className="bg-white py-14 sm:py-16 lg:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-5">
+            <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+              <div className="w-full">
+                <div className="h-8 w-40 animate-pulse rounded-full bg-gray-200" />
+                <div className="mt-4 h-10 w-72 max-w-[85%] animate-pulse rounded bg-gray-200" />
+                <div className="mt-3 h-5 w-[520px] max-w-full animate-pulse rounded bg-gray-200" />
+              </div>
+
+              <div className="h-24 w-full animate-pulse rounded-2xl bg-orange-50 sm:w-72" />
+            </div>
+
+            <div className="mt-8 h-24 w-full animate-pulse rounded-2xl bg-blue-50" />
+
+            <div className="mt-10 grid gap-6">
+              {[1, 2].map((row) => (
+                <div
+                  key={row}
+                  className="overflow-hidden rounded-3xl border border-gray-200 bg-white"
+                >
+                  <div className="grid lg:grid-cols-5">
+                    {[1, 2, 3, 4, 5].map((column) => (
+                      <div
+                        key={column}
+                        className="space-y-3 border-b border-gray-100 p-5 lg:border-b-0 lg:border-r"
+                      >
+                        <div className="h-3 w-20 animate-pulse rounded bg-gray-200" />
+                        <div className="h-6 w-28 animate-pulse rounded bg-gray-200" />
+                        <div className="h-4 w-24 animate-pulse rounded bg-gray-200" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="w-full">
+        <Footer />
+      </footer>
+    </div>
+  );
+}
+
 function Details() {
   const { slug } = useParams();
-  const [offer, setOffer] = useState([]);
+  const [offer, setOffer] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const targetRef = useRef(null);
 
@@ -47,11 +201,17 @@ function Details() {
   useEffect(() => {
     const getOffer = async () => {
       try {
+        setLoading(true);
+        setOffer(null);
+
         const { data } = await publicApi.get(`/offers/${slug}`);
 
         setOffer(data);
       } catch (error) {
         console.error("Error al obtener la oferta:", error);
+        setOffer(null);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -191,6 +351,48 @@ function Details() {
 
     getRelatedOffers();
   }, [offer]);
+
+  if (loading) {
+    return <DetailsSkeleton />;
+  }
+
+  if (!offer) {
+    return (
+      <div className="min-h-screen flex flex-col bg-[#f7f9fc]">
+        <header>
+          <NavBar />
+        </header>
+
+        <main className="flex flex-1 items-center justify-center px-4 py-20">
+          <div className="w-full max-w-xl rounded-3xl bg-white p-8 text-center shadow-xl sm:p-10">
+            <div className="text-5xl">✈️</div>
+
+            <h1 className="mt-5 text-2xl font-black text-[#023e73] sm:text-3xl">
+              No pudimos cargar esta oferta
+            </h1>
+
+            <p className="mt-3 leading-relaxed text-gray-600">
+              La oferta puede no estar disponible en este momento. Intenta
+              nuevamente o consulta nuestras promociones disponibles.
+            </p>
+
+            <Link
+              to="/ofertas"
+              className="mt-7 inline-flex items-center justify-center gap-3 rounded-xl bg-[#0260fe] px-6 py-4 font-bold text-white transition hover:bg-blue-700"
+            >
+              Ver todas las ofertas
+              <FaArrowRight />
+            </Link>
+          </div>
+        </main>
+
+        <footer className="w-full">
+          <Footer />
+        </footer>
+      </div>
+    );
+  }
+
   return (
     <React.Fragment>
       <SEO
