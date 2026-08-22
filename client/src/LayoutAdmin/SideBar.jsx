@@ -7,12 +7,21 @@ import {
   FaMapMarkedAlt,
   FaPlus,
   FaTag,
+  FaUsers,
+  FaFileInvoiceDollar,
+  FaClipboardList,
+  FaDollarSign,
+  FaCog,
+  FaChevronDown,
 } from "react-icons/fa";
 import { MdLogout, MdInsights } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import api from "../Services/api";
 
-const mainNavigation = [
+const LOGO =
+  "https://res.cloudinary.com/duaysiozi/image/upload/v1785018355/i6jhddqaqz1ijctzrw42.webp";
+
+const administrationNavigation = [
   {
     label: "Panel principal",
     to: "/auth",
@@ -24,11 +33,32 @@ const mainNavigation = [
     to: "/auth/ofertas",
     icon: FaTag,
   },
+];
+
+const salesNavigation = [
   {
-    label: "Paquetes",
-    to: "/auth/paquetes",
-    icon: FaSuitcase,
+    label: "CRM",
+    to: "/auth/crm",
+    icon: FaUsers,
   },
+  {
+    label: "Cotizador",
+    to: "/auth/cotizador",
+    icon: FaFileInvoiceDollar,
+  },
+  {
+    label: "Cotizaciones",
+    to: "/auth/cotizaciones",
+    icon: FaClipboardList,
+  },
+  {
+    label: "Ventas",
+    to: "/auth/ventas",
+    icon: FaDollarSign,
+  },
+];
+
+const analysisNavigation = [
   {
     label: "Insights",
     to: "/auth/insights",
@@ -59,10 +89,70 @@ const quickActions = [
   },
 ];
 
+function NavigationItem({ label, to, icon: Icon, end, compact = false }) {
+  return (
+    <NavLink
+      to={to}
+      end={end}
+      className={({ isActive }) =>
+        `group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition ${
+          isActive
+            ? "bg-[#0260fe] text-white shadow-lg shadow-blue-500/20"
+            : "text-slate-300 hover:bg-white/[0.07] hover:text-white"
+        }`
+      }
+    >
+      {({ isActive }) => (
+        <>
+          <span
+            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm transition ${
+              isActive
+                ? "bg-white/15 text-white"
+                : "bg-white/[0.06] text-slate-400 group-hover:bg-white/10 group-hover:text-white"
+            }`}
+          >
+            <Icon />
+          </span>
+
+          <span className="min-w-0 flex-1 truncate">{label}</span>
+
+          {compact ? (
+            <FaPlus
+              className={`text-[10px] transition ${
+                isActive
+                  ? "text-white/75"
+                  : "text-slate-500 group-hover:text-blue-200"
+              }`}
+            />
+          ) : null}
+        </>
+      )}
+    </NavLink>
+  );
+}
+
+function NavigationSection({ title, items }) {
+  return (
+    <section>
+      <p className="mb-2 px-3 text-[10px] font-black uppercase tracking-[0.18em] text-slate-600">
+        {title}
+      </p>
+
+      <div className="space-y-1">
+        {items.map((item) => (
+          <NavigationItem key={item.to} {...item} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function SideBar() {
   const navigate = useNavigate();
+
   const [loggingOut, setLoggingOut] = useState(false);
   const [error, setError] = useState("");
+  const [contentOpen, setContentOpen] = useState(true);
 
   const handleLogout = async () => {
     if (loggingOut) return;
@@ -72,10 +162,15 @@ function SideBar() {
 
     try {
       await api.post("/auth/logout");
-      navigate("/admin/login", { replace: true });
+
+      navigate("/auth/login", {
+        replace: true,
+      });
     } catch (requestError) {
       if (requestError.response?.status === 401) {
-        navigate("/admin/login", { replace: true });
+        navigate("/auth/login", {
+          replace: true,
+        });
         return;
       }
 
@@ -85,102 +180,140 @@ function SideBar() {
   };
 
   return (
-    <aside className="flex w-full shrink-0 flex-col bg-[#101827] p-4 text-white shadow-xl lg:min-h-[calc(100dvh-68px)] lg:w-72">
-      <Link
-        to="/auth"
-        className="mb-8 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 transition hover:bg-white/10"
-      >
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0260fe] text-xl font-black shadow-lg shadow-blue-500/30">
-          V
-        </div>
-
-        <div>
-          <p className="text-lg font-black leading-tight">Viaja a tu Destino</p>
-          <p className="mt-1 text-xs font-medium text-blue-200">
-            Panel administrativo
-          </p>
-        </div>
-      </Link>
-
-      <nav className="flex-1 space-y-7">
-        <section>
-          <p className="mb-3 px-3 text-xs font-bold uppercase tracking-[0.18em] text-gray-500">
-            Administración
-          </p>
-
-          <div className="space-y-1">
-            {mainNavigation.map(({ label, to, icon: Icon, end }) => (
-              <NavLink
-                key={to}
-                to={to}
-                end={end}
-                className={({ isActive }) =>
-                  `flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition ${
-                    isActive
-                      ? "bg-[#0260fe] text-white shadow-lg shadow-blue-500/20"
-                      : "text-gray-300 hover:bg-white/10 hover:text-white"
-                  }`
-                }
-              >
-                <Icon className="text-lg" />
-                {label}
-              </NavLink>
-            ))}
+    <aside className="flex w-full shrink-0 flex-col bg-[#0d1726] text-white shadow-xl lg:min-h-[calc(100dvh-68px)] lg:w-[270px]">
+      {/* BRAND */}
+      <div className="border-b border-white/[0.07] px-4 py-5">
+        <Link
+          to="/auth"
+          aria-label="Ir al panel principal"
+          className="group block"
+        >
+          <div
+            className="
+              flex
+              min-h-[92px]
+              w-full
+              items-center
+              justify-center
+              overflow-hidden
+              rounded-[20px]
+              border
+              border-slate-200/80
+              bg-white
+              px-4
+              py-4
+              shadow-[0_10px_30px_rgba(0,0,0,0.18)]
+              transition-all
+              duration-300
+              group-hover:-translate-y-0.5
+              group-hover:shadow-[0_14px_34px_rgba(0,0,0,0.24)]
+            "
+          >
+            <img
+              src={LOGO}
+              alt="Viaja a tu Destino"
+              className="
+                block
+                h-auto
+                w-full
+                max-w-[205px]
+                object-contain
+              "
+            />
           </div>
+        </Link>
+      </div>
+
+      {/* NAVIGATION */}
+      <nav className="flex-1 space-y-6 overflow-y-auto px-3 py-5">
+        <NavigationSection
+          title="Administración"
+          items={administrationNavigation}
+        />
+
+        <NavigationSection title="Ventas" items={salesNavigation} />
+
+        <NavigationSection title="Análisis" items={analysisNavigation} />
+
+        {/* CREAR CONTENIDO */}
+        <section>
+          <button
+            type="button"
+            onClick={() => setContentOpen((prev) => !prev)}
+            className="mb-2 flex w-full items-center justify-between px-3"
+          >
+            <span className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-600">
+              Crear contenido
+            </span>
+
+            <FaChevronDown
+              className={`text-[9px] text-slate-600 transition-transform ${
+                contentOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+
+          {contentOpen ? (
+            <div className="space-y-1">
+              {quickActions.map((item) => (
+                <NavigationItem key={item.to} {...item} compact />
+              ))}
+            </div>
+          ) : null}
         </section>
 
+        {/* SETTINGS */}
         <section>
-          <p className="mb-3 px-3 text-xs font-bold uppercase tracking-[0.18em] text-gray-500">
-            Crear contenido
+          <p className="mb-2 px-3 text-[10px] font-black uppercase tracking-[0.18em] text-slate-600">
+            Sistema
           </p>
 
-          <div className="space-y-1">
-            {quickActions.map(({ label, to, icon: Icon }) => (
-              <NavLink
-                key={to}
-                to={to}
-                className={({ isActive }) =>
-                  `flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition ${
-                    isActive
-                      ? "bg-[#0260fe] text-white"
-                      : "text-gray-300 hover:bg-white/10 hover:text-white"
-                  }`
-                }
-              >
-                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/10 text-xs">
-                  <Icon />
-                </span>
-                {label}
-                <FaPlus className="ml-auto text-xs text-blue-200" />
-              </NavLink>
-            ))}
-          </div>
+          <NavigationItem
+            label="Configuración"
+            to="/auth/configuracion"
+            icon={FaCog}
+          />
         </section>
       </nav>
 
-      <div className="mt-8 border-t border-white/10 pt-5">
-        <div className="mb-4 rounded-xl bg-white/5 px-4 py-3">
-          <p className="text-sm font-semibold text-white">Sesión protegida</p>
-          <p className="mt-1 text-xs text-gray-400">
-            Acceso exclusivo de administrador
-          </p>
+      {/* FOOTER */}
+      <div className="border-t border-white/[0.07] p-3">
+        <div className="mb-2 rounded-xl bg-white/[0.04] p-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0260fe] text-xs font-black text-white">
+              IF
+            </div>
+
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-xs font-black text-white">
+                Administrador
+              </p>
+
+              <p className="mt-0.5 truncate text-[10px] text-slate-500">
+                Sesión protegida
+              </p>
+            </div>
+          </div>
         </div>
 
         <button
           type="button"
           onClick={handleLogout}
           disabled={loggingOut}
-          className="flex w-full items-center justify-center gap-2 rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm font-bold text-red-300 transition hover:bg-red-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-400 transition hover:bg-red-500/10 hover:text-red-300 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          <MdLogout className="text-xl" />
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.05]">
+            <MdLogout className="text-lg" />
+          </span>
+
           {loggingOut ? "Cerrando sesión..." : "Cerrar sesión"}
         </button>
 
-        {error && (
-          <p className="mt-3 rounded-lg bg-red-500/15 px-3 py-2 text-center text-xs text-red-200">
+        {error ? (
+          <p className="mt-2 rounded-lg bg-red-500/10 px-3 py-2 text-center text-[11px] text-red-300">
             {error}
           </p>
-        )}
+        ) : null}
       </div>
     </aside>
   );
