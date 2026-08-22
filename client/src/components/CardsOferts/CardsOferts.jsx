@@ -5,39 +5,38 @@ import CardTop from "../CardTop/CardTop";
 import Paginated from "../Paginated/Paginated";
 
 /* =========================================================
-   SKELETON DE TARJETA
+   SKELETON CARD
 ========================================================= */
 function OfferSkeleton() {
   return (
     <div className="w-full sm:w-[350px] md:w-[380px] bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 animate-pulse">
       {/* Imagen */}
-      <div className="relative h-[220px] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200">
-        {/* Badge */}
-        <div className="absolute top-4 left-4 w-20 h-7 bg-gray-300 rounded-full"></div>
+      <div className="relative h-[220px] bg-gray-200">
+        <div className="absolute top-4 left-4 w-20 h-7 bg-gray-300 rounded-full" />
       </div>
 
       {/* Contenido */}
       <div className="p-5">
-        {/* Destino */}
-        <div className="h-3 bg-gray-200 rounded-full w-1/3 mb-3"></div>
+        {/* Categoría */}
+        <div className="h-3 bg-gray-200 rounded-full w-1/3 mb-4" />
 
         {/* Título */}
-        <div className="h-5 bg-gray-300 rounded-full w-11/12 mb-2"></div>
-        <div className="h-5 bg-gray-300 rounded-full w-7/12 mb-5"></div>
+        <div className="h-5 bg-gray-300 rounded-full w-11/12 mb-2" />
+        <div className="h-5 bg-gray-300 rounded-full w-7/12 mb-5" />
 
         {/* Descripción */}
-        <div className="h-3 bg-gray-200 rounded-full w-full mb-2"></div>
-        <div className="h-3 bg-gray-200 rounded-full w-9/12 mb-6"></div>
+        <div className="h-3 bg-gray-200 rounded-full w-full mb-2" />
+        <div className="h-3 bg-gray-200 rounded-full w-9/12 mb-6" />
 
-        {/* Separador */}
+        {/* Precio + botón */}
         <div className="border-t border-gray-100 pt-4">
           <div className="flex justify-between items-end">
             <div>
-              <div className="h-3 bg-gray-200 rounded-full w-16 mb-2"></div>
-              <div className="h-7 bg-gray-300 rounded-full w-28"></div>
+              <div className="h-3 bg-gray-200 rounded-full w-16 mb-2" />
+              <div className="h-7 bg-gray-300 rounded-full w-28" />
             </div>
 
-            <div className="h-11 bg-gray-300 rounded-xl w-28"></div>
+            <div className="h-11 bg-gray-300 rounded-xl w-28" />
           </div>
         </div>
       </div>
@@ -46,23 +45,23 @@ function OfferSkeleton() {
 }
 
 /* =========================================================
-   LOADING GENERAL
+   LOADING
 ========================================================= */
 function OffersLoading() {
   return (
     <div className="w-full py-10">
-      {/* Encabezado loading */}
-      <div className="flex flex-col items-center justify-center mb-8">
-        {/* Icono */}
+      {/* Mensaje */}
+      <div className="flex flex-col items-center justify-center mb-10">
+        {/* Avión */}
         <div className="relative flex items-center justify-center mb-4">
-          <div className="w-14 h-14 rounded-full bg-blue-50"></div>
+          <div className="w-16 h-16 rounded-full bg-blue-50" />
 
-          <div className="absolute w-14 h-14 rounded-full border-4 border-transparent border-t-[#0260fe] animate-spin"></div>
+          <div className="absolute w-16 h-16 rounded-full border-[3px] border-transparent border-t-[#0260fe] animate-spin" />
 
           <span className="absolute text-2xl">✈️</span>
         </div>
 
-        <p className="text-gray-800 font-semibold text-lg">
+        <p className="text-gray-800 font-bold text-lg md:text-xl">
           Buscando las mejores ofertas
         </p>
 
@@ -71,7 +70,7 @@ function OffersLoading() {
         </p>
       </div>
 
-      {/* Skeleton cards */}
+      {/* Tarjetas skeleton */}
       <div className="flex flex-wrap justify-center gap-6 px-4">
         {Array.from({ length: 6 }).map((_, index) => (
           <OfferSkeleton key={index} />
@@ -82,7 +81,7 @@ function OffersLoading() {
 }
 
 /* =========================================================
-   COMPONENTE PRINCIPAL
+   CARDS OFFERS
 ========================================================= */
 function CardsOferts() {
   const dispatch = useDispatch();
@@ -102,7 +101,12 @@ function CardsOferts() {
       try {
         setLoading(true);
 
-        await dispatch(getAllOffers());
+        /*
+         * IMPORTANTE:
+         * getAllOffers NO lleva ()
+         * porque en tu proyecto ya es el thunk.
+         */
+        await dispatch(getAllOffers);
       } catch (error) {
         console.error("Error cargando ofertas:", error);
       } finally {
@@ -114,7 +118,8 @@ function CardsOferts() {
   }, [dispatch]);
 
   /* =========================================================
-     ORDENAR POR MÁS RECIENTES
+     ORDENAR OFERTAS
+     Más recientes primero
   ========================================================= */
   const all = [...allOffers].sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
@@ -124,6 +129,7 @@ function CardsOferts() {
      PAGINACIÓN
   ========================================================= */
   const lastOffer = page * offerPerPage;
+
   const firstOffer = lastOffer - offerPerPage;
 
   const totalOffers = all.slice(firstOffer, lastOffer);
@@ -135,7 +141,6 @@ function CardsOferts() {
 
     setPage(num);
 
-    /* Llevar al usuario arriba de las ofertas */
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -143,19 +148,21 @@ function CardsOferts() {
   }
 
   /* =========================================================
-     LOADING
+     MOSTRAR LOADING
   ========================================================= */
   if (loading) {
     return <OffersLoading />;
   }
 
   /* =========================================================
-     SIN OFERTAS
+     SI NO HAY OFERTAS
   ========================================================= */
   if (!loading && allOffers.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
-        <div className="text-5xl mb-4">✈️</div>
+        <div className="w-16 h-16 flex items-center justify-center bg-blue-50 rounded-full text-3xl mb-5">
+          ✈️
+        </div>
 
         <h3 className="text-xl font-bold text-gray-800">
           Estamos preparando nuevas ofertas
@@ -170,7 +177,7 @@ function CardsOferts() {
   }
 
   /* =========================================================
-     OFERTAS
+     MOSTRAR OFERTAS
   ========================================================= */
   return (
     <React.Fragment>
@@ -196,6 +203,7 @@ function CardsOferts() {
         ))}
       </div>
 
+      {/* Paginación solamente cuando existe más de una página */}
       {maxPage > 1 && (
         <Paginated
           offerPerPage={offerPerPage}
