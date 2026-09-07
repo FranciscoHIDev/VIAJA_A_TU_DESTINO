@@ -10,6 +10,7 @@ import {
   FaHotel,
   FaUsers,
   FaChevronRight,
+  FaPlane,
 } from "react-icons/fa";
 
 import { GiMayanPyramid } from "react-icons/gi";
@@ -33,7 +34,7 @@ const navItems = [
   {
     name: "Vuelos",
     path: "/vuelos/?s=2#2",
-    icon: GiMayanPyramid,
+    icon: FaPlane,
   },
   {
     name: "Blog",
