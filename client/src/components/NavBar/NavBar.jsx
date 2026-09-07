@@ -17,7 +17,7 @@ import { GiMayanPyramid } from "react-icons/gi";
 const navItems = [
   {
     name: "Paquetes",
-    path: "/paquetes",
+    path: "/paquetes/?s=3#3",
     icon: FaSuitcase,
   },
   {
@@ -27,7 +27,12 @@ const navItems = [
   },
   {
     name: "Tours",
-    path: "/tours",
+    path: "/tours/?s=5#5",
+    icon: GiMayanPyramid,
+  },
+  {
+    name: "Vuelos",
+    path: "/vuelos/?s=2#2",
     icon: GiMayanPyramid,
   },
   {

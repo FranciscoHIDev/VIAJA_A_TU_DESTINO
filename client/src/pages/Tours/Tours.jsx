@@ -5,15 +5,13 @@ import {
   FaArrowRight,
   FaCalendarAlt,
   FaCamera,
-  FaCheckCircle,
+  FaCheck,
   FaClock,
-  FaCreditCard,
   FaHeadset,
   FaHotel,
   FaMapMarkerAlt,
   FaSearch,
   FaShieldAlt,
-  FaShip,
   FaStar,
   FaSun,
   FaTicketAlt,
@@ -22,44 +20,51 @@ import {
   FaWhatsapp,
   FaWater,
 } from "react-icons/fa";
-
 import { GiMayanPyramid } from "react-icons/gi";
 
 import CardsTours from "../../components/CardsTours/CardsTours";
+import PriceResWidget from "../../components/PriceRes/PriceResWidget";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
+
+/* =========================================================
+   DATOS
+========================================================= */
 
 const tourTypes = [
   {
     title: "Parques y atracciones",
     description:
-      "Descubre parques naturales, culturales y de aventura para toda la familia.",
+      "Parques naturales, culturales y de aventura para disfrutar en familia.",
     icon: FaTicketAlt,
+    className: "bg-orange-50 text-[#ff6600]",
   },
   {
     title: "Tours acuáticos",
     description:
-      "Snorkel, catamarán, paseos en lancha y experiencias en aguas cristalinas.",
+      "Catamarán, snorkel, paseos en lancha y experiencias frente al mar.",
     icon: FaWater,
+    className: "bg-cyan-50 text-cyan-600",
   },
   {
     title: "Cultura y naturaleza",
     description:
-      "Explora zonas arqueológicas, cenotes, reservas naturales y pueblos únicos.",
+      "Zonas arqueológicas, cenotes, reservas naturales y recorridos únicos.",
     icon: GiMayanPyramid,
+    className: "bg-blue-50 text-[#0260fe]",
   },
 ];
 
 const destinations = [
   {
     name: "Cancún",
-    description: "Tours acuáticos, parques y vida caribeña.",
+    description: "Tours acuáticos, parques y experiencias caribeñas.",
     image:
       "https://images.unsplash.com/photo-1552074284-5e88ef1aef18?q=80&w=1600&auto=format&fit=crop",
   },
   {
     name: "Riviera Maya",
-    description: "Cenotes, parques naturales y experiencias de aventura.",
+    description: "Cenotes, parques naturales y actividades de aventura.",
     image:
       "https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=1600&auto=format&fit=crop",
   },
@@ -94,19 +99,19 @@ const steps = [
     number: "01",
     title: "Elige tu experiencia",
     description:
-      "Selecciona el destino, la actividad y la fecha en la que deseas realizar el tour.",
+      "Selecciona destino, actividad y la fecha en la que quieres realizarla.",
   },
   {
     number: "02",
-    title: "Consulta disponibilidad",
+    title: "Revisa los detalles",
     description:
-      "Te ayudamos a revisar horarios, lugares disponibles, inclusiones y condiciones.",
+      "Consulta horarios, duración, punto de encuentro, inclusiones y disponibilidad.",
   },
   {
     number: "03",
     title: "Reserva tu aventura",
     description:
-      "Confirma la actividad y recibe la información necesaria para disfrutarla.",
+      "Elige la opción que prefieras y completa la reservación con el proveedor.",
   },
 ];
 
@@ -120,22 +125,39 @@ const benefits = [
   {
     title: "Información clara",
     description:
-      "Conoce horarios, punto de encuentro, duración y servicios incluidos.",
+      "Consulta duración, horarios, punto de encuentro e inclusiones antes de reservar.",
     icon: FaClock,
   },
   {
-    title: "Reserva confiable",
+    title: "Reserva informada",
     description:
-      "Trabajamos con operadores y proveedores turísticos reconocidos.",
+      "Revisa condiciones, disponibilidad y restricciones antes de completar tu compra.",
     icon: FaShieldAlt,
   },
   {
     title: "Atención personalizada",
     description:
-      "Recibe orientación para elegir una actividad adecuada para tu viaje.",
+      "Si necesitas orientación, nuestros asesores pueden ayudarte a elegir una experiencia.",
     icon: FaHeadset,
   },
 ];
+
+const heroHighlights = [
+  "Parques y excursiones",
+  "Experiencias acuáticas",
+  "Actividades para todas las edades",
+];
+
+function SmallCheck({ children }) {
+  return (
+    <div className="flex items-center gap-2.5 text-sm font-bold text-slate-600">
+      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-600">
+        <FaCheck className="text-[10px]" aria-hidden="true" />
+      </span>
+      <span>{children}</span>
+    </div>
+  );
+}
 
 function Tours() {
   const [destination, setDestination] = useState("");
@@ -152,7 +174,7 @@ function Tours() {
   const scrollToQuote = () => {
     document.getElementById("cotizar-tour")?.scrollIntoView({
       behavior: "smooth",
-      block: "center",
+      block: "start",
     });
   };
 
@@ -177,201 +199,200 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
         url="https://www.viajaatudestino.com/tours"
       />
 
-      <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
+      <div className="flex min-h-screen flex-col bg-[#f5f8fc]">
         <NavBar />
 
         <main className="flex-1">
-          {/* HERO */}
-          <section className="relative overflow-hidden bg-[#023e73]">
-            <div className="absolute inset-0">
-              <img
-                src="https://res.cloudinary.com/duaysiozi/image/upload/v1784166872/caqcw1fv4r0dfxrebs4j.png"
-                alt="Tours y experiencias para tus vacaciones"
-                className="h-full w-full object-cover object-center"
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-r from-[#012c52]/95 via-[#023e73]/75 to-[#0260fe]/20" />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-[#023e73]/80 via-transparent to-transparent" />
-            </div>
-
-            <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-[#0260fe]/30 blur-3xl" />
-
-            <div className="pointer-events-none absolute -bottom-40 right-0 h-96 w-96 rounded-full bg-[#ff6600]/20 blur-3xl" />
-
-            <div className="relative mx-auto flex min-h-[540px] max-w-7xl items-center px-5 pb-32 pt-16 sm:px-6 md:min-h-[620px] md:pb-40 lg:px-8">
-              <div className="max-w-3xl text-white">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] backdrop-blur">
-                  <FaSun className="text-[#ff9b4a]" />
-                  Tours y experiencias
-                </span>
-
-                <h1 className="mt-6 text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                  Convierte tus vacaciones en una gran aventura
-                </h1>
-
-                <p className="mt-6 max-w-2xl text-base leading-8 text-white/80 sm:text-lg">
-                  Descubre parques, excursiones, catamaranes, cenotes, zonas
-                  arqueológicas y experiencias para disfrutar cada momento de tu
-                  viaje.
-                </p>
-
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <button
-                    type="button"
-                    onClick={scrollToTours}
-                    className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#ff6600] px-7 py-4 text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-xl"
-                  >
-                    <FaSearch />
-                    Explorar tours
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={scrollToQuote}
-                    className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/30 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur transition hover:bg-white hover:text-[#023e73]"
-                  >
-                    <FaWhatsapp className="text-lg" />
-                    Solicitar cotización
-                  </button>
-                </div>
-
-                <div className="mt-8 flex flex-col gap-3 text-sm font-semibold text-white/75 sm:flex-row sm:flex-wrap sm:gap-x-7">
-                  <span className="flex items-center gap-2">
-                    <FaCheckCircle className="text-[#ff8a33]" />
-                    Actividades para todas las edades
-                  </span>
-
-                  <span className="flex items-center gap-2">
-                    <FaCheckCircle className="text-[#ff8a33]" />
-                    Atención personalizada
-                  </span>
-
-                  <span className="flex items-center gap-2">
-                    <FaCheckCircle className="text-[#ff8a33]" />
-                    Reserva confiable
-                  </span>
-                </div>
-              </div>
-            </div>
+          {/* =====================================================
+              PRICERES: CARRUSEL + MOTOR
+              Primer bloque después del NavBar.
+          ====================================================== */}
+          <section id="buscar-tour" className="scroll-mt-24 bg-white">
+            <PriceResWidget
+              showCarousel
+              title="Buscar tours, hoteles, paquetes, vuelos y experiencias"
+            />
           </section>
 
-          {/* COTIZADOR RÁPIDO */}
+          {/* =====================================================
+              TOURS DESTACADOS
+          ====================================================== */}
           <section
-            id="cotizar-tour"
-            className="relative z-20 scroll-mt-24 px-3 sm:px-5 lg:px-8"
+            id="tours-disponibles"
+            className="scroll-mt-24 bg-[#f5f8fc] px-4 py-14 sm:px-6 md:py-20 lg:px-8"
           >
-            <div className="mx-auto -mt-20 max-w-6xl rounded-[2rem] border border-white/60 bg-white p-5 shadow-2xl md:-mt-24 md:p-8">
-              <div className="flex flex-col gap-3 border-b border-slate-100 pb-6 md:flex-row md:items-end md:justify-between">
-                <div>
-                  <span className="text-xs font-black uppercase tracking-[0.18em] text-[#ff6600]">
-                    Cotizador rápido
+            <div className="mx-auto max-w-[1500px]">
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+                <div className="max-w-3xl">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-orange-50 px-4 py-2 text-xs font-black uppercase tracking-[0.17em] text-[#e85d00]">
+                    <FaCamera aria-hidden="true" />
+                    Experiencias destacadas
                   </span>
 
-                  <h2 className="mt-2 text-2xl font-black text-[#023e73] md:text-3xl">
-                    Encuentra una experiencia para tu viaje
+                  <h2 className="mt-4 text-3xl font-black leading-tight text-[#023e73] sm:text-4xl md:text-5xl">
+                    Tours para disfrutar tu destino
                   </h2>
 
-                  <p className="mt-2 text-sm leading-6 text-slate-500">
-                    Completa los datos y envía tu solicitud por WhatsApp.
+                  <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
+                    Explora las opciones disponibles y entra a cada experiencia
+                    para revisar duración, inclusiones, precio y forma de
+                    reserva.
                   </p>
                 </div>
 
-                <span className="hidden items-center gap-2 rounded-full bg-[#0260fe]/10 px-4 py-2 text-xs font-bold text-[#0260fe] md:inline-flex">
-                  <FaShieldAlt />
-                  Atención segura
-                </span>
+                <button
+                  type="button"
+                  onClick={scrollToQuote}
+                  className="inline-flex w-fit min-h-[48px] items-center justify-center gap-3 rounded-2xl border-2 border-[#0260fe] bg-white px-6 py-3 text-sm font-black text-[#0260fe] transition hover:bg-[#0260fe] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe]"
+                >
+                  <FaWhatsapp aria-hidden="true" />
+                  Cotizar otro tour
+                </button>
               </div>
 
-              <div className="mt-6 grid gap-4 md:grid-cols-[1fr_1fr_0.7fr_auto]">
-                <label className="block">
-                  <span className="mb-2 block text-sm font-bold text-slate-700">
-                    Destino
-                  </span>
+              <div className="mt-9">
+                <CardsTours />
+              </div>
 
-                  <div className="relative">
-                    <FaMapMarkerAlt className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#0260fe]" />
+              <div className="mt-7 flex items-start gap-3 rounded-2xl border border-orange-100 bg-orange-50 px-4 py-4 text-sm leading-6 text-[#7a451c] sm:px-5">
+                <span className="mt-0.5 text-base" aria-hidden="true">
+                  ℹ️
+                </span>
 
-                    <input
-                      type="text"
-                      value={destination}
-                      onChange={(event) => setDestination(event.target.value)}
-                      placeholder="Ej. Cancún"
-                      className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm font-semibold text-slate-700 outline-none transition focus:border-[#0260fe] focus:bg-white focus:ring-4 focus:ring-[#0260fe]/10"
-                    />
-                  </div>
-                </label>
-
-                <label className="block">
-                  <span className="mb-2 block text-sm font-bold text-slate-700">
-                    Fecha
-                  </span>
-
-                  <div className="relative">
-                    <FaCalendarAlt className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#0260fe]" />
-
-                    <input
-                      type="date"
-                      value={travelDate}
-                      onChange={(event) => setTravelDate(event.target.value)}
-                      className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm font-semibold text-slate-700 outline-none transition focus:border-[#0260fe] focus:bg-white focus:ring-4 focus:ring-[#0260fe]/10"
-                    />
-                  </div>
-                </label>
-
-                <label className="block">
-                  <span className="mb-2 block text-sm font-bold text-slate-700">
-                    Viajeros
-                  </span>
-
-                  <div className="relative">
-                    <FaUsers className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#0260fe]" />
-
-                    <input
-                      type="number"
-                      min="1"
-                      value={travelers}
-                      onChange={(event) => setTravelers(event.target.value)}
-                      placeholder="2"
-                      className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm font-semibold text-slate-700 outline-none transition focus:border-[#0260fe] focus:bg-white focus:ring-4 focus:ring-[#0260fe]/10"
-                    />
-                  </div>
-                </label>
-
-                <div className="flex items-end">
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex h-14 w-full items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-6 text-sm font-black text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] hover:shadow-lg md:w-auto"
-                  >
-                    <FaWhatsapp className="text-xl" />
-                    Cotizar
-                  </a>
-                </div>
+                <p>
+                  Los precios, horarios y espacios están sujetos a
+                  disponibilidad. Algunas actividades pueden tener restricciones
+                  de edad, salud, transportación, impuestos o cargos
+                  adicionales. Revisa los detalles antes de reservar.
+                </p>
               </div>
             </div>
           </section>
 
-          {/* TIPOS DE EXPERIENCIA */}
-          <section className="px-4 pb-14 pt-16 sm:px-6 md:pb-20 md:pt-24 lg:px-8">
+          {/* =====================================================
+              COTIZADOR RÁPIDO
+              Conserva la lógica original:
+              destino + fecha + viajeros -> WhatsApp.
+          ====================================================== */}
+          <section
+            id="cotizar-tour"
+            className="scroll-mt-24 border-y border-slate-100 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+          >
+            <div className="mx-auto max-w-[1400px]">
+              <div className="mx-auto mb-8 max-w-3xl text-center">
+                <span className="inline-flex items-center gap-2 rounded-full bg-[#0260fe]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#0260fe]">
+                  <FaWhatsapp aria-hidden="true" />
+                  Cotizador rápido
+                </span>
+
+                <h2 className="mt-4 text-3xl font-black leading-tight text-[#023e73] sm:text-4xl">
+                  ¿Qué experiencia estás buscando?
+                </h2>
+
+                <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">
+                  Indica destino, fecha y número de viajeros. Te ayudamos a
+                  consultar actividades disponibles.
+                </p>
+              </div>
+
+              <div className="rounded-[28px] border border-slate-200 bg-[#f8fbff] p-4 shadow-[0_18px_50px_rgba(2,62,115,0.08)] sm:p-6">
+                <div className="grid gap-4 md:grid-cols-[1fr_1fr_0.7fr_auto]">
+                  <label className="block">
+                    <span className="mb-2 block text-sm font-bold text-slate-700">
+                      Destino
+                    </span>
+
+                    <div className="relative">
+                      <FaMapMarkerAlt className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#0260fe]" />
+
+                      <input
+                        type="text"
+                        value={destination}
+                        onChange={(event) => setDestination(event.target.value)}
+                        placeholder="Ej. Cancún"
+                        className="h-14 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-sm font-semibold text-slate-700 outline-none transition focus:border-[#0260fe] focus:ring-4 focus:ring-[#0260fe]/10"
+                      />
+                    </div>
+                  </label>
+
+                  <label className="block">
+                    <span className="mb-2 block text-sm font-bold text-slate-700">
+                      Fecha
+                    </span>
+
+                    <div className="relative">
+                      <FaCalendarAlt className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#0260fe]" />
+
+                      <input
+                        type="date"
+                        value={travelDate}
+                        onChange={(event) => setTravelDate(event.target.value)}
+                        className="h-14 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-sm font-semibold text-slate-700 outline-none transition focus:border-[#0260fe] focus:ring-4 focus:ring-[#0260fe]/10"
+                      />
+                    </div>
+                  </label>
+
+                  <label className="block">
+                    <span className="mb-2 block text-sm font-bold text-slate-700">
+                      Viajeros
+                    </span>
+
+                    <div className="relative">
+                      <FaUsers className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#0260fe]" />
+
+                      <input
+                        type="number"
+                        min="1"
+                        value={travelers}
+                        onChange={(event) => setTravelers(event.target.value)}
+                        placeholder="2"
+                        className="h-14 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-sm font-semibold text-slate-700 outline-none transition focus:border-[#0260fe] focus:ring-4 focus:ring-[#0260fe]/10"
+                      />
+                    </div>
+                  </label>
+
+                  <div className="flex items-end">
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex h-14 w-full items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-6 text-sm font-black text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#25D366] md:w-auto"
+                    >
+                      <FaWhatsapp className="text-xl" aria-hidden="true" />
+                      Cotizar
+                    </a>
+                  </div>
+                </div>
+
+                <p className="mt-4 text-center text-xs leading-5 text-slate-500 sm:text-sm">
+                  Te enviaremos a WhatsApp con estos datos para consultar
+                  opciones, precios y disponibilidad.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* =====================================================
+              TIPOS DE EXPERIENCIA
+          ====================================================== */}
+          <section className="bg-white px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto max-w-3xl text-center">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-[#0260fe]">
                   Elige tu experiencia
                 </span>
 
-                <h2 className="mt-4 text-3xl font-black leading-tight text-[#023e73] sm:text-4xl">
-                  Actividades para cada tipo de viajero
+                <h2 className="mt-3 text-3xl font-black text-[#023e73] sm:text-4xl">
+                  Una aventura para cada tipo de viajero
                 </h2>
 
-                <p className="mt-5 leading-8 text-slate-600">
-                  Desde recorridos culturales hasta aventuras acuáticas y
-                  parques para disfrutar en familia.
+                <p className="mt-4 leading-7 text-slate-600">
+                  Explora experiencias según el tipo de actividad que quieres
+                  vivir.
                 </p>
               </div>
 
-              <div className="mt-12 grid gap-6 md:grid-cols-3">
+              <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
                 {tourTypes.map((type) => {
                   const Icon = type.icon;
 
@@ -380,28 +401,31 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
                       key={type.title}
                       type="button"
                       onClick={scrollToTours}
-                      className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#0260fe]/30 hover:shadow-xl sm:p-8"
+                      className="group flex min-h-[150px] items-start gap-4 rounded-3xl border border-slate-200 bg-[#fbfdff] p-5 text-left transition hover:-translate-y-0.5 hover:border-[#0260fe]/25 hover:bg-white hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe] sm:p-6"
                     >
-                      <div className="absolute -right-12 -top-14 h-36 w-36 rounded-full bg-[#0260fe]/5 transition duration-500 group-hover:scale-125 group-hover:bg-[#0260fe]/10" />
+                      <span
+                        className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-xl ${type.className}`}
+                      >
+                        <Icon aria-hidden="true" />
+                      </span>
 
-                      <div className="relative">
-                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#0260fe]/10 text-[#0260fe] transition group-hover:bg-[#0260fe] group-hover:text-white">
-                          <Icon className="text-2xl" />
-                        </div>
-
-                        <h3 className="mt-6 text-2xl font-black text-[#023e73]">
+                      <span className="min-w-0">
+                        <span className="block text-lg font-black text-[#023e73] sm:text-xl">
                           {type.title}
-                        </h3>
-
-                        <p className="mt-3 leading-7 text-slate-600">
-                          {type.description}
-                        </p>
-
-                        <span className="mt-6 inline-flex items-center gap-2 text-sm font-black text-[#0260fe]">
-                          Explorar experiencias
-                          <FaArrowRight className="text-xs transition group-hover:translate-x-1" />
                         </span>
-                      </div>
+
+                        <span className="mt-1.5 block text-sm leading-6 text-slate-600">
+                          {type.description}
+                        </span>
+
+                        <span className="mt-3 inline-flex items-center gap-2 text-sm font-black text-[#0260fe]">
+                          Ver experiencias
+                          <FaArrowRight
+                            className="text-xs transition group-hover:translate-x-1"
+                            aria-hidden="true"
+                          />
+                        </span>
+                      </span>
                     </button>
                   );
                 })}
@@ -409,74 +433,78 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
             </div>
           </section>
 
-          {/* DESTINOS */}
-          <section className="bg-white px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+          {/* =====================================================
+              DESTINOS
+          ====================================================== */}
+          <section className="bg-[#f5f8fc] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
                 <div className="max-w-3xl">
                   <span className="text-xs font-black uppercase tracking-[0.2em] text-[#ff6600]">
                     Destinos para explorar
                   </span>
 
-                  <h2 className="mt-4 text-3xl font-black leading-tight text-[#023e73] sm:text-4xl md:text-5xl">
-                    Descubre experiencias en lugares increíbles
+                  <h2 className="mt-3 text-3xl font-black leading-tight text-[#023e73] sm:text-4xl">
+                    Descubre qué hacer durante tu viaje
                   </h2>
 
-                  <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg">
-                    Encuentra actividades para complementar tus vacaciones en
-                    los destinos más populares.
+                  <p className="mt-4 max-w-2xl leading-7 text-slate-600">
+                    Selecciona un destino para preparar una consulta de
+                    actividades.
                   </p>
                 </div>
 
                 <button
                   type="button"
                   onClick={scrollToTours}
-                  className="inline-flex w-fit items-center justify-center gap-3 rounded-2xl border-2 border-[#0260fe] bg-white px-6 py-3.5 text-sm font-black text-[#0260fe] transition hover:bg-[#0260fe] hover:text-white"
+                  className="hidden min-h-[48px] w-fit items-center justify-center gap-3 rounded-2xl border-2 border-[#0260fe] bg-white px-6 py-3 text-sm font-black text-[#0260fe] transition hover:bg-[#0260fe] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe] sm:inline-flex"
                 >
                   Ver todos los tours
-                  <FaArrowRight className="text-xs" />
+                  <FaArrowRight aria-hidden="true" />
                 </button>
               </div>
 
-              <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {destinations.map((destination, index) => (
+              <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {destinations.map((item) => (
                   <button
-                    key={destination.name}
+                    key={item.name}
                     type="button"
                     onClick={() => {
-                      setDestination(destination.name);
-                      scrollToQuote();
+                      setDestination(item.name);
+                      setTimeout(scrollToQuote, 0);
                     }}
-                    className={`group relative overflow-hidden rounded-3xl text-left shadow-lg ${
-                      index === 0 || index === 3
-                        ? "min-h-[370px]"
-                        : "min-h-[310px]"
-                    }`}
+                    aria-label={`Cotizar tours en ${item.name}`}
+                    className="group relative min-h-[285px] overflow-hidden rounded-3xl bg-[#023e73] text-left shadow-md transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe]"
                   >
                     <img
-                      src={destination.image}
-                      alt={destination.name}
-                      className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                      src={item.image}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#001b34]/95 via-[#001b34]/25 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#001b34]/95 via-[#001b34]/30 to-transparent" />
 
-                    <div className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-white/15 text-white backdrop-blur">
-                      <FaMapMarkerAlt />
+                    <div className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-white/15 text-white backdrop-blur">
+                      <FaMapMarkerAlt aria-hidden="true" />
                     </div>
 
-                    <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-                      <h3 className="text-2xl font-black text-white sm:text-3xl">
-                        {destination.name}
+                    <div className="absolute inset-x-0 bottom-0 p-6">
+                      <h3 className="text-2xl font-black text-white">
+                        {item.name}
                       </h3>
 
-                      <p className="mt-2 leading-7 text-white/75">
-                        {destination.description}
+                      <p className="mt-2 max-w-sm text-sm leading-6 text-white/75">
+                        {item.description}
                       </p>
 
                       <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-white">
                         Cotizar actividades
-                        <FaArrowRight className="text-xs transition group-hover:translate-x-1" />
+                        <FaArrowRight
+                          className="text-xs transition group-hover:translate-x-1"
+                          aria-hidden="true"
+                        />
                       </span>
                     </div>
                   </button>
@@ -485,87 +513,41 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
             </div>
           </section>
 
-          {/* TOURS DESTACADOS */}
-          <section
-            id="tours-disponibles"
-            className="scroll-mt-24 bg-[#f4f8ff] px-4 py-16 sm:px-6 md:py-24 lg:px-8"
-          >
-            <div className="mx-auto max-w-[1500px]">
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                <div className="max-w-3xl">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-[#0260fe]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#0260fe]">
-                    <FaCamera />
-                    Experiencias favoritas
-                  </span>
-
-                  <h2 className="mt-5 text-3xl font-black leading-tight text-[#023e73] sm:text-4xl md:text-5xl">
-                    Tours destacados para tus vacaciones
-                  </h2>
-
-                  <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg">
-                    Consulta actividades, precios, duración, horarios e
-                    inclusiones antes de realizar tu reservación.
-                  </p>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={scrollToQuote}
-                  className="inline-flex w-fit items-center justify-center gap-3 rounded-2xl bg-[#0260fe] px-6 py-4 text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#014fd3] hover:shadow-xl"
-                >
-                  <FaSearch />
-                  Cotizar otro tour
-                </button>
-              </div>
-
-              <div className="mt-10">
-                <CardsTours />
-              </div>
-
-              <div className="mt-10 rounded-3xl border border-orange-200 bg-orange-50 p-6 text-center sm:p-8">
-                <p className="font-bold leading-7 text-[#86420f]">
-                  Los precios, horarios y lugares disponibles están sujetos a
-                  cambios y disponibilidad. Algunas actividades pueden requerir
-                  edad mínima, condiciones físicas específicas o pago de
-                  impuestos y cargos adicionales.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* CÓMO RESERVAR */}
-          <section className="bg-[#023e73] px-4 py-16 text-white sm:px-6 md:py-24 lg:px-8">
+          {/* =====================================================
+              CÓMO FUNCIONA
+          ====================================================== */}
+          <section className="bg-[#023e73] px-4 py-14 text-white sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto max-w-3xl text-center">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-[#79b5ff]">
-                  Fácil y rápido
+                  Fácil y claro
                 </span>
 
-                <h2 className="mt-4 text-3xl font-black sm:text-4xl md:text-5xl">
-                  Reserva tu experiencia en tres pasos
+                <h2 className="mt-3 text-3xl font-black sm:text-4xl">
+                  Reserva tu experiencia en 3 pasos
                 </h2>
 
-                <p className="mt-5 leading-8 text-white/70">
-                  Revisa toda la información de la actividad antes de confirmar
-                  tu reservación.
+                <p className="mt-4 leading-7 text-white/70">
+                  Explora, revisa la información y reserva cuando encuentres la
+                  actividad adecuada.
                 </p>
               </div>
 
-              <div className="relative mt-14 grid gap-6 lg:grid-cols-3">
-                <div className="absolute left-[16%] right-[16%] top-10 hidden border-t-2 border-dashed border-white/15 lg:block" />
+              <div className="relative mt-10 grid gap-4 lg:grid-cols-3">
+                <div className="absolute left-[16%] right-[16%] top-8 hidden border-t border-dashed border-white/20 lg:block" />
 
                 {steps.map((step) => (
                   <article
                     key={step.number}
-                    className="relative rounded-3xl border border-white/10 bg-white/10 p-7 text-center backdrop-blur sm:p-8"
+                    className="relative rounded-3xl border border-white/10 bg-white/[0.07] p-6 text-center backdrop-blur sm:p-7"
                   >
-                    <span className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-[#ff6600] text-2xl font-black text-white shadow-xl">
+                    <span className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#ff6600] text-xl font-black text-white shadow-lg">
                       {step.number}
                     </span>
 
-                    <h3 className="mt-7 text-2xl font-black">{step.title}</h3>
+                    <h3 className="mt-5 text-xl font-black">{step.title}</h3>
 
-                    <p className="mt-4 leading-7 text-white/70">
+                    <p className="mt-3 text-sm leading-6 text-white/70 sm:text-base">
                       {step.description}
                     </p>
                   </article>
@@ -574,125 +556,86 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
             </div>
           </section>
 
-          {/* BANNER */}
-          <section className="bg-white px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+          {/* =====================================================
+              BENEFICIOS
+          ====================================================== */}
+          <section className="bg-white px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
-              <div className="relative min-h-[430px] overflow-hidden rounded-[2rem] shadow-2xl">
-                <img
-                  src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1800&auto=format&fit=crop"
-                  alt="Experiencias y actividades de aventura"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
+              <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+                <div>
+                  <span className="text-xs font-black uppercase tracking-[0.2em] text-[#0260fe]">
+                    Antes de reservar
+                  </span>
 
-                <div className="absolute inset-0 bg-gradient-to-r from-[#001b34]/95 via-[#023e73]/80 to-[#0260fe]/35" />
+                  <h2 className="mt-3 text-3xl font-black leading-tight text-[#023e73] sm:text-4xl">
+                    Conoce la experiencia antes de elegir
+                  </h2>
 
-                <div className="relative flex min-h-[430px] items-center px-7 py-14 sm:px-10 lg:px-16">
-                  <div className="max-w-2xl text-white">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-[#ff6600] px-5 py-2 text-xs font-black uppercase tracking-[0.16em]">
-                      <FaCamera />
-                      Momentos inolvidables
-                    </span>
+                  <p className="mt-5 max-w-xl text-base leading-8 text-slate-600">
+                    Revisa duración, horario, punto de encuentro, restricciones,
+                    transportación, inclusiones y precio final antes de
+                    reservar.
+                  </p>
 
-                    <h2 className="mt-6 text-3xl font-black leading-tight sm:text-4xl md:text-5xl">
-                      Haz que cada día de tus vacaciones cuente
-                    </h2>
+                  <button
+                    type="button"
+                    onClick={scrollToTours}
+                    className="mt-7 inline-flex min-h-[50px] items-center justify-center gap-3 rounded-2xl bg-[#023e73] px-7 py-4 text-sm font-black text-white transition hover:bg-[#0260fe] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#023e73]"
+                  >
+                    <FaTicketAlt aria-hidden="true" />
+                    Explorar experiencias
+                  </button>
+                </div>
 
-                    <p className="mt-5 max-w-xl text-base leading-8 text-white/75 md:text-lg">
-                      Complementa tu hospedaje con excursiones, recorridos y
-                      actividades para conocer mejor cada destino.
-                    </p>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {benefits.map((benefit) => {
+                    const Icon = benefit.icon;
 
-                    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                      <button
-                        type="button"
-                        onClick={scrollToTours}
-                        className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#ff6600] px-7 py-4 text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#e85d00]"
+                    return (
+                      <article
+                        key={benefit.title}
+                        className="rounded-3xl border border-slate-200 bg-[#f8fbff] p-6"
                       >
-                        <FaTicketAlt />
-                        Ver experiencias
-                      </button>
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0260fe]/10 text-xl text-[#0260fe]">
+                          <Icon aria-hidden="true" />
+                        </div>
 
-                      <a
-                        href="https://wa.me/529984954637?text=Hola,%20quiero%20información%20sobre%20tours%20y%20actividades."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/30 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur transition hover:bg-white hover:text-[#023e73]"
-                      >
-                        <FaWhatsapp />
-                        Hablar con un asesor
-                      </a>
-                    </div>
-                  </div>
+                        <h3 className="mt-5 text-lg font-black text-[#023e73]">
+                          {benefit.title}
+                        </h3>
+
+                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                          {benefit.description}
+                        </p>
+                      </article>
+                    );
+                  })}
                 </div>
               </div>
             </div>
           </section>
 
-          {/* BENEFICIOS */}
-          <section className="px-4 py-16 sm:px-6 md:py-24 lg:px-8">
-            <div className="mx-auto max-w-7xl">
-              <div className="mx-auto max-w-3xl text-center">
-                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#0260fe]">
-                  Disfruta con mayor confianza
-                </span>
+          {/* =====================================================
+              CTA FINAL
+          ====================================================== */}
+          <section className="bg-white px-4 pb-14 sm:px-6 md:pb-20 lg:px-8">
+            <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-to-r from-[#023e73] via-[#0260fe] to-[#3794ff] p-7 text-white shadow-xl sm:p-10 lg:p-12">
+              <div className="pointer-events-none absolute -right-24 -top-32 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-40 -left-24 h-80 w-80 rounded-full bg-[#ff6600]/25 blur-3xl" />
 
-                <h2 className="mt-4 text-3xl font-black text-[#023e73] sm:text-4xl">
-                  ¿Por qué reservar tus tours con nosotros?
-                </h2>
-
-                <p className="mt-5 leading-8 text-slate-600">
-                  Te ayudamos a conocer los detalles de cada experiencia antes
-                  de reservar.
-                </p>
-              </div>
-
-              <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-                {benefits.map((benefit) => {
-                  const Icon = benefit.icon;
-
-                  return (
-                    <article
-                      key={benefit.title}
-                      className="group rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#0260fe]/30 hover:shadow-xl"
-                    >
-                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0260fe]/10 text-[#0260fe] transition group-hover:bg-[#0260fe] group-hover:text-white">
-                        <Icon className="text-2xl" />
-                      </div>
-
-                      <h3 className="mt-6 text-xl font-black text-[#023e73]">
-                        {benefit.title}
-                      </h3>
-
-                      <p className="mt-3 leading-7 text-slate-600">
-                        {benefit.description}
-                      </p>
-                    </article>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-
-          {/* CTA FINAL */}
-          <section className="bg-white px-4 pb-16 sm:px-6 md:pb-24 lg:px-8">
-            <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.2rem] bg-gradient-to-r from-[#023e73] via-[#0260fe] to-[#3794ff] p-8 text-white shadow-2xl sm:p-12 lg:p-16">
-              <div className="absolute -right-24 -top-32 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
-
-              <div className="absolute -bottom-40 -left-24 h-80 w-80 rounded-full bg-[#ff6600]/25 blur-3xl" />
-
-              <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+              <div className="relative flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
                 <div className="max-w-3xl">
                   <span className="text-xs font-black uppercase tracking-[0.2em] text-white/65">
-                    Cotización personalizada
+                    ¿No encuentras lo que buscas?
                   </span>
 
-                  <h2 className="mt-4 text-3xl font-black leading-tight sm:text-4xl md:text-5xl">
-                    ¿No encuentras la experiencia que buscas?
+                  <h2 className="mt-3 text-3xl font-black leading-tight sm:text-4xl">
+                    Te ayudamos a encontrar una experiencia
                   </h2>
 
-                  <p className="mt-5 text-base leading-8 text-white/75 md:text-lg">
-                    Envíanos el destino, la fecha y el número de viajeros.
-                    Buscaremos actividades disponibles para tus vacaciones.
+                  <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">
+                    Envíanos destino, fecha y número de viajeros para ayudarte a
+                    consultar actividades disponibles.
                   </p>
                 </div>
 
@@ -700,25 +643,27 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex flex-none items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-8 py-5 text-base font-black text-white shadow-xl transition hover:-translate-y-1 hover:bg-[#1ebe5d] hover:shadow-2xl"
+                  className="inline-flex min-h-[54px] flex-none items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-7 py-4 text-base font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
-                  <FaWhatsapp className="text-2xl" />
+                  <FaWhatsapp className="text-xl" aria-hidden="true" />
                   Cotizar un tour
                 </a>
               </div>
             </div>
           </section>
 
-          {/* ENLACE A HOTELES */}
-          <section className="border-t border-slate-200 bg-[#f4f8ff] px-4 py-8 text-center">
+          {/* =====================================================
+              NAVEGACIÓN ALTERNATIVA
+          ====================================================== */}
+          <section className="border-t border-slate-200 bg-[#f5f8fc] px-4 py-7 text-center">
             <p className="text-sm text-slate-500">
               ¿También necesitas hospedaje?{" "}
               <Link
                 to="/hoteles"
-                className="inline-flex items-center gap-2 font-black text-[#0260fe] transition hover:text-[#ff6600]"
+                className="inline-flex items-center gap-1.5 font-black text-[#0260fe] transition hover:text-[#ff6600] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0260fe]"
               >
                 Consulta nuestros hoteles
-                <FaHotel className="text-xs" />
+                <FaHotel className="text-xs" aria-hidden="true" />
               </Link>
             </p>
           </section>
