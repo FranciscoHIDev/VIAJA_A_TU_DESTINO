@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import {
   FaHome,
   FaHotel,
@@ -13,13 +14,21 @@ import {
   FaDollarSign,
   FaCog,
   FaChevronDown,
+  FaRegNewspaper,
 } from "react-icons/fa";
+
 import { MdLogout, MdInsights } from "react-icons/md";
+
 import { Link, NavLink, useNavigate } from "react-router-dom";
+
 import api from "../Services/api";
 
 const LOGO =
   "https://res.cloudinary.com/duaysiozi/image/upload/v1785018355/i6jhddqaqz1ijctzrw42.webp";
+
+// ======================================================
+// ADMINISTRACIÓN
+// ======================================================
 
 const administrationNavigation = [
   {
@@ -28,12 +37,23 @@ const administrationNavigation = [
     icon: FaHome,
     end: true,
   },
+
   {
     label: "Ofertas",
     to: "/auth/ofertas",
     icon: FaTag,
   },
+
+  {
+    label: "Blog",
+    to: "/auth/blog",
+    icon: FaRegNewspaper,
+  },
 ];
+
+// ======================================================
+// VENTAS
+// ======================================================
 
 const salesNavigation = [
   {
@@ -41,22 +61,29 @@ const salesNavigation = [
     to: "/auth/crm",
     icon: FaUsers,
   },
+
   {
     label: "Cotizador",
     to: "/auth/cotizador",
     icon: FaFileInvoiceDollar,
   },
+
   {
     label: "Cotizaciones",
     to: "/auth/cotizaciones",
     icon: FaClipboardList,
   },
+
   {
     label: "Ventas",
     to: "/auth/ventas",
     icon: FaDollarSign,
   },
 ];
+
+// ======================================================
+// ANÁLISIS
+// ======================================================
 
 const analysisNavigation = [
   {
@@ -66,28 +93,45 @@ const analysisNavigation = [
   },
 ];
 
+// ======================================================
+// ACCIONES RÁPIDAS
+// ======================================================
+
 const quickActions = [
   {
     label: "Nuevo paquete",
     to: "/auth/new-package",
     icon: FaSuitcase,
   },
+
   {
     label: "Nuevo hotel",
     to: "/auth/new-hotel",
     icon: FaHotel,
   },
+
   {
     label: "Nuevo vuelo",
     to: "/auth/new-flight",
     icon: FaPlane,
   },
+
   {
     label: "Nuevo tour",
     to: "/auth/new-tour",
     icon: FaMapMarkedAlt,
   },
+
+  {
+    label: "Nuevo artículo",
+    to: "/auth/new-blog",
+    icon: FaRegNewspaper,
+  },
 ];
+
+// ======================================================
+// ITEM DE NAVEGACIÓN
+// ======================================================
 
 function NavigationItem({ label, to, icon: Icon, end, compact = false }) {
   return (
@@ -131,6 +175,10 @@ function NavigationItem({ label, to, icon: Icon, end, compact = false }) {
   );
 }
 
+// ======================================================
+// SECCIÓN DE NAVEGACIÓN
+// ======================================================
+
 function NavigationSection({ title, items }) {
   return (
     <section>
@@ -147,15 +195,27 @@ function NavigationSection({ title, items }) {
   );
 }
 
+// ======================================================
+// SIDEBAR
+// ======================================================
+
 function SideBar() {
   const navigate = useNavigate();
 
   const [loggingOut, setLoggingOut] = useState(false);
+
   const [error, setError] = useState("");
+
   const [contentOpen, setContentOpen] = useState(true);
 
+  // ====================================================
+  // CERRAR SESIÓN
+  // ====================================================
+
   const handleLogout = async () => {
-    if (loggingOut) return;
+    if (loggingOut) {
+      return;
+    }
 
     setLoggingOut(true);
     setError("");
@@ -171,17 +231,26 @@ function SideBar() {
         navigate("/auth/login", {
           replace: true,
         });
+
         return;
       }
 
       setError("No fue posible cerrar sesión. Intenta nuevamente.");
+
       setLoggingOut(false);
     }
   };
 
+  // ====================================================
+  // RENDER
+  // ====================================================
+
   return (
     <aside className="flex w-full shrink-0 flex-col bg-[#0d1726] text-white shadow-xl lg:min-h-[calc(100dvh-68px)] lg:w-[270px]">
-      {/* BRAND */}
+      {/* =================================================
+          BRAND
+      ================================================= */}
+
       <div className="border-b border-white/[0.07] px-4 py-5">
         <Link
           to="/auth"
@@ -224,18 +293,30 @@ function SideBar() {
         </Link>
       </div>
 
-      {/* NAVIGATION */}
+      {/* =================================================
+          NAVEGACIÓN
+      ================================================= */}
+
       <nav className="flex-1 space-y-6 overflow-y-auto px-3 py-5">
+        {/* ADMINISTRACIÓN */}
+
         <NavigationSection
           title="Administración"
           items={administrationNavigation}
         />
 
+        {/* VENTAS */}
+
         <NavigationSection title="Ventas" items={salesNavigation} />
+
+        {/* ANÁLISIS */}
 
         <NavigationSection title="Análisis" items={analysisNavigation} />
 
-        {/* CREAR CONTENIDO */}
+        {/* =================================================
+            CREAR CONTENIDO
+        ================================================= */}
+
         <section>
           <button
             type="button"
@@ -262,7 +343,10 @@ function SideBar() {
           ) : null}
         </section>
 
-        {/* SETTINGS */}
+        {/* =================================================
+            SISTEMA
+        ================================================= */}
+
         <section>
           <p className="mb-2 px-3 text-[10px] font-black uppercase tracking-[0.18em] text-slate-600">
             Sistema
@@ -276,7 +360,10 @@ function SideBar() {
         </section>
       </nav>
 
-      {/* FOOTER */}
+      {/* =================================================
+          FOOTER
+      ================================================= */}
+
       <div className="border-t border-white/[0.07] p-3">
         <div className="mb-2 rounded-xl bg-white/[0.04] p-3">
           <div className="flex items-center gap-3">
@@ -296,6 +383,8 @@ function SideBar() {
           </div>
         </div>
 
+        {/* CERRAR SESIÓN */}
+
         <button
           type="button"
           onClick={handleLogout}
@@ -308,6 +397,8 @@ function SideBar() {
 
           {loggingOut ? "Cerrando sesión..." : "Cerrar sesión"}
         </button>
+
+        {/* ERROR */}
 
         {error ? (
           <p className="mt-2 rounded-lg bg-red-500/10 px-3 py-2 text-center text-[11px] text-red-300">

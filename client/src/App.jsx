@@ -1,6 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+// =====================================================
 // WEB PÚBLICA
+// =====================================================
+
 import HomeNew from "./pages/Home/HomeNew";
 import Offers from "./pages/Offerts/Offerts";
 import Details from "./pages/Details/Details";
@@ -10,28 +13,43 @@ import Tours from "./pages/Tours/Tours";
 import Flights from "./pages/Flights/Flights";
 import Packages from "./pages/Packages/Packages";
 import BlogPage from "./pages/Blog/BlogPage";
+import BlogArticle from "./pages/Blog/BlogArticle.jsx";
 import AboutUs from "./pages/AboutUs/AboutUs";
-
 import NoticeOfPrivacy from "./pages/NoticeOfPrivacy/NoticeOfPrivacy";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
-
 import NotFound from "./pages/NotFound/NotFound";
 
+// =====================================================
 // COMPONENTES GENERALES
+// =====================================================
+
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
+// =====================================================
 // AUTH
+// =====================================================
+
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
+
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute/ProtectedAdminRoute.jsx";
 
+// =====================================================
 // LAYOUT ADMIN
+// =====================================================
+
 import LayoutAdmin from "./LayoutAdmin/LayoutAdmin";
 
+// =====================================================
 // ADMIN - DASHBOARD
+// =====================================================
+
 import HomeAdmin from "./LayoutAdmin/pages/HomeAdmin";
 
+// =====================================================
 // ADMIN - OFERTAS
+// =====================================================
+
 import OffersAdmin from "./LayoutAdmin/pages/OffersAdmin";
 import PackagesAdmin from "./LayoutAdmin/pages/PackagesAdmin";
 
@@ -40,21 +58,51 @@ import NewHotel from "./LayoutAdmin/pages/NewHotel";
 import NewFlight from "./LayoutAdmin/pages/NewFligth";
 import NewTour from "./LayoutAdmin/pages/NewTour";
 
+// =====================================================
+// ADMIN - BLOG
+// =====================================================
+
+import BlogAdmin from "./LayoutAdmin/pages/BlogAdmin";
+import NewBlog from "./LayoutAdmin/pages/NewBlog";
+
+// =====================================================
 // ADMIN - INSIGHTS
+// =====================================================
+
 import InsightsAdmin from "./LayoutAdmin/pages/InsightsAdmin.jsx";
 
+// =====================================================
 // ADMIN - CRM
+// =====================================================
+
 import AdminCRM from "./LayoutAdmin/pages/AdminCRM.jsx";
 import ClientDetail from "./LayoutAdmin/pages/ClientDetail.jsx";
 
+// =====================================================
 // ADMIN - COTIZADOR
+// =====================================================
+
 import AdminQuote from "./LayoutAdmin/pages/AdminQuote.jsx";
 import PublicQuote from "./LayoutAdmin/pages/PublicQuote.jsx";
 import QuotesAdmin from "./LayoutAdmin/pages/QuotesAdmin.jsx";
+
+// =====================================================
+// ADMIN - VENTAS
+// =====================================================
+
 import SalesAdmin from "./LayoutAdmin/pages/SalesAdmin.jsx";
 import SaleDetail from "./LayoutAdmin/pages/SaleDetail.jsx";
 import PublicReceipt from "./LayoutAdmin/pages/PublicReceipt.jsx";
+
+// =====================================================
+// ADMIN - CONFIGURACIÓN
+// =====================================================
+
 import SettingsAdmin from "./LayoutAdmin/pages/SettingsAdmin.jsx";
+
+// =====================================================
+// APP
+// =====================================================
 
 function App() {
   return (
@@ -72,17 +120,46 @@ function App() {
 
         <Route path="/oferta/:slug" element={<Details />} />
 
+        {/* =====================================================
+            BLOG PÚBLICO
+        ===================================================== */}
+
         <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:slug" element={<BlogArticle />} />
+
+        {/* =====================================================
+            HOTELES
+        ===================================================== */}
 
         <Route path="/hoteles" element={<Hotels />} />
 
+        {/* =====================================================
+            PAQUETES
+        ===================================================== */}
+
         <Route path="/paquetes" element={<Packages />} />
+
+        {/* =====================================================
+            TOURS
+        ===================================================== */}
 
         <Route path="/tours" element={<Tours />} />
 
+        {/* =====================================================
+            DESTINOS
+        ===================================================== */}
+
         <Route path="/destinos" element={<Destinations />} />
 
+        {/* =====================================================
+            VUELOS
+        ===================================================== */}
+
         <Route path="/vuelos" element={<Flights />} />
+
+        {/* =====================================================
+            INFORMACIÓN
+        ===================================================== */}
 
         <Route path="/acerca-de-nosotros" element={<AboutUs />} />
 
@@ -95,11 +172,21 @@ function App() {
           element={<TermsAndConditions />}
         />
 
+        {/* =====================================================
+            COTIZACIÓN PÚBLICA
+        ===================================================== */}
+
         <Route path="/cotizacion/:slug" element={<PublicQuote />} />
+
+        {/* =====================================================
+            RECIBO PÚBLICO
+        ===================================================== */}
+
         <Route path="/recibo/:slug" element={<PublicReceipt />} />
 
         {/* =====================================================
             LOGIN ADMIN
+
             DEBE ESTAR FUERA DE ProtectedAdminRoute
         ===================================================== */}
 
@@ -130,9 +217,21 @@ function App() {
             ================================================= */}
 
             <Route path="cotizador" element={<AdminQuote />} />
+
             <Route path="cotizaciones" element={<QuotesAdmin />} />
+
+            {/* =================================================
+                VENTAS
+            ================================================= */}
+
             <Route path="ventas" element={<SalesAdmin />} />
+
             <Route path="ventas/:id" element={<SaleDetail />} />
+
+            {/* =================================================
+                CONFIGURACIÓN
+            ================================================= */}
+
             <Route path="configuracion" element={<SettingsAdmin />} />
 
             {/* =================================================
@@ -149,29 +248,53 @@ function App() {
 
             <Route path="paquetes" element={<PackagesAdmin />} />
 
-            {/* CREAR PAQUETE */}
+            {/* =================================================
+                CREAR / EDITAR PAQUETE
+            ================================================= */}
 
             <Route path="new-package" element={<NewOffer />} />
 
             <Route path="ofertas/:id/editar" element={<NewOffer />} />
 
-            {/* CREAR HOTEL */}
+            {/* =================================================
+                CREAR / EDITAR HOTEL
+            ================================================= */}
 
             <Route path="new-hotel" element={<NewHotel />} />
 
             <Route path="hoteles/:id/editar" element={<NewHotel />} />
 
-            {/* CREAR VUELO */}
+            {/* =================================================
+                CREAR / EDITAR VUELO
+            ================================================= */}
 
             <Route path="new-flight" element={<NewFlight />} />
 
             <Route path="vuelos/:id/editar" element={<NewFlight />} />
 
-            {/* CREAR TOUR */}
+            {/* =================================================
+                CREAR / EDITAR TOUR
+            ================================================= */}
 
             <Route path="new-tour" element={<NewTour />} />
 
             <Route path="tours/:id/editar" element={<NewTour />} />
+
+            {/* =================================================
+                BLOG
+            ================================================= */}
+
+            {/* LISTADO DE ARTÍCULOS */}
+
+            <Route path="blog" element={<BlogAdmin />} />
+
+            {/* CREAR ARTÍCULO */}
+
+            <Route path="new-blog" element={<NewBlog />} />
+
+            {/* EDITAR ARTÍCULO */}
+
+            <Route path="blog/:id/editar" element={<NewBlog />} />
           </Route>
         </Route>
 
