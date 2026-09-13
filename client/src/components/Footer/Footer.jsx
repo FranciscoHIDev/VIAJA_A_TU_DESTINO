@@ -11,8 +11,6 @@ import {
   FaShieldAlt,
   FaCreditCard,
   FaHeadset,
-  FaArrowRight,
-  FaSuitcaseRolling,
 } from "react-icons/fa";
 
 function Footer() {
@@ -91,9 +89,9 @@ function Footer() {
             <nav className="mt-6 flex flex-col gap-4">
               {[
                 { name: "Ofertas", path: "/ofertas" },
-                { name: "Paquetes", path: "/paquetes" },
-                { name: "Hoteles", path: "/hoteles" },
-                { name: "Tours", path: "/tours" },
+                { name: "Paquetes", path: "/paquetes/?s=3#3" },
+                { name: "Hoteles", path: "/hoteles/?s=1#1" },
+                { name: "Tours", path: "/tours/?s=5#5" },
                 { name: "Blog de viajes", path: "/blog" },
               ].map((item) => (
                 <Link
@@ -164,7 +162,7 @@ function Footer() {
 
                 <div className="min-w-0">
                   <p className="text-xs font-bold uppercase tracking-wider text-white/40">
-                    Teléfono
+                    Reservaciones
                   </p>
 
                   <p className="mt-1 break-words text-sm font-bold text-white/80 transition group-hover:text-white">

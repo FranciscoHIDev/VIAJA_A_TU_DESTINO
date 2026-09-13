@@ -1,9 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO/SEO";
 import {
   FaArrowRight,
-  FaCalendarAlt,
   FaCamera,
   FaCheck,
   FaClock,
@@ -16,7 +15,6 @@ import {
   FaSun,
   FaTicketAlt,
   FaUmbrellaBeach,
-  FaUsers,
   FaWhatsapp,
   FaWater,
 } from "react-icons/fa";
@@ -160,35 +158,12 @@ function SmallCheck({ children }) {
 }
 
 function Tours() {
-  const [destination, setDestination] = useState("");
-  const [travelDate, setTravelDate] = useState("");
-  const [travelers, setTravelers] = useState("");
-
   const scrollToTours = () => {
     document.getElementById("tours-disponibles")?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
-
-  const scrollToQuote = () => {
-    document.getElementById("cotizar-tour")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
-  const whatsappUrl = useMemo(() => {
-    const message = `Hola, quiero cotizar un tour.
-
-Destino: ${destination || "Por definir"}
-Fecha: ${travelDate || "Por definir"}
-Número de viajeros: ${travelers || "Por definir"}
-
-Quiero conocer las actividades disponibles, precios e inclusiones.`;
-
-    return `https://wa.me/529984954637?text=${encodeURIComponent(message)}`;
-  }, [destination, travelDate, travelers]);
 
   return (
     <React.Fragment>
@@ -242,11 +217,16 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
 
                 <button
                   type="button"
-                  onClick={scrollToQuote}
+                  onClick={() => {
+                    document.getElementById("buscar-tour")?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }}
                   className="inline-flex w-fit min-h-[48px] items-center justify-center gap-3 rounded-2xl border-2 border-[#0260fe] bg-white px-6 py-3 text-sm font-black text-[#0260fe] transition hover:bg-[#0260fe] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe]"
                 >
                   <FaWhatsapp aria-hidden="true" />
-                  Cotizar otro tour
+                  Buscar tours
                 </button>
               </div>
 
@@ -264,109 +244,6 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
                   disponibilidad. Algunas actividades pueden tener restricciones
                   de edad, salud, transportación, impuestos o cargos
                   adicionales. Revisa los detalles antes de reservar.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* =====================================================
-              COTIZADOR RÁPIDO
-              Conserva la lógica original:
-              destino + fecha + viajeros -> WhatsApp.
-          ====================================================== */}
-          <section
-            id="cotizar-tour"
-            className="scroll-mt-24 border-y border-slate-100 bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
-          >
-            <div className="mx-auto max-w-[1400px]">
-              <div className="mx-auto mb-8 max-w-3xl text-center">
-                <span className="inline-flex items-center gap-2 rounded-full bg-[#0260fe]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#0260fe]">
-                  <FaWhatsapp aria-hidden="true" />
-                  Cotizador rápido
-                </span>
-
-                <h2 className="mt-4 text-3xl font-black leading-tight text-[#023e73] sm:text-4xl">
-                  ¿Qué experiencia estás buscando?
-                </h2>
-
-                <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">
-                  Indica destino, fecha y número de viajeros. Te ayudamos a
-                  consultar actividades disponibles.
-                </p>
-              </div>
-
-              <div className="rounded-[28px] border border-slate-200 bg-[#f8fbff] p-4 shadow-[0_18px_50px_rgba(2,62,115,0.08)] sm:p-6">
-                <div className="grid gap-4 md:grid-cols-[1fr_1fr_0.7fr_auto]">
-                  <label className="block">
-                    <span className="mb-2 block text-sm font-bold text-slate-700">
-                      Destino
-                    </span>
-
-                    <div className="relative">
-                      <FaMapMarkerAlt className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#0260fe]" />
-
-                      <input
-                        type="text"
-                        value={destination}
-                        onChange={(event) => setDestination(event.target.value)}
-                        placeholder="Ej. Cancún"
-                        className="h-14 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-sm font-semibold text-slate-700 outline-none transition focus:border-[#0260fe] focus:ring-4 focus:ring-[#0260fe]/10"
-                      />
-                    </div>
-                  </label>
-
-                  <label className="block">
-                    <span className="mb-2 block text-sm font-bold text-slate-700">
-                      Fecha
-                    </span>
-
-                    <div className="relative">
-                      <FaCalendarAlt className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#0260fe]" />
-
-                      <input
-                        type="date"
-                        value={travelDate}
-                        onChange={(event) => setTravelDate(event.target.value)}
-                        className="h-14 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-sm font-semibold text-slate-700 outline-none transition focus:border-[#0260fe] focus:ring-4 focus:ring-[#0260fe]/10"
-                      />
-                    </div>
-                  </label>
-
-                  <label className="block">
-                    <span className="mb-2 block text-sm font-bold text-slate-700">
-                      Viajeros
-                    </span>
-
-                    <div className="relative">
-                      <FaUsers className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#0260fe]" />
-
-                      <input
-                        type="number"
-                        min="1"
-                        value={travelers}
-                        onChange={(event) => setTravelers(event.target.value)}
-                        placeholder="2"
-                        className="h-14 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-sm font-semibold text-slate-700 outline-none transition focus:border-[#0260fe] focus:ring-4 focus:ring-[#0260fe]/10"
-                      />
-                    </div>
-                  </label>
-
-                  <div className="flex items-end">
-                    <a
-                      href={whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex h-14 w-full items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-6 text-sm font-black text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#25D366] md:w-auto"
-                    >
-                      <FaWhatsapp className="text-xl" aria-hidden="true" />
-                      Cotizar
-                    </a>
-                  </div>
-                </div>
-
-                <p className="mt-4 text-center text-xs leading-5 text-slate-500 sm:text-sm">
-                  Te enviaremos a WhatsApp con estos datos para consultar
-                  opciones, precios y disponibilidad.
                 </p>
               </div>
             </div>
@@ -449,8 +326,8 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
                   </h2>
 
                   <p className="mt-4 max-w-2xl leading-7 text-slate-600">
-                    Selecciona un destino para preparar una consulta de
-                    actividades.
+                    Explora algunos de los destinos con más experiencias y
+                    actividades para disfrutar durante tu viaje.
                   </p>
                 </div>
 
@@ -469,11 +346,8 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
                   <button
                     key={item.name}
                     type="button"
-                    onClick={() => {
-                      setDestination(item.name);
-                      setTimeout(scrollToQuote, 0);
-                    }}
-                    aria-label={`Cotizar tours en ${item.name}`}
+                    onClick={scrollToTours}
+                    aria-label={`Ver tours en ${item.name}`}
                     className="group relative min-h-[285px] overflow-hidden rounded-3xl bg-[#023e73] text-left shadow-md transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe]"
                   >
                     <img
@@ -500,7 +374,7 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
                       </p>
 
                       <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-white">
-                        Cotizar actividades
+                        Ver experiencias
                         <FaArrowRight
                           className="text-xs transition group-hover:translate-x-1"
                           aria-hidden="true"
@@ -634,13 +508,14 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
                   </h2>
 
                   <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">
-                    Envíanos destino, fecha y número de viajeros para ayudarte a
-                    consultar actividades disponibles.
+                    Envíanos tu destino, fecha y número de viajeros. Te
+                    ayudaremos a encontrar actividades y experiencias
+                    disponibles.
                   </p>
                 </div>
 
                 <a
-                  href={whatsappUrl}
+                  href="https://wa.me/529984954637?text=Hola,%20quiero%20información%20sobre%20tours%20y%20experiencias.%0A%0ADestino:%20%0AFecha:%20%0ANúmero%20de%20viajeros:%20"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex min-h-[54px] flex-none items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-7 py-4 text-base font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
@@ -659,7 +534,7 @@ Quiero conocer las actividades disponibles, precios e inclusiones.`;
             <p className="text-sm text-slate-500">
               ¿También necesitas hospedaje?{" "}
               <Link
-                to="/hoteles"
+                to="/hoteles/?s=1#1"
                 className="inline-flex items-center gap-1.5 font-black text-[#0260fe] transition hover:text-[#ff6600] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0260fe]"
               >
                 Consulta nuestros hoteles

@@ -528,7 +528,7 @@ function Hotels() {
             <p className="text-sm text-slate-500">
               ¿Buscas vuelo y hotel juntos?{" "}
               <Link
-                to="/paquetes"
+                to="/paquetes/?s=3#3"
                 className="inline-flex items-center gap-1.5 font-black text-[#0260fe] transition hover:text-[#ff6600] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0260fe]"
               >
                 Consulta nuestros paquetes

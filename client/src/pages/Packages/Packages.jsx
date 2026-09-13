@@ -531,7 +531,7 @@ function Packages() {
             <p className="text-sm text-slate-500">
               ¿Solamente necesitas hospedaje?{" "}
               <Link
-                to="/hoteles"
+                to="/hoteles/?s=1#1"
                 className="inline-flex items-center gap-1.5 font-black text-[#0260fe] transition hover:text-[#ff6600] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0260fe]"
               >
                 Consulta nuestros hoteles

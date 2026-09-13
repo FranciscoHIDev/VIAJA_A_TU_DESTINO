@@ -23,7 +23,7 @@ const navItems = [
   },
   {
     name: "Hoteles",
-    path: "/hoteles",
+    path: "/hoteles/?s=1#1",
     icon: FaHotel,
   },
   {

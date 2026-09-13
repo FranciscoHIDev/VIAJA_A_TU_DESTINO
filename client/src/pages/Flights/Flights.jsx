@@ -441,7 +441,7 @@ function Flights() {
             <p className="text-sm text-slate-500">
               ¿También necesitas hospedaje?{" "}
               <a
-                href="/paquetes"
+                href="/paquetes/?s=3#3"
                 className="inline-flex items-center gap-1.5 font-black text-[#0260fe] transition hover:text-[#ff6600]"
               >
                 Consulta vuelo + hotel

@@ -7,7 +7,6 @@ import {
   FaCreditCard,
   FaHeadset,
   FaHotel,
-  FaMapMarkerAlt,
   FaPlane,
   FaShieldAlt,
   FaSuitcase,
@@ -23,20 +22,26 @@ import PriceResWidget from "../../components/PriceRes/PriceResWidget";
 const categories = [
   {
     title: "Paquetes",
-    description: "Vuelo y hotel en una sola reservación.",
-    path: "/paquetes",
+    description: "Vuelo + hotel en una sola reservación.",
+    path: "/paquetes/?s=3#3",
     icon: FaSuitcase,
   },
   {
     title: "Hoteles",
-    description: "Hospedaje para todos los presupuestos.",
-    path: "/hoteles",
+    description: "Resorts, Todo Incluido y opciones de hospedaje.",
+    path: "/hoteles/?s=1#1",
     icon: FaHotel,
   },
   {
+    title: "Vuelos",
+    description: "Consulta vuelos nacionales e internacionales.",
+    path: "/vuelos/?s=2#2",
+    icon: FaPlane,
+  },
+  {
     title: "Tours",
-    description: "Actividades y experiencias inolvidables.",
-    path: "/tours",
+    description: "Actividades, parques y experiencias para tu viaje.",
+    path: "/tours/?s=5#5",
     icon: FaUmbrellaBeach,
   },
 ];
@@ -75,7 +80,7 @@ function Offers() {
   return (
     <React.Fragment>
       <SEO
-        title="Ofertas de Viajes y Vacaciones"
+        title="Ofertas de Viajes, Hoteles, Paquetes y Vuelos"
         description="Descubre ofertas de hoteles, paquetes, vuelos y tours para tus próximas vacaciones. Encuentra promociones y opciones de viaje en Viaja a tu Destino."
         image="https://www.viajaatudestino.com/IMAGEN-OFERTAS.jpg"
         url="https://www.viajaatudestino.com/ofertas"
@@ -85,103 +90,77 @@ function Offers() {
         <NavBar />
 
         <main className="flex-1">
-          {/* HERO */}
-          <section className="relative overflow-hidden bg-[#023e73]">
-            <div className="absolute inset-0">
-              <img
-                src="https://res.cloudinary.com/duaysiozi/image/upload/v1784166724/z5qgffi2ipgyjltwnqls.png"
-                alt="Ofertas de viajes"
-                className="h-full w-full object-cover"
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-r from-[#023e73]/95 via-[#023e73]/75 to-[#0260fe]/30" />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-[#023e73]/70 via-transparent to-transparent" />
-            </div>
-
-            <div className="relative mx-auto flex min-h-[430px] max-w-7xl items-center px-5 py-16 sm:px-6 md:min-h-[520px] lg:px-8">
-              <div className="max-w-3xl text-white">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] backdrop-blur">
-                  <FaMapMarkerAlt className="text-[#ff9b4a]" />
-                  Ofertas de viaje
-                </span>
-
-                <h1 className="mt-5 text-4xl font-black leading-tight tracking-tight sm:text-5xl md:text-6xl">
-                  Encuentra una oferta para tu próximo destino
-                </h1>
-
-                <p className="mt-6 max-w-2xl text-base leading-8 text-white/80 md:text-lg">
-                  Explora hoteles, paquetes, tours y experiencias seleccionadas
-                  para que viajes más y aproveches mejor tu presupuesto.
-                </p>
-
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <button
-                    type="button"
-                    onClick={scrollToOffers}
-                    className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#ff6600] px-7 py-4 text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-xl"
-                  >
-                    <FaPlane />
-                    Explorar ofertas
-                  </button>
-
-                  <a
-                    href="https://wa.me/529984954637?text=Hola,%20quiero%20recibir%20información%20sobre%20sus%20ofertas%20de%20viaje."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/30 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur transition hover:bg-white hover:text-[#023e73]"
-                  >
-                    <FaWhatsapp className="text-lg" />
-                    Solicitar una cotización
-                  </a>
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-white/75">
-                  <span className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-[#ff6600]" />
-                    Hoteles
-                  </span>
-
-                  <span className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-[#ff6600]" />
-                    Vuelo + hotel
-                  </span>
-
-                  <span className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-[#ff6600]" />
-                    Tours y experiencias
-                  </span>
-                </div>
-              </div>
-            </div>
+          {/* =====================================================
+              PRICERES: CARRUSEL + MOTOR
+              Primer bloque después del NavBar.
+          ====================================================== */}
+          <section
+            id="buscar-oferta"
+            className="bg-white"
+            aria-label="Buscador de viajes"
+          >
+            <PriceResWidget
+              showCarousel
+              title="Buscar hoteles, paquetes, vuelos y experiencias"
+            />
           </section>
 
-          {/* BUSCADOR */}
-          <section className="relative z-20 px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto -mt-8 max-w-6xl rounded-3xl border border-slate-200 bg-white p-3 shadow-xl sm:-mt-12 sm:p-5">
-              <PriceResWidget />
+          {/* TODAS LAS OFERTAS */}
+          <section
+            id="todas-las-ofertas"
+            className="scroll-mt-24 bg-white px-4 pb-14 pt-10 sm:px-6 sm:pt-12 md:pb-20 md:pt-16 lg:px-8"
+          >
+            <div className="mx-auto max-w-[1500px]">
+              <div className="mx-auto max-w-3xl text-center">
+                <span className="inline-flex items-center gap-2 rounded-full bg-[#0260fe]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#0260fe]">
+                  <FaBolt className="text-[#ff6600]" />
+                  Ofertas disponibles
+                </span>
+
+                <h2 className="mt-5 text-3xl font-black leading-tight text-[#023e73] sm:text-4xl md:text-5xl">
+                  Encuentra una oferta para tu próximo viaje
+                </h2>
+
+                <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg">
+                  Explora hoteles, paquetes, vuelos y experiencias disponibles.
+                  Compara opciones y elige la que mejor se adapte a tus fechas y
+                  forma de viajar.
+                </p>
+              </div>
+
+              <div className="mt-10">
+                <CardsOferts showAll />
+              </div>
+
+              <div className="mt-10 rounded-3xl border border-orange-200 bg-orange-50 p-6 text-center sm:p-8">
+                <p className="font-bold leading-7 text-[#8a420d]">
+                  Las tarifas están sujetas a disponibilidad y pueden cambiar
+                  sin previo aviso. El precio final dependerá de las fechas, el
+                  número de viajeros y los servicios seleccionados.
+                </p>
+              </div>
             </div>
           </section>
 
           {/* CATEGORÍAS */}
-          <section className="px-4 pb-10 pt-14 sm:px-6 md:pb-16 md:pt-20 lg:px-8">
+          <section className="bg-[#f5f8fc] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto max-w-3xl text-center">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-[#ff6600]">
-                  Busca por categoría
+                  Explora por categoría
                 </span>
 
                 <h2 className="mt-4 text-3xl font-black text-[#023e73] sm:text-4xl">
-                  Encuentra el tipo de viaje que necesitas
+                  Encuentra más opciones para tu viaje
                 </h2>
 
                 <p className="mt-4 leading-7 text-slate-600">
-                  Consulta nuestras opciones de hospedaje, paquetes y
-                  actividades.
+                  Entra directamente a hoteles, paquetes, vuelos o tours y
+                  descubre opciones específicas para cada tipo de viaje.
                 </p>
               </div>
 
-              <div className="mt-10 grid gap-5 md:grid-cols-3">
+              <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {categories.map((category) => {
                   const Icon = category.icon;
 
@@ -218,42 +197,6 @@ function Offers() {
             </div>
           </section>
 
-          {/* TODAS LAS OFERTAS */}
-          <section
-            id="todas-las-ofertas"
-            className="scroll-mt-24 bg-white px-4 py-14 sm:px-6 md:py-20 lg:px-8"
-          >
-            <div className="mx-auto max-w-[1500px]">
-              <div className="mx-auto max-w-3xl text-center">
-                <span className="inline-flex items-center gap-2 rounded-full bg-[#0260fe]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#0260fe]">
-                  <FaBolt className="text-[#ff6600]" />
-                  Ofertas disponibles
-                </span>
-
-                <h2 className="mt-5 text-3xl font-black leading-tight text-[#023e73] sm:text-4xl md:text-5xl">
-                  Todas nuestras ofertas de viaje
-                </h2>
-
-                <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg">
-                  Consulta las promociones disponibles y selecciona la que mejor
-                  se adapte a tus próximas vacaciones.
-                </p>
-              </div>
-
-              <div className="mt-10">
-                <CardsOferts showAll />
-              </div>
-
-              <div className="mt-10 rounded-3xl border border-orange-200 bg-orange-50 p-6 text-center sm:p-8">
-                <p className="font-bold leading-7 text-[#8a420d]">
-                  Las tarifas están sujetas a disponibilidad y pueden cambiar
-                  sin previo aviso. El precio final dependerá de las fechas, el
-                  número de viajeros y los servicios seleccionados.
-                </p>
-              </div>
-            </div>
-          </section>
-
           {/* BENEFICIOS */}
           <section className="bg-[#f4f8ff] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
@@ -263,12 +206,12 @@ function Offers() {
                 </span>
 
                 <h2 className="mt-4 text-3xl font-black text-[#023e73] sm:text-4xl">
-                  No somos una agencia tradicional
+                  Cazamos ofertas para que tú elijas el viaje
                 </h2>
 
                 <p className="mt-5 leading-8 text-slate-600">
-                  Somos cazadores de ofertas y buscamos opciones para que puedas
-                  encontrar tu próximo viaje.
+                  Reunimos promociones y alternativas para ayudarte a comparar y
+                  encontrar opciones que se adapten mejor a tus planes.
                 </p>
               </div>
 
