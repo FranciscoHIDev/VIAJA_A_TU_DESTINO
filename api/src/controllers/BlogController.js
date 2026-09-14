@@ -45,6 +45,16 @@ const featuredImageSchema = z
 
 const seoSchema = z
   .object({
+    focusKeyword: z
+      .string()
+      .trim()
+      .max(
+        150,
+        "La palabra clave objetivo no puede superar 150 caracteres."
+      )
+      .optional()
+      .default(""),
+
     title: z
       .string()
       .trim()
@@ -80,6 +90,26 @@ const seoSchema = z
       .optional()
       .default(""),
 
+    socialTitle: z
+      .string()
+      .trim()
+      .max(
+        220,
+        "El título para redes sociales no puede superar 220 caracteres."
+      )
+      .optional()
+      .default(""),
+
+    socialDescription: z
+      .string()
+      .trim()
+      .max(
+        320,
+        "La descripción para redes sociales no puede superar 320 caracteres."
+      )
+      .optional()
+      .default(""),
+
     canonicalUrl: z
       .union([
         z
@@ -94,14 +124,33 @@ const seoSchema = z
       ])
       .optional()
       .default(""),
+
+    index: z
+      .boolean({
+        message: "El campo SEO index debe ser true o false.",
+      })
+      .optional()
+      .default(true),
+
+    follow: z
+      .boolean({
+        message: "El campo SEO follow debe ser true o false.",
+      })
+      .optional()
+      .default(true),
   })
   .strict()
   .optional()
   .default({
+    focusKeyword: "",
     title: "",
     description: "",
     image: "",
+    socialTitle: "",
+    socialDescription: "",
     canonicalUrl: "",
+    index: true,
+    follow: true,
   });
 
 // ======================================================
@@ -356,6 +405,7 @@ const createUniqueSlug = async (
     };
 
     /*
+     * IMPORTANTE:
      * mongoose.trusted evita que sanitizeFilter
      * transforme el operador $ne.
      */
@@ -401,8 +451,7 @@ const formatZodErrors = (
         return issue.keys.map(
           (key) => ({
             field:
-              issue.path
-                ?.length > 0
+              issue.path?.length > 0
                 ? `${issue.path.join(".")}.${key}`
                 : key,
 
@@ -418,8 +467,7 @@ const formatZodErrors = (
       return [
         {
           field:
-            issue.path
-              ?.length > 0
+            issue.path?.length > 0
               ? issue.path.join(".")
               : "body",
 
@@ -575,7 +623,17 @@ const prepareBlog = (
       blog.publishedAt ||
       null,
 
+    // ==================================================
+    // VTD SEO DEL ARTÍCULO
+    // ==================================================
+
     seo: {
+      focusKeyword:
+        cleanText(
+          blog.seo
+            ?.focusKeyword
+        ),
+
       title:
         cleanText(
           blog.seo
@@ -594,11 +652,33 @@ const prepareBlog = (
           ?.trim() ||
         "",
 
+      socialTitle:
+        cleanText(
+          blog.seo
+            ?.socialTitle
+        ),
+
+      socialDescription:
+        cleanText(
+          blog.seo
+            ?.socialDescription
+        ),
+
       canonicalUrl:
         blog.seo
           ?.canonicalUrl
           ?.trim() ||
         "",
+
+      index:
+        blog.seo
+          ?.index !==
+        false,
+
+      follow:
+        blog.seo
+          ?.follow !==
+        false,
     },
   };
 
@@ -1177,12 +1257,12 @@ const routerGetPublishedBlog = async (
     } = req.query;
 
     /*
-     * mongoose.trusted es importante porque
-     * tu proyecto tiene sanitización de filtros.
+     * IMPORTANTE:
+     * mongoose.trusted es necesario porque el proyecto
+     * utiliza sanitización global de filtros.
      *
-     * Sin trusted(), $lte puede terminar
-     * interpretándose como valor de publishedAt
-     * y producir CastError.
+     * Sin trusted(), $lte puede ser interpretado como
+     * valor de publishedAt y provocar un CastError.
      */
 
     const filter = {
@@ -1532,6 +1612,11 @@ const routerPutBlog = async (
       prepared.blog
         .isFeatured
     ) {
+      /*
+       * IMPORTANTE:
+       * mongoose.trusted evita que sanitizeFilter
+       * transforme $ne.
+       */
       await Blog.updateMany(
         {
           _id:
