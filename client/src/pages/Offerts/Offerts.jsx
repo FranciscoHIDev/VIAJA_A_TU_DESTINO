@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SEO from "../../components/SEO/SEO";
+
+import PageSEO from "../../components/PageSEO/PageSEO";
+
 import {
   FaArrowRight,
   FaBolt,
@@ -18,6 +20,10 @@ import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import CardsOferts from "../../components/CardsOferts/CardsOferts";
 import PriceResWidget from "../../components/PriceRes/PriceResWidget";
+
+/* =========================================================
+   CATEGORÍAS
+========================================================= */
 
 const categories = [
   {
@@ -46,6 +52,10 @@ const categories = [
   },
 ];
 
+/* =========================================================
+   BENEFICIOS
+========================================================= */
+
 const benefits = [
   {
     title: "Ofertas reales",
@@ -69,22 +79,23 @@ const benefits = [
   },
 ];
 
-function Offers() {
-  const scrollToOffers = () => {
-    document.getElementById("todas-las-ofertas")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
+/* =========================================================
+   OFERTAS
+========================================================= */
 
+function Offers() {
   return (
     <React.Fragment>
-      <SEO
-        title="Ofertas de Viajes, Hoteles, Paquetes y Vuelos"
-        description="Descubre ofertas de hoteles, paquetes, vuelos y tours para tus próximas vacaciones. Encuentra promociones y opciones de viaje en Viaja a tu Destino."
-        image="https://www.viajaatudestino.com/IMAGEN-OFERTAS.jpg"
-        url="https://www.viajaatudestino.com/ofertas"
-      />
+      {/* =====================================================
+          VTD SEO
+
+          Toda la configuración SEO de /ofertas viene
+          directamente desde el backend:
+
+          GET /api/page-seo/offers
+      ====================================================== */}
+
+      <PageSEO pageKey="offers" />
 
       <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
         <NavBar />
@@ -94,6 +105,7 @@ function Offers() {
               PRICERES: CARRUSEL + MOTOR
               Primer bloque después del NavBar.
           ====================================================== */}
+
           <section
             id="buscar-oferta"
             className="bg-white"
@@ -105,7 +117,10 @@ function Offers() {
             />
           </section>
 
-          {/* TODAS LAS OFERTAS */}
+          {/* =====================================================
+              TODAS LAS OFERTAS
+          ====================================================== */}
+
           <section
             id="todas-las-ofertas"
             className="scroll-mt-24 bg-white px-4 pb-14 pt-10 sm:px-6 sm:pt-12 md:pb-20 md:pt-16 lg:px-8"
@@ -113,7 +128,7 @@ function Offers() {
             <div className="mx-auto max-w-[1500px]">
               <div className="mx-auto max-w-3xl text-center">
                 <span className="inline-flex items-center gap-2 rounded-full bg-[#0260fe]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#0260fe]">
-                  <FaBolt className="text-[#ff6600]" />
+                  <FaBolt className="text-[#ff6600]" aria-hidden="true" />
                   Ofertas disponibles
                 </span>
 
@@ -142,7 +157,10 @@ function Offers() {
             </div>
           </section>
 
-          {/* CATEGORÍAS */}
+          {/* =====================================================
+              CATEGORÍAS
+          ====================================================== */}
+
           <section className="bg-[#f5f8fc] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto max-w-3xl text-center">
@@ -168,13 +186,13 @@ function Offers() {
                     <Link
                       key={category.title}
                       to={category.path}
-                      className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#0260fe]/30 hover:shadow-xl"
+                      className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#0260fe]/30 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe]"
                     >
                       <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#0260fe]/5 transition group-hover:scale-125" />
 
                       <div className="relative">
                         <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0260fe]/10 text-[#0260fe] transition group-hover:bg-[#0260fe] group-hover:text-white">
-                          <Icon className="text-2xl" />
+                          <Icon className="text-2xl" aria-hidden="true" />
                         </div>
 
                         <h3 className="mt-6 text-2xl font-black text-[#023e73]">
@@ -187,7 +205,10 @@ function Offers() {
 
                         <span className="mt-6 inline-flex items-center gap-2 text-sm font-black text-[#0260fe]">
                           Explorar
-                          <FaArrowRight className="text-xs transition group-hover:translate-x-1" />
+                          <FaArrowRight
+                            className="text-xs transition group-hover:translate-x-1"
+                            aria-hidden="true"
+                          />
                         </span>
                       </div>
                     </Link>
@@ -197,7 +218,10 @@ function Offers() {
             </div>
           </section>
 
-          {/* BENEFICIOS */}
+          {/* =====================================================
+              BENEFICIOS
+          ====================================================== */}
+
           <section className="bg-[#f4f8ff] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto max-w-3xl text-center">
@@ -225,7 +249,7 @@ function Offers() {
                       className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                     >
                       <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#ff6600]/10 text-[#ff6600]">
-                        <Icon className="text-2xl" />
+                        <Icon className="text-2xl" aria-hidden="true" />
                       </div>
 
                       <h3 className="mt-6 text-xl font-black text-[#023e73]">
@@ -242,10 +266,14 @@ function Offers() {
             </div>
           </section>
 
-          {/* CTA */}
+          {/* =====================================================
+              CTA FINAL
+          ====================================================== */}
+
           <section className="px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-to-r from-[#023e73] via-[#0260fe] to-[#3794ff] p-8 text-white shadow-xl sm:p-12">
               <div className="absolute -right-20 -top-28 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+
               <div className="absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-[#ff6600]/25 blur-3xl" />
 
               <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
@@ -268,9 +296,9 @@ function Offers() {
                   href="https://wa.me/529984954637?text=Hola,%20quiero%20una%20cotización%20personalizada.%0A%0ADestino:%20%0AFechas:%20%0ACiudad%20de%20salida:%20%0ANúmero%20de%20viajeros:%20"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex flex-none items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-7 py-4 text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] hover:shadow-xl"
+                  className="inline-flex flex-none items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-7 py-4 text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
-                  <FaWhatsapp className="text-xl" />
+                  <FaWhatsapp className="text-xl" aria-hidden="true" />
                   Cazar una oferta
                 </a>
               </div>

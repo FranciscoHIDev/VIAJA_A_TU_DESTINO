@@ -64,6 +64,7 @@ import NewTour from "./LayoutAdmin/pages/NewTour";
 
 import BlogAdmin from "./LayoutAdmin/pages/BlogAdmin";
 import NewBlog from "./LayoutAdmin/pages/NewBlog";
+import SeoAdmin from "./LayoutAdmin/pages/SeoAdmin";
 
 // =====================================================
 // ADMIN - INSIGHTS
@@ -295,6 +296,7 @@ function App() {
             {/* EDITAR ARTÍCULO */}
 
             <Route path="blog/:id/editar" element={<NewBlog />} />
+            <Route path="configuracion/seo" element={<SeoAdmin />} />
           </Route>
         </Route>
 

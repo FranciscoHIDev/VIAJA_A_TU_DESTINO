@@ -1,6 +1,17 @@
 {
   "rewrites": [
     {
+      "source": "/blog/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(facebookexternalhit|Facebot|WhatsApp|Twitterbot|LinkedInBot|TelegramBot|Slackbot|Discordbot|Pinterestbot).*"
+        }
+      ],
+      "destination": "https://viaja-a-tu-destino-back.vercel.app/api/social/blog/:slug"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

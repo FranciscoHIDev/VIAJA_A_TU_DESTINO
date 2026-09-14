@@ -12,7 +12,6 @@ import {
   FaImage,
   FaPen,
   FaSave,
-  FaSearch,
   FaStar,
   FaTrash,
 } from "react-icons/fa";
@@ -22,6 +21,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import api from "../../services/api";
+import SEOEditor from "../components/SEOEditor";
 
 // ======================================================
 // CONFIGURACIÓN
@@ -54,10 +54,15 @@ const createEmptyValues = () => ({
   publishedAt: "",
 
   seo: {
+    focusKeyword: "",
     title: "",
     description: "",
     image: "",
+    socialTitle: "",
+    socialDescription: "",
     canonicalUrl: "",
+    index: true,
+    follow: true,
   },
 });
 
@@ -147,10 +152,15 @@ const mapBlogToFormValues = (blog) => ({
   publishedAt: toLocalDateTimeInput(blog?.publishedAt),
 
   seo: {
+    focusKeyword: asText(blog?.seo?.focusKeyword),
     title: asText(blog?.seo?.title),
     description: asText(blog?.seo?.description),
     image: asText(blog?.seo?.image),
+    socialTitle: asText(blog?.seo?.socialTitle),
+    socialDescription: asText(blog?.seo?.socialDescription),
     canonicalUrl: asText(blog?.seo?.canonicalUrl),
+    index: blog?.seo?.index !== false,
+    follow: blog?.seo?.follow !== false,
   },
 });
 
@@ -229,13 +239,23 @@ const validationSchema = yup.object({
   publishedAt: yup.string(),
 
   seo: yup.object({
+    focusKeyword: yup.string().trim().max(150, "Máximo 150 caracteres"),
+
     title: yup.string().trim().max(220, "Máximo 220 caracteres"),
 
     description: yup.string().trim().max(320, "Máximo 320 caracteres"),
 
     image: optionalUrl,
 
+    socialTitle: yup.string().trim().max(220, "Máximo 220 caracteres"),
+
+    socialDescription: yup.string().trim().max(320, "Máximo 320 caracteres"),
+
     canonicalUrl: optionalUrl,
+
+    index: yup.boolean(),
+
+    follow: yup.boolean(),
   }),
 });
 
@@ -294,13 +314,23 @@ function NewBlog() {
           publishedAt: toISOStringOrNull(values.publishedAt),
 
           seo: {
+            focusKeyword: values.seo.focusKeyword.trim(),
+
             title: values.seo.title.trim(),
 
             description: values.seo.description.trim(),
 
             image: values.seo.image.trim(),
 
+            socialTitle: values.seo.socialTitle.trim(),
+
+            socialDescription: values.seo.socialDescription.trim(),
+
             canonicalUrl: values.seo.canonicalUrl.trim(),
+
+            index: values.seo.index !== false,
+
+            follow: values.seo.follow !== false,
           },
         };
 
@@ -918,153 +948,86 @@ function NewBlog() {
             </section>
 
             {/* ===========================================
-                SEO
+                VTD SEO
             =========================================== */}
 
             <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
               <SectionHeader
                 number="4"
-                title="SEO"
-                description="Optimiza cómo puede aparecer el artículo en buscadores y al compartirlo."
+                title="VTD SEO"
+                description="Optimiza el artículo para buscadores, redes sociales e indexación."
               />
 
-              <div className="grid grid-cols-1 gap-4 p-5 sm:p-6">
-                <TextField
-                  fullWidth
-                  name="seo.title"
-                  label="Título SEO"
-                  placeholder="Ej. Guía para viajar a Cancún | Viaja a tu Destino"
-                  value={formik.values.seo.title}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.seo?.title &&
-                    Boolean(formik.errors.seo?.title)
+              <div className="p-5 sm:p-6">
+                <SEOEditor
+                  seo={formik.values.seo}
+                  onChange={(nextSeo) => {
+                    formik.setFieldValue("seo", nextSeo, false);
+                  }}
+                  pageLabel={formik.values.title.trim() || "Artículo del blog"}
+                  pagePath={`/blog/${slugPreview || "articulo"}`}
+                  fallbackTitle={formik.values.title}
+                  fallbackDescription={
+                    formik.values.excerpt ||
+                    textFromHtml(formik.values.content).slice(0, 160)
                   }
-                  helperText={
-                    (formik.touched.seo?.title && formik.errors.seo?.title) ||
-                    `${formik.values.seo.title.length}/220 caracteres`
-                  }
-                  sx={fieldSx}
+                  fallbackImage={formik.values.featuredImage.url}
+                  content={formik.values.content}
+                  slug={slugPreview}
+                  imageAlt={formik.values.featuredImage.alt}
                 />
 
-                <TextField
-                  fullWidth
-                  name="seo.description"
-                  label="Meta descripción"
-                  placeholder="Resume el artículo para los resultados de búsqueda."
-                  multiline
-                  minRows={3}
-                  value={formik.values.seo.description}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.seo?.description &&
-                    Boolean(formik.errors.seo?.description)
-                  }
-                  helperText={
-                    (formik.touched.seo?.description &&
-                      formik.errors.seo?.description) ||
-                    `${formik.values.seo.description.length}/320 caracteres`
-                  }
-                  sx={fieldSx}
-                />
+                {/* Herramientas de imagen SEO */}
+                <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                  <p className="text-sm font-black text-slate-800">
+                    Imagen para buscadores y redes
+                  </p>
 
-                <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-                  <div>
-                    <TextField
-                      fullWidth
-                      name="seo.image"
-                      label="Imagen SEO"
-                      placeholder="https://..."
-                      value={formik.values.seo.image}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      error={
-                        formik.touched.seo?.image &&
-                        Boolean(formik.errors.seo?.image)
-                      }
-                      helperText={
-                        formik.touched.seo?.image && formik.errors.seo?.image
-                      }
-                      sx={fieldSx}
-                    />
+                  <p className="mt-1 text-xs leading-5 text-slate-500">
+                    Puedes cargar una imagen específica para SEO o reutilizar la
+                    imagen destacada del artículo.
+                  </p>
 
-                    <div className="mt-2 flex flex-wrap gap-2">
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <Button
+                      type="button"
+                      variant="outlined"
+                      startIcon={<FaImage />}
+                      onClick={(event) => openWidget(event, "seo.image")}
+                      sx={secondaryButtonSx}
+                    >
+                      Cargar imagen SEO
+                    </Button>
+
+                    {formik.values.featuredImage.url && (
                       <Button
                         type="button"
-                        variant="outlined"
-                        onClick={(event) => openWidget(event, "seo.image")}
-                        sx={secondaryButtonSx}
+                        variant="text"
+                        onClick={() =>
+                          formik.setFieldValue(
+                            "seo.image",
+                            formik.values.featuredImage.url,
+                          )
+                        }
+                        sx={{
+                          textTransform: "none",
+                          fontWeight: 800,
+                        }}
                       >
-                        Cargar imagen
+                        Usar imagen destacada
                       </Button>
+                    )}
+                  </div>
 
-                      {formik.values.featuredImage.url && (
-                        <Button
-                          type="button"
-                          variant="text"
-                          onClick={() =>
-                            formik.setFieldValue(
-                              "seo.image",
-                              formik.values.featuredImage.url,
-                            )
-                          }
-                          sx={{
-                            textTransform: "none",
-                            fontWeight: 800,
-                          }}
-                        >
-                          Usar portada
-                        </Button>
-                      )}
+                  {formik.values.seo.image && (
+                    <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                      <img
+                        src={formik.values.seo.image}
+                        alt="Vista previa de la imagen SEO"
+                        className="aspect-[1200/630] w-full object-cover"
+                      />
                     </div>
-                  </div>
-
-                  <TextField
-                    fullWidth
-                    name="seo.canonicalUrl"
-                    label="URL canónica"
-                    placeholder="https://www.viajaatudestino.com/blog/..."
-                    value={formik.values.seo.canonicalUrl}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    error={
-                      formik.touched.seo?.canonicalUrl &&
-                      Boolean(formik.errors.seo?.canonicalUrl)
-                    }
-                    helperText={
-                      (formik.touched.seo?.canonicalUrl &&
-                        formik.errors.seo?.canonicalUrl) ||
-                      "Déjala vacía si todavía no conoces la URL definitiva."
-                    }
-                    sx={fieldSx}
-                  />
-                </div>
-
-                {/* Vista previa Google */}
-
-                <div className="mt-2 rounded-2xl border border-slate-200 bg-white p-5">
-                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400">
-                    <FaSearch />
-                    Vista previa SEO
-                  </div>
-
-                  <p className="mt-4 text-sm text-slate-500">
-                    viajaatudestino.com › blog › {slugPreview || "articulo"}
-                  </p>
-
-                  <p className="mt-1 text-xl font-medium text-[#1a0dab]">
-                    {formik.values.seo.title ||
-                      formik.values.title ||
-                      "Título del artículo"}
-                  </p>
-
-                  <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600">
-                    {formik.values.seo.description ||
-                      formik.values.excerpt ||
-                      "Aquí aparecerá la descripción del artículo para los motores de búsqueda."}
-                  </p>
+                  )}
                 </div>
               </div>
             </section>

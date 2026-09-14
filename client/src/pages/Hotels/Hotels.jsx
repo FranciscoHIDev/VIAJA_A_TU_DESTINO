@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SEO from "../../components/SEO/SEO";
+
+import PageSEO from "../../components/PageSEO/PageSEO";
+
 import {
   FaArrowRight,
   FaBed,
@@ -148,6 +150,7 @@ function SmallCheck({ children }) {
       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-600">
         <FaCheck className="text-[10px]" aria-hidden="true" />
       </span>
+
       <span>{children}</span>
     </div>
   );
@@ -170,12 +173,16 @@ function Hotels() {
 
   return (
     <React.Fragment>
-      <SEO
-        title="Hoteles en Cancún, Riviera Maya y México"
-        description="Encuentra hoteles en Cancún, Riviera Maya, Playa del Carmen, Huatulco y otros destinos de México. Consulta promociones y hoteles todo incluido."
-        image="https://www.viajaatudestino.com/IMAGEN-HOTELES.jpg"
-        url="https://www.viajaatudestino.com/hoteles"
-      />
+      {/* =====================================================
+          VTD SEO
+
+          Toda la configuración SEO de /hoteles viene ahora
+          del backend:
+
+          GET /api/page-seo/hotels
+      ====================================================== */}
+
+      <PageSEO pageKey="hotels" />
 
       <div className="flex min-h-screen flex-col bg-[#f5f8fc]">
         <NavBar />
@@ -185,6 +192,7 @@ function Hotels() {
               PRICERES: CARRUSEL + MOTOR
               Primer bloque después del NavBar.
           ====================================================== */}
+
           <section id="buscar-hotel" className="scroll-mt-24 bg-white">
             <PriceResWidget
               showCarousel
@@ -195,6 +203,7 @@ function Hotels() {
           {/* =====================================================
               HOTELES DESTACADOS
           ====================================================== */}
+
           <section
             id="hoteles-disponibles"
             className="scroll-mt-24 bg-[#f5f8fc] px-4 py-14 sm:px-6 md:py-20 lg:px-8"
@@ -220,7 +229,7 @@ function Hotels() {
                 <button
                   type="button"
                   onClick={scrollToSearch}
-                  className="inline-flex w-fit min-h-[48px] items-center justify-center gap-3 rounded-2xl border-2 border-[#0260fe] bg-white px-6 py-3 text-sm font-black text-[#0260fe] transition hover:bg-[#0260fe] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe]"
+                  className="inline-flex min-h-[48px] w-fit items-center justify-center gap-3 rounded-2xl border-2 border-[#0260fe] bg-white px-6 py-3 text-sm font-black text-[#0260fe] transition hover:bg-[#0260fe] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe]"
                 >
                   <FaSearch aria-hidden="true" />
                   Hacer otra búsqueda
@@ -248,6 +257,7 @@ function Hotels() {
           {/* =====================================================
               TIPOS DE HOSPEDAJE
           ====================================================== */}
+
           <section className="bg-white px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto max-w-3xl text-center">
@@ -309,6 +319,7 @@ function Hotels() {
           {/* =====================================================
               DESTINOS
           ====================================================== */}
+
           <section className="bg-[#f5f8fc] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
@@ -386,6 +397,7 @@ function Hotels() {
           {/* =====================================================
               CÓMO FUNCIONA
           ====================================================== */}
+
           <section className="bg-[#023e73] px-4 py-14 text-white sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto max-w-3xl text-center">
@@ -428,6 +440,7 @@ function Hotels() {
           {/* =====================================================
               BENEFICIOS
           ====================================================== */}
+
           <section className="bg-white px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
@@ -487,9 +500,11 @@ function Hotels() {
           {/* =====================================================
               CTA FINAL
           ====================================================== */}
+
           <section className="bg-white px-4 pb-14 sm:px-6 md:pb-20 lg:px-8">
             <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-to-r from-[#023e73] via-[#0260fe] to-[#3794ff] p-7 text-white shadow-xl sm:p-10 lg:p-12">
               <div className="pointer-events-none absolute -right-24 -top-32 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
+
               <div className="pointer-events-none absolute -bottom-40 -left-24 h-80 w-80 rounded-full bg-[#ff6600]/25 blur-3xl" />
 
               <div className="relative flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
@@ -524,6 +539,7 @@ function Hotels() {
           {/* =====================================================
               NAVEGACIÓN ALTERNATIVA
           ====================================================== */}
+
           <section className="border-t border-slate-200 bg-[#f5f8fc] px-4 py-7 text-center">
             <p className="text-sm text-slate-500">
               ¿Buscas vuelo y hotel juntos?{" "}

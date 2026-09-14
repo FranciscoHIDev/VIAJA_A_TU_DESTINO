@@ -1,5 +1,5 @@
 import React from "react";
-import SEO from "../../components/SEO/SEO";
+import PageSEO from "../../components/PageSEO/PageSEO";
 import {
   FaArrowRight,
   FaCalendarAlt,
@@ -138,12 +138,7 @@ function Flights() {
 
   return (
     <React.Fragment>
-      <SEO
-        title="Vuelos Nacionales e Internacionales"
-        description="Busca vuelos nacionales e internacionales y consulta opciones para Cancún, Puerto Vallarta, Los Cabos, Huatulco y otros destinos."
-        image="https://www.viajaatudestino.com/IMAGEN-VUELOS.jpg"
-        url="https://www.viajaatudestino.com/vuelos"
-      />
+      <PageSEO pageKey="flights" />
 
       <div className="flex min-h-screen flex-col bg-[#f5f8fc]">
         <NavBar />

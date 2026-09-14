@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SEO from "../../components/SEO/SEO";
+
+import PageSEO from "../../components/PageSEO/PageSEO";
+
 import {
   FaArrowRight,
   FaBolt,
@@ -13,6 +15,7 @@ import {
   FaUmbrellaBeach,
   FaWhatsapp,
 } from "react-icons/fa";
+
 import { GiMayanPyramid } from "react-icons/gi";
 
 import NavBar from "../../components/NavBar/NavBar";
@@ -20,11 +23,11 @@ import Footer from "../../components/Footer/Footer";
 import CardsOferts from "../../components/CardsOferts/CardsOferts";
 import PriceResWidget from "../../components/PriceRes/PriceResWidget";
 
-/* =========================================================
-   DATOS DE LA HOME
-   Mantener los textos en arreglos facilita editar el contenido
-   sin tocar la estructura visual.
-========================================================= */
+// =========================================================
+// DATOS DE LA HOME
+// Mantener los textos en arreglos facilita editar el contenido
+// sin tocar la estructura visual.
+// =========================================================
 
 const steps = [
   {
@@ -101,6 +104,10 @@ const featuredDestinations = [
   },
 ];
 
+// =========================================================
+// CHECK ICON
+// =========================================================
+
 function CheckIcon() {
   return (
     <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-[#0260fe]/10 text-[#0260fe]">
@@ -109,15 +116,32 @@ function CheckIcon() {
   );
 }
 
+// =========================================================
+// HOME
+// =========================================================
+
 export default function HomeNew() {
   return (
     <React.Fragment>
-      <SEO
-        title="Ofertas de Viajes, Hoteles y Paquetes"
-        description="Encuentra ofertas de viajes, hoteles, vuelos, paquetes y tours en México. Viaja más y paga menos con Viaja a tu Destino."
-        image="https://www.viajaatudestino.com/IMAGEN-SEO-HOME.jpg"
-        url="https://www.viajaatudestino.com/"
+      {/* =====================================================
+          VTD SEO
+          La configuración principal se obtiene desde:
+          /api/page-seo/home
+
+          Si la API SEO no está disponible, se utilizan
+          estos valores como respaldo.
+      ====================================================== */}
+
+      <PageSEO
+        pageKey="home"
+        fallbackTitle="Cazadores de Ofertas de Viajes"
+        fallbackDescription="Cazamos las mejores ofertas de viaje para ti: vuelos, hoteles, paquetes, tours y experiencias para tus próximas vacaciones."
+        fallbackUrl="https://www.viajaatudestino.com/"
       />
+
+      {/* =====================================================
+          HOME
+      ====================================================== */}
 
       <div className="flex min-h-screen flex-col bg-[#f5f8fc]">
         <NavBar />
@@ -127,6 +151,7 @@ export default function HomeNew() {
               PRICERES: CARRUSEL + MOTOR DE BÚSQUEDA
               Primer bloque de la Home después del NavBar.
           ====================================================== */}
+
           <section className="bg-white">
             <PriceResWidget
               showCarousel
@@ -136,9 +161,8 @@ export default function HomeNew() {
 
           {/* =====================================================
               OFERTAS DESTACADAS
-              Aparecen pronto para que el usuario llegue al valor
-              principal de la home sin recorrer demasiado contenido.
           ====================================================== */}
+
           <section
             id="ofertas"
             className="scroll-mt-24 bg-white px-4 pb-14 pt-10 sm:px-6 sm:pt-12 md:pb-20 md:pt-14 lg:px-8"
@@ -193,15 +217,18 @@ export default function HomeNew() {
           {/* =====================================================
               DESTINOS
           ====================================================== */}
+
           <section className="px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto max-w-3xl text-center">
                 <span className="text-xs font-black uppercase tracking-[0.18em] text-[#ff6600]">
                   Destinos favoritos
                 </span>
+
                 <h2 className="mt-3 text-3xl font-black text-[#023e73] sm:text-4xl">
                   Inspírate para tu próxima aventura
                 </h2>
+
                 <p className="mt-4 leading-7 text-slate-600">
                   Explora algunos de los destinos más buscados por nuestros
                   viajeros.
@@ -219,6 +246,7 @@ export default function HomeNew() {
                       className={`group relative min-h-[250px] overflow-hidden rounded-3xl bg-gradient-to-br ${destination.gradient} p-6 text-white shadow-md transition hover:-translate-y-1 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe]`}
                     >
                       <div className="absolute -right-14 -top-14 h-44 w-44 rounded-full bg-white/10 transition duration-500 group-hover:scale-125" />
+
                       <div className="absolute -bottom-20 -left-12 h-48 w-48 rounded-full bg-black/10" />
 
                       <div className="relative flex h-full flex-col justify-between">
@@ -230,9 +258,11 @@ export default function HomeNew() {
                           <h3 className="text-2xl font-black">
                             {destination.name}
                           </h3>
+
                           <p className="mt-2 leading-6 text-white/80">
                             {destination.description}
                           </p>
+
                           <span className="mt-4 inline-flex items-center gap-2 text-sm font-black">
                             Ver ofertas
                             <FaArrowRight
@@ -251,17 +281,19 @@ export default function HomeNew() {
 
           {/* =====================================================
               CÓMO FUNCIONA
-              Antes estaba definido en `steps`, pero no se mostraba.
           ====================================================== */}
+
           <section className="bg-white px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="max-w-3xl">
                 <span className="text-xs font-black uppercase tracking-[0.18em] text-[#0260fe]">
                   Así funciona
                 </span>
+
                 <h2 className="mt-3 text-3xl font-black leading-tight text-[#023e73] sm:text-4xl">
                   Encontrar tu viaje puede ser más sencillo
                 </h2>
+
                 <p className="mt-4 max-w-2xl leading-7 text-slate-600">
                   Si no encuentras una oferta publicada que se adapte a ti,
                   podemos ayudarte a buscar alternativas.
@@ -278,6 +310,7 @@ export default function HomeNew() {
                       <span className="text-4xl font-black tracking-[-0.05em] text-[#0260fe]/20">
                         {step.number}
                       </span>
+
                       {index < steps.length - 1 ? (
                         <FaArrowRight
                           className="hidden text-slate-300 md:block"
@@ -289,6 +322,7 @@ export default function HomeNew() {
                     <h3 className="mt-5 text-xl font-black text-[#023e73]">
                       {step.title}
                     </h3>
+
                     <p className="mt-3 leading-7 text-slate-600">
                       {step.description}
                     </p>
@@ -301,6 +335,7 @@ export default function HomeNew() {
           {/* =====================================================
               POR QUÉ ELEGIRNOS
           ====================================================== */}
+
           <section className="px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
@@ -327,6 +362,7 @@ export default function HomeNew() {
                     ].map((item) => (
                       <div key={item} className="flex items-center gap-3">
                         <CheckIcon />
+
                         <p className="font-semibold text-slate-700">{item}</p>
                       </div>
                     ))}
@@ -357,6 +393,7 @@ export default function HomeNew() {
                         <h3 className="mt-5 text-xl font-black text-[#023e73]">
                           {benefit.title}
                         </h3>
+
                         <p className="mt-2.5 leading-7 text-slate-600">
                           {benefit.description}
                         </p>
@@ -371,9 +408,11 @@ export default function HomeNew() {
           {/* =====================================================
               CTA FINAL
           ====================================================== */}
+
           <section className="px-4 pb-16 pt-2 sm:px-6 md:pb-24 lg:px-8">
             <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-to-r from-[#0260fe] via-[#086ee9] to-[#3794ff] p-7 text-white shadow-xl sm:p-10 lg:p-14">
               <div className="absolute -right-24 -top-32 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
+
               <div className="absolute -bottom-40 -left-24 h-80 w-80 rounded-full bg-[#ff6600]/25 blur-3xl" />
 
               <div className="relative flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
@@ -381,9 +420,11 @@ export default function HomeNew() {
                   <span className="text-xs font-black uppercase tracking-[0.18em] text-white/65">
                     Tu próximo viaje comienza aquí
                   </span>
+
                   <h2 className="mt-3 text-3xl font-black leading-tight sm:text-4xl md:text-5xl">
                     ¿No encontraste la oferta que necesitas?
                   </h2>
+
                   <p className="mt-4 max-w-2xl text-base leading-7 text-white/80 md:text-lg md:leading-8">
                     Escríbenos tu destino, fechas, ciudad de salida y número de
                     viajeros. Te ayudaremos a buscar opciones.

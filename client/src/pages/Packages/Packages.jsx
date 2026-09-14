@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SEO from "../../components/SEO/SEO";
+
+import PageSEO from "../../components/PageSEO/PageSEO";
+
 import {
   FaArrowRight,
   FaCalendarCheck,
-  FaCheck,
   FaCreditCard,
   FaHeadset,
   FaHotel,
@@ -13,7 +14,6 @@ import {
   FaSearch,
   FaShieldAlt,
   FaStar,
-  FaSuitcase,
   FaUmbrellaBeach,
   FaUsers,
   FaWhatsapp,
@@ -26,6 +26,7 @@ import Footer from "../../components/Footer/Footer";
 
 /* =========================================================
    DATOS
+
    Los textos están separados de la estructura para que sean
    fáciles de editar sin tocar el diseño.
 ========================================================= */
@@ -138,22 +139,9 @@ const benefits = [
   },
 ];
 
-const heroHighlights = [
-  "Paquetes nacionales e internacionales",
-  "Opciones Todo Incluido",
-  "Pagos flexibles",
-];
-
-function SmallCheck({ children }) {
-  return (
-    <div className="flex items-center gap-2.5 text-sm font-bold text-slate-600">
-      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-600">
-        <FaCheck className="text-[10px]" aria-hidden="true" />
-      </span>
-      <span>{children}</span>
-    </div>
-  );
-}
+/* =========================================================
+   PAQUETES
+========================================================= */
 
 function Packages() {
   const scrollToSearch = () => {
@@ -172,12 +160,16 @@ function Packages() {
 
   return (
     <React.Fragment>
-      <SEO
-        title="Paquetes de Viajes y Vacaciones Todo Incluido"
-        description="Encuentra paquetes de viaje con hotel y vuelo a Cancún, Riviera Maya, Huatulco, Los Cabos y otros destinos. Consulta nuestras promociones."
-        image="https://www.viajaatudestino.com/IMAGEN-PAQUETES.jpg"
-        url="https://www.viajaatudestino.com/paquetes"
-      />
+      {/* =====================================================
+          VTD SEO
+
+          Toda la configuración SEO de /paquetes viene
+          directamente desde el backend:
+
+          GET /api/page-seo/packages
+      ====================================================== */}
+
+      <PageSEO pageKey="packages" />
 
       <div className="flex min-h-screen flex-col bg-[#f5f8fc]">
         <NavBar />
@@ -187,6 +179,7 @@ function Packages() {
               PRICERES: CARRUSEL + MOTOR
               Primer bloque después del NavBar.
           ====================================================== */}
+
           <section id="buscar-paquete" className="scroll-mt-24 bg-white">
             <PriceResWidget
               showCarousel
@@ -196,9 +189,8 @@ function Packages() {
 
           {/* =====================================================
               PAQUETES DESTACADOS
-              Las promociones aparecen temprano: el usuario puede
-              explorar sin tener que recorrer toda la página.
           ====================================================== */}
+
           <section
             id="paquetes-disponibles"
             className="scroll-mt-24 bg-[#f5f8fc] px-4 py-14 sm:px-6 sm:py-16 md:py-20 lg:px-8"
@@ -224,7 +216,7 @@ function Packages() {
                 <button
                   type="button"
                   onClick={scrollToSearch}
-                  className="inline-flex w-fit min-h-[48px] items-center justify-center gap-3 rounded-2xl border-2 border-[#0260fe] bg-white px-6 py-3 text-sm font-black text-[#0260fe] transition hover:bg-[#0260fe] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe]"
+                  className="inline-flex min-h-[48px] w-fit items-center justify-center gap-3 rounded-2xl border-2 border-[#0260fe] bg-white px-6 py-3 text-sm font-black text-[#0260fe] transition hover:bg-[#0260fe] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe]"
                 >
                   <FaSearch aria-hidden="true" />
                   Hacer otra búsqueda
@@ -239,6 +231,7 @@ function Packages() {
                 <span className="mt-0.5 text-base" aria-hidden="true">
                   ℹ️
                 </span>
+
                 <p>
                   Las tarifas están sujetas a disponibilidad y pueden cambiar.
                   Consulta el precio final, vuelos, hotel, equipaje y
@@ -250,9 +243,8 @@ function Packages() {
 
           {/* =====================================================
               TIPOS DE PAQUETE
-              Más compactos que antes. Ayudan a orientar sin retrasar
-              el acceso a las ofertas.
           ====================================================== */}
+
           <section className="bg-white px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto max-w-3xl text-center">
@@ -282,7 +274,7 @@ function Packages() {
                       className="group flex min-h-[150px] items-start gap-4 rounded-3xl border border-slate-200 bg-[#fbfdff] p-5 text-left transition hover:-translate-y-0.5 hover:border-[#0260fe]/25 hover:bg-white hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0260fe] sm:p-6"
                     >
                       <span
-                        className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-xl sm:h-14 sm:w-14 ${type.className}`}
+                        className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-xl ${type.className}`}
                       >
                         <Icon aria-hidden="true" />
                       </span>
@@ -291,9 +283,11 @@ function Packages() {
                         <span className="block text-lg font-black text-[#023e73] sm:text-xl">
                           {type.title}
                         </span>
+
                         <span className="mt-1.5 block text-sm leading-6 text-slate-600">
                           {type.description}
                         </span>
+
                         <span className="mt-3 inline-flex items-center gap-2 text-sm font-black text-[#0260fe]">
                           Ver opciones
                           <FaArrowRight
@@ -312,6 +306,7 @@ function Packages() {
           {/* =====================================================
               DESTINOS
           ====================================================== */}
+
           <section className="bg-[#f5f8fc] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
@@ -389,6 +384,7 @@ function Packages() {
           {/* =====================================================
               CÓMO FUNCIONA
           ====================================================== */}
+
           <section className="bg-[#023e73] px-4 py-14 text-white sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto max-w-3xl text-center">
@@ -432,6 +428,7 @@ function Packages() {
           {/* =====================================================
               BENEFICIOS
           ====================================================== */}
+
           <section className="bg-white px-4 py-14 sm:px-6 md:py-20 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
@@ -490,9 +487,11 @@ function Packages() {
           {/* =====================================================
               CTA FINAL
           ====================================================== */}
+
           <section className="bg-white px-4 pb-14 sm:px-6 md:pb-20 lg:px-8">
             <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-to-r from-[#023e73] via-[#0260fe] to-[#3794ff] p-7 text-white shadow-xl sm:p-10 lg:p-12">
               <div className="pointer-events-none absolute -right-24 -top-32 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
+
               <div className="pointer-events-none absolute -bottom-40 -left-24 h-80 w-80 rounded-full bg-[#ff6600]/25 blur-3xl" />
 
               <div className="relative flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
@@ -527,6 +526,7 @@ function Packages() {
           {/* =====================================================
               NAVEGACIÓN ALTERNATIVA
           ====================================================== */}
+
           <section className="border-t border-slate-200 bg-[#f5f8fc] px-4 py-7 text-center">
             <p className="text-sm text-slate-500">
               ¿Solamente necesitas hospedaje?{" "}

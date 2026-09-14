@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import SEO from "../../components/SEO/SEO";
+import PageSEO from "../../components/PageSEO/PageSEO";
 
 const policySections = [
   {
@@ -468,11 +468,7 @@ function MailIcon() {
 function PrivacyPolicy() {
   return (
     <React.Fragment>
-      <SEO
-        title="Política de Privacidad"
-        description="Consulta la Política de Privacidad de Viaja a tu Destino y conoce cómo recopilamos, utilizamos y protegemos tu información."
-        url="https://www.viajaatudestino.com/politica-de-privacidad"
-      />
+      <PageSEO pageKey="privacy-policy" />
 
       <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
         <header className="relative z-50">

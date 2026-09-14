@@ -15,6 +15,7 @@ import {
   FaCog,
   FaChevronDown,
   FaRegNewspaper,
+  FaSearch,
 } from "react-icons/fa";
 
 import { MdLogout, MdInsights } from "react-icons/md";
@@ -22,6 +23,10 @@ import { MdLogout, MdInsights } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import api from "../Services/api";
+
+// ======================================================
+// LOGO
+// ======================================================
 
 const LOGO =
   "https://res.cloudinary.com/duaysiozi/image/upload/v1785018355/i6jhddqaqz1ijctzrw42.webp";
@@ -48,6 +53,12 @@ const administrationNavigation = [
     label: "Blog",
     to: "/auth/blog",
     icon: FaRegNewspaper,
+  },
+
+  {
+    label: "VTD SEO",
+    to: "/auth/configuracion/seo",
+    icon: FaSearch,
   },
 ];
 

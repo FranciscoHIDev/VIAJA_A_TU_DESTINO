@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import api from "../../services/api";
+import { analyzeSeo } from "../../utils/seoAnalyzer";
 
 // ======================================================
 // HELPERS
@@ -56,6 +57,48 @@ const getStatusData = (status) => {
       return {
         label: "Borrador",
         className: "bg-amber-50 text-amber-700 border-amber-200",
+      };
+  }
+};
+
+const getBlogSeoAnalysis = (blog) => {
+  const canonicalUrl =
+    blog?.seo?.canonicalUrl ||
+    (blog?.slug ? `https://www.viajaatudestino.com/blog/${blog.slug}` : "");
+
+  return analyzeSeo({
+    title: blog?.seo?.title || blog?.title || "",
+    description: blog?.seo?.description || blog?.excerpt || "",
+    focusKeyword: blog?.seo?.focusKeyword || "",
+    canonicalUrl,
+    image: blog?.seo?.image || blog?.featuredImage?.url || "",
+    socialTitle: blog?.seo?.socialTitle || "",
+    socialDescription: blog?.seo?.socialDescription || "",
+    index: blog?.seo?.index !== false,
+    follow: blog?.seo?.follow !== false,
+    slug: blog?.slug || "",
+    imageAlt: blog?.featuredImage?.alt || "",
+  });
+};
+
+const getSeoStatusData = (analysis) => {
+  switch (analysis?.status) {
+    case "good":
+      return {
+        label: analysis?.statusLabel || "Bueno",
+        className: "border-emerald-200 bg-emerald-50 text-emerald-700",
+      };
+
+    case "warning":
+      return {
+        label: analysis?.statusLabel || "Mejorable",
+        className: "border-amber-200 bg-amber-50 text-amber-700",
+      };
+
+    default:
+      return {
+        label: analysis?.statusLabel || "Por mejorar",
+        className: "border-red-200 bg-red-50 text-red-700",
       };
   }
 };
@@ -140,12 +183,17 @@ function BlogAdmin() {
       0,
     );
 
+    const seoReady = blogs.filter(
+      (blog) => getBlogSeoAnalysis(blog).status === "good",
+    ).length;
+
     return {
       total,
       published,
       drafts,
       archived,
       views,
+      seoReady,
     };
   }, [blogs]);
 
@@ -172,6 +220,9 @@ function BlogAdmin() {
         blog.excerpt,
         blog.author,
         blog.category,
+        blog?.seo?.focusKeyword,
+        blog?.seo?.title,
+        blog?.seo?.description,
         tags,
       ]
         .filter(Boolean)
@@ -325,7 +376,7 @@ function BlogAdmin() {
           ESTADÍSTICAS
       ================================================= */}
 
-      <section className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-5">
+      <section className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-6">
         <StatCard label="Artículos" value={statistics.total} />
 
         <StatCard label="Publicados" value={statistics.published} />
@@ -334,7 +385,9 @@ function BlogAdmin() {
 
         <StatCard label="Archivados" value={statistics.archived} />
 
-        <StatCard label="Vistas" value={statistics.views} fullMobile />
+        <StatCard label="Vistas" value={statistics.views} />
+
+        <StatCard label="SEO listo" value={statistics.seoReady} accent="seo" />
       </section>
 
       {/* =================================================
@@ -352,7 +405,7 @@ function BlogAdmin() {
               type="text"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Buscar por título, categoría, autor o etiqueta..."
+              placeholder="Buscar por título, categoría, autor, etiqueta o SEO..."
               className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm font-medium text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-[#0260fe] focus:bg-white focus:ring-4 focus:ring-blue-50"
             />
           </div>
@@ -435,6 +488,10 @@ function BlogAdmin() {
                       </th>
 
                       <th className="px-4 py-4 text-center text-xs font-black uppercase tracking-wider text-slate-500">
+                        VTD SEO
+                      </th>
+
+                      <th className="px-4 py-4 text-center text-xs font-black uppercase tracking-wider text-slate-500">
                         Vistas
                       </th>
 
@@ -490,6 +547,9 @@ function BlogAdmin() {
 function BlogTableRow({ blog, onEdit, onDelete }) {
   const status = getStatusData(blog.status);
 
+  const seoAnalysis = getBlogSeoAnalysis(blog);
+  const seoStatus = getSeoStatusData(seoAnalysis);
+
   return (
     <tr className="border-b border-slate-100 transition last:border-0 hover:bg-slate-50/70">
       {/* ARTÍCULO */}
@@ -538,6 +598,16 @@ function BlogTableRow({ blog, onEdit, onDelete }) {
         >
           {status.label}
         </span>
+      </td>
+
+      {/* VTD SEO */}
+
+      <td className="px-4 py-4 text-center">
+        <SeoBadge
+          analysis={seoAnalysis}
+          status={seoStatus}
+          noIndex={blog?.seo?.index === false}
+        />
       </td>
 
       {/* VISTAS */}
@@ -596,6 +666,9 @@ function BlogTableRow({ blog, onEdit, onDelete }) {
 function BlogCard({ blog, onEdit, onDelete }) {
   const status = getStatusData(blog.status);
 
+  const seoAnalysis = getBlogSeoAnalysis(blog);
+  const seoStatus = getSeoStatusData(seoAnalysis);
+
   return (
     <article className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
       <div className="relative h-48 bg-slate-100">
@@ -639,21 +712,32 @@ function BlogCard({ blog, onEdit, onDelete }) {
           {blog.excerpt || "Este artículo todavía no tiene un resumen."}
         </p>
 
-        <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-4 text-xs">
-          <div>
-            <p className="font-bold text-slate-700">
-              {blog.author || "Viaja a tu Destino"}
-            </p>
+        <div className="mt-4 border-t border-slate-100 pt-4">
+          <div className="flex items-center justify-between gap-3 text-xs">
+            <div>
+              <p className="font-bold text-slate-700">
+                {blog.author || "Viaja a tu Destino"}
+              </p>
 
-            <p className="mt-1 text-slate-400">
-              {formatDate(blog.publishedAt)}
-            </p>
+              <p className="mt-1 text-slate-400">
+                {formatDate(blog.publishedAt)}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 font-bold text-slate-500">
+              <FaEye />
+
+              {Number(blog.views || 0).toLocaleString("es-MX")}
+            </div>
           </div>
 
-          <div className="flex items-center gap-2 font-bold text-slate-500">
-            <FaEye />
-
-            {Number(blog.views || 0).toLocaleString("es-MX")}
+          <div className="mt-3">
+            <SeoBadge
+              analysis={seoAnalysis}
+              status={seoStatus}
+              compact
+              noIndex={blog?.seo?.index === false}
+            />
           </div>
         </div>
 
@@ -704,21 +788,60 @@ function BlogImage({ blog }) {
 }
 
 // ======================================================
+// ESTADO VTD SEO
+// ======================================================
+
+function SeoBadge({ analysis, status, compact = false, noIndex = false }) {
+  const score = Number(analysis?.score || 0);
+
+  return (
+    <div
+      className={`inline-flex ${
+        compact ? "w-full justify-between" : "flex-col"
+      } items-center gap-1`}
+      title="Puntuación editorial de VTD SEO"
+    >
+      <span
+        className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-black ${status.className}`}
+      >
+        {score}% · {status.label}
+      </span>
+
+      {noIndex ? (
+        <span className="text-[10px] font-bold uppercase tracking-wide text-slate-400">
+          noindex
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
+// ======================================================
 // ESTADÍSTICA
 // ======================================================
 
-function StatCard({ label, value, fullMobile = false }) {
+function StatCard({ label, value, accent = "default" }) {
+  const isSeo = accent === "seo";
+
   return (
     <div
-      className={`rounded-2xl border border-slate-200 bg-white p-4 shadow-sm ${
-        fullMobile ? "col-span-2 lg:col-span-1" : ""
+      className={`rounded-2xl border p-4 shadow-sm ${
+        isSeo ? "border-emerald-200 bg-emerald-50" : "border-slate-200 bg-white"
       }`}
     >
-      <p className="text-xs font-black uppercase tracking-wider text-slate-400">
+      <p
+        className={`text-xs font-black uppercase tracking-wider ${
+          isSeo ? "text-emerald-600" : "text-slate-400"
+        }`}
+      >
         {label}
       </p>
 
-      <p className="mt-2 text-2xl font-black text-slate-900">
+      <p
+        className={`mt-2 text-2xl font-black ${
+          isSeo ? "text-emerald-700" : "text-slate-900"
+        }`}
+      >
         {Number(value || 0).toLocaleString("es-MX")}
       </p>
     </div>

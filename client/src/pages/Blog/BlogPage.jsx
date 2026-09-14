@@ -18,7 +18,7 @@ import {
 
 import Footer from "../../components/Footer/Footer";
 import NavBar from "../../components/NavBar/NavBar";
-import SEO from "../../components/SEO/SEO";
+import PageSEO from "../../components/PageSEO/PageSEO";
 
 import api from "../../services/api";
 
@@ -297,12 +297,7 @@ export default function BlogPage() {
 
   return (
     <React.Fragment>
-      <SEO
-        title="Blog de Viajes, Consejos y Destinos"
-        description="Descubre guías de viaje, recomendaciones de hoteles, vuelos, destinos y consejos para preparar tus próximas vacaciones con Viaja a tu Destino."
-        image={FALLBACK_IMAGE}
-        url="https://www.viajaatudestino.com/blog"
-      />
+      <PageSEO pageKey="blog" />
 
       <div className="flex min-h-screen flex-col bg-[#f5f8fc] text-slate-800">
         <NavBar />

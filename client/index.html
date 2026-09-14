@@ -1,24 +1,208 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+
+<html lang="es-MX">
   <head>
     <meta charset="UTF-8" />
 
-    <link rel="icon" type="image/webp" href="https://res.cloudinary.com/duaysiozi/image/upload/v1785018355/gurktfbavkjxjl8rycvs.webp" />
+    <!-- =====================================================
+         VIEWPORT
+    ====================================================== -->
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index, follow" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <!-- =====================================================
+         FAVICON
+    ====================================================== -->
+
+    <link
+      rel="icon"
+      type="image/webp"
+      href="https://res.cloudinary.com/duaysiozi/image/upload/v1785018355/gurktfbavkjxjl8rycvs.webp"
+    />
+
+    <!-- =====================================================
+         SEO GENERAL / FALLBACK
+         
+         Estos valores se muestran antes de que React cargue.
+         VTD SEO + Helmet los sustituirá en cada página.
+    ====================================================== -->
+
+    <title>
+      Cazadores de Ofertas de Viajes | Viaja a tu Destino
+    </title>
+
+    <meta
+      data-rh="true"
+      name="description"
+      content="Encuentra vuelos, hoteles, paquetes, tours y ofertas para tus próximas vacaciones. En Viaja a tu Destino cazamos las mejores ofertas de viaje para ti."
+    />
+
+    <meta
+      data-rh="true"
+      name="robots"
+      content="index, follow, max-image-preview:large"
+    />
+
+    <meta
+      data-rh="true"
+      name="googlebot"
+      content="index, follow, max-image-preview:large"
+    />
+
+    <!-- =====================================================
+         INFORMACIÓN DE LA APLICACIÓN
+    ====================================================== -->
+
+    <meta
+      name="author"
+      content="Viaja a tu Destino"
+    />
+
+    <meta
+      name="application-name"
+      content="Viaja a tu Destino"
+    />
+
+    <meta
+      name="theme-color"
+      content="#0260fe"
+    />
+
+    <!-- =====================================================
+         OPEN GRAPH
+         FALLBACK GENERAL DE LA MARCA
+
+         IMPORTANTE:
+         No ponemos canonical ni og:url fijo aquí porque
+         esta aplicación es SPA y cada ruta tiene su propia URL.
+
+         PageSEO / SEO.jsx generará og:url dinámicamente.
+    ====================================================== -->
+
+    <meta
+      data-rh="true"
+      property="og:type"
+      content="website"
+    />
+
+    <meta
+      data-rh="true"
+      property="og:site_name"
+      content="Viaja a tu Destino"
+    />
+
+    <meta
+      data-rh="true"
+      property="og:locale"
+      content="es_MX"
+    />
+
+    <meta
+      data-rh="true"
+      property="og:title"
+      content="Cazadores de Ofertas de Viajes | Viaja a tu Destino"
+    />
+
+    <meta
+      data-rh="true"
+      property="og:description"
+      content="Encuentra vuelos, hoteles, paquetes, tours y ofertas para tus próximas vacaciones. Cazamos las mejores ofertas de viaje para ti."
+    />
+
+    <meta
+      data-rh="true"
+      property="og:image"
+      content="https://res.cloudinary.com/duaysiozi/image/upload/v1785018355/i6jhddqaqz1ijctzrw42.webp"
+    />
+
+    <meta
+      data-rh="true"
+      property="og:image:alt"
+      content="Viaja a tu Destino"
+    />
+
+    <!-- =====================================================
+         TWITTER / X
+         
+         Por ahora usamos summary porque la imagen fallback
+         actual es el logotipo. Cuando tengamos la imagen social
+         oficial 1200x630 podremos usar summary_large_image.
+    ====================================================== -->
+
+    <meta
+      data-rh="true"
+      name="twitter:card"
+      content="summary"
+    />
+
+    <meta
+      data-rh="true"
+      name="twitter:title"
+      content="Cazadores de Ofertas de Viajes | Viaja a tu Destino"
+    />
+
+    <meta
+      data-rh="true"
+      name="twitter:description"
+      content="Encuentra vuelos, hoteles, paquetes, tours y ofertas para tus próximas vacaciones con Viaja a tu Destino."
+    />
+
+    <meta
+      data-rh="true"
+      name="twitter:image"
+      content="https://res.cloudinary.com/duaysiozi/image/upload/v1785018355/i6jhddqaqz1ijctzrw42.webp"
+    />
+
+    <meta
+      data-rh="true"
+      name="twitter:image:alt"
+      content="Viaja a tu Destino"
+    />
+
+    <!-- =====================================================
+         DATOS ESTRUCTURADOS DE LA MARCA
+         
+         Este Schema es global y puede permanecer aquí.
+         Más adelante VTD SEO generará Schema específico
+         por página y por artículo.
+    ====================================================== -->
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Viaja a tu Destino",
+        "url": "https://www.viajaatudestino.com/",
+        "logo": "https://res.cloudinary.com/duaysiozi/image/upload/v1785018355/i6jhddqaqz1ijctzrw42.webp",
+        "description": "Agencia de viajes especializada en vuelos, hoteles, paquetes, tours y ofertas de viaje."
+      }
+    </script>
+
+    <!-- =====================================================
+         GOOGLE ADSENSE
+    ====================================================== -->
+
     <meta
       name="google-adsense-account"
       content="ca-pub-4623206220668623"
     />
 
-    <title>
-      Cazadores de Ofertas de Viajes | Vuelos, Hoteles y Paquetes de viajes
-    </title>
+    <!-- =====================================================
+         FUENTE
+    ====================================================== -->
 
-    <meta
-      name="description"
-      content="Cazamos las mejores ofertas de viaje para ti: hoteles, vuelos y paquetes con promociones exclusivas, pagos flexibles y meses sin intereses."
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
     />
 
     <link
@@ -26,35 +210,47 @@
       rel="stylesheet"
     />
 
-    <!-- Google Analytics -->
+    <!-- =====================================================
+         GOOGLE ANALYTICS
+    ====================================================== -->
+
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-DK800XNJKS"
     ></script>
 
     <script>
-      window.dataLayer = window.dataLayer || [];
+      window.dataLayer =
+        window.dataLayer || [];
 
       function gtag() {
         dataLayer.push(arguments);
       }
 
       gtag("js", new Date());
-      gtag("config", "G-DK800XNJKS");
+
+      gtag(
+        "config",
+        "G-DK800XNJKS"
+      );
     </script>
 
-    <!-- Cloudinary -->
+    <!-- =====================================================
+         CLOUDINARY UPLOAD WIDGET
+    ====================================================== -->
+
     <script
       src="https://upload-widget.cloudinary.com/global/all.js"
       type="text/javascript"
     ></script>
-   
-    
   </head>
 
   <body class="font-roboto">
-  
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+
+    <script
+      type="module"
+      src="/src/main.jsx"
+    ></script>
   </body>
 </html>

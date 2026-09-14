@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import SEO from "../../components/SEO/SEO";
+import PageSEO from "../../components/PageSEO/PageSEO";
 
 const termsSections = [
   {
@@ -644,11 +644,7 @@ function MailIcon() {
 function TermsAndConditions() {
   return (
     <React.Fragment>
-      <SEO
-        title="Términos y Condiciones"
-        description="Consulta los Términos y Condiciones de Viaja a tu Destino aplicables al uso del sitio, promociones, cotizaciones y servicios de viaje."
-        url="https://www.viajaatudestino.com/terminos-y-condiciones"
-      />
+      <PageSEO pageKey="terms" />
 
       <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
         <header className="relative z-50">

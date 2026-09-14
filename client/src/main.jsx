@@ -5,6 +5,7 @@ import { StrictMode } from "react";
 import { Provider } from "react-redux";
 import store from "./redux/store/store";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { HelmetProvider } from "react-helmet-async";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
@@ -16,7 +17,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           redirect_uri: window.location.origin,
         }}
       >
-        <App />
+        {" "}
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
       </Auth0Provider>
     </StrictMode>
   </Provider>,

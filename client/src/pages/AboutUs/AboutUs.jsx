@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import SEO from "../../components/SEO/SEO";
+import PageSEO from "../../components/PageSEO/PageSEO";
 
 const values = [
   {
@@ -171,12 +171,7 @@ function WhatsAppIcon() {
 function AboutUs() {
   return (
     <React.Fragment>
-      <SEO
-        title="Quiénes Somos"
-        description="Conoce Viaja a tu Destino, agencia de viajes digital dedicada a encontrar ofertas de hoteles, vuelos, paquetes y experiencias para tus vacaciones."
-        image="https://www.viajaatudestino.com/IMAGEN-MARCA.jpg"
-        url="https://www.viajaatudestino.com/acerca-de-nosotros"
-      />
+      <PageSEO pageKey="about" />
 
       <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
         <header className="relative z-50">

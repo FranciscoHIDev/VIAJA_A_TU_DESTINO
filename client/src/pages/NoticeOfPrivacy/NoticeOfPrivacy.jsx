@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import SEO from "../../components/SEO/SEO";
+import PageSEO from "../../components/PageSEO/PageSEO";
 
 const privacySections = [
   {
@@ -230,11 +230,7 @@ function ShieldIcon() {
 function NoticeOfPrivacy() {
   return (
     <React.Fragment>
-      <SEO
-        title="Aviso de Privacidad"
-        description="Consulta el Aviso de Privacidad de Viaja a tu Destino."
-        url="https://www.viajaatudestino.com/aviso-privacidad"
-      />
+      <PageSEO pageKey="privacy-notice" />
 
       <div className="flex min-h-screen flex-col bg-[#f4f8ff]">
         <header className="relative z-50">

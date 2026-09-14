@@ -8,9 +8,13 @@ import {
   FaBookOpen,
   FaCalendarAlt,
   FaClock,
+  FaCheck,
+  FaCopy,
   FaFacebookF,
   FaHome,
+  FaShareAlt,
   FaTag,
+  FaTwitter,
   FaUser,
   FaWhatsapp,
 } from "react-icons/fa";
@@ -157,7 +161,10 @@ function BlogArticle() {
           title="Artículo no encontrado"
           description="El artículo que buscas no está disponible."
           image={FALLBACK_IMAGE}
-          url={`${SITE_URL}/blog`}
+          canonicalUrl={`${SITE_URL}/blog`}
+          index={false}
+          follow={true}
+          type="website"
         />
 
         <div className="flex min-h-screen flex-col bg-[#f5f8fc]">
@@ -217,13 +224,34 @@ function BlogArticle() {
 
   const seoImage = article?.seo?.image || articleImage;
 
+  const socialTitle = article?.seo?.socialTitle || seoTitle;
+
+  const socialDescription = article?.seo?.socialDescription || seoDescription;
+
+  const seoIndex = article?.seo?.index !== false;
+
+  const seoFollow = article?.seo?.follow !== false;
+
+  const shareTitle =
+    article?.seo?.socialTitle || article?.seo?.title || article.title;
+
+  const shareDescription =
+    article?.seo?.socialDescription ||
+    article?.seo?.description ||
+    article.excerpt ||
+    textFromHtml(article.content).slice(0, 160);
+
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
-    `${article.title} ${articleUrl}`,
+    `${shareTitle}\n${articleUrl}`,
   )}`;
 
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
     articleUrl,
   )}`;
+
+  const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    shareTitle,
+  )}&url=${encodeURIComponent(articleUrl)}`;
 
   // ====================================================
   // RENDER
@@ -234,8 +262,13 @@ function BlogArticle() {
       <SEO
         title={seoTitle}
         description={seoDescription}
+        canonicalUrl={articleUrl}
         image={seoImage}
-        url={articleUrl}
+        socialTitle={socialTitle}
+        socialDescription={socialDescription}
+        index={seoIndex}
+        follow={seoFollow}
+        type="article"
       />
 
       <div className="flex min-h-screen flex-col bg-white text-slate-800">
@@ -484,6 +517,10 @@ function BlogArticle() {
                   <ShareArticle
                     whatsappUrl={whatsappUrl}
                     facebookUrl={facebookUrl}
+                    xUrl={xUrl}
+                    shareUrl={articleUrl}
+                    shareTitle={shareTitle}
+                    shareDescription={shareDescription}
                   />
                 </div>
               </article>
@@ -500,6 +537,10 @@ function BlogArticle() {
                     <ShareArticle
                       whatsappUrl={whatsappUrl}
                       facebookUrl={facebookUrl}
+                      xUrl={xUrl}
+                      shareUrl={articleUrl}
+                      shareTitle={shareTitle}
+                      shareDescription={shareDescription}
                     />
                   </section>
 
@@ -586,19 +627,96 @@ function BlogArticle() {
 // COMPARTIR
 // ======================================================
 
-function ShareArticle({ whatsappUrl, facebookUrl }) {
+function ShareArticle({
+  whatsappUrl,
+  facebookUrl,
+  xUrl,
+  shareUrl,
+  shareTitle,
+  shareDescription,
+}) {
+  const [copied, setCopied] = useState(false);
+  const [sharing, setSharing] = useState(false);
+
+  const canNativeShare =
+    typeof navigator !== "undefined" && typeof navigator.share === "function";
+
+  const copyToClipboard = async () => {
+    try {
+      if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(shareUrl);
+      } else {
+        const textarea = document.createElement("textarea");
+
+        textarea.value = shareUrl;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+
+      setCopied(true);
+
+      window.setTimeout(() => {
+        setCopied(false);
+      }, 2200);
+    } catch (error) {
+      console.error("No fue posible copiar el enlace:", error);
+    }
+  };
+
+  const handleNativeShare = async () => {
+    if (!canNativeShare || sharing) {
+      return;
+    }
+
+    try {
+      setSharing(true);
+
+      await navigator.share({
+        title: shareTitle,
+        text: shareDescription,
+        url: shareUrl,
+      });
+    } catch (error) {
+      /*
+       * AbortError ocurre cuando el usuario cierra
+       * voluntariamente el menú nativo para compartir.
+       */
+      if (error?.name !== "AbortError") {
+        console.error("No fue posible compartir el artículo:", error);
+      }
+    } finally {
+      setSharing(false);
+    }
+  };
+
   return (
     <>
-      <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
-        Compartir artículo
-      </p>
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+          Compartir artículo
+        </p>
+
+        {canNativeShare ? (
+          <span className="rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#0260fe]">
+            Más opciones
+          </span>
+        ) : null}
+      </div>
 
       <div className="mt-4 grid grid-cols-2 gap-3">
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-[#25D366] px-3 py-2.5 text-xs font-black text-white transition hover:bg-[#1ebe5d]"
+          aria-label={`Compartir "${shareTitle}" por WhatsApp`}
+          className="flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-[#25D366] px-3 py-2.5 text-xs font-black text-white transition hover:-translate-y-0.5 hover:bg-[#1ebe5d]"
         >
           <FaWhatsapp />
           WhatsApp
@@ -608,12 +726,58 @@ function ShareArticle({ whatsappUrl, facebookUrl }) {
           href={facebookUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-[#1877F2] px-3 py-2.5 text-xs font-black text-white transition hover:bg-[#1265d1]"
+          aria-label={`Compartir "${shareTitle}" en Facebook`}
+          className="flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-[#1877F2] px-3 py-2.5 text-xs font-black text-white transition hover:-translate-y-0.5 hover:bg-[#1265d1]"
         >
           <FaFacebookF />
           Facebook
         </a>
+
+        <a
+          href={xUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Compartir "${shareTitle}" en X`}
+          className="flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-slate-950 px-3 py-2.5 text-xs font-black text-white transition hover:-translate-y-0.5 hover:bg-black"
+        >
+          <FaTwitter />X / Twitter
+        </a>
+
+        <button
+          type="button"
+          onClick={copyToClipboard}
+          aria-label="Copiar enlace del artículo"
+          className={`flex min-h-[46px] items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-xs font-black transition hover:-translate-y-0.5 ${
+            copied
+              ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+              : "border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:bg-blue-50 hover:text-[#0260fe]"
+          }`}
+        >
+          {copied ? <FaCheck /> : <FaCopy />}
+          {copied ? "Copiado" : "Copiar enlace"}
+        </button>
       </div>
+
+      {canNativeShare ? (
+        <button
+          type="button"
+          onClick={handleNativeShare}
+          disabled={sharing}
+          className="mt-3 flex min-h-[46px] w-full items-center justify-center gap-2 rounded-xl border border-blue-100 bg-blue-50 px-4 py-2.5 text-xs font-black text-[#0260fe] transition hover:border-[#0260fe] hover:bg-[#0260fe] hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          <FaShareAlt />
+          {sharing ? "Abriendo opciones..." : "Compartir con otra aplicación"}
+        </button>
+      ) : null}
+
+      <p
+        className="mt-3 min-h-[18px] text-center text-[11px] font-semibold text-slate-400"
+        aria-live="polite"
+      >
+        {copied
+          ? "Enlace copiado al portapapeles."
+          : "Comparte siempre la URL canónica de este artículo."}
+      </p>
     </>
   );
 }
