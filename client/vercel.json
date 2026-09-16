@@ -6,7 +6,9 @@
         {
           "type": "header",
           "key": "user-agent",
-          "value": ".*(facebookexternalhit|Facebot|WhatsApp|Twitterbot|LinkedInBot|TelegramBot|Slackbot|Discordbot|Pinterestbot).*"
+          "value": {
+            "re": ".*(facebookexternalhit|Facebot|facebot|WhatsApp|whatsapp|Twitterbot|TwitterBot|LinkedInBot|linkedinbot|TelegramBot|telegrambot|Slackbot|slackbot|Discordbot|discordbot|Pinterestbot|pinterestbot).*"
+          }
         }
       ],
       "destination": "https://viaja-a-tu-destino-back.vercel.app/api/social/blog/:slug"
