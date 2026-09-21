@@ -14,7 +14,7 @@ function CardsHotels() {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-wrap items-center justify-center">
+    <div className="flex flex-wrap justify-center gap-6">
       {all.map((e) => {
         return (
           <CardTop

@@ -7,7 +7,6 @@ import {
   FaCalendarAlt,
   FaHotel,
   FaMapMarkerAlt,
-  FaPlaneDeparture,
   FaShareAlt,
   FaWhatsapp,
 } from "react-icons/fa";
@@ -73,11 +72,6 @@ function CardTop({
       : destination || "";
 
   const hotelName = typeof hotel === "object" ? hotel?.name || "" : hotel || "";
-
-  const departureName =
-    typeof departure === "object"
-      ? departure?.name || departure?.city || ""
-      : departure || "";
 
   const offerSlug = slug || _id;
 
@@ -182,13 +176,9 @@ Quiero consultar fechas y disponibilidad.`;
                 ✈️
               </div>
             )}
-
             {/* Gradiente para que el título siempre se lea */}
-
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-
             {/* Categoría */}
-
             <span
               className="
                 absolute left-4 top-4
@@ -209,25 +199,7 @@ Quiero consultar fechas y disponibilidad.`;
                     : categoryName}
             </span>
 
-            {/* Destino opcional */}
-
-            {destinationName ? (
-              <div
-                className="
-                  absolute bottom-[72px] left-5
-                  flex items-center gap-2
-                  text-[10px] font-black
-                  uppercase tracking-[0.18em]
-                  text-white/80
-                "
-              >
-                <FaMapMarkerAlt className="text-[#ff6600]" />
-                {destinationName}
-              </div>
-            ) : null}
-
             {/* Título */}
-
             <h3
               className="
                 absolute bottom-5 left-5 right-5
@@ -375,33 +347,35 @@ Quiero consultar fechas y disponibilidad.`;
               </div>
             ) : null}
 
-            {/* Salida */}
+            {/* Destino*/}
 
-            {isPackage && departureName ? (
-              <div className="flex items-center gap-3">
-                <span
-                  className="
+            <div className="flex items-center gap-3">
+              <span
+                className="
                     flex h-8 w-8 shrink-0
                     items-center justify-center
                     rounded-lg
                     bg-orange-50
                     text-[#ff6600]
                   "
-                >
-                  <FaPlaneDeparture />
-                </span>
+              >
+                <FaMapMarkerAlt />
+              </span>
 
-                <div>
-                  <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
-                    Saliendo de
-                  </p>
+              <div>
+                <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
+                  Destino
+                </p>
 
-                  <p className="text-sm font-bold text-slate-700">
-                    {departureName}
-                  </p>
-                </div>
+                <p className="text-sm font-bold text-slate-700">
+                  {destinationName
+                    ? destinationName
+                        .toLowerCase()
+                        .replace(/\b\w/g, (letra) => letra.toUpperCase())
+                    : ""}
+                </p>
               </div>
-            ) : null}
+            </div>
 
             {/* Disponibilidad */}
 
@@ -421,7 +395,7 @@ Quiero consultar fechas y disponibilidad.`;
 
                 <div>
                   <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
-                    Viaja
+                    Disponiblilidad
                   </p>
 
                   <p className="text-sm font-bold text-slate-700">

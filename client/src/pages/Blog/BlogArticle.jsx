@@ -406,11 +406,20 @@ function BlogArticle() {
                 <div
                   className="
                     blog-content
+                    break-words
                     text-[17px]
                     leading-[1.85]
                     text-slate-700
 
                     [&_p]:mb-6
+
+                    [&_h1]:mb-5
+                    [&_h1]:mt-12
+                    [&_h1]:text-4xl
+                    [&_h1]:font-black
+                    [&_h1]:leading-tight
+                    [&_h1]:tracking-[-0.03em]
+                    [&_h1]:text-[#023e73]
 
                     [&_h2]:mb-4
                     [&_h2]:mt-12
@@ -433,14 +442,30 @@ function BlogArticle() {
                     [&_h4]:font-black
                     [&_h4]:text-[#023e73]
 
-                    [&_strong]:font-black
-                    [&_strong]:text-slate-900
+                    [&_h5]:mb-3
+                    [&_h5]:mt-7
+                    [&_h5]:text-lg
+                    [&_h5]:font-black
+                    [&_h5]:text-[#023e73]
 
-                    [&_a]:font-bold
-                    [&_a]:text-[#0260fe]
-                    [&_a]:underline
-                    [&_a]:decoration-blue-200
+                    [&_h6]:mb-3
+                    [&_h6]:mt-6
+                    [&_h6]:text-base
+                    [&_h6]:font-black
+                    [&_h6]:uppercase
+                    [&_h6]:tracking-wide
+                    [&_h6]:text-[#023e73]
+
+                    [&_strong]:font-black
+                    [&_em]:italic
+                    [&_u]:underline
+
+                    [&_a]:!font-bold
+                    [&_a]:!text-[#ff6600]
+                    [&_a]:!underline
+                    [&_a]:!decoration-[#ff6600]
                     [&_a]:underline-offset-4
+                    [&_a:hover]:!text-[#e65c00]
 
                     [&_ul]:my-6
                     [&_ul]:list-disc
@@ -465,11 +490,27 @@ function BlogArticle() {
                     [&_blockquote]:italic
                     [&_blockquote]:text-[#023e73]
 
+                    [&_img]:mx-auto
                     [&_img]:my-8
                     [&_img]:h-auto
-                    [&_img]:w-full
+                    [&_img]:max-w-full
                     [&_img]:rounded-3xl
                     [&_img]:object-cover
+                    [&_img]:shadow-sm
+
+                    [&_iframe]:mx-auto
+                    [&_iframe]:my-8
+                    [&_iframe]:aspect-video
+                    [&_iframe]:w-full
+                    [&_iframe]:max-w-4xl
+                    [&_iframe]:rounded-2xl
+
+                    [&_.ql-video]:mx-auto
+                    [&_.ql-video]:my-8
+                    [&_.ql-video]:aspect-video
+                    [&_.ql-video]:w-full
+                    [&_.ql-video]:max-w-4xl
+                    [&_.ql-video]:rounded-2xl
 
                     [&_figure]:my-8
 
@@ -480,6 +521,49 @@ function BlogArticle() {
 
                     [&_hr]:my-10
                     [&_hr]:border-slate-200
+
+                    [&_pre]:my-8
+                    [&_pre]:overflow-x-auto
+                    [&_pre]:rounded-2xl
+                    [&_pre]:bg-slate-950
+                    [&_pre]:p-5
+                    [&_pre]:text-sm
+                    [&_pre]:leading-7
+                    [&_pre]:text-slate-100
+
+                    [&_code]:rounded
+                    [&_code]:bg-slate-100
+                    [&_code]:px-1.5
+                    [&_code]:py-0.5
+                    [&_code]:font-mono
+                    [&_code]:text-[0.9em]
+
+                    [&_.ql-align-center]:text-center
+                    [&_.ql-align-right]:text-right
+                    [&_.ql-align-justify]:text-justify
+
+                    [&_.ql-size-small]:text-sm
+                    [&_.ql-size-large]:text-xl
+                    [&_.ql-size-huge]:text-3xl
+
+                    [&_.ql-font-serif]:font-serif
+                    [&_.ql-font-monospace]:font-mono
+
+                    [&_.ql-indent-1]:pl-6
+                    [&_.ql-indent-2]:pl-12
+                    [&_.ql-indent-3]:pl-[4.5rem]
+                    [&_.ql-indent-4]:pl-24
+                    [&_.ql-indent-5]:pl-[7.5rem]
+                    [&_.ql-indent-6]:pl-36
+                    [&_.ql-indent-7]:pl-[10.5rem]
+                    [&_.ql-indent-8]:pl-48
+
+                    max-sm:[&_.ql-indent-3]:pl-10
+                    max-sm:[&_.ql-indent-4]:pl-12
+                    max-sm:[&_.ql-indent-5]:pl-14
+                    max-sm:[&_.ql-indent-6]:pl-16
+                    max-sm:[&_.ql-indent-7]:pl-20
+                    max-sm:[&_.ql-indent-8]:pl-24
                   "
                   dangerouslySetInnerHTML={{
                     __html: article.content,

@@ -851,7 +851,62 @@ Quiero consultar fechas, disponibilidad y opciones de pago.`;
 
                   {offer?.description ? (
                     <div
-                      className="prose prose-slate mt-6 max-w-none leading-7 prose-headings:text-[#023e73] prose-a:text-[#0260fe]"
+                      className="
+                        prose prose-slate mt-6 max-w-none break-words leading-7
+
+                        prose-headings:font-black
+                        prose-headings:text-[#023e73]
+
+                        [&_a]:!font-bold
+                        [&_a]:!text-[#ff6600]
+                        [&_a]:!underline
+                        [&_a]:!decoration-[#ff6600]
+                        [&_a]:underline-offset-4
+                        [&_a:hover]:!text-[#e65c00]
+
+                        [&_img]:mx-auto
+                        [&_img]:h-auto
+                        [&_img]:max-w-full
+                        [&_img]:rounded-2xl
+                        [&_img]:shadow-sm
+
+                        [&_blockquote]:rounded-r-xl
+                        [&_blockquote]:border-l-4
+                        [&_blockquote]:border-[#0260fe]
+                        [&_blockquote]:bg-blue-50
+                        [&_blockquote]:px-5
+                        [&_blockquote]:py-3
+                        [&_blockquote]:not-italic
+
+                        [&_iframe]:mx-auto
+                        [&_iframe]:aspect-video
+                        [&_iframe]:w-full
+                        [&_iframe]:max-w-3xl
+                        [&_iframe]:rounded-2xl
+
+                        [&_.ql-align-center]:text-center
+                        [&_.ql-align-right]:text-right
+                        [&_.ql-align-justify]:text-justify
+
+                        [&_.ql-size-small]:text-sm
+                        [&_.ql-size-large]:text-xl
+                        [&_.ql-size-huge]:text-3xl
+
+                        [&_.ql-font-serif]:font-serif
+                        [&_.ql-font-monospace]:font-mono
+
+                        [&_.ql-indent-1]:pl-6
+                        [&_.ql-indent-2]:pl-12
+                        [&_.ql-indent-3]:pl-16
+                        [&_.ql-indent-4]:pl-20
+                        [&_.ql-indent-5]:pl-24
+                        [&_.ql-indent-6]:pl-28
+                        [&_.ql-indent-7]:pl-32
+                        [&_.ql-indent-8]:pl-36
+
+                        [&_pre]:overflow-x-auto
+                        [&_pre]:rounded-xl
+                      "
                       dangerouslySetInnerHTML={{
                         __html: offer.description,
                       }}

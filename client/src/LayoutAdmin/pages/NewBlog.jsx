@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { MenuItem } from "@mui/material";
 import "react-quill/dist/quill.snow.css";
+import "./NewOfferEditor.css";
 
 import {
   FaArrowLeft,
@@ -164,6 +165,75 @@ const mapBlogToFormValues = (blog) => ({
   },
 });
 
+const normalizeEditorLinkUrl = (value = "") => {
+  const url = String(value).trim();
+
+  if (!url) return "";
+
+  if (/^(https?:\/\/|mailto:|tel:|\/|#)/i.test(url)) {
+    return url;
+  }
+
+  return `https://${url}`;
+};
+
+const normalizeEditorVideoUrl = (value = "") => {
+  const rawUrl = String(value).trim();
+
+  if (!rawUrl) return "";
+
+  try {
+    const url = new URL(
+      /^https?:\/\//i.test(rawUrl) ? rawUrl : `https://${rawUrl}`,
+    );
+
+    const hostname = url.hostname.replace(/^www\./, "").toLowerCase();
+
+    if (hostname === "youtu.be") {
+      const videoId = url.pathname.split("/").filter(Boolean)[0];
+
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : "";
+    }
+
+    if (
+      hostname === "youtube.com" ||
+      hostname === "m.youtube.com" ||
+      hostname === "youtube-nocookie.com"
+    ) {
+      if (url.pathname === "/watch") {
+        const videoId = url.searchParams.get("v");
+
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : "";
+      }
+
+      const parts = url.pathname.split("/").filter(Boolean);
+
+      if (parts[0] === "shorts" && parts[1]) {
+        return `https://www.youtube.com/embed/${parts[1]}`;
+      }
+
+      if (parts[0] === "embed" && parts[1]) {
+        return `https://www.youtube.com/embed/${parts[1]}`;
+      }
+    }
+
+    if (hostname === "vimeo.com" || hostname === "player.vimeo.com") {
+      const parts = url.pathname.split("/").filter(Boolean);
+
+      const videoId =
+        hostname === "player.vimeo.com" && parts[0] === "video"
+          ? parts[1]
+          : parts[0];
+
+      return videoId ? `https://player.vimeo.com/video/${videoId}` : "";
+    }
+
+    return url.toString();
+  } catch {
+    return "";
+  }
+};
+
 // ======================================================
 // VALIDACIÓN
 // ======================================================
@@ -276,6 +346,28 @@ function NewBlog() {
   const widgetRef = useRef(null);
   const currentImageFieldRef = useRef(null);
   const formikRef = useRef(null);
+
+  const contentEditorRef = useRef(null);
+  const lastContentSelectionRef = useRef(null);
+  const linkSelectionRef = useRef(null);
+  const videoSelectionRef = useRef(null);
+
+  const [contentMode, setContentMode] = useState("visual");
+  const [customTextColor, setCustomTextColor] = useState("#ff6600");
+  const [customBackgroundColor, setCustomBackgroundColor] = useState("#fff0e6");
+
+  const [linkDialog, setLinkDialog] = useState({
+    open: false,
+    url: "",
+    text: "",
+    newTab: true,
+    nofollow: false,
+  });
+
+  const [videoDialog, setVideoDialog] = useState({
+    open: false,
+    url: "",
+  });
 
   // ====================================================
   // FORMIK
@@ -478,6 +570,39 @@ function NewBlog() {
 
         const imageUrl = result.info.secure_url;
 
+        /*
+         * Imagen dentro del contenido del artículo.
+         * La imagen sigue almacenándose en Cloudinary;
+         * aquí solo insertamos su secure_url en ReactQuill.
+         */
+        if (field === "content") {
+          const editor = contentEditorRef.current?.getEditor?.();
+
+          if (!editor) return;
+
+          const range =
+            editor.getSelection(true) || lastContentSelectionRef.current;
+
+          const insertAt = range?.index ?? Math.max(editor.getLength() - 1, 0);
+
+          editor.insertEmbed(insertAt, "image", imageUrl, "user");
+
+          editor.insertText(insertAt + 1, "\n", "user");
+
+          editor.setSelection(insertAt + 2, 0, "silent");
+
+          lastContentSelectionRef.current = {
+            index: insertAt + 2,
+            length: 0,
+          };
+
+          currentFormik.setFieldValue("content", editor.root.innerHTML);
+
+          currentFormik.setFieldTouched("content", true, false);
+
+          return;
+        }
+
         currentFormik.setFieldValue(field, imageUrl);
 
         currentFormik.setFieldTouched(field, true, false);
@@ -515,6 +640,352 @@ function NewBlog() {
 
     widgetRef.current.open();
   };
+
+  const openContentImageWidget = (event) => {
+    event.preventDefault();
+
+    setContentMode("visual");
+
+    if (!widgetRef.current) {
+      Swal.fire({
+        icon: "error",
+        title: "Cloudinary no está disponible",
+        text: "Verifica que el script de Cloudinary esté cargado.",
+      });
+
+      return;
+    }
+
+    currentImageFieldRef.current = "content";
+
+    widgetRef.current.open();
+  };
+
+  const applyContentFormat = (format, value) => {
+    const editor = contentEditorRef.current?.getEditor?.();
+
+    if (!editor) return;
+
+    const range = editor.getSelection() ||
+      lastContentSelectionRef.current || {
+        index: Math.max(editor.getLength() - 1, 0),
+        length: 0,
+      };
+
+    if (range.length > 0) {
+      editor.formatText(range.index, range.length, format, value, "user");
+    } else {
+      editor.setSelection(range.index, 0, "silent");
+
+      editor.format(format, value, "user");
+    }
+
+    lastContentSelectionRef.current = range;
+
+    editor.setSelection(range.index, range.length, "silent");
+
+    editor.focus();
+  };
+
+  const handleCustomTextColor = (event) => {
+    const color = event.target.value;
+
+    setCustomTextColor(color);
+
+    applyContentFormat("color", color);
+  };
+
+  const handleCustomBackgroundColor = (event) => {
+    const color = event.target.value;
+
+    setCustomBackgroundColor(color);
+
+    applyContentFormat("background", color);
+  };
+
+  const closeAdvancedLinkDialog = () => {
+    setLinkDialog({
+      open: false,
+      url: "",
+      text: "",
+      newTab: true,
+      nofollow: false,
+    });
+  };
+
+  const openAdvancedLinkDialog = () => {
+    const editor = contentEditorRef.current?.getEditor?.();
+
+    if (!editor) return;
+
+    const range = editor.getSelection(true) ||
+      lastContentSelectionRef.current || {
+        index: Math.max(editor.getLength() - 1, 0),
+        length: 0,
+      };
+
+    linkSelectionRef.current = range;
+    lastContentSelectionRef.current = range;
+
+    const selectedText =
+      range.length > 0 ? editor.getText(range.index, range.length) : "";
+
+    const currentFormat = editor.getFormat(range);
+
+    const currentLink =
+      typeof currentFormat?.link === "string"
+        ? currentFormat.link
+        : currentFormat?.link?.href || "";
+
+    let target = "_blank";
+    let rel = "";
+
+    try {
+      const [leaf] = editor.getLeaf(range.index);
+      const node = leaf?.domNode;
+
+      const element = node?.nodeType === 3 ? node.parentElement : node;
+
+      const anchor = element?.closest?.("a");
+
+      if (anchor) {
+        target = anchor.getAttribute("target") || "";
+
+        rel = anchor.getAttribute("rel") || "";
+      }
+    } catch {
+      // Conservamos valores por defecto.
+    }
+
+    setLinkDialog({
+      open: true,
+      url: currentLink || "",
+      text: selectedText || "",
+      newTab: target === "_blank",
+      nofollow: rel.split(/\s+/).includes("nofollow"),
+    });
+  };
+
+  const applyAdvancedLink = () => {
+    const editor = contentEditorRef.current?.getEditor?.();
+    const range = linkSelectionRef.current;
+
+    if (!editor || !range) return;
+
+    const url = normalizeEditorLinkUrl(linkDialog.url);
+
+    if (!url) {
+      Swal.fire({
+        icon: "warning",
+        title: "Enlace inválido",
+        text: "Escribe una URL válida, por ejemplo: https://viajaatudestino.com",
+      });
+
+      return;
+    }
+
+    let start = range.index;
+    let length = range.length;
+
+    const currentText = length > 0 ? editor.getText(start, length) : "";
+
+    const displayText =
+      String(linkDialog.text || "").trim() ||
+      String(currentText || "").trim() ||
+      url;
+
+    if (length > 0) {
+      if (displayText !== String(currentText).trim()) {
+        editor.deleteText(start, length, "user");
+
+        editor.insertText(start, displayText, "user");
+
+        length = displayText.length;
+      }
+    } else {
+      editor.insertText(start, displayText, "user");
+
+      length = displayText.length;
+    }
+
+    editor.formatText(start, length, "link", url, "user");
+
+    requestAnimationFrame(() => {
+      try {
+        const [leaf] = editor.getLeaf(start);
+        const node = leaf?.domNode;
+
+        const element = node?.nodeType === 3 ? node.parentElement : node;
+
+        const anchor = element?.closest?.("a");
+
+        if (anchor) {
+          if (linkDialog.newTab) {
+            anchor.setAttribute("target", "_blank");
+          } else {
+            anchor.removeAttribute("target");
+          }
+
+          const relValues = [];
+
+          if (linkDialog.newTab) {
+            relValues.push("noopener", "noreferrer");
+          }
+
+          if (linkDialog.nofollow) {
+            relValues.push("nofollow");
+          }
+
+          if (relValues.length > 0) {
+            anchor.setAttribute("rel", [...new Set(relValues)].join(" "));
+          } else {
+            anchor.removeAttribute("rel");
+          }
+        }
+
+        formik.setFieldValue("content", editor.root.innerHTML);
+      } catch {
+        formik.setFieldValue("content", editor.root.innerHTML);
+      }
+    });
+
+    editor.setSelection(start + length, 0, "silent");
+
+    lastContentSelectionRef.current = {
+      index: start + length,
+      length: 0,
+    };
+
+    closeAdvancedLinkDialog();
+  };
+
+  const removeAdvancedLink = () => {
+    const editor = contentEditorRef.current?.getEditor?.();
+    const range = linkSelectionRef.current;
+
+    if (!editor || !range) {
+      closeAdvancedLinkDialog();
+      return;
+    }
+
+    if (range.length > 0) {
+      editor.formatText(range.index, range.length, "link", false, "user");
+
+      formik.setFieldValue("content", editor.root.innerHTML);
+    }
+
+    closeAdvancedLinkDialog();
+  };
+
+  const closeAdvancedVideoDialog = () => {
+    setVideoDialog({
+      open: false,
+      url: "",
+    });
+  };
+
+  const openAdvancedVideoDialog = () => {
+    const editor = contentEditorRef.current?.getEditor?.();
+
+    if (!editor) return;
+
+    const range = editor.getSelection(true) ||
+      lastContentSelectionRef.current || {
+        index: Math.max(editor.getLength() - 1, 0),
+        length: 0,
+      };
+
+    videoSelectionRef.current = range;
+    lastContentSelectionRef.current = range;
+
+    setVideoDialog({
+      open: true,
+      url: "",
+    });
+  };
+
+  const applyAdvancedVideo = () => {
+    const editor = contentEditorRef.current?.getEditor?.();
+    const range = videoSelectionRef.current;
+
+    if (!editor || !range) return;
+
+    const embedUrl = normalizeEditorVideoUrl(videoDialog.url);
+
+    if (!embedUrl) {
+      Swal.fire({
+        icon: "warning",
+        title: "Video inválido",
+        text: "Pega una URL válida de YouTube, Vimeo o una URL de inserción.",
+      });
+
+      return;
+    }
+
+    const insertAt = range.index;
+
+    editor.insertEmbed(insertAt, "video", embedUrl, "user");
+
+    editor.insertText(insertAt + 1, "\\n", "user");
+
+    editor.setSelection(insertAt + 2, 0, "silent");
+
+    lastContentSelectionRef.current = {
+      index: insertAt + 2,
+      length: 0,
+    };
+
+    formik.setFieldValue("content", editor.root.innerHTML);
+
+    closeAdvancedVideoDialog();
+  };
+
+  useEffect(() => {
+    if (contentMode !== "visual" || loadingBlog) {
+      return undefined;
+    }
+
+    let timer = null;
+    let attempts = 0;
+    let cancelled = false;
+
+    const registerToolbarHandlers = () => {
+      if (cancelled) return;
+
+      const editor = contentEditorRef.current?.getEditor?.();
+
+      const toolbar = editor?.getModule?.("toolbar");
+
+      if (editor && toolbar) {
+        toolbar.addHandler("link", openAdvancedLinkDialog);
+
+        toolbar.addHandler("video", openAdvancedVideoDialog);
+
+        return;
+      }
+
+      attempts += 1;
+
+      /*
+       * Al editar, ReactQuill puede montarse unos milisegundos
+       * después de que loadingBlog cambie a false.
+       * Reintentamos hasta que el toolbar esté disponible.
+       */
+      if (attempts < 20) {
+        timer = window.setTimeout(registerToolbarHandlers, 50);
+      }
+    };
+
+    timer = window.setTimeout(registerToolbarHandlers, 0);
+
+    return () => {
+      cancelled = true;
+
+      if (timer) {
+        window.clearTimeout(timer);
+      }
+    };
+  }, [contentMode, loadingBlog]);
 
   // ====================================================
   // INFORMACIÓN DERIVADA
@@ -811,21 +1282,428 @@ function NewBlog() {
               />
 
               <div className="p-5 sm:p-6">
-                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-                  <ReactQuill
-                    className="min-h-[340px]"
-                    value={formik.values.content}
-                    onChange={(value) => formik.setFieldValue("content", value)}
-                    onBlur={() => formik.setFieldTouched("content", true)}
-                    modules={quillModules}
-                    formats={quillFormats}
-                  />
+                <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+                  {/* HERRAMIENTAS SUPERIORES */}
+                  <div className="flex flex-col gap-3 border-b border-slate-200 bg-slate-50 px-3 py-3 lg:flex-row lg:items-center lg:justify-between">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={openContentImageWidget}
+                        className="inline-flex w-fit items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-4 py-2 text-sm font-black text-[#0260fe] shadow-sm transition hover:border-[#0260fe] hover:bg-blue-50"
+                      >
+                        <span aria-hidden="true">🖼️</span>
+                        Añadir imagen
+                      </button>
+
+                      {/* COLOR PERSONALIZADO */}
+                      <label
+                        className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 shadow-sm transition hover:border-[#ff6600]"
+                        title="Seleccionar cualquier color para el texto"
+                      >
+                        <span
+                          className="text-base font-black"
+                          style={{
+                            color: customTextColor,
+                          }}
+                        >
+                          A
+                        </span>
+
+                        <span className="hidden sm:inline">Color texto</span>
+
+                        <input
+                          type="color"
+                          value={customTextColor}
+                          onMouseDown={() => {
+                            const editor =
+                              contentEditorRef.current?.getEditor?.();
+
+                            const range = editor?.getSelection?.();
+
+                            if (range) {
+                              lastContentSelectionRef.current = range;
+                            }
+                          }}
+                          onChange={handleCustomTextColor}
+                          className="h-7 w-8 cursor-pointer rounded border-0 bg-transparent p-0"
+                          aria-label="Color personalizado del texto"
+                        />
+
+                        <span className="hidden font-mono text-[11px] uppercase text-slate-400 xl:inline">
+                          {customTextColor}
+                        </span>
+                      </label>
+
+                      {/* FONDO PERSONALIZADO */}
+                      <label
+                        className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 shadow-sm transition hover:border-[#ff6600]"
+                        title="Seleccionar cualquier color para resaltar el texto"
+                      >
+                        <span
+                          className="rounded px-1.5 py-0.5 text-xs font-black text-slate-800"
+                          style={{
+                            backgroundColor: customBackgroundColor,
+                          }}
+                        >
+                          A
+                        </span>
+
+                        <span className="hidden sm:inline">Fondo</span>
+
+                        <input
+                          type="color"
+                          value={customBackgroundColor}
+                          onMouseDown={() => {
+                            const editor =
+                              contentEditorRef.current?.getEditor?.();
+
+                            const range = editor?.getSelection?.();
+
+                            if (range) {
+                              lastContentSelectionRef.current = range;
+                            }
+                          }}
+                          onChange={handleCustomBackgroundColor}
+                          className="h-7 w-8 cursor-pointer rounded border-0 bg-transparent p-0"
+                          aria-label="Color personalizado del fondo"
+                        />
+                      </label>
+                    </div>
+
+                    {/* VISUAL / CÓDIGO */}
+                    <div className="inline-flex w-fit overflow-hidden rounded-xl border border-slate-200 bg-white p-1">
+                      <button
+                        type="button"
+                        onClick={() => setContentMode("visual")}
+                        className={`rounded-lg px-4 py-2 text-sm font-bold transition ${
+                          contentMode === "visual"
+                            ? "bg-[#0260fe] text-white shadow-sm"
+                            : "text-slate-600 hover:bg-slate-100"
+                        }`}
+                      >
+                        Visual
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setContentMode("html")}
+                        className={`rounded-lg px-4 py-2 text-sm font-bold transition ${
+                          contentMode === "html"
+                            ? "bg-[#0260fe] text-white shadow-sm"
+                            : "text-slate-600 hover:bg-slate-100"
+                        }`}
+                      >
+                        Código
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* EDITOR */}
+                  {contentMode === "visual" ? (
+                    <ReactQuill
+                      ref={contentEditorRef}
+                      theme="snow"
+                      className="offer-description-editor"
+                      value={formik.values.content}
+                      onChange={(value) =>
+                        formik.setFieldValue("content", value)
+                      }
+                      onChangeSelection={(range) => {
+                        if (range) {
+                          lastContentSelectionRef.current = range;
+                        }
+                      }}
+                      onBlur={() => formik.setFieldTouched("content", true)}
+                      modules={quillModules}
+                      formats={quillFormats}
+                      placeholder="Escribe el contenido completo del artículo..."
+                    />
+                  ) : (
+                    <textarea
+                      className="min-h-[460px] w-full resize-y border-0 bg-slate-950 p-5 font-mono text-sm leading-7 text-slate-100 outline-none"
+                      value={formik.values.content}
+                      onChange={(event) =>
+                        formik.setFieldValue("content", event.target.value)
+                      }
+                      onBlur={() => formik.setFieldTouched("content", true)}
+                      spellCheck={false}
+                      placeholder="<h2>Subtítulo</h2><p>Escribe o edita aquí el HTML del artículo...</p>"
+                    />
+                  )}
                 </div>
+
+                {/* MODAL ENLACE */}
+                {linkDialog.open && (
+                  <div
+                    className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-950/40 p-4 backdrop-blur-[2px]"
+                    onMouseDown={(event) => {
+                      if (event.target === event.currentTarget) {
+                        closeAdvancedLinkDialog();
+                      }
+                    }}
+                  >
+                    <div className="w-full max-w-xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+                      <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4 sm:px-6">
+                        <div>
+                          <p className="text-xs font-black uppercase tracking-widest text-[#ff6600]">
+                            Enlace
+                          </p>
+
+                          <h3 className="mt-1 text-xl font-black text-[#023e73]">
+                            Configurar enlace
+                          </h3>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={closeAdvancedLinkDialog}
+                          className="flex h-10 w-10 items-center justify-center rounded-full text-2xl font-light text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                          aria-label="Cerrar"
+                        >
+                          ×
+                        </button>
+                      </div>
+
+                      <div className="space-y-4 p-5 sm:p-6">
+                        <div>
+                          <label className="mb-1.5 block text-sm font-black text-slate-700">
+                            URL
+                          </label>
+
+                          <input
+                            type="url"
+                            value={linkDialog.url}
+                            onChange={(event) =>
+                              setLinkDialog((previous) => ({
+                                ...previous,
+                                url: event.target.value,
+                              }))
+                            }
+                            onKeyDown={(event) => {
+                              if (event.key === "Enter") {
+                                event.preventDefault();
+                                applyAdvancedLink();
+                              }
+
+                              if (event.key === "Escape") {
+                                closeAdvancedLinkDialog();
+                              }
+                            }}
+                            autoFocus
+                            placeholder="https://www.ejemplo.com"
+                            className="h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm text-slate-800 outline-none transition focus:border-[#0260fe] focus:ring-4 focus:ring-blue-100"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="mb-1.5 block text-sm font-black text-slate-700">
+                            Texto del enlace
+                          </label>
+
+                          <input
+                            type="text"
+                            value={linkDialog.text}
+                            onChange={(event) =>
+                              setLinkDialog((previous) => ({
+                                ...previous,
+                                text: event.target.value,
+                              }))
+                            }
+                            placeholder="Ej. Ver oferta"
+                            className="h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm text-slate-800 outline-none transition focus:border-[#0260fe] focus:ring-4 focus:ring-blue-100"
+                          />
+
+                          <p className="mt-1.5 text-xs leading-5 text-slate-400">
+                            Si seleccionaste texto antes de pulsar el enlace,
+                            aparecerá aquí automáticamente.
+                          </p>
+                        </div>
+
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <input
+                              type="checkbox"
+                              checked={linkDialog.newTab}
+                              onChange={(event) =>
+                                setLinkDialog((previous) => ({
+                                  ...previous,
+                                  newTab: event.target.checked,
+                                }))
+                              }
+                              className="mt-0.5 h-5 w-5 accent-[#0260fe]"
+                            />
+
+                            <span>
+                              <span className="block text-sm font-black text-slate-800">
+                                Abrir en otra pestaña
+                              </span>
+
+                              <span className="mt-1 block text-xs leading-5 text-slate-500">
+                                Agrega target="_blank" y noopener/noreferrer.
+                              </span>
+                            </span>
+                          </label>
+
+                          <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <input
+                              type="checkbox"
+                              checked={linkDialog.nofollow}
+                              onChange={(event) =>
+                                setLinkDialog((previous) => ({
+                                  ...previous,
+                                  nofollow: event.target.checked,
+                                }))
+                              }
+                              className="mt-0.5 h-5 w-5 accent-[#ff6600]"
+                            />
+
+                            <span>
+                              <span className="block text-sm font-black text-slate-800">
+                                Marcar como nofollow
+                              </span>
+
+                              <span className="mt-1 block text-xs leading-5 text-slate-500">
+                                Útil para determinados enlaces externos.
+                              </span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col-reverse gap-2 border-t border-slate-100 bg-slate-50 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+                        <div>
+                          {linkSelectionRef.current?.length > 0 ? (
+                            <button
+                              type="button"
+                              onClick={removeAdvancedLink}
+                              className="rounded-xl px-4 py-2.5 text-sm font-black text-red-600 transition hover:bg-red-50"
+                            >
+                              Quitar enlace
+                            </button>
+                          ) : null}
+                        </div>
+
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={closeAdvancedLinkDialog}
+                            className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-black text-slate-600 transition hover:bg-slate-100"
+                          >
+                            Cancelar
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={applyAdvancedLink}
+                            className="rounded-xl bg-[#ff6600] px-5 py-2.5 text-sm font-black text-white shadow-sm transition hover:bg-[#e65c00]"
+                          >
+                            Aplicar enlace
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* MODAL VIDEO */}
+                {videoDialog.open && (
+                  <div
+                    className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-950/40 p-4 backdrop-blur-[2px]"
+                    onMouseDown={(event) => {
+                      if (event.target === event.currentTarget) {
+                        closeAdvancedVideoDialog();
+                      }
+                    }}
+                  >
+                    <div className="w-full max-w-lg overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+                      <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4 sm:px-6">
+                        <div>
+                          <p className="text-xs font-black uppercase tracking-widest text-[#ff6600]">
+                            Multimedia
+                          </p>
+
+                          <h3 className="mt-1 text-xl font-black text-[#023e73]">
+                            Insertar video
+                          </h3>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={closeAdvancedVideoDialog}
+                          className="flex h-10 w-10 items-center justify-center rounded-full text-2xl font-light text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                          aria-label="Cerrar"
+                        >
+                          ×
+                        </button>
+                      </div>
+
+                      <div className="p-5 sm:p-6">
+                        <label className="mb-1.5 block text-sm font-black text-slate-700">
+                          URL del video
+                        </label>
+
+                        <input
+                          type="url"
+                          value={videoDialog.url}
+                          onChange={(event) =>
+                            setVideoDialog((previous) => ({
+                              ...previous,
+                              url: event.target.value,
+                            }))
+                          }
+                          onKeyDown={(event) => {
+                            if (event.key === "Enter") {
+                              event.preventDefault();
+                              applyAdvancedVideo();
+                            }
+
+                            if (event.key === "Escape") {
+                              closeAdvancedVideoDialog();
+                            }
+                          }}
+                          autoFocus
+                          placeholder="https://www.youtube.com/watch?v=..."
+                          className="h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm text-slate-800 outline-none transition focus:border-[#0260fe] focus:ring-4 focus:ring-blue-100"
+                        />
+
+                        <div className="mt-4 rounded-2xl border border-blue-100 bg-blue-50 p-4">
+                          <p className="text-sm font-black text-[#023e73]">
+                            YouTube y Vimeo
+                          </p>
+
+                          <p className="mt-1 text-xs leading-5 text-slate-600">
+                            Puedes pegar el enlace normal. El editor lo
+                            convierte automáticamente a una URL de inserción
+                            compatible.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex justify-end gap-2 border-t border-slate-100 bg-slate-50 px-5 py-4 sm:px-6">
+                        <button
+                          type="button"
+                          onClick={closeAdvancedVideoDialog}
+                          className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-black text-slate-600 transition hover:bg-slate-100"
+                        >
+                          Cancelar
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={applyAdvancedVideo}
+                          className="rounded-xl bg-[#0260fe] px-5 py-2.5 text-sm font-black text-white shadow-sm transition hover:bg-[#014fd3]"
+                        >
+                          Insertar video
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 <div className="mt-3 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                   <p className="text-xs text-slate-400">
-                    Utiliza subtítulos, listas, enlaces e imágenes solo cuando
-                    mejoren la lectura.
+                    Títulos, tamaños, colores, resaltado, listas, citas, código,
+                    alineación, enlaces avanzados, imágenes y video.
                   </p>
 
                   <p className="text-xs font-semibold text-slate-500">
@@ -1358,7 +2236,16 @@ const quillModules = {
   toolbar: [
     [
       {
-        header: [2, 3, 4, false],
+        header: [1, 2, 3, 4, 5, 6, false],
+      },
+    ],
+
+    [
+      {
+        font: [],
+      },
+      {
+        size: ["small", false, "large", "huge"],
       },
     ],
 
@@ -1366,31 +2253,115 @@ const quillModules = {
 
     [
       {
-        list: "ordered",
+        color: [
+          "#000000",
+          "#334155",
+          "#64748b",
+          "#0260fe",
+          "#023e73",
+          "#ff6600",
+          "#16a34a",
+          "#dc2626",
+          "#9333ea",
+          "#ffffff",
+          false,
+        ],
       },
 
+      {
+        background: [
+          "#ffffff",
+          "#f8fafc",
+          "#eff6ff",
+          "#dbeafe",
+          "#fff0e6",
+          "#fef3c7",
+          "#dcfce7",
+          "#fee2e2",
+          "#f3e8ff",
+          false,
+        ],
+      },
+    ],
+
+    [
+      {
+        script: "sub",
+      },
+      {
+        script: "super",
+      },
+    ],
+
+    ["blockquote", "code-block"],
+
+    [
+      {
+        list: "ordered",
+      },
       {
         list: "bullet",
       },
     ],
 
-    ["blockquote", "link", "image"],
+    [
+      {
+        indent: "-1",
+      },
+      {
+        indent: "+1",
+      },
+    ],
+
+    [
+      {
+        align: [],
+      },
+    ],
+
+    ["link", "video"],
 
     ["clean"],
   ],
+
+  history: {
+    delay: 1000,
+    maxStack: 100,
+    userOnly: true,
+  },
+
+  clipboard: {
+    matchVisual: false,
+  },
 };
 
 const quillFormats = [
   "header",
+  "font",
+  "size",
+
   "bold",
   "italic",
   "underline",
   "strike",
+
+  "color",
+  "background",
+
+  "script",
+
+  "blockquote",
+  "code-block",
+
   "list",
   "bullet",
-  "blockquote",
+  "indent",
+
+  "align",
+
   "link",
   "image",
+  "video",
 ];
 
 export default NewBlog;
