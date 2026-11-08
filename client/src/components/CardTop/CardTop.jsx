@@ -183,7 +183,7 @@ Quiero consultar fechas y disponibilidad.`;
               className="
                 absolute left-4 top-4
                 rounded-full
-                bg-[#ff6600]
+                bg-[#ED1C24]
                 px-4 py-2
                 text-xs font-black
                 text-white
@@ -356,7 +356,7 @@ Quiero consultar fechas y disponibilidad.`;
                     items-center justify-center
                     rounded-lg
                     bg-orange-50
-                    text-[#ff6600]
+                    text-[#ED1C24]
                   "
               >
                 <FaMapMarkerAlt />
@@ -434,7 +434,7 @@ Quiero consultar fechas y disponibilidad.`;
                 inline-flex min-h-[48px]
                 items-center justify-center gap-2
                 rounded-xl
-                bg-[#ff6600]
+                bg-[#ED1C24]
                 px-5 py-3
                 text-sm font-black
                 text-white
