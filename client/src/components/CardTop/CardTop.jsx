@@ -158,7 +158,7 @@ Quiero consultar fechas y disponibilidad.`;
         <div className="relative">
           <NavLink
             to={cardUrl}
-            className="relative block h-[235px] overflow-hidden bg-slate-100 sm:h-[245px]"
+            className="relative block h-[200px] overflow-hidden bg-slate-100 sm:h-[200px]"
           >
             {mainImage ? (
               <img
@@ -241,7 +241,7 @@ Quiero consultar fechas y disponibilidad.`;
             INFORMACIÓN
         ================================================== */}
 
-        <div className="flex flex-1 flex-col p-5">
+        <div className="flex flex-1 flex-col p-3">
           {/* Precio */}
 
           <div className="flex items-end justify-between gap-3">
@@ -300,7 +300,7 @@ Quiero consultar fechas y disponibilidad.`;
           {summary ? (
             <p
               className="
-                mt-4
+                mt-3
                 line-clamp-2
                 text-sm leading-6
                 text-slate-600
@@ -312,13 +312,13 @@ Quiero consultar fechas y disponibilidad.`;
 
           {/* Separador */}
 
-          <div className="my-4 h-px bg-slate-100" />
+          <div className="my-3 h-px bg-slate-100" />
 
           {/* =================================================
               DETALLES RÁPIDOS
           ================================================== */}
 
-          <div className="space-y-3">
+          <div className="space-y-2">
             {/* Hotel */}
 
             {hotelName ? (

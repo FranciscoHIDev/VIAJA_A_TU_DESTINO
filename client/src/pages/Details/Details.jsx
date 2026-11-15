@@ -839,12 +839,8 @@ Quiero consultar fechas, disponibilidad y opciones de pago.`;
                     </span>
 
                     <div>
-                      <p className="text-xs font-black uppercase tracking-widest text-[#ff6600]">
-                        Detalles de oferta
-                      </p>
-
-                      <h2 className="mt-1 text-2xl font-black text-[#023e73] sm:text-3xl">
-                        Todo lo que debes saber
+                      <h2 className="mt-1 text-2xl font-black text-[#023e73] sm:text-2xl">
+                        Detalles de la oferta
                       </h2>
                     </div>
                   </div>
