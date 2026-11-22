@@ -39,9 +39,10 @@ const buyLinkSchema = z
       .string()
       .trim()
       .min(1, "El enlace de compra es obligatorio.")
-      .url("El enlace de compra debe ser una URL válida.")
-      .max(2000, "El enlace de compra es demasiado largo."),
+      .max(50000, "El enlace de compra es demasiado largo."),
+      
   })
+  
   .strict();
 
 // ======================================================
