@@ -339,17 +339,30 @@ const validationSchema = yup.object({
         departureDate: yup
           .string()
           .trim()
-          .required("La fecha de salida es requerida"),
-        returnDate: yup
-          .string()
-          .trim()
-          .required("La fecha de retorno es requerida"),
+          .required("Fecha de salida requerida"),
+
+        returnDate: yup.string().trim().required("Fecha de retorno requerida"),
+
         price: yup.string().trim().required("Precio requerido"),
+
         link: yup
           .string()
           .trim()
-          .url("Ingresa una URL válida")
-          .required("El enlace es requerido"),
+          .required("El enlace es requerido")
+          .test("valid-url", "Ingresa una URL válida", (value) => {
+            if (!value) return false;
+
+            try {
+              const url = new URL(value);
+
+              return (
+                ["http:", "https:"].includes(url.protocol) &&
+                Boolean(url.hostname)
+              );
+            } catch {
+              return false;
+            }
+          }),
       }),
     )
     .min(1, "Debes agregar al menos un enlace de compra"),
